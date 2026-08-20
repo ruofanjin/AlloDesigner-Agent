@@ -1,0 +1,23 @@
+{
+  "engine": "glide",
+  "n": 15,
+  "score_units": "kcal/mol_like_placeholder",
+  "bins": [
+    {
+      "lo": -8.0,
+      "hi": -6.0,
+      "count": 6
+    },
+    {
+      "lo": -6.0,
+      "hi": -4.0,
+      "count": 8
+    },
+    {
+      "lo": -4.0,
+      "hi": -2.0,
+      "count": 1
+    }
+  ],
+  "note": "placeholder distribution; not docking"
+}

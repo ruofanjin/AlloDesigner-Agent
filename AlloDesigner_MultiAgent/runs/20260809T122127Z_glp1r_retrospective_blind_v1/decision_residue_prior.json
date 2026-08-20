@@ -1,0 +1,87 @@
+{
+  "packet_id": "glp1r_retrospective_blind_v1:residue_prior:r1",
+  "task_id": "glp1r_retrospective_blind_v1",
+  "stage_id": "residue_prior",
+  "stage_contract_version": "1.0.0",
+  "task_track": "retrospective_blind",
+  "inputs_frozen": [
+    "full_length_sequence",
+    "public_msa_databases",
+    "membrane_system_setup_protocol"
+  ],
+  "priors_approved": [
+    "information_boundary_sheet",
+    "default_allodesigner_reference_path"
+  ],
+  "tools_considered": [
+    {
+      "tool_id": "allo_pocketminer",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "From AlloDesigner reference path / stage defaults"
+    },
+    {
+      "tool_id": "pocketminer_baseline",
+      "role": "benchmark",
+      "decision": "benchmark_only",
+      "rationale": "Benchmark control; reported separately"
+    }
+  ],
+  "tool_selected": [
+    "allo_pocketminer"
+  ],
+  "outputs": {
+    "iterations": [],
+    "pipeline": {
+      "status": "blocked",
+      "reason": "env_create_deferred",
+      "commands": [
+        "# env_action=create profile=allo_pocketminer env=allo-pocketminer",
+        "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner && python case_predict.py",
+        "# threshold=0.7, target=GLP1R"
+      ],
+      "env_decision": {
+        "stage_id": "residue_prior",
+        "profile_id": "allo_pocketminer",
+        "specialized": true,
+        "action": "create",
+        "env_name": "allo-pocketminer",
+        "env_path": null,
+        "python_executable": null,
+        "matched_by": null,
+        "score": 0.0,
+        "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo-pocketminer-environment.yml",
+        "command_prefix": [],
+        "notes": [
+          "No sufficiently matching env; will create from /lambda/nfs/file2/jrf/AlloDesigner/allo-pocketminer-environment.yml",
+          "create_if_missing deferred (--no-ensure-envs); emitting create plan only"
+        ],
+        "probe_details": {}
+      }
+    }
+  },
+  "metrics": {},
+  "qc_flags": [
+    "env_create_deferred"
+  ],
+  "human_interventions": [],
+  "claims_allowed": [
+    "候选残基/区域先验已生成，待后续构象与物理验证"
+  ],
+  "iteration": {
+    "round": 1,
+    "stop_reason": "blocked"
+  },
+  "critic": {
+    "passed": true,
+    "findings": [],
+    "claims_allowed": [
+      "候选残基/区域先验已生成，待后续构象与物理验证"
+    ],
+    "claims_forbidden": [
+      "已确认功能变构位点"
+    ]
+  },
+  "status": "blocked",
+  "maturity": "executable"
+}

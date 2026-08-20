@@ -1,0 +1,23 @@
+{
+  "status": "needs_external",
+  "paper_stage": "AI-prior metadynamics / biased MD",
+  "cv_candidates": [
+    "pocket_sasa",
+    "key_residue_pair_distance"
+  ],
+  "budget_ns": 50,
+  "benchmarks": [
+    "unbiased_md"
+  ],
+  "system_setup": "CHARMM-GUI POPC + AMBER for GPCR membrane system (paper/SI)",
+  "callback_contract": {
+    "upload": [
+      "openlike_frames/",
+      "cv_timeseries.csv",
+      "pocket_volume_trace.csv"
+    ],
+    "claims_allowed": [
+      "在给定 CV 与预算下采样到开放样构象候选"
+    ]
+  }
+}

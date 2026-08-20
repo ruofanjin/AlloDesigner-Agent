@@ -1,0 +1,34 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    29:
+HEADER 0  - Pocket Score                      : -0.0915
+HEADER 1  - Drug Score                        : 0.0002
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 3.7121
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5303
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : -18.5000
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 6.5000
+HEADER 9  - Pocket volume (Monte Carlo)       : 148.8270
+HEADER 10 - Pocket volume (convex hull)       : 1.8088
+HEADER 11 - Charge Score                      :     2
+HEADER 12 - Local hydrophobic density Score   : 5.0000
+HEADER 13 - Number of apolar alpha sphere     :     6
+HEADER 14 - Proportion of apolar alpha sphere : 0.4000
+ATOM   2197   CD LYS C 139      48.950  78.020  58.820  0.00  0.00           C 0
+ATOM   2224   CZ ARG C 140      42.780  80.640  60.510  0.00  0.00           C 0
+ATOM   2225  NH1 ARG C 140      42.620  80.410  61.790  0.46  8.75           N 0
+ATOM   2228  NH2 ARG C 140      43.330  81.820  60.280  0.00  0.00           N 0
+ATOM   2222   NE ARG C 140      42.590  79.700  59.570  0.60  4.37           N 0
+ATOM   2203   NZ LYS C 139      49.280  79.140  56.620  0.00  0.00           N 0
+ATOM   2216   CG ARG C 140      42.880  77.400  58.810  0.00  0.00           C 0
+ATOM   2200   CE LYS C 139      49.110  77.830  57.270  0.00  0.00           C 0
+ATOM   2209    N ARG C 140      44.420  75.130  60.310  0.00  0.00           N 0
+ATOM   2191   CB LYS C 139      47.380  76.030  58.990  0.00  0.00           C 0
+ATOM   2189   CA LYS C 139      46.810  74.940  59.830  0.00  0.00           C 0
+ATOM   2194   CG LYS C 139      48.730  76.690  59.470  0.00  0.00           C 0
+TER
+END

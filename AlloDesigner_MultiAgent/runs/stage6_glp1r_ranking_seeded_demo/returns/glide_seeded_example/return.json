@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "stage_id": "candidate_ranking",
+  "status": "demo_completed",
+  "product_maturity": "partial/seeded",
+  "engine": "glide",
+  "protocol_version": "vina_or_glide_external_v0",
+  "inputs_consumed": {
+    "request_id": "stage6_glp1r_ranking_seeded_v1",
+    "pocket_id": "pocket_01",
+    "receptor": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/inputs/receptor.pdb",
+    "n_library": 15
+  },
+  "ranked_candidates_csv": "ranked_candidates.csv",
+  "poses_dir": "poses/",
+  "score_distribution": {
+    "engine": "glide",
+    "n": 15,
+    "score_units": "kcal/mol_like_placeholder",
+    "bins": [
+      {
+        "lo": -8.0,
+        "hi": -6.0,
+        "count": 6
+      },
+      {
+        "lo": -6.0,
+        "hi": -4.0,
+        "count": 8
+      },
+      {
+        "lo": -4.0,
+        "hi": -2.0,
+        "count": 1
+      }
+    ],
+    "note": "placeholder distribution; not docking"
+  },
+  "metrics": {
+    "n_scored": 15,
+    "top_n": 10,
+    "score_min": -7.95,
+    "score_median": -5.65,
+    "score_max": -3.75,
+    "score_units": "kcal/mol_like_placeholder"
+  },
+  "operator_notes": "Seeded example return for glide \u2014 scores are NOT from real docking. Replace by external Vina/Glide return using the same schema.",
+  "claims_allowed": [
+    "\u8ba1\u7b97\u5019\u9009\u7269\u5df2\u6392\u5e8f\uff0c\u5f85\u5b9e\u9a8c/\u4e13\u5bb6\u590d\u6838",
+    "Stage6 \u4f5c\u4e1a\u5355 + \u56de\u4f20\u63a5\u53e3\u5df2 seeded"
+  ],
+  "claims_forbidden": [
+    "\u6709\u6548\u914d\u4f53/\u6291\u5236\u5242\u5df2\u88ab\u8bc1\u5b9e",
+    "Glide/Vina \u5168\u5e93\u865a\u7b5b\u5df2\u5b8c\u6210",
+    "\u672c\u793a\u4f8b\u5206\u6570\u6765\u81ea\u771f\u5b9e\u5bf9\u63a5"
+  ]
+}

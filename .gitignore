@@ -1,0 +1,29 @@
+Allo-PocketMiner/data/holo-apo-chain/test_processed.npy
+Allo-PocketMiner/data/holo-apo-chain/val_processed.npy
+Allo-PocketMiner/data/holo-apo-chain/train_processed.npy
+# Local / generated
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+.DS_Store
+
+# AlphaFlow checkpoint (≈2.6GB; download separately)
+AlphaFlow/weights/*.pt
+AlphaFlow/weights/*.ckpt
+AlphaFlow/weights/*.bin
+
+# Allo-MD third-party install tarballs (>100MB; fetched by installer)
+Allo-MD/agent/install/sources/*.tar.gz
+Allo-MD/agent/install/sources/*.tar.bz2
+Allo-MD/agent/install/sources/*.tgz
+
+# Build debris
+Allo-MD/agent/a.out
+Allo-MD/agent/TestCUDA.o
+allo_stepwise/workdir/
+allo_stepwise/workdir/
+AlphaFlow/dbbase

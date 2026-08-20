@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "implemented": false,
+  "role": "future_upstream_system_builder_contract",
+  "default_route": "charmm_gui_membrane_builder",
+  "expert_route": "gromacs_native_with_pre_equilibrated_bilayer_and_compatible_topologies",
+  "frozen_current_system": {
+    "builder": "CHARMM-GUI 3.7",
+    "force_field_evidence": "AMBER FF in GROMACS format; exact protein/lipid subversions unrecoverable",
+    "molecules": {
+      "protein_components": 4,
+      "POPC": 383,
+      "K+": 161,
+      "Cl-": 162,
+      "TP3": 59262
+    },
+    "bitwise_rebuild_claim_allowed": false
+  },
+  "required_artifacts": [
+    "build_spec.json",
+    "source_structures_with_sha256",
+    "chain_map.tsv",
+    "residue_map.tsv",
+    "structure_decisions.json",
+    "orientation.json",
+    "membrane_composition.tsv",
+    "commands.log",
+    "versions.json",
+    "topol.top_and_project_local_toppar",
+    "pre_em_assembled_gro_pdb_ndx_and_preprocessed_topology",
+    "exact_minimization_and_equilibration_mdp_files",
+    "validated_post_equilibration_parent_gro_cpt_tpr",
+    "system_summary.json",
+    "validation_reports",
+    "artifact_sha256_manifest"
+  ],
+  "hard_gates": [
+    "coordinate_topology_tpr_atom_count_and_order_proven",
+    "chain_identity_membrane_normal_and_extracellular_direction_recorded",
+    "protein_lipid_ligand_water_ion_force_fields_compatible_and_versioned",
+    "leaflet_composition_charge_box_and_ion_concentration_resolved",
+    "no_unexplained_grompp_warnings_or_persistent_constraint_failures",
+    "protein_lipid_clashes_hydrophobic_core_water_and_leaflet_counts_checked",
+    "energy_minimization_and_membrane_equilibration_qc_passed",
+    "post_equilibration_parent_tpr_cpt_gro_consistency_proven",
+    "new_index_and_all_plumed_global_atom_mappings_regenerated"
+  ],
+  "forbidden_reuse": [
+    "packaged_48_distance_atom_mapping",
+    "packaged_254_atom_sasa_mapping",
+    "packaged_648_atom_sasa_mapping",
+    "packaged_index_membership_without_regeneration"
+  ],
+  "human_guidance": "docs/MEMBRANE_SYSTEM_BUILDING.md"
+}

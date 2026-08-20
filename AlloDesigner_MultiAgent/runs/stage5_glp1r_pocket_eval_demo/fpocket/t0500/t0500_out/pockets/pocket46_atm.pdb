@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    46:
+HEADER 0  - Pocket Score                      : -0.2566
+HEADER 1  - Drug Score                        : 0.0008
+HEADER 2  - Number of alpha spheres           :    20
+HEADER 3  - Mean alpha-sphere radius          : 3.8846
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4908
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 4.8333
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 3.8333
+HEADER 9  - Pocket volume (Monte Carlo)       : 335.5408
+HEADER 10 - Pocket volume (convex hull)       : 24.7965
+HEADER 11 - Charge Score                      :     2
+HEADER 12 - Local hydrophobic density Score   : 6.0000
+HEADER 13 - Number of apolar alpha sphere     :     7
+HEADER 14 - Proportion of apolar alpha sphere : 0.3500
+ATOM   5704   CB CYS C 350      42.340  48.600 112.960  0.00  0.00           C 0
+ATOM   5652   CA ASN C 347      40.220  47.880 108.400  0.00  0.00           C 0
+ATOM   5663    O ASN C 347      40.000  49.050 110.470  0.26  8.57           O 0
+ATOM   5707   SG CYS C 350      44.060  48.850 113.230  0.00  0.00           S 0
+ATOM   5649    O ALA C 346      40.420  45.380 109.870  0.52  5.36           O 0
+ATOM   5877   CE LYS C 360      45.470  53.620 109.310  0.00  0.00           C 0
+ATOM   5710    O CYS C 350      40.850  50.490 115.330  0.48  9.64           O 0
+ATOM   5732    O LYS C 351      44.340  51.620 115.400  0.69  2.14           O 0
+ATOM   5743  OG1 THR C 352      41.840  55.400 116.420  0.52  6.43           O 0
+ATOM   5733    N THR C 352      43.100  52.940 116.680  0.00  0.00           N 0
+ATOM   5654   CB ASN C 347      40.330  48.820 107.150  0.00  0.00           C 0
+ATOM   5874   CD LYS C 360      45.930  54.390 108.050  0.00  0.00           C 0
+ATOM   5658  OD1 ASN C 347      38.700  50.530 107.430  0.00  0.00           O 0
+ATOM   5735   CA THR C 352      43.920  54.110 116.390  0.00  0.00           C 0
+ATOM   5880   NZ LYS C 360      44.600  54.390 110.250  0.00  0.00           N 0
+ATOM   5739  CG2 THR C 352      43.960  56.660 116.290  0.00  0.00           C 0
+TER
+END

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Stage6 virtual screening request / job sheet",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "stage_id",
+    "mode",
+    "product_maturity",
+    "human_freezes",
+    "inputs",
+    "engines",
+    "expected_outputs",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "stage_id": {"const": "candidate_ranking"},
+    "mode": {
+      "type": "string",
+      "enum": ["external_job_pack", "dry_run_seeded", "production_vs"]
+    },
+    "product_maturity": {
+      "type": "string",
+      "enum": ["partial/seeded", "partial/demo", "external", "paper_only"]
+    },
+    "human_freezes": {
+      "type": "object",
+      "required": ["library_scope", "docking_protocol", "top_n_rule"],
+      "properties": {
+        "library_scope": {"type": "string"},
+        "docking_protocol": {"type": "string"},
+        "top_n_rule": {"type": "string"}
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["pocket_id", "residues", "receptor_pdb", "continue_gate"],
+      "properties": {
+        "stage5_run_dir": {"type": "string"},
+        "pocket_id": {"type": "string"},
+        "residues": {"type": "array", "items": {"type": "integer"}},
+        "receptor_pdb": {"type": "string"},
+        "pocket_box": {"type": "object"},
+        "library_file": {"type": "string"},
+        "continue_gate": {"type": "string"}
+      }
+    },
+    "engines": {
+      "type": "object",
+      "properties": {
+        "primary": {"type": "array", "items": {"type": "string"}},
+        "accepted_return_engines": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["vina", "glide", "karmadock", "dry_run_placeholder"]}
+        }
+      }
+    },
+    "expected_outputs": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "claim_boundary": {"type": "string"}
+  }
+}

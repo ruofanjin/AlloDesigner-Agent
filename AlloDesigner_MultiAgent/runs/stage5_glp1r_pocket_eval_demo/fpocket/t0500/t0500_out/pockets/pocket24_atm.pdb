@@ -1,0 +1,34 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    24:
+HEADER 0  - Pocket Score                      : -0.0701
+HEADER 1  - Drug Score                        : 0.0007
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 3.9158
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6721
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 54.6000
+HEADER 7  - Polarity Score                    :     1
+HEADER 8  - Amino Acid based volume Score     : 4.6000
+HEADER 9  - Pocket volume (Monte Carlo)       : 120.4728
+HEADER 10 - Pocket volume (convex hull)       : 0.2807
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 8.0000
+HEADER 13 - Number of apolar alpha sphere     :     9
+HEADER 14 - Proportion of apolar alpha sphere : 0.6000
+ATOM   1326   CB PRO B  82      61.900  61.210  35.930  0.00  0.00           C 0
+ATOM    972  CD1 LEU A  59      59.520  55.630  39.430  0.00  0.00           C 0
+ATOM    970   CG LEU A  59      60.890  56.180  39.030  0.00  0.00           C 0
+ATOM   1320   CD PRO B  82      60.950  62.520  37.770  0.00  0.00           C 0
+ATOM   1319    N PRO B  82      61.890  61.530  38.350  0.00  0.00           N 0
+ATOM   1294    O CYS B  80      58.450  61.820  41.910  0.81  1.07           O 0
+ATOM   1297   CA TRP B  81      61.140  61.860  40.700  0.00  0.00           C 0
+ATOM   1317    C TRP B  81      62.010  61.170  39.650  0.00  0.00           C 0
+ATOM    976  CD2 LEU A  59      61.130  57.290  40.070  0.00  0.00           C 0
+ATOM   1291   SG CYS B  80      57.660  58.820  42.700  0.00  0.00           S 0
+ATOM   1455  CG1 VAL B  92      55.970  62.980  39.470  0.00  0.00           C 0
+ATOM   1295    N TRP B  81      60.590  61.050  41.780  0.00  0.00           N 0
+TER
+END

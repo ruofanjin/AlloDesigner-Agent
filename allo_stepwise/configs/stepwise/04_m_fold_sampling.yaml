@@ -1,0 +1,12 @@
+m_fold_sampling:
+  input_a3m: "{work_dir}/01_iterative_shuffling/combined_filtered_all_iterations.a3m"
+  round_dir: "{work_dir}/02_m_fold_sampling/round_1"
+  sampling_dir: "{work_dir}/02_m_fold_sampling/round_1/02_sampling"
+  init_random_split_dir: "{work_dir}/02_m_fold_sampling/round_1/02_init_random_split"
+  coverage_threshold: 0.8
+  group_size: 20
+  random_seed: 43
+  expected_init_group_count: 37
+  sampling_indices: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
+  metrics_dir: "{work_dir}/02_m_fold_sampling/round_1/02_sampling/pocketminer_predict_residues_cluster_eps6"
+  combined_metrics_csv: "{work_dir}/02_m_fold_sampling/round_1/02_sampling/pocketminer_predict_residues_cluster_eps6/all_sampling_avg_distance_combined.csv"

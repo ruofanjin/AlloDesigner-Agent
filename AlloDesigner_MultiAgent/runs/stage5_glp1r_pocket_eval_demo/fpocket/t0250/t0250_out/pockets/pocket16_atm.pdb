@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    16:
+HEADER 0  - Pocket Score                      : -0.0658
+HEADER 1  - Drug Score                        : 0.0005
+HEADER 2  - Number of alpha spheres           :    17
+HEADER 3  - Mean alpha-sphere radius          : 3.8588
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5099
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 9.7143
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 3.7143
+HEADER 9  - Pocket volume (Monte Carlo)       : 189.2520
+HEADER 10 - Pocket volume (convex hull)       : 3.9423
+HEADER 11 - Charge Score                      :     3
+HEADER 12 - Local hydrophobic density Score   : 2.0000
+HEADER 13 - Number of apolar alpha sphere     :     3
+HEADER 14 - Proportion of apolar alpha sphere : 0.1765
+ATOM   7843  CE1 HID D 485      63.420  46.430 138.410  0.00  0.00           C 0
+ATOM   7760   CA PHE D 480      69.860  43.100 134.710  0.00  0.00           C 0
+ATOM   7815    O PRO D 483      67.200  48.560 137.820  0.50  7.50           O 0
+ATOM   7766  CD1 PHE D 480      70.840  41.350 137.440  0.00  0.00           C 0
+ATOM   7794    O GLN D 481      66.770  46.290 133.950  0.39  7.50           O 0
+ATOM   7858  ND1 HID D 486      68.390  46.440 142.890  0.00  0.00           N 0
+ATOM   7824  ND1 HID D 484      71.310  47.300 139.520  0.79  2.19           N 0
+ATOM   7850    N HID D 486      65.470  48.310 143.120  0.00  0.00           N 0
+ATOM   7854   CB HID D 486      66.270  46.420 144.360  0.00  0.00           C 0
+ATOM   7845  NE2 HID D 485      62.450  46.500 139.360  0.58  4.37           N 0
+ATOM   7776    C PHE D 480      69.610  44.370 133.870  0.00  0.00           C 0
+ATOM   7777    O PHE D 480      70.390  45.310 133.930  0.57  8.57           O 0
+ATOM   7762   CB PHE D 480      71.060  43.090 135.650  0.00  0.00           C 0
+ATOM   7841  ND1 HID D 485      64.150  47.540 138.520  0.63  2.19           N 0
+ATOM   7833    N HID D 485      66.470  49.230 140.560  0.00  0.00           N 0
+ATOM   7801    O GLY D 482      68.600  48.610 135.250  0.50  7.50           O 0
+TER
+END

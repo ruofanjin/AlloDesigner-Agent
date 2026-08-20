@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     5:
+HEADER 0  - Pocket Score                      : 0.0222
+HEADER 1  - Drug Score                        : 0.0009
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 3.9457
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.7152
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 43.0000
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 4.3333
+HEADER 9  - Pocket volume (Monte Carlo)       : 250.6246
+HEADER 10 - Pocket volume (convex hull)       : 6.5490
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 5.0000
+HEADER 13 - Number of apolar alpha sphere     :     6
+HEADER 14 - Proportion of apolar alpha sphere : 0.4000
+ATOM   5690   CG MET C 349      39.440  43.250 112.850  0.00  0.00           C 0
+ATOM   5668   CB LEU C 348      38.940  48.580 112.030  0.00  0.00           C 0
+ATOM   5639    O LYS C 345      38.200  42.980 108.010  0.58  6.43           O 0
+ATOM   5693   SD MET C 349      38.140  42.000 112.820  0.00  0.00           S 0
+ATOM   5687   CB MET C 349      39.680  43.880 114.240  0.00  0.00           C 0
+ATOM   5677  CD2 LEU C 348      36.960  50.060 112.760  0.00  0.00           C 0
+ATOM   5664    N LEU C 348      40.780  47.450 110.970  0.00  0.00           N 0
+ATOM   5617    O LEU C 344      40.470  45.780 106.200  0.31  5.36           O 0
+ATOM   5659  ND2 ASN C 347      40.850  48.460 107.170  0.00  0.00           N 0
+ATOM   5683    N MET C 349      40.540  46.070 113.350  0.00  0.00           N 0
+ATOM   5671   CG LEU C 348      38.450  49.700 112.990  0.00  0.00           C 0
+ATOM   5682    O LEU C 348      41.010  47.960 114.510  0.37  7.50           O 0
+ATOM   5681    C LEU C 348      40.690  47.410 113.500  0.00  0.00           C 0
+ATOM   5650    N ASN C 347      41.370  45.560 109.020  0.00  0.00           N 0
+ATOM   5685   CA MET C 349      40.730  44.990 114.360  0.00  0.00           C 0
+ATOM   5648    C ALA C 346      41.320  44.490 109.820  0.00  0.00           C 0
+TER
+END

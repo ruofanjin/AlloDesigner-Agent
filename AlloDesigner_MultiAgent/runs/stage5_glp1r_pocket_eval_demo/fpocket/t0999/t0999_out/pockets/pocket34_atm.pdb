@@ -1,0 +1,39 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    34:
+HEADER 0  - Pocket Score                      : -0.1107
+HEADER 1  - Drug Score                        : 0.0003
+HEADER 2  - Number of alpha spheres           :    17
+HEADER 3  - Mean alpha-sphere radius          : 3.9059
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5109
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 12.6250
+HEADER 7  - Polarity Score                    :     5
+HEADER 8  - Amino Acid based volume Score     : 3.8750
+HEADER 9  - Pocket volume (Monte Carlo)       : 246.1267
+HEADER 10 - Pocket volume (convex hull)       : 10.1295
+HEADER 11 - Charge Score                      :    -2
+HEADER 12 - Local hydrophobic density Score   : 2.0000
+HEADER 13 - Number of apolar alpha sphere     :     3
+HEADER 14 - Proportion of apolar alpha sphere : 0.1765
+ATOM   4854    O LEU C 299      67.380  54.300  64.740  0.08  4.29           O 0
+ATOM   4849  CD2 LEU C 299      71.930  54.750  66.730  0.00  0.00           C 0
+ATOM   3597  OD2 ASP C 224      74.760  56.480  62.610  0.63  5.36           O 0
+ATOM   4828   OH TYR C 298      71.980  59.890  65.410  0.77  4.29           O 0
+ATOM   4827   CZ TYR C 298      71.250  59.440  66.490  0.00  0.00           C 0
+ATOM   4835    O TYR C 298      67.170  57.360  66.900  0.58  2.14           O 0
+ATOM   3703  OD2 ASP C 231      74.370  52.190  61.030  0.42  7.50           O 0
+ATOM   3702  OD1 ASP C 231      75.680  52.240  62.750  0.68  5.36           O 0
+ATOM   4830  CE2 TYR C 298      70.000  60.000  66.680  0.00  0.00           C 0
+ATOM   3751   CB CYS C 235      72.760  49.430  65.060  0.00  0.00           C 0
+ATOM   3754   SG CYS C 235      71.130  49.910  65.580  0.00  0.00           S 0
+ATOM   4895   CB ASP C 302      64.960  55.550  60.990  0.00  0.00           C 0
+ATOM   4900  OD2 ASP C 302      65.890  54.480  59.000  0.00  0.00           O 0
+ATOM   4929   CB CYS C 305      66.920  51.770  62.190  0.00  0.00           C 0
+ATOM   4932   SG CYS C 305      68.300  51.120  63.210  0.00  0.00           S 0
+ATOM   3534   CB HID C 221      72.400  59.490  59.570  0.00  0.00           C 0
+ATOM   4838   CA LEU C 299      68.570  54.850  66.710  0.00  0.00           C 0
+TER
+END

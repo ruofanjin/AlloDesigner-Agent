@@ -1,0 +1,41 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    18:
+HEADER 0  - Pocket Score                      : -0.0723
+HEADER 1  - Drug Score                        : 0.0053
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 3.9683
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5317
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 54.2000
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 4.4000
+HEADER 9  - Pocket volume (Monte Carlo)       : 416.7195
+HEADER 10 - Pocket volume (convex hull)       : 26.6584
+HEADER 11 - Charge Score                      :    -1
+HEADER 12 - Local hydrophobic density Score   : 7.1667
+HEADER 13 - Number of apolar alpha sphere     :    12
+HEADER 14 - Proportion of apolar alpha sphere : 0.8000
+ATOM   3635  CD1 LEU C 227      77.030  51.140  62.480  0.00  0.00           C 0
+ATOM   3525  NE2 GLN C 220      72.420  55.550  63.980  0.36  9.84           N 0
+ATOM   3596  OD1 ASP C 224      71.610  53.410  62.250  0.30  1.07           O 0
+ATOM   3754   SG CYS C 235      73.230  49.510  65.270  0.00  0.00           S 0
+ATOM   3743   OG SER C 234      76.300  48.930  67.260  0.27  8.57           O 0
+ATOM   3811  CG2 VAL C 238      73.120  49.110  73.360  0.00  0.00           C 0
+ATOM   3807  CG1 VAL C 238      72.330  49.070  70.970  0.00  0.00           C 0
+ATOM   3805   CB VAL C 238      73.040  48.280  72.070  0.00  0.00           C 0
+ATOM   4764  CG2 ILE C 295      72.240  53.250  72.200  0.00  0.00           C 0
+ATOM   4845  CD1 LEU C 299      70.830  52.120  68.290  0.00  0.00           C 0
+ATOM   3633   CG LEU C 227      77.860  51.450  61.310  0.00  0.00           C 0
+ATOM   3587    O TRP C 223      75.890  54.100  59.380  0.67  2.14           O 0
+ATOM   3568   CB TRP C 223      75.270  56.990  60.980  0.00  0.00           C 0
+ATOM   4849  CD2 LEU C 299      70.920  54.340  67.060  0.00  0.00           C 0
+ATOM   3583  CE3 TRP C 223      78.440  58.110  60.790  0.00  0.00           C 0
+ATOM   3581  CZ3 TRP C 223      79.660  58.830  60.680  0.00  0.00           C 0
+ATOM   3639  CD2 LEU C 227      79.280  51.180  61.800  0.00  0.00           C 0
+ATOM   3620  CD2 LEU C 226      80.280  56.070  57.950  0.00  0.00           C 0
+ATOM   3586    C TRP C 223      74.910  54.810  59.630  0.00  0.00           C 0
+TER
+END

@@ -1,0 +1,52 @@
+schema_version: "1.0.0"
+stage_id: candidate_ranking
+request_id: stage6_glp1r_ranking_seeded_v1
+mode: external_job_pack
+product_maturity: partial/seeded
+task_track: retrospective_blind
+paper_stage: structure-based virtual screening
+
+human_freezes:
+  library_scope: seed_demo_n15   # NOT full corporate/commercial library
+  docking_protocol: vina_or_glide_external_v0
+  top_n_rule: top_10
+
+inputs:
+  stage5_run_dir: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo
+  stage4_run_dir: /home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001
+  pocket_id: pocket_01
+  residues: [354, 355, 357, 358, 365, 369, 410, 411, 412, 413, 414, 415, 416, 417]
+  receptor_pdb: inputs/receptor.pdb   # Stage5 t0250 Protein frame
+  pocket_geom_optional: inputs/pocket41_vert.pqr
+  library_file: inputs/library_seed.smi
+  continue_gate: CONTINUE
+  pocket_box:
+    center_x: 53.564
+    center_y: 58.499
+    center_z: 108.802
+    size_x: 22.0
+    size_y: 22.0
+    size_z: 22.0
+    center_provenance: CA centroid of historical pocket_01 residues on t0250.pdb
+
+engines:
+  primary: [vina, glide]
+  paper_cascade_reference: glp1r_virtual_screening_protocol
+  deferred: [karmadock]
+  accepted_return_engines: [vina, glide, dry_run_placeholder]
+  execution: external_site
+
+expected_outputs:
+  - return.json                 # must match schemas/stage6_vs_return.schema.json
+  - ranked_candidates.csv
+  - score_distribution.json
+  - protocol_version.json
+  - poses/                      # optional but preferred
+
+return_instructions: |
+  1. Run docking on an external site with Vina and/or Glide using this pack.
+  2. Write return.json + ranked_candidates.csv into a returns/<engine>_<site>/ folder.
+  3. Call scripts/ingest_return.py --return-dir <that folder> to audit and promote stage_result.
+  4. Do not silently upgrade product_maturity beyond what the engine actually did.
+
+claim_boundary: 计算候选物排序，不得宣称实验有效；seed 库不得宣称全库虚筛完成

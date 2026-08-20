@@ -1,0 +1,35 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    28:
+HEADER 0  - Pocket Score                      : -0.1234
+HEADER 1  - Drug Score                        : 0.0002
+HEADER 2  - Number of alpha spheres           :    17
+HEADER 3  - Mean alpha-sphere radius          : 3.8955
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5209
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 30.0000
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 5.4000
+HEADER 9  - Pocket volume (Monte Carlo)       : 166.8534
+HEADER 10 - Pocket volume (convex hull)       : 0.6201
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 4.0000
+HEADER 13 - Number of apolar alpha sphere     :     5
+HEADER 14 - Proportion of apolar alpha sphere : 0.2941
+ATOM   7026  NE1 TRP D 429      63.670  80.410 110.370  0.00  0.00           N 0
+ATOM     24   CB LYS A   2      68.570  79.150 109.800  0.00  0.00           C 0
+ATOM   7164  CD1 ILE D 436      67.720  85.750 114.700  0.00  0.00           C 0
+ATOM     30   CD LYS A   2      69.940  79.950 111.810  0.00  0.00           C 0
+ATOM   7024  CD1 TRP D 429      63.920  79.380 111.290  0.00  0.00           C 0
+ATOM   7095  OE2 GLU D 432      68.960  82.160 114.750  0.81  2.14           O 0
+ATOM   7094  OE1 GLU D 432      67.850  80.340 115.220  0.59  3.21           O 0
+ATOM   7106  ND1 HID D 433      61.960  85.230 112.470  0.43  5.47           N 0
+ATOM   7039    O TRP D 429      62.550  80.960 114.780  0.00  0.00           O 0
+ATOM   7090   CG GLU D 432      67.090  82.350 116.300  0.00  0.00           C 0
+ATOM   7093   CD GLU D 432      68.050  81.560 115.400  0.00  0.00           C 0
+ATOM   7100   CA HID D 433      62.800  84.550 115.570  0.00  0.00           C 0
+ATOM   7098    N HID D 433      63.390  83.380 116.320  0.00  0.00           N 0
+TER
+END

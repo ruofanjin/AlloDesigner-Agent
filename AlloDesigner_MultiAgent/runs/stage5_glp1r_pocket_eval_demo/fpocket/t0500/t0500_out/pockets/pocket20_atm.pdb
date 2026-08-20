@@ -1,0 +1,36 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    20:
+HEADER 0  - Pocket Score                      : -0.0497
+HEADER 1  - Drug Score                        : 0.0004
+HEADER 2  - Number of alpha spheres           :    18
+HEADER 3  - Mean alpha-sphere radius          : 3.8175
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5158
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 42.5714
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 3.4286
+HEADER 9  - Pocket volume (Monte Carlo)       : 161.7940
+HEADER 10 - Pocket volume (convex hull)       : 4.8351
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 4.0000
+HEADER 13 - Number of apolar alpha sphere     :     5
+HEADER 14 - Proportion of apolar alpha sphere : 0.2778
+ATOM   1189  OXT CARGA  73      67.100  59.250  41.850  0.43  7.50           O 0
+ATOM    907   SG CYS A  55      60.930  56.470  44.210  0.00  0.00           S 0
+ATOM   1194   CA NTHRB  74      65.020  60.520  43.570  0.00  0.00           C 0
+ATOM   1190    N NTHRB  74      64.770  60.540  42.140  0.74  1.09           N 0
+ATOM   1204    C NTHRB  74      63.720  60.290  44.330  0.00  0.00           C 0
+ATOM   1206    N PHE B  75      63.810  59.920  45.610  0.00  0.00           N 0
+ATOM    988  CG2 THR A  60      65.660  52.090  40.740  0.00  0.00           C 0
+ATOM   1169   CB CARGA  73      66.350  58.030  38.930  0.00  0.00           C 0
+ATOM   1188    O CARGA  73      68.830  58.560  40.650  0.84  7.50           O 0
+ATOM    976  CD2 LEU A  59      61.130  57.290  40.070  0.00  0.00           C 0
+ATOM    910    O CYS A  55      61.990  53.890  43.050  0.00  0.00           O 0
+ATOM    967   CB LEU A  59      61.980  55.070  39.160  0.00  0.00           C 0
+ATOM    918   CG GLN A  56      62.610  52.020  47.420  0.00  0.00           C 0
+ATOM   1210   CB PHE B  75      62.450  58.360  46.990  0.00  0.00           C 0
+TER
+END

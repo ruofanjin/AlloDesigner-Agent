@@ -1,0 +1,166 @@
+version: "1.0.0"
+tools:
+  case_protocol_template:
+    stage: boundary
+    role_default: reuse
+    maturity: executable
+    description: GLP1R/PCSK9/CB1R 案例协议模板与信息边界清单
+
+  allo_pocketminer:
+    stage: residue_prior
+    role_default: reuse
+    maturity: executable
+    env_profile: allo_pocketminer
+    description: AlloDesigner fine-tuned GVP residue-level cryptic pocket predictor
+    entrypoint: ../Allo-PocketMiner/case_predict.py
+    baseline_metrics:
+      pr_auc: 0.701
+      source: allodesigner5.1 paper Table 1
+
+  pocketminer_baseline:
+    stage: residue_prior
+    role_default: benchmark
+    maturity: external
+    description: Upstream PocketMiner baseline for fair comparison
+    baseline_metrics:
+      pr_auc: 0.582
+
+  plm_residue_hint:
+    stage: residue_prior
+    role_default: supplement
+    maturity: external
+    description: Protein language model residue hints (orthogonal evidence)
+
+  cofolding_residue_hint:
+    stage: residue_prior
+    role_default: benchmark
+    maturity: external
+    description: Co-folding derived pocket/residue hints (e.g. Boltz-style)
+
+  alphaflow:
+    stage: ensemble_enrichment
+    role_default: alternative
+    maturity: scripted
+    env_profile: allo_alphaflow
+    description: >
+      Optional apo ensemble generation (ESMFlow). Preferred enrichment path is
+      allo_stepwise + ColabFold. MSA via AlphaFlow/dbbase when used.
+    entrypoint: ../AlphaFlow/
+
+  allo_stepwise:
+    stage: ensemble_enrichment
+    role_default: reuse
+    maturity: executable
+    env_profile: glp1_allo_core
+    description: >
+      Self-contained GLP1 stepwise runner (MSA grouping, ColabFold command
+      generation, fpocket metrics, voting/recompile). Replaces ad-hoc Allo_af_claseq.
+    entrypoint: ../allo_stepwise/
+
+  af_claseq:
+    stage: ensemble_enrichment
+    role_default: alternative
+    maturity: scripted
+    description: Legacy numbered scripts; prefer allo_stepwise
+    entrypoint: ../Allo_af_claseq/
+
+  afcluster:
+    stage: ensemble_enrichment
+    role_default: alternative
+    maturity: external
+    description: MSA clustering alternative for conformational diversity
+
+  colabfold_msa_subsample:
+    stage: ensemble_enrichment
+    role_default: alternative
+    maturity: external
+    description: ColabFold MSA subsample / multi-seed prediction
+
+  ai_prior_metadynamics:
+    stage: physics_sampling
+    role_default: reuse
+    maturity: scripted
+    description: >
+      Allo-MD agentctl for GLP1 membrane MD. Site demo completed
+      (profile distance-simulation-1ns-demo, run glp1r_distance_1ns_demo_001):
+      min→eq→1ns normal→1ns monitor→1ns metad. Maturity is partial/demo —
+      not the frozen historical ~200 ns protocol. Evidence:
+      docs/stage4_demo_glp1r_1ns.md and
+      runs/stage4_demo_glp1r_distance_1ns/stage_result.json.
+    entrypoint: ../Allo-MD/agent/agentctl
+
+  unbiased_md:
+    stage: physics_sampling
+    role_default: benchmark
+    maturity: scripted
+    description: Allo-MD historical-normal-controls / normal_* stages as unbiased ablation
+
+  rave_biased_md:
+    stage: physics_sampling
+    role_default: alternative
+    maturity: paper_only
+    description: RAVE/biased MD variant described in early case slides
+
+  fpocket:
+    stage: pocket_evaluation
+    role_default: reuse
+    maturity: external
+    description: >
+      Geometry pocket detection and centers. Stage5 demo (2026-08-14) ran fpocket
+      on Protein frames from Allo-MD glp1r_distance_1ns_demo_001 and compared lining
+      residues to historical pocket_01 (14 residues). See
+      docs/stage5_demo_glp1r_pocket_eval.md and
+      runs/stage5_glp1r_pocket_eval_demo/fpocket_vs_historical.json.
+      Maturity of the Stage5 product path remains partial/demo.
+
+  dbscan_residue_clustering:
+    stage: pocket_evaluation
+    role_default: reuse
+    maturity: scripted
+    description: DBSCAN clustering of predicted positive residues
+    entrypoint: ../Allo_af_claseq/8_cluster_residues.py
+
+  deepallo:
+    stage: pocket_evaluation
+    role_default: reuse
+    maturity: external
+    description: Allosteric propensity scoring fused with fpocket descriptors
+
+  plb:
+    stage: pocket_evaluation
+    role_default: reuse
+    maturity: scripted
+    description: Protein-ligand binding / ligandability score on residue clusters
+    entrypoint: ../Allo_af_claseq/7_plb_calculation_pocketminer_apo_dir_step3.py
+
+  glp1r_virtual_screening_protocol:
+    stage: candidate_ranking
+    role_default: reuse
+    maturity: paper_only
+    description: >
+      Case VS protocol (KarmaDock/Glide/Vina cascade). Paper reference only.
+      Operable Stage6 path is the seeded external job pack
+      job_packs/stage6_candidate_ranking_glp1r_seeded (partial/seeded).
+
+  vina:
+    stage: candidate_ranking
+    role_default: alternative
+    maturity: external
+    description: >
+      AutoDock Vina external return engine. Job pack: external/vina/.
+      Seeded example return ingested under runs/stage6_glp1r_ranking_seeded_demo
+      (not real docking scores).
+
+  karmadock:
+    stage: candidate_ranking
+    role_default: alternative
+    maturity: external
+
+  glide:
+    stage: candidate_ranking
+    role_default: alternative
+    maturity: external
+    description: >
+      Schrödinger Glide external return engine. Job pack: external/glide/.
+      Seeded example return ingested under runs/stage6_glp1r_ranking_seeded_demo
+      (not real docking scores).

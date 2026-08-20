@@ -1,0 +1,41 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     6:
+HEADER 0  - Pocket Score                      : 0.0505
+HEADER 1  - Drug Score                        : 0.0019
+HEADER 2  - Number of alpha spheres           :    24
+HEADER 3  - Mean alpha-sphere radius          : 3.7634
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4891
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 35.5000
+HEADER 7  - Polarity Score                    :     3
+HEADER 8  - Amino Acid based volume Score     : 3.8750
+HEADER 9  - Pocket volume (Monte Carlo)       : 317.9651
+HEADER 10 - Pocket volume (convex hull)       : 19.7444
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 6.4444
+HEADER 13 - Number of apolar alpha sphere     :     9
+HEADER 14 - Proportion of apolar alpha sphere : 0.3750
+ATOM    922  OE1 GLN A  56      61.390  51.280  44.550  0.77  3.21           O 0
+ATOM   1194   CA NTHRB  74      64.530  57.150  43.750  0.00  0.00           C 0
+ATOM   1204    C NTHRB  74      63.060  57.270  44.200  0.00  0.00           C 0
+ATOM   1206    N PHE B  75      62.980  57.420  45.510  0.00  0.00           N 0
+ATOM    923  NE2 GLN A  56      62.930  49.790  45.240  0.00  0.00           N 0
+ATOM   1210   CB PHE B  75      61.310  56.660  47.040  0.00  0.00           C 0
+ATOM   1189  OXT CARGA  73      66.920  55.120  42.480  0.77  8.57           O 0
+ATOM   1169   CB CARGA  73      66.450  54.230  39.550  0.00  0.00           C 0
+ATOM   1190    N NTHRB  74      64.630  56.880  42.320  0.69  1.09           N 0
+ATOM    976  CD2 LEU A  59      61.570  53.950  39.290  0.00  0.00           C 0
+ATOM    842   CG ARG A  52      58.140  52.570  49.130  0.00  0.00           C 0
+ATOM    845   CD ARG A  52      58.750  53.340  50.320  0.00  0.00           C 0
+ATOM   1172   CG CARGA  73      65.160  54.430  38.680  0.00  0.00           C 0
+ATOM    921   CD GLN A  56      61.690  50.270  45.220  0.00  0.00           C 0
+ATOM    918   CG GLN A  56      60.550  49.550  45.920  0.00  0.00           C 0
+ATOM    848   NE ARG A  52      58.370  52.610  51.540  0.00  0.00           N 0
+ATOM   1205    O NTHRB  74      62.070  57.170  43.430  0.62  1.07           O 0
+ATOM    907   SG CYS A  55      59.180  53.170  42.930  0.00  0.00           S 0
+ATOM    988  CG2 THR A  60      62.900  50.000  41.760  0.00  0.00           C 0
+TER
+END

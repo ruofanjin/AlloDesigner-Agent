@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    31:
+HEADER 0  - Pocket Score                      : -0.1279
+HEADER 1  - Drug Score                        : 0.0001
+HEADER 2  - Number of alpha spheres           :    19
+HEADER 3  - Mean alpha-sphere radius          : 3.8295
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4845
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 9.3750
+HEADER 7  - Polarity Score                    :     5
+HEADER 8  - Amino Acid based volume Score     : 4.7500
+HEADER 9  - Pocket volume (Monte Carlo)       : 177.0639
+HEADER 10 - Pocket volume (convex hull)       : 4.9521
+HEADER 11 - Charge Score                      :     3
+HEADER 12 - Local hydrophobic density Score   : 0.0000
+HEADER 13 - Number of apolar alpha sphere     :     1
+HEADER 14 - Proportion of apolar alpha sphere : 0.0526
+ATOM   2831   CB ARG C 179      70.100  64.690 117.460  0.00  0.00           C 0
+ATOM   2851    N HID C 180      67.500  63.070 116.990  0.57  1.09           N 0
+ATOM   6936   NZ LYS D 424      63.760  67.200 119.130  0.52  7.66           N 0
+ATOM   2827    N ARG C 179      68.780  65.170 115.490  0.53  3.28           N 0
+ATOM   7591   CB CYS D 467      67.600  63.110 120.630  0.00  0.00           C 0
+ATOM   2846  NH2 ARG C 179      69.500  67.430 121.210  0.53  6.56           N 0
+ATOM   2840   NE ARG C 179      70.680  67.000 119.290  0.00  0.00           N 0
+ATOM   7008  NH1 ARG D 428      66.880  71.570 119.900  0.54  6.56           N 0
+ATOM   2806    O GLY C 177      69.370  68.350 112.850  0.61  5.36           O 0
+ATOM   2834   CG ARG C 179      71.240  65.690 117.140  0.00  0.00           C 0
+ATOM   2837   CD ARG C 179      71.790  66.340 118.460  0.00  0.00           C 0
+ATOM   2815  CD1 PHE C 178      66.030  68.930 113.250  0.00  0.00           C 0
+ATOM   2809   CA PHE C 178      67.570  66.350 113.660  0.00  0.00           C 0
+ATOM   2811   CB PHE C 178      66.030  66.370 113.580  0.00  0.00           C 0
+ATOM   6873  OE2 GLU D 421      63.690  66.180 116.540  0.64  3.21           O 0
+ATOM   6933   CE LYS D 424      63.130  68.380 118.700  0.00  0.00           C 0
+TER
+END

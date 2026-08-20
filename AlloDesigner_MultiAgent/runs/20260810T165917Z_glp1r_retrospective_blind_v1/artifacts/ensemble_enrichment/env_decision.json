@@ -1,0 +1,39 @@
+{
+  "stage_id": "ensemble_enrichment",
+  "profile_id": "glp1_allo_core",
+  "specialized": true,
+  "action": "reuse",
+  "env_name": "glp1_allo_core",
+  "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core",
+  "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python",
+  "matched_by": "name+markers",
+  "score": 19.0,
+  "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/environment.yml",
+  "command_prefix": [
+    "conda",
+    "run",
+    "-n",
+    "glp1_allo_core",
+    "--no-capture-output"
+  ],
+  "notes": [
+    "Reuse env 'glp1_allo_core' for profile 'glp1_allo_core' (score=19.0)"
+  ],
+  "probe_details": {
+    "required": {
+      "numpy": true,
+      "pandas": true,
+      "Bio": true,
+      "yaml": true,
+      "sklearn": true,
+      "matplotlib": true,
+      "scipy": true
+    },
+    "optional_import": {},
+    "optional_commands": {
+      "fpocket": false,
+      "colabfold_batch": false
+    },
+    "name_alias_hit": true
+  }
+}

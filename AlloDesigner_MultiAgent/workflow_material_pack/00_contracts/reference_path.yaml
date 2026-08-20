@@ -1,0 +1,77 @@
+# Default optimal skeleton = AlloDesigner paper path
+version: "1.0.0"
+id: allodesigner_reference_path
+title: AlloDesigner Reference Path
+description: >
+  Expert-validated end-to-end skeleton from the AlloDesigner paper.
+  Used as the default plan hot-start. Stage semantics are frozen;
+  tools inside stages remain comparable/replaceable.
+source_papers:
+  - ../allodesigner5.1(1).docx
+  - ../allodesigner-SI5.0.docx
+policy:
+  is_default: true
+  is_preset_winner_without_comparison: false
+  must_keep_stage_order: true
+
+steps:
+  - stage_id: boundary
+    tools: [case_protocol_template]
+    notes: Freeze track and priors before any structure tool runs.
+
+  - stage_id: residue_prior
+    tools: [allo_pocketminer]
+    benchmarks: [pocketminer_baseline]
+    params:
+      ensemble_aggregation: mean
+      threshold_examples:
+        GLP1R: 0.7
+        CB1R: 0.8
+        PCSK9: 0.7
+    notes: GVP fine-tuned on LIGSITE dynamic labels.
+
+  - stage_id: ensemble_enrichment
+    tools: [allo_stepwise, alphaflow]
+    benchmarks: [colabfold_msa_subsample]
+    params:
+      alphaflow_samples: 50
+      msa_coverage_threshold: 0.8
+      iterative_enrichment_rounds: 6
+      retain_top_fraction: 0.2
+      preference_metric: cluster_center_to_fpocket_distance
+      enable_sequence_voting: true
+      preferred_entrypoint: allo_stepwise
+    iteration:
+      type: multi_round
+      stop_when:
+        - metric: top10_percent_mean_distance
+          op: "<="
+          value: 5.0
+        - metric: round
+          op: ">="
+          value: 6
+    notes: Prefer allo_stepwise commands; AlphaFlow remains optional MSA/ensemble path.
+  - stage_id: physics_sampling
+    tools: [ai_prior_metadynamics]
+    benchmarks: [unbiased_md]
+    params:
+      cv_candidates: [pocket_sasa, key_residue_pair_distance]
+      suggested_budget_ns: 50
+    notes: External executor; orchestrator emits job sheet if not local.
+
+  - stage_id: pocket_evaluation
+    tools: [dbscan_residue_clustering, fpocket, deepallo, plb]
+    params:
+      dbscan_eps_examples:
+        GLP1R: 6.0
+        PCSK9: 4.5
+      dbscan_min_samples: 2
+      consensus_topk_clusters: 7
+    notes: Can run on enriched ensembles even before full MD completes.
+
+  - stage_id: candidate_ranking
+    tools: [glp1r_virtual_screening_protocol]
+    alternatives: [vina, karmadock, glide]
+    params:
+      output: ranked_candidate_packet
+    notes: Never claim experimental potency.

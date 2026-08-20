@@ -1,0 +1,106 @@
+step3_pocket_selection:
+  # Documentation and provenance handoff only. The runner must not rerun the
+  # historical one-off scripts or the DeepAllo model from this configuration.
+  status: "documented_historical_handoff"
+  source_iteration: 1
+  documentation: "{root}/docs/STEP3_POCKET_SELECTION_HANDOFF.md"
+
+  historical_evidence:
+    # Full Step 3 audit is optional until this evidence tree is supplied.
+    # The default downstream workflow uses the frozen CSVs under inputs/.
+    evidence_bundled: false
+    iteration_root: "{root}/evidence/step3_historical/iteration_1"
+    allodesigner_structure_input_npy: "{root}/evidence/step3_historical/allodesigner/5vex_apo_model.npy"
+    allodesigner_continuous_score_dir: "{root}/evidence/step3_historical/allodesigner/every_apo_predict"
+    allodesigner_continuous_score_glob: "5vex_*_pred.npy"
+    expected_allodesigner_model_count: 50
+    allodesigner_positive_residue_csv: "{root}/evidence/step3_historical/allodesigner/AlloDesigner_residue_probabilities_averge_0.7.csv"
+    allodesigner_residue_column: "residue"
+    allodesigner_probability_column: "probability"
+    allodesigner_positive_value: 1.0
+    allodesigner_csv_semantics: "thresholded binary labels, not continuous probabilities"
+    allodesigner_sha256: "d5ebbd12f15d651c9cad1eb800143f89fef705513c308843909e44dc26cf8a26"
+    expected_sequence_residue_count: 491
+    expected_positive_residue_count: 119
+
+    candidate_distance_glob: "pocketminer_predict_residues_cluster/shuffle_*_group_cluster_fpocket_distance_results.csv"
+    raw_deepallo_score_glob: "pocketminer_cluster_deepallo_score/pocketminer_cluster_deepallo_score_shuffle_*_filtered.csv"
+    raw_plb_score_glob: "pocketminer_cluster_deepallo_score/plb_score/pocketminer_cluster_deepallo_plb_shuffle_*.csv"
+    expected_shuffle_count: 10
+    expected_group_count_per_shuffle: 62
+    expected_distance_row_count: 9843
+    expected_scored_cluster_row_count: 7641
+
+    deepallo_top7_frequency_csv: "{root}/inputs/glp1-deepallo-score-residue_probabilities_top_7.csv"
+    plb_top7_frequency_csv: "{root}/inputs/glp1-plb-score-residue_probabilities_top_7.csv"
+    deepallo_top7_frequency_sha256: "c4d5cdedb3ccd42ec7737b987500329d4141a9a6a00b1fedf707e00fb3e6edc0"
+    plb_top7_frequency_sha256: "6f3fb69adc352e99cbc09b6b85525141e78fc31779728314658ffbb79568d67a"
+    frequency_residue_column: "residue_number"
+    frequency_value_column: "probability"
+    expected_deepallo_frequency_residue_count: 114
+    expected_plb_frequency_residue_count: 108
+    available_top_k_values: [3, 5, 7]
+    top7_cluster_instance_denominator: 4340
+
+  historical_parameters:
+    dbscan_eps: 6.0
+    dbscan_min_samples: 2
+    closest_fpocket_max_distance_exclusive: 10.0
+    top_clusters_per_group: 7
+    deepallo_direction: "higher"
+    plb_direction: "higher"
+    frequency_denominator: "620 shuffle-group instances * top_k; top-7 denominator is 4340"
+
+  deepallo_provenance:
+    default_future_mode: "precomputed_historical_scores"
+    historical_indexing_mode: "legacy_indexing: token_emb[int(residue_number)]"
+    historical_indexing_caveat: "GLP1 chain A is numbered 1-491, so historical scores contain a +1 token shift"
+    corrected_indexing_mode: "corrected_mapping: (chain, resseq, insertion_code) -> zero-based sequence position"
+    corrected_scores_available: false
+    python: "python"
+    protbert_dir: "{root}/models/Rostlab/prot_bert_bfd"
+    multitask_checkpoint: "{root}/models/prot-bert-deepallo-mtl.bin"
+    autogluon_predictor_dir: "{root}/models/autogluon"
+    feature_contract: "1024 mean residue embeddings followed by 19 fpocket descriptors"
+
+  expert_handoff:
+    # This CSV is the frozen historical GLP1 downstream residue set. The case
+    # has no signed approval record or numeric DeepAllo/PLB fusion formula.
+    historical_selection_csv: "{root}/evidence/step3_historical/expert/holo_cluster_for_msa.csv"
+    historical_selection_sha256: "c3863db8c95ace60caa2e4af17e55e38ea1b3b2825a6de405c1950831edd6617"
+    selection_csv: "{root}/inputs/glp1_historical_holo_cluster_mapped_residues.csv"
+    selection_sha256: "0213fabe2b7eb965b4756ab8f0278bc76164e3458c20ede97028066030305354"
+    residue_column: "apo_residues_id"
+    expected_residue_count: 14
+    residue_selection_set: "historical_holo_cluster"
+    cluster_evidence_csv: "{root}/evidence/step3_historical/expert/plb_scores_dcc_dvo.csv"
+    cluster_evidence_sha256: "2bc8eb85573d846bdb3c7aed8ad47c22a6fed8709649027b3bc285abeb8fd2bf"
+    selected_holo_clusters: ["5vex_cluster_8.pdb", "5vex_cluster_9.pdb", "5vex_cluster_14.pdb"]
+    downstream_mapping_pickle: "{root}/evidence/step3_historical/expert/6x18_seqres_to_atom_mapping.pkl"
+    verified_evidence: "clusters 8, 9, and 14 are the only 5VEX clusters with DCC < 10 A; all 14 mapped residues are AlloDesigner-positive and occur in both top-7 frequency tables"
+    inferred_historical_basis: "DCC, PLB, Iteration-1 score evidence, structural continuity, and human prior"
+    exact_decision_formula_available: false
+    machine_readable_decision_manifest_in_reference_case: false
+
+  future_agent_contract:
+    output_dir: "{work_dir}/01_iterative_shuffling/Iteration_1/step3_select_pocket_cluster_residues"
+    required_artifacts:
+      candidate_cluster_scores: "candidate_cluster_scores.csv"
+      deepallo_residue_frequency: "deepallo_topk_residue_frequency.csv"
+      plb_residue_frequency: "plb_topk_residue_frequency.csv"
+      residue_evidence_table: "residue_evidence_table.csv"
+      ranked_pocket_candidates: "ranked_pocket_candidates.csv"
+      expert_decision: "expert_decision.yaml"
+      final_selected_residues: "final_selected_residues.csv"
+      provenance_manifest: "provenance_manifest.json"
+    canonical_final_residue_column: "residue_number"
+    default_score_source: "precomputed_historical_scores"
+    optional_score_source: "deepallo_env_subprocess"
+    require_explicit_expert_approval: true
+    activation:
+      residue_selection_set_name: "step3_approved"
+      csv: "{work_dir}/01_iterative_shuffling/Iteration_1/step3_select_pocket_cluster_residues/final_selected_residues.csv"
+      residue_column: "residue_number"
+      ranking_table_is_valid_selection_input: false
+      require_matching_selection_fingerprint_downstream: true
+    source_snapshots_are_executable: false

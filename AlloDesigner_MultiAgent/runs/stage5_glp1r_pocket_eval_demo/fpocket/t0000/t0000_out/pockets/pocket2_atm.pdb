@@ -1,0 +1,55 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     2:
+HEADER 0  - Pocket Score                      : 0.1152
+HEADER 1  - Drug Score                        : 0.3380
+HEADER 2  - Number of alpha spheres           :    54
+HEADER 3  - Mean alpha-sphere radius          : 3.6260
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.3851
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 62.9286
+HEADER 7  - Polarity Score                    :     1
+HEADER 8  - Amino Acid based volume Score     : 3.7143
+HEADER 9  - Pocket volume (Monte Carlo)       : 283.4168
+HEADER 10 - Pocket volume (convex hull)       : 48.9118
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 39.3778
+HEADER 13 - Number of apolar alpha sphere     :    45
+HEADER 14 - Proportion of apolar alpha sphere : 0.8333
+ATOM   6703  CD1 CTYRC 411      59.550  59.780 105.880  0.00  0.00           C 0
+ATOM   2716   CB ALA C 171      61.700  63.990 102.510  0.00  0.00           C 0
+ATOM   6716  OXT CTYRC 411      56.980  61.860 106.170  0.55  5.36           O 0
+ATOM   6815  CG1 VAL D 418      60.100  63.260 109.340  0.00  0.00           C 0
+ATOM   2712    N ALA C 171      62.530  66.320 102.470  0.00  0.00           N 0
+ATOM   6726   SG NCYSD 412      55.590  66.620 103.660  0.00  0.00           S 0
+ATOM   2657    O ALA C 167      61.410  66.220  99.890  0.69  2.14           O 0
+ATOM   6721   CA NCYSD 412      54.720  64.970 105.840  0.00  0.00           C 0
+ATOM   6825    N GLN D 419      56.990  64.050 111.830  0.54  1.09           N 0
+ATOM   6717    N NCYSD 412      55.530  63.920 105.260  0.53  1.09           N 0
+ATOM   2756  CD1 ILE C 174      61.540  67.940 106.400  0.00  0.00           C 0
+ATOM   6705  CE1 CTYRC 411      60.590  59.340 106.740  0.00  0.00           C 0
+ATOM   2775  CD2 LEU C 175      64.050  61.950 108.330  0.00  0.00           C 0
+ATOM   6651   CB ALA C 408      58.560  63.550 100.040  0.00  0.00           C 0
+ATOM   2699  CG2 ILE C 170      61.390  69.740 102.940  0.00  0.00           C 0
+ATOM    184  CE1 PHE A  11      57.060  70.550  99.250  0.00  0.00           C 0
+ATOM    201   SG CYS A  12      56.750  70.260 104.050  0.00  0.00           S 0
+ATOM   6656    O ALA C 408      56.630  63.390 102.590  0.66  2.14           O 0
+ATOM   6880   CB PHE D 422      58.640  68.130 110.900  0.00  0.00           C 0
+ATOM   6824    O VAL D 418      59.030  65.030 111.840  0.00  0.00           O 0
+ATOM   6823    C VAL D 418      58.320  64.010 111.690  0.00  0.00           C 0
+ATOM   6827   CA GLN D 419      56.130  65.190 112.050  0.00  0.00           C 0
+ATOM   2652   CB ALA C 167      58.970  66.820  97.780  0.00  0.00           C 0
+ATOM   2714   CA ALA C 171      62.540  65.030 103.260  0.00  0.00           C 0
+ATOM   6883   CG PHE D 422      58.180  69.070 109.780  0.00  0.00           C 0
+ATOM   6729    O NCYSD 412      53.340  64.880 107.810  0.41  5.36           O 0
+ATOM   6884  CD1 PHE D 422      56.880  69.520 109.840  0.00  0.00           C 0
+ATOM   2650   CA ALA C 167      60.390  67.420  98.160  0.00  0.00           C 0
+ATOM   2721    O ALA C 171      64.260  64.190 104.730  0.69  1.07           O 0
+ATOM   6892  CD2 PHE D 422      58.990  69.270 108.660  0.00  0.00           C 0
+ATOM   6890  CE2 PHE D 422      58.610  70.070 107.640  0.00  0.00           C 0
+ATOM   2749  CG2 ILE C 174      62.930  66.100 108.740  0.00  0.00           C 0
+ATOM   6667  CG1 ILE C 409      53.770  65.660 100.080  0.00  0.00           C 0
+TER
+END

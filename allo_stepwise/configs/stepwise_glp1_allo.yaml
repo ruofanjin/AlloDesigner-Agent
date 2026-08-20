@@ -1,0 +1,12 @@
+description: "Entry config for GLP1 Allo stepwise reproduction. The runner merges config_parts in order."
+# "auto" resolves to the directory containing scripts/, configs/, inputs/, and src/.
+root: "auto"
+
+config_parts:
+  - "stepwise/00_common.yaml"
+  - "stepwise/01_iterative_shuffling.yaml"
+  - "stepwise/02_colabfold.yaml"
+  - "stepwise/03_step3_pocket_selection.yaml"
+  - "stepwise/03_allo_metric.yaml"
+  - "stepwise/04_m_fold_sampling.yaml"
+  - "stepwise/05_voting_recompile.yaml"

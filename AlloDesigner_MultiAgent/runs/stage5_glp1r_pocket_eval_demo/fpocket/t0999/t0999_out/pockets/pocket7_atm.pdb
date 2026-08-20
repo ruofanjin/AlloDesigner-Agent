@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     7:
+HEADER 0  - Pocket Score                      : 0.0388
+HEADER 1  - Drug Score                        : 0.0034
+HEADER 2  - Number of alpha spheres           :    20
+HEADER 3  - Mean alpha-sphere radius          : 3.6610
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.3959
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 26.8182
+HEADER 7  - Polarity Score                    :     5
+HEADER 8  - Amino Acid based volume Score     : 4.2727
+HEADER 9  - Pocket volume (Monte Carlo)       : 119.7581
+HEADER 10 - Pocket volume (convex hull)       : 1.9842
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 14.0000
+HEADER 13 - Number of apolar alpha sphere     :    15
+HEADER 14 - Proportion of apolar alpha sphere : 0.7500
+ATOM   1273    O TYR B  78      55.790  61.240  49.340  0.59  1.07           O 0
+ATOM   2096  CD1 CLEUB 132      55.010  66.530  52.310  0.00  0.00           C 0
+ATOM   1278   CB ALA B  79      57.400  62.970  46.630  0.00  0.00           C 0
+ATOM   1491   CG PRO B  95      53.110  62.640  46.260  0.00  0.00           C 0
+ATOM   2139   CB CYS C 135      51.410  67.510  49.510  0.00  0.00           C 0
+ATOM   2142   SG CYS C 135      52.100  68.030  47.920  0.00  0.00           S 0
+ATOM   2086    O ASH B 131      55.100  68.780  47.990  0.64  1.07           O 0
+ATOM   2074    N ASH B 131      58.500  69.150  47.830  0.66  3.28           N 0
+ATOM   2091   CB CLEUB 132      56.590  68.260  51.490  0.00  0.00           C 0
+ATOM   1716  CG2 VAL B 109      54.770  66.570  45.010  0.00  0.00           C 0
+ATOM   1257   CB TYR B  78      57.570  63.190  51.190  0.00  0.00           C 0
+ATOM   2054   CB ARG B 130      60.250  68.040  50.290  0.00  0.00           C 0
+ATOM   1555  CD1 LEU B  98      50.080  63.390  49.300  0.00  0.00           C 0
+ATOM   1538   OH TYR B  97      54.090  60.930  51.270  0.72  4.29           O 0
+ATOM   1559  CD2 LEU B  98      50.280  62.850  51.740  0.00  0.00           C 0
+ATOM   1234  OD1 ASP B  76      60.080  63.160  48.990  0.67  1.07           O 0
+TER
+END

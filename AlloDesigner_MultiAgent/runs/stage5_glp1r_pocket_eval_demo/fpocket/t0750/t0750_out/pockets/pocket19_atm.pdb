@@ -1,0 +1,37 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    19:
+HEADER 0  - Pocket Score                      : -0.0728
+HEADER 1  - Drug Score                        : 0.0024
+HEADER 2  - Number of alpha spheres           :    19
+HEADER 3  - Mean alpha-sphere radius          : 3.9304
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6750
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 47.0000
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 5.2500
+HEADER 9  - Pocket volume (Monte Carlo)       : 142.3923
+HEADER 10 - Pocket volume (convex hull)       : 1.9966
+HEADER 11 - Charge Score                      :     2
+HEADER 12 - Local hydrophobic density Score   : 12.0000
+HEADER 13 - Number of apolar alpha sphere     :    13
+HEADER 14 - Proportion of apolar alpha sphere : 0.6842
+ATOM   7119   CB LEU D 434      63.190  86.300 119.290  0.00  0.00           C 0
+ATOM   7073  CD1 LEU D 431      64.180  82.230 122.060  0.00  0.00           C 0
+ATOM   7071   CG LEU D 431      65.240  82.140 121.040  0.00  0.00           C 0
+ATOM   7134    N HID D 435      66.080  87.610 119.010  0.00  0.00           N 0
+ATOM   7146  NE2 HID D 435      69.420  84.680 121.420  0.59  4.37           N 0
+ATOM   7144  CE1 HID D 435      68.690  84.150 120.470  0.00  0.00           C 0
+ATOM   7147  CD2 HID D 435      69.470  86.050 121.180  0.00  0.00           C 0
+ATOM   7197   CD ARG D 438      65.330  91.040 123.610  0.00  0.00           C 0
+ATOM   7136   CA HID D 435      67.290  88.350 119.450  0.00  0.00           C 0
+ATOM   7122   CG LEU D 434      62.180  86.950 120.360  0.00  0.00           C 0
+ATOM   7128  CD2 LEU D 434      61.490  85.960 121.230  0.00  0.00           C 0
+ATOM   7141   CG HID D 435      68.750  86.290 120.010  0.00  0.00           C 0
+ATOM   7077  CD2 LEU D 431      66.510  81.480 121.610  0.00  0.00           C 0
+ATOM   7132    C LEU D 434      64.890  88.190 118.800  0.00  0.00           C 0
+ATOM   7142  ND1 HID D 435      68.220  85.060 119.650  0.73  1.09           N 0
+TER
+END

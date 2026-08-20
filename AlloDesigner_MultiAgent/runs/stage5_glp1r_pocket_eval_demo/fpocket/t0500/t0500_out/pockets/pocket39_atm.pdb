@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    39:
+HEADER 0  - Pocket Score                      : -0.1737
+HEADER 1  - Drug Score                        : 0.0000
+HEADER 2  - Number of alpha spheres           :    18
+HEADER 3  - Mean alpha-sphere radius          : 4.0462
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4553
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 4.5000
+HEADER 7  - Polarity Score                    :     5
+HEADER 8  - Amino Acid based volume Score     : 3.3750
+HEADER 9  - Pocket volume (Monte Carlo)       : 268.9714
+HEADER 10 - Pocket volume (convex hull)       : 9.5740
+HEADER 11 - Charge Score                      :    -2
+HEADER 12 - Local hydrophobic density Score   : 2.0000
+HEADER 13 - Number of apolar alpha sphere     :     3
+HEADER 14 - Proportion of apolar alpha sphere : 0.1667
+ATOM   3597  OD2 ASP C 224      71.320  55.200  59.610  0.59  5.36           O 0
+ATOM   3534   CB HID C 221      70.950  59.450  55.900  0.00  0.00           C 0
+ATOM   4900  OD2 ASP C 302      66.290  54.020  59.470  0.40  7.50           O 0
+ATOM   4899  OD1 ASP C 302      64.970  55.620  58.940  0.00  0.00           O 0
+ATOM   2006  CD2 LEU B 127      66.900  66.420  56.170  0.00  0.00           C 0
+ATOM   3538  ND1 HID C 221      70.980  62.100  55.790  0.79  7.66           N 0
+ATOM   3495    O ALA C 218      70.560  64.960  57.590  0.55  1.07           O 0
+ATOM   3485    O ALA C 217      68.750  63.500  60.930  0.00  0.00           O 0
+ATOM   3530    N HID C 221      71.660  59.810  58.290  0.00  0.00           N 0
+ATOM   3517   CB GLN C 220      70.990  60.320  61.410  0.00  0.00           C 0
+ATOM   4895   CB ASP C 302      65.840  55.690  61.210  0.00  0.00           C 0
+ATOM   3520   CG GLN C 220      71.050  58.870  62.130  0.00  0.00           C 0
+ATOM   4893   CA ASP C 302      64.480  55.830  61.900  0.00  0.00           C 0
+ATOM   4890    O GLU C 301      62.960  57.740  63.260  0.17  4.29           O 0
+ATOM   3532   CA HID C 221      71.820  58.980  57.070  0.00  0.00           C 0
+ATOM   4898   CG ASP C 302      65.710  55.080  59.790  0.00  0.00           C 0
+TER
+END

@@ -1,0 +1,2 @@
+symlink_was: predict.py
+points_to: ../alphaflow_upstream/predict.py

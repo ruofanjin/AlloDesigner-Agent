@@ -1,0 +1,19 @@
+{
+  "protocol_id": "vina_or_glide_external_v0",
+  "protocol_version": "0.1.0",
+  "product_maturity": "partial/seeded",
+  "description": "External Vina and/or Glide docking against Stage5 pocket_01 box on Stage4/5 receptor frame t0250.",
+  "human_freezes": {
+    "library_scope": "seed_demo_n15",
+    "docking_protocol": "vina_or_glide_external_v0",
+    "top_n_rule": "top_10"
+  },
+  "receptor_frame": "t0250",
+  "pocket_id": "pocket_01",
+  "exhaustiveness_vina_default": 8,
+  "glide_precision_default": "SP",
+  "notes": [
+    "Paper cascade glp1r_virtual_screening_protocol remains reference-only until fully reproduced.",
+    "Seed library is for interface demo; replace library_scope before production claims."
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "packet_id": "glp1r_reason_demo_v1:candidate_ranking:stage6.ingest_seeded_returns",
+  "task_id": "glp1r_reason_demo_v1",
+  "stage_id": "candidate_ranking",
+  "stage_contract_version": "1.0.0",
+  "task_track": "retrospective_blind",
+  "inputs_frozen": [],
+  "priors_approved": [],
+  "tools_considered": [
+    {
+      "tool_id": "vina",
+      "role": "alternative",
+      "decision": "selected",
+      "rationale": "Accepted external return engine."
+    },
+    {
+      "tool_id": "glide",
+      "role": "alternative",
+      "decision": "selected",
+      "rationale": "Accepted external return engine."
+    },
+    {
+      "tool_id": "glp1r_virtual_screening_protocol",
+      "role": "reuse",
+      "decision": "deferred",
+      "rationale": "Paper cascade reference only."
+    },
+    {
+      "tool_id": "stage6.ingest_seeded_returns",
+      "role": "adapt",
+      "decision": "selected",
+      "rationale": "Executed via ToolRouter"
+    }
+  ],
+  "tool_selected": [
+    "vina",
+    "glide",
+    "stage6.ingest_seeded_returns"
+  ],
+  "outputs": {
+    "stage_result": {
+      "stage_id": "candidate_ranking",
+      "status": "demo_completed",
+      "product_maturity": "partial/seeded",
+      "engine": "glide",
+      "protocol_version": "vina_or_glide_external_v0",
+      "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/glide_seeded_example",
+      "validation_errors": [],
+      "metrics": {
+        "n_scored": 15,
+        "top_n": 10,
+        "score_min": -7.95,
+        "score_median": -5.65,
+        "score_max": -3.75,
+        "score_units": "kcal/mol_like_placeholder"
+      },
+      "inputs_consumed": {
+        "request_id": "stage6_glp1r_ranking_seeded_v1",
+        "pocket_id": "pocket_01",
+        "receptor": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/inputs/receptor.pdb",
+        "n_library": 15
+      },
+      "claims_allowed": [
+        "计算候选物已排序，待实验/专家复核",
+        "Stage6 作业单 + 回传接口已 seeded"
+      ],
+      "claims_forbidden": [
+        "有效配体/抑制剂已被证实",
+        "Glide/Vina 全库虚筛已完成",
+        "本示例分数来自真实对接"
+      ],
+      "doc": "docs/stage6_seeded_job_pack.md",
+      "engines_returned": {
+        "vina": {
+          "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/vina_seeded_example",
+          "status": "demo_completed",
+          "metrics": {
+            "n_scored": 15,
+            "top_n": 10,
+            "score_min": -7.8,
+            "score_median": -5.5,
+            "score_max": -3.6,
+            "score_units": "kcal/mol_like_placeholder"
+          }
+        },
+        "glide": {
+          "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/glide_seeded_example",
+          "status": "demo_completed",
+          "metrics": {
+            "n_scored": 15,
+            "top_n": 10,
+            "score_min": -7.95,
+            "score_median": -5.65,
+            "score_max": -3.75,
+            "score_units": "kcal/mol_like_placeholder"
+          }
+        }
+      }
+    },
+    "engines_returned": [
+      "vina",
+      "glide"
+    ],
+    "seeded_example_scores": true
+  },
+  "metrics": {},
+  "qc_flags": [],
+  "human_interventions": [],
+  "claims_allowed": [
+    "计算候选物已排序，待实验/专家复核"
+  ],
+  "iteration": {
+    "stop_reason": "node_executed"
+  },
+  "critic": {
+    "passed": true,
+    "findings": [],
+    "claims_allowed": [
+      "计算候选物已排序，待实验/专家复核",
+      "Stage6 作业单 + Vina/Glide 回传接口已 seeded（partial/seeded）"
+    ],
+    "claims_forbidden": [
+      "有效配体/抑制剂已被证实",
+      "Glide/Vina 全库虚筛已完成",
+      "本机 seeded 示例分数来自真实对接"
+    ]
+  },
+  "status": "completed",
+  "maturity": "external"
+}

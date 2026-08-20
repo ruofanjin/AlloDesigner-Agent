@@ -1,0 +1,41 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    16:
+HEADER 0  - Pocket Score                      : -0.0584
+HEADER 1  - Drug Score                        : 0.0025
+HEADER 2  - Number of alpha spheres           :    21
+HEADER 3  - Mean alpha-sphere radius          : 3.8500
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5877
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 26.7778
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 3.8889
+HEADER 9  - Pocket volume (Monte Carlo)       : 255.0536
+HEADER 10 - Pocket volume (convex hull)       : 11.4113
+HEADER 11 - Charge Score                      :     3
+HEADER 12 - Local hydrophobic density Score   : 6.0000
+HEADER 13 - Number of apolar alpha sphere     :     8
+HEADER 14 - Proportion of apolar alpha sphere : 0.3810
+ATOM   7824  ND1 HID D 484      70.020  48.490 133.390  0.54  1.09           N 0
+ATOM   7826  CE1 HID D 484      70.720  47.770 132.460  0.00  0.00           C 0
+ATOM   7913  NE2 HID D 489      70.610  47.740 136.220  0.76  8.75           N 0
+ATOM   7797   CA GLY D 482      67.380  45.290 131.040  0.00  0.00           C 0
+ATOM   7758    N PHE D 480      74.010  43.530 129.950  0.00  0.00           N 0
+ATOM   7741   CA LEU D 479      73.990  41.250 129.020  0.00  0.00           C 0
+ATOM   7768  CE1 PHE D 480      77.510  43.740 132.390  0.00  0.00           C 0
+ATOM   7752  CD2 LEU D 479      75.040  38.580 129.970  0.00  0.00           C 0
+ATOM   7760   CA PHE D 480      74.090  44.990 130.110  0.00  0.00           C 0
+ATOM   7766  CD1 PHE D 480      76.590  44.500 131.760  0.00  0.00           C 0
+ATOM   7914  CD2 HID D 489      71.830  48.410 136.070  0.00  0.00           C 0
+ATOM   7803   CD PRO D 483      65.100  45.230 132.960  0.00  0.00           C 0
+ATOM   7814    C PRO D 483      65.440  48.370 133.550  0.00  0.00           C 0
+ATOM   7738    O VAL D 478      71.700  41.930 130.810  0.48  7.50           O 0
+ATOM   7795    N GLY D 482      68.540  45.610 130.280  0.00  0.00           N 0
+ATOM   7778    N GLN D 481      71.730  45.040 129.510  0.48  1.09           N 0
+ATOM   7911  CE1 HID D 489      69.660  48.660 136.480  0.00  0.00           C 0
+ATOM   7815    O PRO D 483      65.050  48.340 134.720  0.00  0.00           O 0
+ATOM   7860  CE1 HID D 486      64.880  46.820 138.100  0.00  0.00           C 0
+TER
+END

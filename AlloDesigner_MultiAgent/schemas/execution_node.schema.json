@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://allodesigner.local/schemas/execution_node.schema.json",
+  "title": "ExecutionNode",
+  "type": "object",
+  "required": ["node_id", "stage_id", "tool_id", "action"],
+  "properties": {
+    "node_id": { "type": "string" },
+    "stage_id": { "type": "string" },
+    "tool_id": { "type": "string" },
+    "action": { "type": "string" },
+    "args": { "type": "object" },
+    "depends_on": { "type": "array", "items": { "type": "string" } },
+    "on_failure": {
+      "type": "string",
+      "enum": ["escalate", "replan", "stop", "continue_with_uncertainty"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "completed", "failed", "skipped"]
+    },
+    "result_ref": { "type": "string" }
+  }
+}

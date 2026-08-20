@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://allodesigner.local/schemas/reasoning_plan.schema.json",
+  "title": "ReasoningPlan",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "plan_id",
+    "task_id",
+    "track",
+    "scientific_hypothesis",
+    "information_boundary",
+    "stages",
+    "global_stop_policy",
+    "claim_policy"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "plan_id": { "type": "string" },
+    "task_id": { "type": "string" },
+    "track": {
+      "type": "string",
+      "enum": ["retrospective_blind", "retrospective_informed", "exploratory"]
+    },
+    "scientific_hypothesis": { "type": "string" },
+    "information_boundary": {
+      "type": "object",
+      "properties": {
+        "allowed_priors": { "type": "array", "items": { "type": "string" } },
+        "forbidden_information": { "type": "array", "items": { "type": "string" } },
+        "leakage_scan": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/stage_reasoning" }
+    },
+    "execution_dag": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/execution_node" }
+    },
+    "global_stop_policy": { "type": "object" },
+    "claim_policy": { "type": "object" },
+    "uncertainty_notes": { "type": "array", "items": { "type": "string" } },
+    "planner_mode": {
+      "type": "string",
+      "enum": ["heuristic_autonomous", "llm_assisted"],
+      "description": "How the reasoning chain was formed"
+    }
+  },
+  "$defs": {
+    "stage_reasoning": {
+      "type": "object",
+      "required": ["stage_id", "goal_locked", "why_this_path", "tools", "maturity_route"],
+      "properties": {
+        "stage_id": { "type": "string" },
+        "goal_locked": { "type": "string" },
+        "why_this_path": { "type": "string" },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["tool_id", "role", "decision"],
+            "properties": {
+              "tool_id": { "type": "string" },
+              "role": { "type": "string" },
+              "decision": { "type": "string" },
+              "rationale": { "type": "string" }
+            }
+          }
+        },
+        "iteration_policy": { "type": "object" },
+        "maturity_route": {
+          "type": "string",
+          "enum": ["local_invoke", "job_pack", "historical_replay", "reuse_artifact", "paper_only_placeholder"]
+        },
+        "handoff_out": { "type": "array", "items": { "type": "string" } },
+        "soft_skip": { "type": "boolean" },
+        "uncertainty": { "type": "string" }
+      }
+    },
+    "execution_node": {
+      "type": "object",
+      "required": ["node_id", "stage_id", "tool_id", "action"],
+      "properties": {
+        "node_id": { "type": "string" },
+        "stage_id": { "type": "string" },
+        "tool_id": { "type": "string" },
+        "action": { "type": "string" },
+        "args": { "type": "object" },
+        "depends_on": { "type": "array", "items": { "type": "string" } },
+        "on_failure": { "type": "string", "enum": ["escalate", "replan", "stop", "continue_with_uncertainty"] }
+      }
+    }
+  }
+}

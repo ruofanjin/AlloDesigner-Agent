@@ -1,0 +1,18 @@
+work_dir: "{root}/workdir/run"
+
+reference_case:
+  # Optional unpacked historical reference. The downstream frozen-handoff
+  # profile does not require it; Step 3 full audit expects evidence/ instead.
+  read_only_root: null
+
+path_policy:
+  allowed_write_roots:
+    - "{root}/workdir"
+    - "{root}/generated"
+
+inputs:
+  source_msa: "{root}/inputs/6x18_chianR_R.a3m"
+  default_pdb: "{root}/inputs/6x18_MODEL_0.pdb"
+  historical_holo_cluster_residue_csv: "{root}/inputs/glp1_historical_holo_cluster_mapped_residues.csv"
+  deepallo_residue_probability_csv: "{root}/inputs/glp1-deepallo-score-residue_probabilities_top_7.csv"
+  plb_residue_probability_csv: "{root}/inputs/glp1-plb-score-residue_probabilities_top_7.csv"

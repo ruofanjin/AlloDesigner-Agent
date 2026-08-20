@@ -1,0 +1,52 @@
+{
+  "packet_id": "glp1r_reason_demo_v1:residue_prior:stage2.replay_residue_prior",
+  "task_id": "glp1r_reason_demo_v1",
+  "stage_id": "residue_prior",
+  "stage_contract_version": "1.0.0",
+  "task_track": "retrospective_blind",
+  "inputs_frozen": [],
+  "priors_approved": [],
+  "tools_considered": [
+    {
+      "tool_id": "allo_pocketminer",
+      "role": "reuse",
+      "decision": "deferred",
+      "rationale": "Executable in principle; deferred for demo budget."
+    },
+    {
+      "tool_id": "stage2.replay_residue_prior",
+      "role": "adapt",
+      "decision": "selected",
+      "rationale": "historical_replay of retrospective residue_prior artifacts."
+    }
+  ],
+  "tool_selected": [
+    "stage2.replay_residue_prior"
+  ],
+  "outputs": {
+    "mode": "historical_replay",
+    "artifact_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior",
+    "residue_csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv"
+  },
+  "metrics": {},
+  "qc_flags": [],
+  "human_interventions": [],
+  "claims_allowed": [
+    "残基先验已从回溯产物复用，非本轮重算"
+  ],
+  "iteration": {
+    "stop_reason": "node_executed"
+  },
+  "critic": {
+    "passed": true,
+    "findings": [],
+    "claims_allowed": [
+      "候选残基/区域先验已生成，待后续构象与物理验证"
+    ],
+    "claims_forbidden": [
+      "已确认功能变构位点"
+    ]
+  },
+  "status": "completed",
+  "maturity": "scripted"
+}

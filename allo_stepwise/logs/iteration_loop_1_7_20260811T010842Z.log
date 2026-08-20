@@ -1,0 +1,6 @@
+==== LOOP START 2026-08-11T01:08:42+00:00 iters=1..7 min_free=7000 ====
+==== Iteration 1 2026-08-11T01:08:42+00:00 ====
+MSA already present for Iteration 1
+Wrote ColabFold command list: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/generated/iteration_1_colabfold_commands.sh
+[2026-08-11T01:08:44+00:00] GPU free=7355 MiB (need >= 7000)
+[2026-08-11T01:08:44+00:00] RUN:   /lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/localcolabfold/.pixi/envs/default/bin/colabfold_batch --num-recycle 3 --num-models 1 --num-seeds 1 --random-seed 42 --max-msa 8:16 /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_1 /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_1

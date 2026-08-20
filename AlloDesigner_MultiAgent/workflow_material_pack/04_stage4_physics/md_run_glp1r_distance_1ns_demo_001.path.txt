@@ -1,0 +1,2 @@
+symlink_was: md_run_glp1r_distance_1ns_demo_001
+points_to: /home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001

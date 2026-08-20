@@ -1,0 +1,175 @@
+{
+  "status": "needs_external",
+  "paper_stage": "MSA purification + preference conformation",
+  "depends_on": [
+    "residue_prior"
+  ],
+  "residue_prior_ref": {
+    "status": "completed",
+    "out_csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv",
+    "threshold": 0.7,
+    "n_residues": 491,
+    "n_positive": 119,
+    "weights": "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/model_weight/1748397928_003",
+    "runner": "conda_or_python_subprocess",
+    "cmd": [
+      "conda",
+      "run",
+      "-n",
+      "allo-pocketminer",
+      "--no-capture-output",
+      "python",
+      "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/_agent_predict_glp1.py",
+      "--out",
+      "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv",
+      "--threshold",
+      "0.7",
+      "--batch-size",
+      "16",
+      "--weights",
+      "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/model_weight/1748397928_003"
+    ],
+    "artifacts": {
+      "residue_csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv"
+    },
+    "env_decision": {
+      "stage_id": "residue_prior",
+      "profile_id": "allo_pocketminer",
+      "specialized": true,
+      "action": "reuse",
+      "env_name": "allo-pocketminer",
+      "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer",
+      "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/python",
+      "matched_by": "name+markers",
+      "score": 15.5,
+      "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo-pocketminer-environment.yml",
+      "command_prefix": [
+        "conda",
+        "run",
+        "-n",
+        "allo-pocketminer",
+        "--no-capture-output"
+      ],
+      "notes": [
+        "Reuse env 'allo-pocketminer' for profile 'allo_pocketminer' (score=15.5)"
+      ],
+      "probe_details": {
+        "required": {
+          "tensorflow": true,
+          "keras": true,
+          "numpy": true,
+          "sklearn": true,
+          "Bio": true
+        },
+        "optional_import": {
+          "mdtraj": false,
+          "tqdm": true
+        },
+        "optional_commands": {},
+        "name_alias_hit": true
+      }
+    }
+  },
+  "chain": [
+    {
+      "step": 1,
+      "tool": "alphaflow",
+      "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow && python 1-mmseqs_search_helper.py --split ./GLP1_chain_seqres.csv --outdir ./alignment_dir/alignment_dir_GLP1",
+      "maturity": "scripted"
+    },
+    {
+      "step": 2,
+      "tool": "alphaflow",
+      "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow && bash 2-predict_test.sh",
+      "maturity": "scripted",
+      "note": "Requires upstream AlphaFlow predict.py + weights"
+    },
+    {
+      "step": 3,
+      "tool": "af_claseq",
+      "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 1_exact_pdb_from_dir_remove_new_dir_all_shuffle.py && python 2_fpocket_msa_pdb.py && python 3_calucate_fpocket_center_dir.py",
+      "maturity": "scripted",
+      "note": "Hardcoded case paths inside scripts; needs AF_ClaSeq case dir"
+    },
+    {
+      "step": 4,
+      "tool": "af_claseq_iterative",
+      "rounds": 6,
+      "cmds": [
+        "python 11_sequence_voting.py",
+        "python 12_recompile.py"
+      ],
+      "maturity": "scripted"
+    }
+  ],
+  "stop_when": [
+    {
+      "metric": "top10_percent_mean_distance",
+      "op": "<=",
+      "value": 5.0
+    },
+    {
+      "metric": "round",
+      "op": ">=",
+      "value": 6
+    }
+  ],
+  "env_decision": {
+    "stage_id": "ensemble_enrichment",
+    "profile_id": "allo_claseq",
+    "specialized": true,
+    "action": "reuse",
+    "env_name": "allo-pocketminer",
+    "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer",
+    "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/python",
+    "matched_by": "name+markers",
+    "score": 13.0,
+    "create_yml": null,
+    "command_prefix": [
+      "conda",
+      "run",
+      "-n",
+      "allo-pocketminer",
+      "--no-capture-output"
+    ],
+    "notes": [
+      "Reuse env 'allo-pocketminer' for profile 'allo_claseq' (score=13.0)"
+    ],
+    "probe_details": {
+      "required": {
+        "Bio": true,
+        "numpy": true,
+        "pandas": true,
+        "sklearn": true
+      },
+      "optional_import": {
+        "torch": false,
+        "transformers": false,
+        "autogluon": false
+      },
+      "optional_commands": {
+        "fpocket": false
+      },
+      "name_alias_hit": true
+    }
+  },
+  "attempts": [
+    {
+      "step": "mmseqs_helper",
+      "cmd": "conda run -n allo-pocketminer --no-capture-output python /lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow/1-mmseqs_search_helper.py --split /lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow/GLP1_chain_seqres.csv --outdir /lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment/msa_attempt/alignment_dir_GLP1",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow/1-mmseqs_search_helper.py\", line 12, in <module>\n    from mmseqs_search import main \nModuleNotFoundError: No module named 'mmseqs_search'\nERROR conda.cli.main_run:execute(142): `conda run python /lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow/1-mmseqs_search_helper.py --split /lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow/GLP1_chain_seqres.csv --outdir /lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment/msa_attempt/alignment_dir_GLP1` failed. (See above for error)\n",
+      "ok": false,
+      "outdir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment/msa_attempt/alignment_dir_GLP1"
+    }
+  ],
+  "artifacts": {
+    "run_chain_sh": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment/run_chain.sh"
+  },
+  "blockers": [
+    "AlphaFlow predict.py/weights not in repo",
+    "AF_ClaSeq scripts need prepared case directory + fpocket",
+    "Traceback (most recent call last):\n  File \"/lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow/1-mmseqs_search_helper.py\", line 12, in <module>\n    from mmseqs_search import main \nModuleNotFoundError: No module named 'mmseqs_search'\nERROR conda.cli.main_run:execute(142): `conda run python /lambda/nfs/file2"
+  ]
+}

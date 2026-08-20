@@ -1,0 +1,40 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    34:
+HEADER 0  - Pocket Score                      : -0.1431
+HEADER 1  - Drug Score                        : 0.0010
+HEADER 2  - Number of alpha spheres           :    20
+HEADER 3  - Mean alpha-sphere radius          : 3.9612
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6029
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : -8.5000
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 3.6667
+HEADER 9  - Pocket volume (Monte Carlo)       : 363.8123
+HEADER 10 - Pocket volume (convex hull)       : 7.3687
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 7.0000
+HEADER 13 - Number of apolar alpha sphere     :     8
+HEADER 14 - Proportion of apolar alpha sphere : 0.4000
+ATOM   7221    C ASP D 439      66.980  94.100 117.970  0.00  0.00           C 0
+ATOM   7234    N SER D 441      63.910  96.230 118.570  0.74  1.09           N 0
+ATOM   7210    O ARG D 438      65.100  94.100 120.930  0.63  4.29           O 0
+ATOM   7222    O ASP D 439      67.940  94.720 117.510  0.00  0.00           O 0
+ATOM   7252   CG MET D 442      64.890  96.760 123.590  0.00  0.00           C 0
+ATOM   7213   CA ASP D 439      67.210  93.130 119.100  0.00  0.00           C 0
+ATOM   7233    O SER D 440      64.470  97.500 116.940  0.43  9.64           O 0
+ATOM   7236   CA SER D 441      63.100  97.100 119.470  0.00  0.00           C 0
+ATOM   7255   SD MET D 442      65.980  96.240 124.910  0.00  0.00           S 0
+ATOM   7219  OD1 ASP D 439      68.540  91.340 120.850  0.00  0.00           O 0
+ATOM   7194   CG ARG D 438      65.070  91.300 123.000  0.00  0.00           C 0
+ATOM   7354   CG PRO D 448      68.490  93.850 127.560  0.00  0.00           C 0
+ATOM   7357   CB PRO D 448      67.330  92.890 127.440  0.00  0.00           C 0
+ATOM   7197   CD ARG D 438      66.020  90.280 123.650  0.00  0.00           C 0
+ATOM   7200   NE ARG D 438      67.070  89.910 122.720  0.00  0.00           N 0
+ATOM   7202   CZ ARG D 438      68.040  89.040 122.920  0.00  0.00           C 0
+ATOM   7206  NH2 ARG D 438      68.940  88.930 122.050  0.00  0.00           N 0
+ATOM   7203  NH1 ARG D 438      68.040  88.320 124.030  0.04  9.84           N 0
+TER
+END

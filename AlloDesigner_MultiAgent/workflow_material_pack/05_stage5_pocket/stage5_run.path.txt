@@ -1,0 +1,2 @@
+symlink_was: stage5_run
+points_to: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo

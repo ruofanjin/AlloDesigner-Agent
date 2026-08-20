@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    33:
+HEADER 0  - Pocket Score                      : -0.1521
+HEADER 1  - Drug Score                        : 0.0009
+HEADER 2  - Number of alpha spheres           :    19
+HEADER 3  - Mean alpha-sphere radius          : 3.8616
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6478
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : -11.0000
+HEADER 7  - Polarity Score                    :     3
+HEADER 8  - Amino Acid based volume Score     : 3.7500
+HEADER 9  - Pocket volume (Monte Carlo)       : 261.5254
+HEADER 10 - Pocket volume (convex hull)       : 5.4332
+HEADER 11 - Charge Score                      :    -3
+HEADER 12 - Local hydrophobic density Score   : 6.0000
+HEADER 13 - Number of apolar alpha sphere     :     7
+HEADER 14 - Proportion of apolar alpha sphere : 0.3684
+ATOM    378   CB LEU A  24      37.620  63.490  90.020  0.00  0.00           C 0
+ATOM    381   CG LEU A  24      38.740  63.160  91.020  0.00  0.00           C 0
+ATOM    405  OE2 GLU A  25      34.350  66.620  90.320  0.59  4.29           O 0
+ATOM    383  CD1 LEU A  24      38.400  61.800  91.670  0.00  0.00           C 0
+ATOM    361    O ASP A  22      37.300  68.720  94.300  0.42  9.64           O 0
+ATOM    371  OD2 ASP A  23      35.200  69.770  92.040  0.74  7.50           O 0
+ATOM    404  OE1 GLU A  25      32.280  66.750  90.860  0.67  4.29           O 0
+ATOM    362    N ASP A  23      38.560  68.580  92.410  0.69  2.19           N 0
+ATOM    372    C ASP A  23      38.090  66.900  90.590  0.00  0.00           C 0
+ATOM    359  OD2 ASP A  22      39.520  66.910  97.120  0.17  9.64           O 0
+ATOM    374    N LEU A  24      37.330  65.940  90.100  0.00  0.00           N 0
+ATOM    364   CA ASP A  23      37.520  67.990  91.510  0.00  0.00           C 0
+ATOM    360    C ASP A  22      38.380  68.870  93.700  0.00  0.00           C 0
+ATOM    354   CB ASP A  22      40.270  68.370  95.320  0.00  0.00           C 0
+ATOM    373    O ASP A  23      39.280  67.030  90.160  0.25  3.21           O 0
+ATOM    387  CD2 LEU A  24      40.090  62.970  90.290  0.00  0.00           C 0
+TER
+END

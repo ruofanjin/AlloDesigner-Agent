@@ -1,0 +1,25 @@
+{
+  "status": "completed",
+  "maturity": "executable",
+  "artifacts": {
+    "boundary_sheet": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T122127Z_glp1r_retrospective_blind_v1/artifacts/boundary/boundary_sheet.json"
+  },
+  "next_input": "residue_prior uses sequence_ref + apo ensemble npy",
+  "env_decision": {
+    "stage_id": "boundary",
+    "profile_id": "agent_base",
+    "specialized": false,
+    "action": "use_current",
+    "env_name": "__current__",
+    "env_path": null,
+    "python_executable": "/home/ubuntu/miniconda3/bin/python",
+    "matched_by": "non_specialized_stage",
+    "score": 1.0,
+    "create_yml": null,
+    "command_prefix": [],
+    "notes": [
+      "No special env required; use current interpreter/tools"
+    ],
+    "probe_details": {}
+  }
+}

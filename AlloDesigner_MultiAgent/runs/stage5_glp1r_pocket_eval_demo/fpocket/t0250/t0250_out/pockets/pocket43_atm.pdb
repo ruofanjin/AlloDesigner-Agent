@@ -1,0 +1,60 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    43:
+HEADER 0  - Pocket Score                      : -0.2835
+HEADER 1  - Drug Score                        : 0.0108
+HEADER 2  - Number of alpha spheres           :    53
+HEADER 3  - Mean alpha-sphere radius          : 4.0759
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5022
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 18.5385
+HEADER 7  - Polarity Score                    :     8
+HEADER 8  - Amino Acid based volume Score     : 4.0769
+HEADER 9  - Pocket volume (Monte Carlo)       : 645.7869
+HEADER 10 - Pocket volume (convex hull)       : 142.4267
+HEADER 11 - Charge Score                      :    -1
+HEADER 12 - Local hydrophobic density Score   : 15.3333
+HEADER 13 - Number of apolar alpha sphere     :    27
+HEADER 14 - Proportion of apolar alpha sphere : 0.5094
+ATOM   2352   CG GLN C 149      48.310  64.890  71.790  0.00  0.00           C 0
+ATOM   2262   CG ARG C 143      43.360  65.500  66.490  0.00  0.00           C 0
+ATOM   2357  NE2 GLN C 149      46.820  66.720  72.280  0.00  0.00           N 0
+ATOM   2355   CD GLN C 149      47.840  66.340  71.580  0.00  0.00           C 0
+ATOM   2254    O GLU C 142      43.300  69.670  67.850  0.45  8.57           O 0
+ATOM   2259   CB ARG C 143      43.110  67.030  66.370  0.00  0.00           C 0
+ATOM   2268   NE ARG C 143      42.110  63.430  66.750  0.42  8.75           N 0
+ATOM   2308   CB PRO C 146      48.480  60.540  70.000  0.00  0.00           C 0
+ATOM   6296  CG2 THR C 387      43.550  58.720  73.110  0.00  0.00           C 0
+ATOM   6355  CD1 PHE C 390      46.920  60.640  75.340  0.00  0.00           C 0
+ATOM   6300  OG1 THR C 387      43.590  58.360  70.850  0.00  0.00           O 0
+ATOM   2311   CA PRO C 146      49.140  61.830  69.530  0.00  0.00           C 0
+ATOM   2265   CD ARG C 143      42.030  64.850  66.820  0.00  0.00           C 0
+ATOM   6354   CG PHE C 390      48.200  60.440  74.690  0.00  0.00           C 0
+ATOM   2302   CD PRO C 146      48.640  60.360  67.600  0.00  0.00           C 0
+ATOM   2274  NH2 ARG C 143      41.800  61.390  65.600  0.35  7.66           N 0
+ATOM    633  CD1 LEU A  41      45.180  61.530  63.710  0.00  0.00           C 0
+ATOM   2305   CG PRO C 146      48.580  59.510  68.850  0.00  0.00           C 0
+ATOM   2289    O SER C 144      46.900  63.800  65.950  0.67  5.36           O 0
+ATOM   2279    N SER C 144      46.550  66.530  65.620  0.50  1.09           N 0
+ATOM   6285   CA GLY C 386      47.120  55.420  69.190  0.00  0.00           C 0
+ATOM   6283    N GLY C 386      48.100  54.290  69.330  0.00  0.00           N 0
+ATOM    628   CB LEU A  41      46.120  59.780  62.110  0.00  0.00           C 0
+ATOM   2297   OG SER C 145      51.160  60.950  65.870  0.68  5.36           O 0
+ATOM   2327  OE2 GLU C 147      53.000  58.040  69.690  0.63  6.43           O 0
+ATOM   2322   CG GLU C 147      53.300  59.810  68.080  0.00  0.00           C 0
+ATOM   2257   CA ARG C 143      44.510  67.610  66.300  0.00  0.00           C 0
+ATOM    643    N TRP A  42      46.420  56.840  61.170  0.70  3.28           N 0
+ATOM    647   CB TRP A  42      46.820  54.520  62.030  0.00  0.00           C 0
+ATOM    706  CG2 VAL A  45      50.920  57.020  59.590  0.00  0.00           C 0
+ATOM   2294   CB SER C 145      50.690  62.180  65.290  0.00  0.00           C 0
+ATOM    637  CD2 LEU A  41      46.850  62.130  61.900  0.00  0.00           C 0
+ATOM    642    O LEU A  41      47.570  58.020  59.650  0.54  3.21           O 0
+ATOM    662  CE3 TRP A  42      49.920  53.030  61.750  0.00  0.00           C 0
+ATOM   6290    N THR C 387      45.620  56.480  70.740  0.68  1.09           N 0
+ATOM   6357  CE1 PHE C 390      46.740  61.900  75.950  0.00  0.00           C 0
+ATOM    641    C LEU A  41      46.720  57.970  60.470  0.00  0.00           C 0
+ATOM    645   CA TRP A  42      47.100  55.560  60.900  0.00  0.00           C 0
+TER
+END

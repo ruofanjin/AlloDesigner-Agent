@@ -1,0 +1,37 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    36:
+HEADER 0  - Pocket Score                      : -0.1843
+HEADER 1  - Drug Score                        : 0.0007
+HEADER 2  - Number of alpha spheres           :    21
+HEADER 3  - Mean alpha-sphere radius          : 4.0567
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4846
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 28.8333
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 4.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 307.5630
+HEADER 10 - Pocket volume (convex hull)       : 10.2564
+HEADER 11 - Charge Score                      :    -1
+HEADER 12 - Local hydrophobic density Score   : 11.0000
+HEADER 13 - Number of apolar alpha sphere     :    12
+HEADER 14 - Proportion of apolar alpha sphere : 0.5714
+ATOM   2094   CG CLEUB 132      54.460  69.690  53.020  0.00  0.00           C 0
+ATOM   2180   CB SER C 138      48.940  72.290  58.090  0.00  0.00           C 0
+ATOM   2096  CD1 CLEUB 132      53.300  68.720  53.030  0.00  0.00           C 0
+ATOM   2183   OG SER C 138      49.870  73.170  58.700  0.00  0.00           O 0
+ATOM   2107    N NSERC 133      51.750  74.220  53.350  0.00  0.00           N 0
+ATOM   1266   OH TYR B  78      54.590  65.710  56.130  0.00  0.00           O 0
+ATOM   1594  CH2 TRP B 100      47.700  66.030  55.340  0.00  0.00           C 0
+ATOM   2160    O GLU C 136      49.090  73.120  53.530  0.50  1.07           O 0
+ATOM   2100  CD2 CLEUB 132      55.600  69.090  53.890  0.00  0.00           C 0
+ATOM   2106  OXT CLEUB 132      53.630  73.020  51.950  0.00  0.00           O 0
+ATOM   2105    O CLEUB 132      51.830  71.730  51.760  0.58  2.14           O 0
+ATOM   2150   CB GLU C 136      47.350  70.520  53.010  0.00  0.00           C 0
+ATOM   1592  CZ2 TRP B 100      48.140  66.270  54.020  0.00  0.00           C 0
+ATOM   1268  CE2 TYR B  78      53.740  65.340  53.940  0.00  0.00           C 0
+ATOM   2153   CG GLU C 136      46.460  70.490  54.300  0.00  0.00           C 0
+TER
+END

@@ -1,0 +1,59 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    31:
+HEADER 0  - Pocket Score                      : -0.0916
+HEADER 1  - Drug Score                        : 0.0364
+HEADER 2  - Number of alpha spheres           :    46
+HEADER 3  - Mean alpha-sphere radius          : 3.8524
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5079
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 54.3636
+HEADER 7  - Polarity Score                    :     3
+HEADER 8  - Amino Acid based volume Score     : 4.3636
+HEADER 9  - Pocket volume (Monte Carlo)       : 516.1618
+HEADER 10 - Pocket volume (convex hull)       : 57.6522
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 29.5429
+HEADER 13 - Number of apolar alpha sphere     :    35
+HEADER 14 - Proportion of apolar alpha sphere : 0.7609
+ATOM   6900   CB ARG D 423      56.340  72.860 115.600  0.00  0.00           C 0
+ATOM   6829   CB GLN D 419      54.440  67.880 113.290  0.00  0.00           C 0
+ATOM   6841    O GLN D 419      56.760  70.000 114.410  0.59  2.14           O 0
+ATOM   6851  CD1 LEU D 420      54.540  67.970 118.220  0.00  0.00           C 0
+ATOM   6836  OE1 GLN D 419      51.650  67.970 112.730  0.00  0.00           O 0
+ATOM   6840    C GLN D 419      56.470  68.840 114.610  0.00  0.00           C 0
+ATOM    198   CB CYS A  12      54.360  72.330 106.100  0.00  0.00           C 0
+ATOM   6886  CE1 PHE D 422      58.270  74.230 110.720  0.00  0.00           C 0
+ATOM    151  CD2 TYR A   9      55.100  76.880 110.070  0.00  0.00           C 0
+ATOM   6884  CD1 PHE D 422      58.280  72.990 111.420  0.00  0.00           C 0
+ATOM   6827   CA GLN D 419      55.960  68.010 113.330  0.00  0.00           C 0
+ATOM   6832   CG GLN D 419      53.890  67.580 111.910  0.00  0.00           C 0
+ATOM   6912  NH1 ARG D 423      52.300  75.980 115.160  0.00  0.00           N 0
+ATOM   6903   CG ARG D 423      55.520  74.090 116.130  0.00  0.00           C 0
+ATOM   6906   CD ARG D 423      55.320  75.370 115.220  0.00  0.00           C 0
+ATOM    154    O TYR A   9      54.500  75.910 106.370  0.00  0.00           O 0
+ATOM    149  CE2 TYR A   9      53.920  77.220 110.780  0.00  0.00           C 0
+ATOM    203    C CYS A  12      52.140  73.340 105.330  0.00  0.00           C 0
+ATOM    264   CB ALA A  16      48.220  71.870 106.990  0.00  0.00           C 0
+ATOM   6729    O NCYSD 412      53.580  68.370 108.480  0.48  7.50           O 0
+ATOM   6880   CB PHE D 422      59.370  70.830 112.070  0.00  0.00           C 0
+ATOM   6883   CG PHE D 422      59.350  72.060 111.200  0.00  0.00           C 0
+ATOM    201   SG CYS A  12      55.840  71.350 105.710  0.00  0.00           S 0
+ATOM   6835   CD GLN D 419      52.360  67.490 111.860  0.00  0.00           C 0
+ATOM    214  CD1 LEU A  13      49.510  77.270 107.980  0.00  0.00           C 0
+ATOM    207   CA LEU A  13      50.910  75.460 105.690  0.00  0.00           C 0
+ATOM    209   CB LEU A  13      51.340  76.820 106.190  0.00  0.00           C 0
+ATOM    147   OH TYR A   9      51.980  78.550 111.200  0.54  7.50           O 0
+ATOM    205    N LEU A  13      52.090  74.670 105.330  0.00  0.00           N 0
+ATOM    204    O CYS A  12      51.160  72.670 105.660  0.62  2.14           O 0
+ATOM   6721   CA NCYSD 412      55.570  67.250 107.810  0.00  0.00           C 0
+ATOM   6824    O VAL D 418      58.690  67.570 113.230  0.71  1.07           O 0
+ATOM   2756  CD1 ILE C 174      60.870  69.760 107.260  0.00  0.00           C 0
+ATOM   2749  CG2 ILE C 174      61.750  67.400 109.330  0.00  0.00           C 0
+ATOM   6726   SG NCYSD 412      57.650  67.480 105.900  0.00  0.00           S 0
+ATOM   6717    N NCYSD 412      56.220  66.010 108.240  0.68  1.09           N 0
+ATOM   6819  CG2 VAL D 418      59.920  65.360 111.240  0.00  0.00           C 0
+TER
+END

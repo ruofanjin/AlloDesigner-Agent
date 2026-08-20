@@ -1,0 +1,39 @@
+{
+  "stage_id": "physics_sampling",
+  "status": "demo_completed",
+  "maturity": "scripted",
+  "product_maturity": "partial/demo",
+  "maturity_note": "partial/demo — 1 ns shortened Allo-MD pipeline completed; not frozen 200 ns historical protocol",
+  "backend": "Allo-MD",
+  "profile": "distance-simulation-1ns-demo",
+  "run_id": "glp1r_distance_1ns_demo_001",
+  "run_dir": "/home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001",
+  "completed_utc": "2026-08-14T16:27:28+00:00",
+  "hardware": {
+    "gpu": "NVIDIA H100 80GB",
+    "omp_threads": 16,
+    "mdrun_flags": ["-nb gpu", "-pme gpu", "-bonded gpu"]
+  },
+  "performance_ns_per_day": {
+    "normal_1ns": 235.329,
+    "distance_monitor_1ns": 110.82,
+    "distance_metad_1ns": 104.332
+  },
+  "artifacts": {
+    "eq6_gro": "stages/equilibration/eq6.gro",
+    "normal_xtc": "stages/normal_1ns/normal_1ns.xtc",
+    "monitor_colvar": "stages/distance_monitor_1ns/colvar_distance",
+    "metad_hills": "stages/distance_metad_1ns/HILLS",
+    "metad_colvar": "stages/distance_metad_1ns/COLVAR_biased.dat",
+    "metad_xtc": "stages/distance_metad_1ns/distance_metad_1ns.xtc",
+    "metad_gro": "stages/distance_metad_1ns/distance_metad_1ns.gro"
+  },
+  "claims_allowed": [
+    "在给定 CV 与缩短预算下完成 Allo-MD Stage4 demo 采样"
+  ],
+  "claims_forbidden": [
+    "机制已证实",
+    "论文级 200 ns 冻结协议已复现"
+  ],
+  "doc": "docs/stage4_demo_glp1r_1ns.md"
+}

@@ -1,0 +1,43 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    47:
+HEADER 0  - Pocket Score                      : -0.2061
+HEADER 1  - Drug Score                        : 0.0001
+HEADER 2  - Number of alpha spheres           :    17
+HEADER 3  - Mean alpha-sphere radius          : 4.0814
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6121
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : -7.1250
+HEADER 7  - Polarity Score                    :     7
+HEADER 8  - Amino Acid based volume Score     : 4.3750
+HEADER 9  - Pocket volume (Monte Carlo)       : 485.1835
+HEADER 10 - Pocket volume (convex hull)       : 39.4295
+HEADER 11 - Charge Score                      :    -2
+HEADER 12 - Local hydrophobic density Score   : 1.0000
+HEADER 13 - Number of apolar alpha sphere     :     2
+HEADER 14 - Proportion of apolar alpha sphere : 0.1176
+ATOM   1249  OE1 GLU B  77      62.880  58.100  53.410  0.71  5.36           O 0
+ATOM   4899  OD1 ASP C 302      63.840  55.310  58.800  0.00  0.00           O 0
+ATOM    851  NH1 ARG A  52      61.120  53.300  53.440  0.00  0.00           N 0
+ATOM   4900  OD2 ASP C 302      65.890  54.480  59.000  0.00  0.00           O 0
+ATOM   4898   CG ASP C 302      64.880  55.100  59.510  0.00  0.00           C 0
+ATOM   1250  OE2 GLU B  77      64.750  59.080  52.810  0.00  0.00           O 0
+ATOM   4920   CA GLY C 304      64.220  51.790  58.170  0.00  0.00           C 0
+ATOM   1248   CD GLU B  77      63.580  59.170  53.230  0.00  0.00           C 0
+ATOM   4890    O GLU C 301      61.800  56.690  63.520  0.32  5.36           O 0
+ATOM   4903    N GLU C 303      61.900  54.070  60.740  0.65  3.28           N 0
+ATOM   4893   CA ASP C 302      63.580  55.420  61.710  0.00  0.00           C 0
+ATOM   1245   CG GLU B  77      62.960  60.520  53.660  0.00  0.00           C 0
+ATOM   3534   CB HID C 221      72.400  59.490  59.570  0.00  0.00           C 0
+ATOM   3537   CG HID C 221      72.170  60.510  58.550  0.00  0.00           C 0
+ATOM   3543  CD2 HID C 221      72.210  60.490  57.160  0.00  0.00           C 0
+ATOM   1242   CB GLU B  77      61.500  60.740  53.420  0.00  0.00           C 0
+ATOM   4915  OE2 GLU C 303      60.980  52.770  56.130  0.44  4.29           O 0
+ATOM    766  CH2 TRP A  48      58.790  55.020  54.820  0.00  0.00           C 0
+ATOM    764  CZ2 TRP A  48      58.520  56.170  54.050  0.00  0.00           C 0
+ATOM   4910   CG GLU C 303      60.030  53.790  58.160  0.00  0.00           C 0
+ATOM   4907   CB GLU C 303      59.860  53.210  59.610  0.00  0.00           C 0
+TER
+END

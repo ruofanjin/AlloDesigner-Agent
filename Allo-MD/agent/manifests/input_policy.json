@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "current_mode": "frozen_current_reproduction_snapshot",
+  "inputs_root": "inputs",
+  "immutable": true,
+  "validated_by": [
+    "manifests/input_checksums.sha256",
+    "tools/validate_inputs.py"
+  ],
+  "future_full_flow_planner": {
+    "implemented": false,
+    "instruction": "Do not regenerate or replace packaged inputs in this version. A future upstream Agent must produce a new versioned input set and artifact contract.",
+    "required_artifacts": [
+      "coordinates_and_topology_with_force_field_provenance",
+      "membrane_build_spec_orientation_leaflet_composition_and_validation_contract",
+      "chain_residue_and_global_atom_mapping",
+      "atom_and_molecule_order_contract",
+      "index_selection_expressions_and_counts",
+      "mdp_protocol_and_duration_records",
+      "validated_post_equilibration_parent_gro_cpt_tpr_and_exact_mdp_contract",
+      "plumed_residue_to_global_atom_mapping",
+      "spib_training_assets_if_distance_bias_is_rebuilt",
+      "producer_versions_commands_and_sha256"
+    ],
+    "human_guidance": [
+      "docs/FUTURE_FULL_FLOW.md",
+      "docs/MEMBRANE_SYSTEM_BUILDING.md",
+      "manifests/membrane_build_contract.json"
+    ]
+  }
+}

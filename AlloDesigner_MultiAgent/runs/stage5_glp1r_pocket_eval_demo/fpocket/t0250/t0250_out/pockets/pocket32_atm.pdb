@@ -1,0 +1,39 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    32:
+HEADER 0  - Pocket Score                      : -0.1508
+HEADER 1  - Drug Score                        : 0.0001
+HEADER 2  - Number of alpha spheres           :    20
+HEADER 3  - Mean alpha-sphere radius          : 4.2173
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4800
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 13.5000
+HEADER 7  - Polarity Score                    :     6
+HEADER 8  - Amino Acid based volume Score     : 4.1250
+HEADER 9  - Pocket volume (Monte Carlo)       : 356.4977
+HEADER 10 - Pocket volume (convex hull)       : 22.2108
+HEADER 11 - Charge Score                      :    -1
+HEADER 12 - Local hydrophobic density Score   : 6.0000
+HEADER 13 - Number of apolar alpha sphere     :     7
+HEADER 14 - Proportion of apolar alpha sphere : 0.3500
+ATOM   2283   CB SER C 144      48.820  66.380  64.420  0.00  0.00           C 0
+ATOM   2180   CB SER C 138      48.940  72.290  58.090  0.00  0.00           C 0
+ATOM   2186    O SER C 138      46.710  73.050  60.140  0.58  5.36           O 0
+ATOM   2183   OG SER C 138      49.870  73.170  58.700  0.00  0.00           O 0
+ATOM   2286   OG SER C 144      49.410  65.770  63.310  0.00  0.00           O 0
+ATOM   2278    O ARG C 143      45.030  66.920  64.020  0.00  0.00           O 0
+ATOM   2240    N GLU C 142      44.200  71.780  65.030  0.50  2.19           N 0
+ATOM   2255    N ARG C 143      44.550  69.070  66.120  0.47  1.09           N 0
+ATOM   2277    C ARG C 143      45.380  66.980  65.190  0.00  0.00           C 0
+ATOM   2279    N SER C 144      46.550  66.530  65.620  0.50  1.09           N 0
+ATOM   1596  CZ3 TRP B 100      46.360  65.890  55.620  0.00  0.00           C 0
+ATOM   1594  CH2 TRP B 100      47.700  66.030  55.340  0.00  0.00           C 0
+ATOM    637  CD2 LEU A  41      46.850  62.130  61.900  0.00  0.00           C 0
+ATOM   2235   CA GLY C 141      43.790  71.990  62.630  0.00  0.00           C 0
+ATOM   2153   CG GLU C 136      46.460  70.490  54.300  0.00  0.00           C 0
+ATOM   2157  OE1 GLU C 136      44.200  70.010  54.920  0.69  8.57           O 0
+ATOM   2178   CA SER C 138      47.570  72.980  57.890  0.00  0.00           C 0
+TER
+END

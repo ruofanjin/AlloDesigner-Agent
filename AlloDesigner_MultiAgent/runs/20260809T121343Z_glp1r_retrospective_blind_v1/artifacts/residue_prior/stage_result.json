@@ -1,0 +1,9 @@
+{
+  "status": "blocked",
+  "reason": "tensorflow_not_installed",
+  "hint": "pip install tensorflow  # or use PocketMiner conda env",
+  "planned_entrypoint": "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/case_predict.py",
+  "planned_data": "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/data/case/GLP1/5vex_apo_model.npy",
+  "seed_artifact": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/seed_from_paper_side_output.csv",
+  "chain_policy": "PocketMiner blocked; seeded SI/case side CSV only for downstream wiring demo"
+}

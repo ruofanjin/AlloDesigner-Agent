@@ -1,0 +1,265 @@
+{
+  "packet_id": "glp1r_retrospective_blind_v1:pocket_evaluation:r1",
+  "task_id": "glp1r_retrospective_blind_v1",
+  "stage_id": "pocket_evaluation",
+  "stage_contract_version": "1.0.0",
+  "task_track": "retrospective_blind",
+  "inputs_frozen": [
+    "full_length_sequence",
+    "public_msa_databases",
+    "membrane_system_setup_protocol"
+  ],
+  "priors_approved": [
+    "information_boundary_sheet",
+    "default_allodesigner_reference_path"
+  ],
+  "tools_considered": [
+    {
+      "tool_id": "dbscan_residue_clustering",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "From AlloDesigner reference path / stage defaults"
+    },
+    {
+      "tool_id": "fpocket",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "From AlloDesigner reference path / stage defaults"
+    },
+    {
+      "tool_id": "deepallo",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "From AlloDesigner reference path / stage defaults"
+    },
+    {
+      "tool_id": "plb",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "From AlloDesigner reference path / stage defaults"
+    }
+  ],
+  "tool_selected": [
+    "dbscan_residue_clustering",
+    "fpocket",
+    "deepallo",
+    "plb"
+  ],
+  "outputs": {
+    "iterations": [],
+    "pipeline": {
+      "status": "partial_completed",
+      "clustering": {
+        "algorithm": "dbscan",
+        "eps": 6.0,
+        "min_samples": 2
+      },
+      "scorers": [
+        "fpocket",
+        "deepallo",
+        "plb"
+      ],
+      "commands": [
+        "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 4_postgrasp_clustering_pocketminer_apo_dir_step3.py  # eps~6.0",
+        "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 6_inference_case_pocketminer_cluster_to_deepallo_run.py",
+        "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 7_plb_calculation_pocketminer_apo_dir_step3.py",
+        "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 6.1_calculate_apo_pocketminer_cluster_deepallo_score.py",
+        "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 7.1_calculate_apo_pocketminer_cluster_plb_score.py"
+      ],
+      "auto_from_residue_prior": {
+        "source": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv",
+        "n_positive": 119,
+        "residues": [
+          11,
+          15,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          38,
+          41,
+          83,
+          99,
+          100,
+          143,
+          146,
+          147,
+          150,
+          151,
+          153,
+          154,
+          157,
+          175,
+          181,
+          185,
+          186,
+          189,
+          192,
+          199,
+          203,
+          206,
+          207,
+          210,
+          211,
+          214,
+          239,
+          242,
+          243,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          255,
+          256,
+          259,
+          260,
+          263,
+          278,
+          281,
+          283,
+          290,
+          293,
+          297,
+          306,
+          307,
+          308,
+          309,
+          312,
+          314,
+          315,
+          318,
+          319,
+          322,
+          326,
+          354,
+          355,
+          357,
+          358,
+          365,
+          369,
+          372,
+          373,
+          374,
+          376,
+          377,
+          380,
+          381,
+          382,
+          383,
+          384,
+          385,
+          389,
+          390,
+          392,
+          393,
+          396,
+          397,
+          400,
+          403,
+          410,
+          411,
+          412,
+          413,
+          414,
+          415,
+          416,
+          417,
+          423,
+          426,
+          445,
+          447,
+          452,
+          455,
+          456,
+          457,
+          462,
+          463,
+          464,
+          465,
+          467,
+          469,
+          476,
+          478,
+          480
+        ],
+        "note": "Geometry clustering/DeepAllo/PLB still need AF_ClaSeq case assets"
+      },
+      "artifacts": {
+        "run_chain_sh": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/run_chain.sh",
+        "glp1-deepallo-score-residue_probabilities_top_7.csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/glp1-deepallo-score-residue_probabilities_top_7.csv",
+        "glp1-plb-score-residue_probabilities_top_7.csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/glp1-plb-score-residue_probabilities_top_7.csv",
+        "auto_positive_residues.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T130025Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/auto_positive_residues.json"
+      },
+      "note": "Full DeepAllo/PLB/fpocket path needs case directory; auto residue list is wired when Stage2 completes",
+      "env_decision": {
+        "stage_id": "pocket_evaluation",
+        "profile_id": "allo_claseq",
+        "specialized": true,
+        "action": "reuse",
+        "env_name": "allo-pocketminer",
+        "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer",
+        "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/python",
+        "matched_by": "name+markers",
+        "score": 13.0,
+        "create_yml": null,
+        "command_prefix": [
+          "conda",
+          "run",
+          "-n",
+          "allo-pocketminer",
+          "--no-capture-output"
+        ],
+        "notes": [
+          "Reuse env 'allo-pocketminer' for profile 'allo_claseq' (score=13.0)"
+        ],
+        "probe_details": {
+          "required": {
+            "Bio": true,
+            "numpy": true,
+            "pandas": true,
+            "sklearn": true
+          },
+          "optional_import": {
+            "torch": false,
+            "transformers": false,
+            "autogluon": false
+          },
+          "optional_commands": {
+            "fpocket": false
+          },
+          "name_alias_hit": true
+        }
+      }
+    }
+  },
+  "metrics": {},
+  "qc_flags": [],
+  "human_interventions": [],
+  "claims_allowed": [
+    "候选口袋已按合同排序，存在不确定性说明"
+  ],
+  "iteration": {
+    "round": 1,
+    "stop_reason": "partial_completed"
+  },
+  "critic": {
+    "passed": true,
+    "findings": [],
+    "claims_allowed": [
+      "候选口袋已按合同排序，存在不确定性说明"
+    ],
+    "claims_forbidden": [
+      "真实口袋已确认"
+    ]
+  },
+  "status": "completed",
+  "maturity": "external"
+}

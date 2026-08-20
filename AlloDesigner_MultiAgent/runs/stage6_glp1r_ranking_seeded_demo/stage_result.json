@@ -1,0 +1,59 @@
+{
+  "stage_id": "candidate_ranking",
+  "status": "demo_completed",
+  "product_maturity": "partial/seeded",
+  "engine": "glide",
+  "protocol_version": "vina_or_glide_external_v0",
+  "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/glide_seeded_example",
+  "validation_errors": [],
+  "metrics": {
+    "n_scored": 15,
+    "top_n": 10,
+    "score_min": -7.95,
+    "score_median": -5.65,
+    "score_max": -3.75,
+    "score_units": "kcal/mol_like_placeholder"
+  },
+  "inputs_consumed": {
+    "request_id": "stage6_glp1r_ranking_seeded_v1",
+    "pocket_id": "pocket_01",
+    "receptor": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/inputs/receptor.pdb",
+    "n_library": 15
+  },
+  "claims_allowed": [
+    "\u8ba1\u7b97\u5019\u9009\u7269\u5df2\u6392\u5e8f\uff0c\u5f85\u5b9e\u9a8c/\u4e13\u5bb6\u590d\u6838",
+    "Stage6 \u4f5c\u4e1a\u5355 + \u56de\u4f20\u63a5\u53e3\u5df2 seeded"
+  ],
+  "claims_forbidden": [
+    "\u6709\u6548\u914d\u4f53/\u6291\u5236\u5242\u5df2\u88ab\u8bc1\u5b9e",
+    "Glide/Vina \u5168\u5e93\u865a\u7b5b\u5df2\u5b8c\u6210",
+    "\u672c\u793a\u4f8b\u5206\u6570\u6765\u81ea\u771f\u5b9e\u5bf9\u63a5"
+  ],
+  "doc": "docs/stage6_seeded_job_pack.md",
+  "engines_returned": {
+    "vina": {
+      "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/vina_seeded_example",
+      "status": "demo_completed",
+      "metrics": {
+        "n_scored": 15,
+        "top_n": 10,
+        "score_min": -7.8,
+        "score_median": -5.5,
+        "score_max": -3.6,
+        "score_units": "kcal/mol_like_placeholder"
+      }
+    },
+    "glide": {
+      "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/glide_seeded_example",
+      "status": "demo_completed",
+      "metrics": {
+        "n_scored": 15,
+        "top_n": 10,
+        "score_min": -7.95,
+        "score_median": -5.65,
+        "score_max": -3.75,
+        "score_units": "kcal/mol_like_placeholder"
+      }
+    }
+  }
+}

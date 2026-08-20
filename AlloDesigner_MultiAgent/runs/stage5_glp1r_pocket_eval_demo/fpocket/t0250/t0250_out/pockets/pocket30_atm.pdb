@@ -1,0 +1,45 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    30:
+HEADER 0  - Pocket Score                      : -0.1477
+HEADER 1  - Drug Score                        : 0.0004
+HEADER 2  - Number of alpha spheres           :    27
+HEADER 3  - Mean alpha-sphere radius          : 3.9499
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5510
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 15.4000
+HEADER 7  - Polarity Score                    :     6
+HEADER 8  - Amino Acid based volume Score     : 4.2000
+HEADER 9  - Pocket volume (Monte Carlo)       : 412.3179
+HEADER 10 - Pocket volume (convex hull)       : 20.2246
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 11.0000
+HEADER 13 - Number of apolar alpha sphere     :    12
+HEADER 14 - Proportion of apolar alpha sphere : 0.4444
+ATOM   2019   CB PRO B 128      64.200  66.650  50.110  0.00  0.00           C 0
+ATOM   1196   CB NTHRB  74      64.450  60.250  45.360  0.00  0.00           C 0
+ATOM   1225    O PHE B  75      62.560  59.810  48.880  0.00  0.00           O 0
+ATOM   1202  OG1 NTHRB  74      63.830  61.470  45.100  0.76  2.14           O 0
+ATOM   2022   CA PRO B 128      64.900  67.770  50.850  0.00  0.00           C 0
+ATOM   1918  NE2 GLN B 121      71.420  67.470  50.600  0.60  8.75           N 0
+ATOM   1992    O SER B 126      68.500  66.210  53.560  0.00  0.00           O 0
+ATOM   1913   CG GLN B 121      70.000  69.300  51.110  0.00  0.00           C 0
+ATOM   1910   CB GLN B 121      69.340  69.870  49.870  0.00  0.00           C 0
+ATOM   1762  NH2 ARG B 111      60.870  67.050  46.800  0.88  1.09           N 0
+ATOM   1758   CZ ARG B 111      61.490  67.580  45.810  0.00  0.00           C 0
+ATOM   1871  CD1 TRP B 119      65.500  64.690  43.580  0.00  0.00           C 0
+ATOM   1228   CA ASP B  76      61.110  62.190  49.450  0.00  0.00           C 0
+ATOM   3559  NE2 GLN C 222      71.060  59.110  53.270  0.75  9.84           N 0
+ATOM   1198  CG2 NTHRB  74      65.940  60.300  44.930  0.00  0.00           C 0
+ATOM   1867   CB TRP B 119      65.940  67.000  44.370  0.00  0.00           C 0
+ATOM   2012    N PRO B 128      65.340  67.290  52.160  0.00  0.00           N 0
+ATOM   2013   CD PRO B 128      64.530  66.040  52.410  0.00  0.00           C 0
+ATOM   2016   CG PRO B 128      63.560  65.900  51.260  0.00  0.00           C 0
+ATOM   1230   CB ASP B  76      60.890  63.500  48.620  0.00  0.00           C 0
+ATOM   1905    O LEU B 120      66.140  69.590  48.010  0.38  2.14           O 0
+ATOM   1886    O TRP B 119      68.500  68.920  45.510  0.41  5.36           O 0
+ATOM   1759  NH1 ARG B 111      62.420  68.420  46.130  0.00  0.00           N 0
+TER
+END

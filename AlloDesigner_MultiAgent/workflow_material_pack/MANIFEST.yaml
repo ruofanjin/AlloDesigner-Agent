@@ -1,0 +1,72 @@
+pack_id: workflow_material_pack_glp1r_demo_v1
+purpose: Materials required to run contract-constrained autonomous reasoning end-to-end (demo maturity)
+default_track: retrospective_blind
+claim_boundary: partial/demo for stages 2-5 reuse; partial/seeded for stage6 returns
+
+layout:
+  00_contracts:
+    role: frozen scientific + tool contracts and JSON schemas
+    required:
+      - stages.yaml
+      - tool_registry.yaml
+      - reference_path.yaml
+      - reasoning_plan.schema.json
+      - execution_node.schema.json
+      - stage6_vs_return.schema.json
+  01_taskspec:
+    role: human-frozen TaskSpec
+    required:
+      - TaskSpec.yaml
+  02_stage2_residue_prior:
+    role: historical_replay residue prior artifacts
+    required_any:
+      - artifacts/residue_prior/GLP1R_residue_probs.csv
+      - artifacts/residue_prior/stage_result.json
+  03_stage3_ensemble:
+    role: historical_replay ensemble + frozen stepwise CSVs
+    required:
+      - allo_stepwise_inputs_frozen/glp1_historical_holo_cluster_mapped_residues.csv
+      - allo_stepwise_inputs_frozen/glp1-deepallo-score-residue_probabilities_top_7.csv
+      - allo_stepwise_inputs_frozen/glp1-plb-score-residue_probabilities_top_7.csv
+    optional_link:
+      - artifacts/ensemble_enrichment/
+  04_stage4_physics:
+    role: Allo-MD 1ns demo reuse
+    required_links:
+      - md_run_glp1r_distance_1ns_demo_001/stages/distance_metad_1ns/distance_metad_1ns.xtc
+      - multiagent_stage_result/stage_result.json
+  05_stage5_pocket:
+    role: historical_replay + fpocket vs pocket_01
+    required:
+      - snapshot_key_files/stage_result.json
+      - snapshot_key_files/consistency_audit.json
+      - snapshot_key_files/agent_decision.yaml
+      - snapshot_key_files/fpocket_vs_historical.json
+  06_stage6_vs:
+    role: external job pack + return ingest
+    required_links:
+      - job_pack/job_sheet.json
+      - job_pack/inputs/receptor.pdb
+      - job_pack/inputs/pocket_definition.json
+    required_optional_for_demo:
+      - seeded_returns_run/stage_result.json
+  07_runtime_env:
+    role: site binaries (not shipped)
+    see: REQUIRED_BINARIES.md
+  09_reasoning_outputs:
+    role: example orchestrator output
+    optional_link:
+      - reason_glp1r_demo_v1/
+
+canonical_absolute_sources_on_this_site:
+  stage4_md: /home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001
+  stage5: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo
+  stage6_pack: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded
+  retrospective: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1
+
+not_in_pack_for_recompute:
+  - Allo-PocketMiner model weights / full case tree
+  - Full AF-ClaSeq / ColabFold outputs
+  - Formal ~200 ns Allo-MD distance-simulation-only
+  - Licensed Glide installation / corporate compound library
+  - Real Vina docking scores (replace seeded returns)

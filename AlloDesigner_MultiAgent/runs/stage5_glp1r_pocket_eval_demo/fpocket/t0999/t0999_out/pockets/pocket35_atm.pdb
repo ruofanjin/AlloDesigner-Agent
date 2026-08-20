@@ -1,0 +1,42 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    35:
+HEADER 0  - Pocket Score                      : -0.1113
+HEADER 1  - Drug Score                        : 0.0028
+HEADER 2  - Number of alpha spheres           :    24
+HEADER 3  - Mean alpha-sphere radius          : 3.9891
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5941
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 69.7500
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 6.2500
+HEADER 9  - Pocket volume (Monte Carlo)       : 316.2954
+HEADER 10 - Pocket volume (convex hull)       : 5.6548
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 12.0000
+HEADER 13 - Number of apolar alpha sphere     :    13
+HEADER 14 - Proportion of apolar alpha sphere : 0.5417
+ATOM   4405    O TRP C 273      72.580  43.900 103.780  0.64  1.07           O 0
+ATOM   4482  CD2 LEU C 277      72.030  41.040  99.680  0.00  0.00           C 0
+ATOM   4394  CE2 TRP C 273      75.100  39.680 105.820  0.00  0.00           C 0
+ATOM   4403  CD2 TRP C 273      74.000  40.320 106.390  0.00  0.00           C 0
+ATOM   4395  CZ2 TRP C 273      75.120  38.280 105.570  0.00  0.00           C 0
+ATOM   4392  NE1 TRP C 273      75.960  40.710 105.450  0.00  0.00           N 0
+ATOM   4401  CE3 TRP C 273      72.880  39.520 106.710  0.00  0.00           C 0
+ATOM   4399  CZ3 TRP C 273      72.960  38.120 106.720  0.00  0.00           C 0
+ATOM   4397  CH2 TRP C 273      74.070  37.530 106.040  0.00  0.00           C 0
+ATOM   4473   CB LEU C 277      72.570  43.470 100.090  0.00  0.00           C 0
+ATOM   4390  CD1 TRP C 273      75.480  41.940 105.830  0.00  0.00           C 0
+ATOM   4416  CG1 ILE C 274      68.680  41.140 104.600  0.00  0.00           C 0
+ATOM   4478  CD1 LEU C 277      73.120  42.270  97.880  0.00  0.00           C 0
+ATOM   4467    C ARG C 276      73.330  46.980 100.960  0.00  0.00           C 0
+ATOM   4449   CB ARG C 276      74.160  47.800 103.190  0.00  0.00           C 0
+ATOM   4468    O ARG C 276      74.100  47.380 100.100  0.52  3.21           O 0
+ATOM   4406    N ILE C 274      70.900  43.290 105.090  0.00  0.00           N 0
+ATOM   4408   CA ILE C 274      69.860  43.220 103.950  0.00  0.00           C 0
+ATOM   4469    N LEU C 277      72.720  45.830 100.800  0.83  1.09           N 0
+ATOM   4471   CA LEU C 277      72.800  44.990  99.650  0.00  0.00           C 0
+TER
+END

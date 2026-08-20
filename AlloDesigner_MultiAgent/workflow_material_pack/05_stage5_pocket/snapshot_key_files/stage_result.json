@@ -1,0 +1,50 @@
+{
+  "stage_id": "pocket_evaluation",
+  "status": "demo_completed",
+  "maturity": "scripted",
+  "product_maturity": "partial/demo",
+  "maturity_note": "partial/demo — historical_replay seeded + Stage4 1ns frames fpocket vs pocket_01; not full DeepAllo/PLB/DBSCAN/MDpocket recompute",
+  "completed_utc": "2026-08-14T16:50:34+00:00",
+  "run_dir": "/home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo",
+  "tracks": {
+    "historical_replay": {
+      "status": "pass",
+      "pocket_id": "pocket_01",
+      "n_residues": 14,
+      "residues": [354, 355, 357, 358, 365, 369, 410, 411, 412, 413, 414, 415, 416, 417],
+      "continue_stop_escalate": "CONTINUE",
+      "consistency": {
+        "all_in_deepallo_top7_freq": true,
+        "all_in_plb_top7_freq": true,
+        "automatic_fusion": false
+      },
+      "artifacts": "historical_replay/"
+    },
+    "stage4_frames_fpocket": {
+      "status": "pass",
+      "stage4_run_dir": "/home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001",
+      "trajectory": "stages/distance_metad_1ns/distance_metad_1ns.xtc",
+      "n_frames": 7,
+      "best_union_recall_historical_14": 1.0,
+      "best_frame": "t0250",
+      "best_single_pocket_overlap": 7,
+      "artifacts": {
+        "frames": "frames_from_stage4/",
+        "fpocket": "fpocket/",
+        "comparison": "fpocket_vs_historical.json"
+      }
+    }
+  },
+  "claims_allowed": [
+    "historical_replay 冻结 handoff 与 DeepAllo/PLB 频率表一致",
+    "Stage4 1ns 帧 fpocket 可与历史 pocket_01 做残基重叠对照",
+    "多帧 union 可覆盖全部 14 个历史残基（demo）"
+  ],
+  "claims_forbidden": [
+    "真实口袋已确认",
+    "fpocket 自动发现等同专家 pocket_01",
+    "论文级 MDpocket/DBSCAN 全栈已复现",
+    "机制已证实"
+  ],
+  "doc": "docs/stage5_demo_glp1r_pocket_eval.md"
+}

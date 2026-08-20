@@ -1,0 +1,222 @@
+# Expert-frozen stage contracts (scientific skeleton)
+version: "1.0.0"
+name: allodesigner_stage_contracts
+policy:
+  agent_may_rewrite_stage_semantics: false
+  agent_may_reorder_critical_dependencies: false
+  default_plan: allodesigner_reference_path
+  claims_owner: human_expert
+
+stages:
+  - id: boundary
+    order: 1
+    title: 目标与信息边界定义
+    goal: 冻结靶点、任务轨道、可用先验与禁止信息，形成可审批协议。
+    human_freezes:
+      - target_identity
+      - task_track
+      - allowed_priors
+      - forbidden_information
+      - success_definition
+    agent_may:
+      - literature_search
+      - prior_drafting
+      - leakage_risk_flagging
+      - protocol_templating
+    completion_criteria:
+      - approved_boundary_sheet
+    default_tools:
+      - case_protocol_template
+    allowed_claims:
+      - "已形成待审批/已审批的信息边界协议"
+    forbidden_claims:
+      - "已发现真实变构口袋"
+      - "已证实配体有效"
+
+  - id: residue_prior
+    order: 2
+    title: 残基级或区域级结构先验
+    goal: 产出与隐匿变构位点相关的残基/区域概率与阈值化候选集合。
+    depends_on: [boundary]
+    human_freezes:
+      - label_definition
+      - probability_threshold
+      - evaluation_metrics
+    agent_may:
+      - tool_selection
+      - threshold_sweep
+      - ensemble_averaging
+      - benchmark_comparison
+    completion_criteria:
+      - residue_probability_map
+      - thresholded_candidate_set
+      - tool_comparison_sheet
+    default_tools:
+      - allo_pocketminer
+    alternative_tools:
+      - pocketminer_baseline
+      - plm_residue_hint
+      - cofolding_residue_hint
+    metrics:
+      primary: pr_auc
+      secondary: [recall, precision, f1]
+    allowed_claims:
+      - "候选残基/区域先验已生成，待后续构象与物理验证"
+    forbidden_claims:
+      - "已确认功能变构位点"
+
+  - id: ensemble_enrichment
+    order: 3
+    title: 候选构象生成与富集
+    goal: 在残基先验引导下富集口袋友好的初始构象与纯化 MSA。
+    depends_on: [residue_prior]
+    human_freezes:
+      - preference_metric
+      - iteration_budget
+      - retention_ratio
+      - random_seed_policy
+    agent_may:
+      - msa_iterative_enrichment
+      - sequence_voting
+      - generator_comparison
+      - control_msa_runs
+    completion_criteria:
+      - preferred_conformations
+      - purified_msa
+      - control_comparison
+    default_tools:
+      - allo_stepwise
+      - alphaflow
+    alternative_tools:
+      - af_claseq
+      - afcluster
+      - colabfold_msa_subsample
+    preference_metric_default: cluster_center_to_fpocket_distance
+    allowed_claims:
+      - "已获得偏好初始构象/纯化 MSA（计算假设）"
+    forbidden_claims:
+      - "已采样到实验证实的开放态"
+
+  - id: physics_sampling
+    order: 4
+    title: 物理约束下的定向构象采样
+    goal: 以可解释 CV 引导增强采样，获取物理合理的开放样构象。
+    depends_on: [ensemble_enrichment]
+    human_freezes:
+      - collective_variables
+      - simulation_budget
+      - system_setup
+      - stopping_rules
+    agent_may:
+      - cv_candidate_proposal
+      - sampler_comparison
+      - ablation_unbiased_md
+      - frame_selection_with_audit
+    completion_criteria:
+      - openlike_frames
+      - sampling_metrics
+      - ablation_record
+    default_tools:
+      - ai_prior_metadynamics
+    alternative_tools:
+      - unbiased_md
+      - rave_biased_md
+    maturity: scripted
+    product_maturity: partial/demo
+    params:
+      # Product default for agent-loop demo (completed 2026-08-14).
+      # Formal paper path remains distance-simulation-only (~200 ns), optional.
+      allo_md_profile: distance-simulation-1ns-demo
+      suggested_budget_ns: 1
+      demo_run_id: glp1r_distance_1ns_demo_001
+      demo_run_dir: /home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001
+      demo_status: demo_completed
+      demo_performance_ns_per_day:
+        normal_1ns: 235.3
+        distance_monitor_1ns: 110.8
+        distance_metad_1ns: 104.3
+    allowed_claims:
+      - "在给定 CV 与预算下采样到开放样构象候选"
+      - "Allo-MD Stage4 本地 1ns demo 已完成（非论文级 200ns 复现）"
+    forbidden_claims:
+      - "机制已证实"
+      - "论文级冻结 200ns 协议已复现"
+
+  - id: pocket_evaluation
+    order: 5
+    title: 开放样构象与口袋评价
+    goal: 对候选口袋做几何聚类与变构/成药性共识评价。
+    depends_on: [residue_prior, ensemble_enrichment]
+    soft_depends_on: [physics_sampling]
+    human_freezes:
+      - clustering_params
+      - consensus_rule
+      - ranking_contract
+    agent_may:
+      - cluster_sweep
+      - score_fusion
+      - disagreement_reporting
+    completion_criteria:
+      - pocket_cluster_ranking
+      - consensus_residues
+      - uncertainty_notes
+    default_tools:
+      - fpocket
+      - deepallo
+      - plb
+      - dbscan_residue_clustering
+    maturity: scripted
+    product_maturity: partial/demo
+    params:
+      demo_status: demo_completed
+      demo_run_dir: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo
+      historical_replay_pocket_id: pocket_01
+      stage4_source_run: /home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001
+      stage4_frame_fpocket_best_union_recall: 1.0
+    allowed_claims:
+      - "候选口袋已按合同排序，存在不确定性说明"
+      - "Stage5 demo：historical_replay + Stage4 帧 fpocket 与 pocket_01 对照已完成（partial/demo）"
+    forbidden_claims:
+      - "真实口袋已确认"
+      - "fpocket 自动发现等同专家 pocket_01"
+
+  - id: candidate_ranking
+    order: 6
+    title: 配体或候选物排序
+    goal: 在获批对接协议下输出可复核候选排序包。
+    depends_on: [pocket_evaluation]
+    human_freezes:
+      - library_scope
+      - docking_protocol
+      - top_n_rule
+    agent_may:
+      - docking_execution
+      - rescoring
+      - pose_clustering
+    completion_criteria:
+      - ranked_candidates
+      - protocol_version
+      - score_distribution
+    default_tools:
+      - glp1r_virtual_screening_protocol
+    alternative_tools:
+      - vina
+      - karmadock
+      - glide
+    maturity: external
+    product_maturity: partial/seeded
+    params:
+      demo_status: seeded_job_pack
+      job_pack_dir: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded
+      demo_run_dir: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo
+      accepted_return_engines: [vina, glide]
+      library_scope_frozen: seed_demo_n15
+      docking_protocol_frozen: vina_or_glide_external_v0
+      top_n_rule_frozen: top_10
+    allowed_claims:
+      - "计算候选物已排序，待实验/专家复核"
+      - "Stage6 作业单 + Vina/Glide 回传接口已 seeded（partial/seeded）"
+    forbidden_claims:
+      - "有效配体/抑制剂已被证实"
+      - "Glide/Vina 全库虚筛已完成"
+      - "本机 seeded 示例分数来自真实对接"

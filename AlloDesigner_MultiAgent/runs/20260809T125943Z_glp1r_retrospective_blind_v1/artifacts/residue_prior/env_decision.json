@@ -1,0 +1,37 @@
+{
+  "stage_id": "residue_prior",
+  "profile_id": "allo_pocketminer",
+  "specialized": true,
+  "action": "reuse",
+  "env_name": "allo-pocketminer",
+  "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer",
+  "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/python",
+  "matched_by": "name+markers",
+  "score": 15.5,
+  "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo-pocketminer-environment.yml",
+  "command_prefix": [
+    "conda",
+    "run",
+    "-n",
+    "allo-pocketminer",
+    "--no-capture-output"
+  ],
+  "notes": [
+    "Reuse env 'allo-pocketminer' for profile 'allo_pocketminer' (score=15.5)"
+  ],
+  "probe_details": {
+    "required": {
+      "tensorflow": true,
+      "keras": true,
+      "numpy": true,
+      "sklearn": true,
+      "Bio": true
+    },
+    "optional_import": {
+      "mdtraj": false,
+      "tqdm": true
+    },
+    "optional_commands": {},
+    "name_alias_hit": true
+  }
+}

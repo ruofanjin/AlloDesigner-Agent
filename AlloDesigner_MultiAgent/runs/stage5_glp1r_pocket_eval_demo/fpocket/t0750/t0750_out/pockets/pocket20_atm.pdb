@@ -1,0 +1,35 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    20:
+HEADER 0  - Pocket Score                      : -0.0774
+HEADER 1  - Drug Score                        : 0.0001
+HEADER 2  - Number of alpha spheres           :    18
+HEADER 3  - Mean alpha-sphere radius          : 3.9102
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5640
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : -4.3333
+HEADER 7  - Polarity Score                    :     6
+HEADER 8  - Amino Acid based volume Score     : 4.8333
+HEADER 9  - Pocket volume (Monte Carlo)       : 200.9874
+HEADER 10 - Pocket volume (convex hull)       : 4.9455
+HEADER 11 - Charge Score                      :     2
+HEADER 12 - Local hydrophobic density Score   : 4.0000
+HEADER 13 - Number of apolar alpha sphere     :     5
+HEADER 14 - Proportion of apolar alpha sphere : 0.2778
+ATOM   5075   CG TYR C 314      64.800  37.980  66.060  0.00  0.00           C 0
+ATOM   5027   CB ASN C 311      61.740  36.980  61.980  0.00  0.00           C 0
+ATOM   5085  CD2 TYR C 314      66.190  37.980  66.070  0.00  0.00           C 0
+ATOM   5072   CB TYR C 314      63.960  36.770  65.680  0.00  0.00           C 0
+ATOM   3777  NH2 ARG C 236      68.580  40.560  61.260  0.00  0.00           N 0
+ATOM   5006  OD1 ASN C 309      66.460  42.210  62.710  0.58  3.21           O 0
+ATOM   5076  CD1 TYR C 314      64.050  39.170  66.230  0.00  0.00           C 0
+ATOM   5002   CB ASN C 309      64.220  42.830  63.200  0.00  0.00           C 0
+ATOM   4997    O ARG C 308      64.220  44.770  59.530  0.00  0.00           O 0
+ATOM   5000   CA ASN C 309      63.600  43.280  61.880  0.00  0.00           C 0
+ATOM   5019   OG SER C 310      60.700  41.290  58.730  0.00  0.00           O 0
+ATOM   5023    N ASN C 311      60.750  39.260  61.910  0.00  0.00           N 0
+ATOM   5012    N SER C 310      61.640  41.890  61.280  0.70  2.19           N 0
+TER
+END

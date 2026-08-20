@@ -1,0 +1,8 @@
+{
+  "status": "completed",
+  "maturity": "executable",
+  "artifacts": {
+    "boundary_sheet": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/boundary/boundary_sheet.json"
+  },
+  "next_input": "residue_prior uses sequence_ref + apo ensemble npy"
+}

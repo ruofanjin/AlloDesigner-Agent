@@ -1,0 +1,42 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    31:
+HEADER 0  - Pocket Score                      : -0.1335
+HEADER 1  - Drug Score                        : 0.0090
+HEADER 2  - Number of alpha spheres           :    22
+HEADER 3  - Mean alpha-sphere radius          : 4.2842
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6428
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 47.0000
+HEADER 7  - Polarity Score                    :     6
+HEADER 8  - Amino Acid based volume Score     : 5.2857
+HEADER 9  - Pocket volume (Monte Carlo)       : 369.4283
+HEADER 10 - Pocket volume (convex hull)       : 7.9208
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 12.0000
+HEADER 13 - Number of apolar alpha sphere     :    13
+HEADER 14 - Proportion of apolar alpha sphere : 0.5909
+ATOM   3399  NE1 TRP C 212      76.960  67.810  72.660  0.00  0.00           N 0
+ATOM   3412    O TRP C 212      73.100  66.130  69.320  0.62  3.21           O 0
+ATOM   3397  CD1 TRP C 212      75.590  67.860  72.830  0.00  0.00           C 0
+ATOM   3455   CB SER C 215      71.730  68.890  68.010  0.00  0.00           C 0
+ATOM   3572  CD1 TRP C 223      75.020  61.680  62.390  0.00  0.00           C 0
+ATOM   3420   CG MET C 213      73.610  61.360  70.490  0.00  0.00           C 0
+ATOM   4828   OH TYR C 298      71.530  61.180  65.840  0.00  0.00           O 0
+ATOM   3524  OE1 GLN C 220      72.550  59.710  63.850  0.42  1.07           O 0
+ATOM   3410  CD2 TRP C 212      76.220  65.760  72.240  0.00  0.00           C 0
+ATOM   3408  CE3 TRP C 212      76.390  64.420  71.930  0.00  0.00           C 0
+ATOM   3401  CE2 TRP C 212      77.410  66.610  72.240  0.00  0.00           C 0
+ATOM   3404  CH2 TRP C 212      78.730  64.660  71.650  0.00  0.00           C 0
+ATOM   3406  CZ3 TRP C 212      77.600  63.780  71.690  0.00  0.00           C 0
+ATOM   3472  OG1 THR C 216      74.430  65.080  64.310  0.52  9.64           O 0
+ATOM   3402  CZ2 TRP C 212      78.630  66.030  72.000  0.00  0.00           C 0
+ATOM   3417   CB MET C 213      72.510  61.950  69.520  0.00  0.00           C 0
+ATOM   3468  CG2 THR C 216      74.790  67.530  64.030  0.00  0.00           C 0
+ATOM   3415   CA MET C 213      72.730  63.400  69.240  0.00  0.00           C 0
+ATOM   3429    O MET C 213      71.820  64.000  67.090  0.00  0.00           O 0
+ATOM   4825  CE1 TYR C 298      71.500  58.970  66.810  0.00  0.00           C 0
+TER
+END

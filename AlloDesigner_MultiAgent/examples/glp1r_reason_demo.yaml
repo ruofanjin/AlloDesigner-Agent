@@ -1,0 +1,36 @@
+task_id: glp1r_reason_demo_v1
+target:
+  name: GLP1R
+  sequence_ref: retrospective://glp1r/6x18_chainR
+  uniprot: P43220
+  organism: Homo sapiens
+track: retrospective_blind
+plan_id: allodesigner_reference_path
+stages_enabled:
+  - boundary
+  - residue_prior
+  - ensemble_enrichment
+  - physics_sampling
+  - pocket_evaluation
+  - candidate_ranking
+allowed_priors:
+  - case_protocol_template
+  - literature_prior_approved_only
+forbidden_information:
+  - holo_structure_as_runtime_feature
+  - ligand_identity_as_runtime_feature
+  - answer_store_injection
+answer_store_ref: evaluation_only://glp1r/5vex_nam_pocket
+human_approvals:
+  - item: information_boundary
+    approver: operator
+    status: approved
+    note: Demo TaskSpec for autonomous reasoning slice
+budget:
+  max_stage_iterations: 1
+  max_md_ns: 1.0
+  allow_external_vs: true
+  prefer_recompute: false
+notes: >
+  GLP1 retrospective demo slice for contract-constrained autonomous reasoning.
+  Reuses Stage4 1ns / Stage5 pocket demo / Stage6 seeded job-pack returns.

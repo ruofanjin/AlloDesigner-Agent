@@ -1,0 +1,39 @@
+{
+  "stage_id": "pocket_evaluation",
+  "profile_id": "allo_claseq",
+  "specialized": true,
+  "action": "reuse",
+  "env_name": "allo-pocketminer",
+  "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer",
+  "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/python",
+  "matched_by": "name+markers",
+  "score": 13.0,
+  "create_yml": null,
+  "command_prefix": [
+    "conda",
+    "run",
+    "-n",
+    "allo-pocketminer",
+    "--no-capture-output"
+  ],
+  "notes": [
+    "Reuse env 'allo-pocketminer' for profile 'allo_claseq' (score=13.0)"
+  ],
+  "probe_details": {
+    "required": {
+      "Bio": true,
+      "numpy": true,
+      "pandas": true,
+      "sklearn": true
+    },
+    "optional_import": {
+      "torch": false,
+      "transformers": false,
+      "autogluon": false
+    },
+    "optional_commands": {
+      "fpocket": false
+    },
+    "name_alias_hit": true
+  }
+}

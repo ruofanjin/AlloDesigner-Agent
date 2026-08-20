@@ -1,0 +1,64 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    50:
+HEADER 0  - Pocket Score                      : -0.2917
+HEADER 1  - Drug Score                        : 0.2651
+HEADER 2  - Number of alpha spheres           :    73
+HEADER 3  - Mean alpha-sphere radius          : 3.9399
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4462
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 37.4375
+HEADER 7  - Polarity Score                    :    11
+HEADER 8  - Amino Acid based volume Score     : 4.8125
+HEADER 9  - Pocket volume (Monte Carlo)       : 655.6591
+HEADER 10 - Pocket volume (convex hull)       : 137.6948
+HEADER 11 - Charge Score                      :    -2
+HEADER 12 - Local hydrophobic density Score   : 39.8261
+HEADER 13 - Number of apolar alpha sphere     :    46
+HEADER 14 - Proportion of apolar alpha sphere : 0.6301
+ATOM   5039   CA MET C 312      58.870  37.160  64.130  0.00  0.00           C 0
+ATOM   5022    O SER C 310      59.930  40.030  61.180  0.00  0.00           O 0
+ATOM   5097  CD1 TRP C 315      58.760  40.500  68.420  0.00  0.00           C 0
+ATOM   5093   CB TRP C 315      60.850  39.620  67.500  0.00  0.00           C 0
+ATOM   5048   CE MET C 312      55.240  39.020  65.300  0.00  0.00           C 0
+ATOM   5096   CG TRP C 315      60.090  40.580  68.260  0.00  0.00           C 0
+ATOM   3829   CZ PHE C 239      65.480  45.440  69.180  0.00  0.00           C 0
+ATOM   4863  CD1 TYR C 300      65.730  49.430  66.320  0.00  0.00           C 0
+ATOM   5007  ND2 ASN C 309      66.270  44.270  65.470  0.85  4.37           N 0
+ATOM   4959    O TRP C 306      62.900  47.210  63.070  0.78  4.29           O 0
+ATOM   5002   CB ASN C 309      64.860  43.160  63.790  0.00  0.00           C 0
+ATOM   5110  CD2 TRP C 315      60.420  41.720  69.060  0.00  0.00           C 0
+ATOM   5108  CE3 TRP C 315      61.650  42.220  69.460  0.00  0.00           C 0
+ATOM   5164  CD1 ILE C 318      66.000  40.710  68.920  0.00  0.00           C 0
+ATOM   4949  CZ2 TRP C 306      58.560  47.730  65.980  0.00  0.00           C 0
+ATOM   5106  CZ3 TRP C 315      61.710  43.370  70.250  0.00  0.00           C 0
+ATOM   5076  CD1 TYR C 314      65.930  38.580  64.960  0.00  0.00           C 0
+ATOM   3831  CE2 PHE C 239      65.730  46.840  69.470  0.00  0.00           C 0
+ATOM   4946  NE1 TRP C 306      60.150  49.730  66.370  0.53  9.84           N 0
+ATOM   3886   CE MET C 242      64.000  48.620  74.640  0.00  0.00           C 0
+ATOM   4783  CG1 VAL C 296      66.250  50.670  71.570  0.00  0.00           C 0
+ATOM   6228  OE1 GLU C 382      58.620  46.770  72.750  0.58  8.57           O 0
+ATOM   5104  CH2 TRP C 315      60.570  44.030  70.660  0.00  0.00           C 0
+ATOM   5014   CA SER C 310      61.670  41.610  60.750  0.00  0.00           C 0
+ATOM   4953  CZ3 TRP C 306      58.580  47.030  63.600  0.00  0.00           C 0
+ATOM   5016   CB SER C 310      61.330  41.950  59.320  0.00  0.00           C 0
+ATOM   6214  OD2 ASP C 381      56.670  50.970  72.730  0.00  0.00           O 0
+ATOM   4862   CG TYR C 300      65.820  50.670  67.090  0.00  0.00           C 0
+ATOM   4948  CE2 TRP C 306      59.540  48.710  65.640  0.00  0.00           C 0
+ATOM   5101  CE2 TRP C 315      59.230  42.410  69.510  0.00  0.00           C 0
+ATOM   5102  CZ2 TRP C 315      59.300  43.490  70.380  0.00  0.00           C 0
+ATOM   4951  CH2 TRP C 306      58.110  46.940  64.940  0.00  0.00           C 0
+ATOM   5099  NE1 TRP C 315      58.260  41.630  68.990  0.63  7.66           N 0
+ATOM   3904  NE2 GLN C 243      63.810  45.190  72.600  0.74  2.19           N 0
+ATOM   4944  CD1 TRP C 306      61.080  50.360  65.590  0.00  0.00           C 0
+ATOM   5011    O ASN C 309      62.710  43.890  61.980  0.76  6.43           O 0
+ATOM   4966  CG2 THR C 307      60.200  47.690  59.560  0.00  0.00           C 0
+ATOM   5021    C SER C 310      61.140  40.240  61.070  0.00  0.00           C 0
+ATOM   4859   CB TYR C 300      64.780  51.800  66.980  0.00  0.00           C 0
+ATOM   6224   CG GLU C 382      57.090  46.820  70.910  0.00  0.00           C 0
+ATOM   5036    O ASN C 311      61.360  38.190  63.980  0.50  4.29           O 0
+ATOM   5010    C ASN C 309      63.460  42.940  61.680  0.00  0.00           C 0
+TER
+END

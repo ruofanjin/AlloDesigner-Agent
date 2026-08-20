@@ -1,0 +1,39 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    31:
+HEADER 0  - Pocket Score                      : -0.1219
+HEADER 1  - Drug Score                        : 0.0001
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 4.0327
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6485
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : -20.3333
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 3.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 202.9882
+HEADER 10 - Pocket volume (convex hull)       : 5.1605
+HEADER 11 - Charge Score                      :    -2
+HEADER 12 - Local hydrophobic density Score   : 1.0000
+HEADER 13 - Number of apolar alpha sphere     :     2
+HEADER 14 - Proportion of apolar alpha sphere : 0.1333
+ATOM   1041   CG PRO A  64      69.920  54.300  32.450  0.00  0.00           C 0
+ATOM   1038   CD PRO A  64      68.570  53.700  32.130  0.00  0.00           C 0
+ATOM    995    O THR A  60      65.660  52.160  37.260  0.00  0.00           O 0
+ATOM   1044   CB PRO A  64      69.510  55.690  32.890  0.00  0.00           C 0
+ATOM   1169   CB CARGA  73      65.900  58.110  39.740  0.00  0.00           C 0
+ATOM   1341  OD1 ASP B  83      66.880  59.720  36.540  0.57  5.36           O 0
+ATOM   1188    O CARGA  73      68.060  57.840  41.630  0.00  0.00           O 0
+ATOM    988  CG2 THR A  60      65.390  52.550  41.650  0.00  0.00           C 0
+ATOM    984   CA THR A  60      64.360  52.610  39.250  0.00  0.00           C 0
+ATOM   1184  NH2 CARGA  73      65.430  56.510  34.530  0.63  3.28           N 0
+ATOM   1180   CZ CARGA  73      64.850  56.370  35.690  0.00  0.00           C 0
+ATOM   1022    O ASP A  62      65.190  53.610  33.540  0.58  2.14           O 0
+ATOM   1165    N CARGA  73      67.350  59.910  39.580  0.75  1.09           N 0
+ATOM   1178   NE CARGA  73      64.880  57.330  36.610  0.69  1.09           N 0
+ATOM   1155   CB ASN A  72      70.640  60.610  38.910  0.00  0.00           C 0
+ATOM   1160  ND2 ASN A  72      71.580  60.510  36.760  0.00  0.00           N 0
+ATOM   1175   CD CARGA  73      64.350  57.300  37.970  0.00  0.00           C 0
+TER
+END

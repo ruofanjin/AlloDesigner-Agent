@@ -1,0 +1,46 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    19:
+HEADER 0  - Pocket Score                      : -0.0721
+HEADER 1  - Drug Score                        : 0.0007
+HEADER 2  - Number of alpha spheres           :    30
+HEADER 3  - Mean alpha-sphere radius          : 4.0471
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5348
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 49.3750
+HEADER 7  - Polarity Score                    :     3
+HEADER 8  - Amino Acid based volume Score     : 4.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 351.0431
+HEADER 10 - Pocket volume (convex hull)       : 22.8418
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 11.0000
+HEADER 13 - Number of apolar alpha sphere     :    12
+HEADER 14 - Proportion of apolar alpha sphere : 0.4000
+ATOM   1210   CB PHE B  75      62.300  56.670  47.130  0.00  0.00           C 0
+ATOM   1206    N PHE B  75      63.740  57.920  45.560  0.52  1.09           N 0
+ATOM    923  NE2 GLN A  56      63.460  49.930  47.500  0.30  7.66           N 0
+ATOM   1204    C NTHRB  74      63.710  57.970  44.260  0.00  0.00           C 0
+ATOM    907   SG CYS A  55      60.000  53.930  43.670  0.00  0.00           S 0
+ATOM   1169   CB CARGA  73      67.750  55.690  38.240  0.00  0.00           C 0
+ATOM   1172   CG CARGA  73      66.240  56.030  37.950  0.00  0.00           C 0
+ATOM   1175   CD CARGA  73      65.470  54.850  37.270  0.00  0.00           C 0
+ATOM    988  CG2 THR A  60      64.290  49.800  40.920  0.00  0.00           C 0
+ATOM    910    O CYS A  55      59.920  50.940  42.020  0.00  0.00           O 0
+ATOM    967   CB LEU A  59      60.750  53.460  38.820  0.00  0.00           C 0
+ATOM    922  OE1 GLN A  56      63.700  48.810  45.610  0.72  5.36           O 0
+ATOM   1190    N NTHRB  74      65.110  57.340  42.190  0.00  0.00           N 0
+ATOM   1189  OXT CARGA  73      69.560  56.740  40.750  0.56  9.64           O 0
+ATOM    913   CA GLN A  56      60.770  48.950  44.030  0.00  0.00           C 0
+ATOM   1194   CA NTHRB  74      65.060  57.940  43.530  0.00  0.00           C 0
+ATOM    921   CD GLN A  56      62.970  49.230  46.530  0.00  0.00           C 0
+ATOM   1318    O TRP B  81      63.020  58.110  40.420  0.65  2.14           O 0
+ATOM    911    N GLN A  56      59.810  50.060  44.120  0.00  0.00           N 0
+ATOM    972  CD1 LEU A  59      59.610  55.240  39.980  0.00  0.00           C 0
+ATOM    982    N THR A  60      62.630  50.850  38.480  0.00  0.00           N 0
+ATOM    984   CA THR A  60      63.870  50.150  38.450  0.00  0.00           C 0
+ATOM    995    O THR A  60      65.260  49.310  36.670  0.00  0.00           O 0
+ATOM   1181  NH1 CARGA  73      65.700  52.520  35.410  0.39  4.37           N 0
+TER
+END

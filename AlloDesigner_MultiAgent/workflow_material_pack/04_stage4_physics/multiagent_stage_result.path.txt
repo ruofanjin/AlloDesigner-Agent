@@ -1,0 +1,2 @@
+symlink_was: multiagent_stage_result
+points_to: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage4_demo_glp1r_distance_1ns

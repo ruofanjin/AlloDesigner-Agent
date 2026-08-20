@@ -1,0 +1,23 @@
+{
+  "target": {
+    "name": "GLP1R",
+    "sequence_ref": "../AlphaFlow/GLP1_chain_seqres.csv",
+    "uniprot": "P43220",
+    "organism": "Homo sapiens"
+  },
+  "track": "retrospective_blind",
+  "allowed_priors": [
+    "full_length_sequence",
+    "public_msa_databases",
+    "membrane_system_setup_protocol"
+  ],
+  "forbidden_information": [
+    "holo_structure_as_runtime_input",
+    "crystal_ligand_coordinates",
+    "manually_selected_answer_residues",
+    "answer_key_pocket_definition"
+  ],
+  "answer_store_ref": "evaluation_only://glp1r/5vex_nam_pocket",
+  "plan_id": "allodesigner_reference_path",
+  "paper_ref": "/lambda/nfs/file2/jrf/AlloDesigner/allodesigner5.1(1).docx"
+}

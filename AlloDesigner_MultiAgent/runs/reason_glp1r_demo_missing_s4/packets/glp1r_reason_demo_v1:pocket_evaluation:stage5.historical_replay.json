@@ -1,0 +1,84 @@
+{
+  "packet_id": "glp1r_reason_demo_v1:pocket_evaluation:stage5.historical_replay",
+  "task_id": "glp1r_reason_demo_v1",
+  "stage_id": "pocket_evaluation",
+  "stage_contract_version": "1.0.0",
+  "task_track": "retrospective_blind",
+  "inputs_frozen": [],
+  "priors_approved": [],
+  "tools_considered": [
+    {
+      "tool_id": "stage5.historical_replay",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "Frozen expert handoff is the Stage5 gate for GLP1 retrospective."
+    },
+    {
+      "tool_id": "stage5.fpocket_from_frames_status",
+      "role": "supplement",
+      "decision": "deferred",
+      "rationale": "No Stage4 frames; skip fpocket track."
+    },
+    {
+      "tool_id": "fpocket",
+      "role": "reuse",
+      "decision": "benchmark_only",
+      "rationale": "Already executed in Stage5 demo; status reuse only."
+    }
+  ],
+  "tool_selected": [
+    "stage5.historical_replay"
+  ],
+  "outputs": {
+    "run_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo",
+    "pocket_id": "pocket_01",
+    "consistency_audit": {
+      "historical_14": [
+        354,
+        355,
+        357,
+        358,
+        365,
+        369,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417
+      ],
+      "n_historical": 14,
+      "all_in_deepallo_top7_freq": true,
+      "missing_from_deepallo": [],
+      "all_in_plb_top7_freq": true,
+      "missing_from_plb": [],
+      "note": "14 residues are expert handoff (pocket_01), not automatic DeepAllo∩PLB fusion"
+    },
+    "agent_decision": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo/historical_replay/agent_decision.yaml"
+  },
+  "metrics": {},
+  "qc_flags": [],
+  "human_interventions": [],
+  "claims_allowed": [
+    "historical_replay 冻结 handoff 与 DeepAllo/PLB 频率表一致"
+  ],
+  "iteration": {
+    "stop_reason": "node_executed"
+  },
+  "critic": {
+    "passed": true,
+    "findings": [],
+    "claims_allowed": [
+      "候选口袋已按合同排序，存在不确定性说明",
+      "Stage5 demo：historical_replay + Stage4 帧 fpocket 与 pocket_01 对照已完成（partial/demo）"
+    ],
+    "claims_forbidden": [
+      "真实口袋已确认",
+      "fpocket 自动发现等同专家 pocket_01"
+    ]
+  },
+  "status": "completed",
+  "maturity": "scripted"
+}

@@ -1,0 +1,17 @@
+name: glp1_allo_core
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Versions observed in the audited core-evaluation environment.
+  # ColabFold/JAX and fpocket are intentionally installed separately.
+  - python=3.11.11
+  - pip
+  - numpy=1.26.4
+  - pandas=2.2.3
+  - pyyaml=6.0.2
+  - biopython=1.84
+  - scikit-learn=1.4.0
+  - matplotlib=3.10.1
+  - scipy=1.12.0
+  - joblib=1.4.2

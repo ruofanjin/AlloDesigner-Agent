@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://allodesigner.local/schemas/decision_packet.schema.json",
+  "title": "DecisionPacket",
+  "type": "object",
+  "required": [
+    "packet_id",
+    "task_id",
+    "stage_id",
+    "task_track",
+    "tools_considered",
+    "tool_selected",
+    "claims_allowed",
+    "status"
+  ],
+  "properties": {
+    "packet_id": { "type": "string" },
+    "task_id": { "type": "string" },
+    "stage_id": { "type": "string" },
+    "stage_contract_version": { "type": "string" },
+    "task_track": {
+      "type": "string",
+      "enum": ["retrospective_blind", "retrospective_informed", "exploratory"]
+    },
+    "inputs_frozen": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "priors_approved": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "tools_considered": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tool_id", "role", "decision"],
+        "properties": {
+          "tool_id": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["reuse", "adapt", "alternative", "supplement", "benchmark", "inapplicable"]
+          },
+          "decision": {
+            "type": "string",
+            "enum": ["selected", "benchmark_only", "rejected", "deferred"]
+          },
+          "rationale": { "type": "string" }
+        }
+      }
+    },
+    "tool_selected": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "qc_flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "human_interventions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "claims_allowed": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "iteration": {
+      "type": "object",
+      "properties": {
+        "round": { "type": "integer" },
+        "stop_reason": { "type": "string" }
+      }
+    },
+    "critic": {
+      "type": "object",
+      "properties": {
+        "passed": { "type": "boolean" },
+        "findings": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planned", "running", "needs_human", "completed", "failed", "blocked"]
+    },
+    "maturity": {
+      "type": "string",
+      "enum": ["executable", "scripted", "external", "paper_only"]
+    }
+  },
+  "additionalProperties": true
+}

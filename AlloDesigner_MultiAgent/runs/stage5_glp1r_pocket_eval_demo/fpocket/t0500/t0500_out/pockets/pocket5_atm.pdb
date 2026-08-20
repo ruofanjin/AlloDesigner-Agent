@@ -1,0 +1,36 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     5:
+HEADER 0  - Pocket Score                      : 0.0353
+HEADER 1  - Drug Score                        : 0.0045
+HEADER 2  - Number of alpha spheres           :    17
+HEADER 3  - Mean alpha-sphere radius          : 3.5710
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4360
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 68.5000
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 4.7500
+HEADER 9  - Pocket volume (Monte Carlo)       : 85.7262
+HEADER 10 - Pocket volume (convex hull)       : 1.2928
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 15.0000
+HEADER 13 - Number of apolar alpha sphere     :    16
+HEADER 14 - Proportion of apolar alpha sphere : 0.9412
+ATOM   5341   CB ASN C 329      56.040  39.910  87.560  0.00  0.00           C 0
+ATOM   6097  CG2 VAL C 374      52.000  44.220  87.870  0.00  0.00           C 0
+ATOM   5301  CG2 ILE C 326      54.210  40.630  82.240  0.00  0.00           C 0
+ATOM   5313    O ILE C 326      54.490  38.650  85.000  0.67  1.07           O 0
+ATOM   6093  CG1 VAL C 374      50.220  43.500  86.330  0.00  0.00           C 0
+ATOM   5351    N PHE C 330      53.160  38.560  87.620  0.67  1.09           N 0
+ATOM   4001  CE1 TYR C 250      57.860  44.550  83.050  0.00  0.00           C 0
+ATOM   3999  CD1 TYR C 250      58.670  43.700  83.800  0.00  0.00           C 0
+ATOM   5305  CG1 ILE C 326      56.560  41.230  81.710  0.00  0.00           C 0
+ATOM   5297   CA ILE C 326      56.140  39.360  83.440  0.00  0.00           C 0
+ATOM   6166  CE2 PHE C 378      50.430  40.770  82.970  0.00  0.00           C 0
+ATOM   6089   CA VAL C 374      51.730  45.510  85.640  0.00  0.00           C 0
+ATOM   6146   CB ALA C 377      53.930  44.550  82.280  0.00  0.00           C 0
+ATOM   4070  CD2 LEU C 253      57.150  45.050  87.410  0.00  0.00           C 0
+TER
+END

@@ -1,0 +1,43 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    22:
+HEADER 0  - Pocket Score                      : -0.0926
+HEADER 1  - Drug Score                        : 0.0015
+HEADER 2  - Number of alpha spheres           :    23
+HEADER 3  - Mean alpha-sphere radius          : 3.8221
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5554
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 13.7143
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 4.4286
+HEADER 9  - Pocket volume (Monte Carlo)       : 332.8241
+HEADER 10 - Pocket volume (convex hull)       : 27.6667
+HEADER 11 - Charge Score                      :     2
+HEADER 12 - Local hydrophobic density Score   : 10.0000
+HEADER 13 - Number of apolar alpha sphere     :    11
+HEADER 14 - Proportion of apolar alpha sphere : 0.4783
+ATOM   7200   NE ARG D 438      65.270  91.480 124.990  0.49  7.66           N 0
+ATOM   7307  CD1 LEU D 445      60.480  94.090 129.950  0.00  0.00           C 0
+ATOM   7255   SD MET D 442      64.690  95.270 124.910  0.00  0.00           S 0
+ATOM   7249   CB MET D 442      62.640  95.300 122.950  0.00  0.00           C 0
+ATOM   7206  NH2 ARG D 438      65.950  92.360 126.930  0.33  9.84           N 0
+ATOM   7283    O LYS D 443      60.750  97.320 126.480  0.88  2.14           O 0
+ATOM   7305   CG LEU D 445      59.900  95.480 129.540  0.00  0.00           C 0
+ATOM   7311  CD2 LEU D 445      58.390  95.390 129.170  0.00  0.00           C 0
+ATOM   7370  CG2 THR D 449      64.950  93.800 130.810  0.00  0.00           C 0
+ATOM   7298    N LEU D 445      60.310  98.510 129.530  0.76  2.19           N 0
+ATOM   7302   CB LEU D 445      60.110  96.370 130.750  0.00  0.00           C 0
+ATOM   7316    O LEU D 445      61.180  98.910 132.090  0.00  0.00           O 0
+ATOM   7256   CE MET D 442      65.690  96.800 125.460  0.00  0.00           C 0
+ATOM   7377    O THR D 449      63.450  89.880 131.980  0.00  0.00           O 0
+ATOM   7262    N LYS D 443      59.820  96.780 123.730  0.44  1.09           N 0
+ATOM   7294   CA PRO D 444      60.430  99.840 127.510  0.00  0.00           C 0
+ATOM   7376    C THR D 449      62.960  90.880 132.490  0.00  0.00           C 0
+ATOM   7388    O SER D 450      60.120  88.620 131.910  0.00  0.00           O 0
+ATOM   7368   CB THR D 449      64.810  92.380 131.390  0.00  0.00           C 0
+ATOM   7366   CA THR D 449      63.440  92.350 132.200  0.00  0.00           C 0
+ATOM   7266   CB LYS D 443      57.800  96.790 125.210  0.00  0.00           C 0
+TER
+END

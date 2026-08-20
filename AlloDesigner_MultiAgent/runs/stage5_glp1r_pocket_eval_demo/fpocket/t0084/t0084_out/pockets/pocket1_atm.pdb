@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     1:
+HEADER 0  - Pocket Score                      : 0.1494
+HEADER 1  - Drug Score                        : 0.0039
+HEADER 2  - Number of alpha spheres           :    16
+HEADER 3  - Mean alpha-sphere radius          : 3.5327
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.3496
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 65.8182
+HEADER 7  - Polarity Score                    :     3
+HEADER 8  - Amino Acid based volume Score     : 4.1818
+HEADER 9  - Pocket volume (Monte Carlo)       : 122.5156
+HEADER 10 - Pocket volume (convex hull)       : 4.1983
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 11.0000
+HEADER 13 - Number of apolar alpha sphere     :    12
+HEADER 14 - Proportion of apolar alpha sphere : 0.7500
+ATOM     93    O ILE A   5      60.640  76.420 107.330  0.00  0.00           O 0
+ATOM   6895    O PHE D 422      58.760  71.920 112.050  0.00  0.00           O 0
+ATOM   6957   CB TRP D 426      58.280  75.420 112.150  0.00  0.00           C 0
+ATOM   6892  CD2 PHE D 422      58.520  70.960 108.550  0.00  0.00           C 0
+ATOM     81  CG2 ILE A   5      62.670  75.910 109.840  0.00  0.00           C 0
+ATOM   2753  CG1 ILE C 174      62.180  68.520 107.150  0.00  0.00           C 0
+ATOM   2711    O ILE C 170      63.160  68.830 103.700  0.59  1.07           O 0
+ATOM     62  CG2 ILE A   4      64.310  73.370 103.330  0.00  0.00           C 0
+ATOM   2737   CB ALA C 173      66.330  69.610 104.490  0.00  0.00           C 0
+ATOM    130   OG SER A   8      60.760  73.380 105.560  0.62  2.14           O 0
+ATOM     85  CG1 ILE A   5      64.590  74.560 108.960  0.00  0.00           C 0
+ATOM     75    N ILE A   5      63.940  75.610 106.280  0.00  0.00           N 0
+ATOM     14   CE NMETA   1      67.270  71.690 108.440  0.00  0.00           C 0
+ATOM   2819   CZ PHE C 178      64.340  69.940 111.570  0.00  0.00           C 0
+ATOM   6949   OG SER D 425      63.070  72.750 112.170  0.97  1.07           O 0
+ATOM   2821  CE2 PHE C 178      63.550  68.840 111.430  0.00  0.00           C 0
+TER
+END

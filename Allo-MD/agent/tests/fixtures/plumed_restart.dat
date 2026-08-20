@@ -1,0 +1,4 @@
+# Parser fixture for tools/validate_plumed_restart.py; not a simulation input.
+d: DISTANCE ATOMS=1,2
+METAD ARG=d PACE=5 FILE=HILLS
+PRINT ARG=d STRIDE=5 FILE=COLVAR

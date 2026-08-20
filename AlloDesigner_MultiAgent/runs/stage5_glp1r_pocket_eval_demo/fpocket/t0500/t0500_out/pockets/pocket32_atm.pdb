@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    32:
+HEADER 0  - Pocket Score                      : -0.1348
+HEADER 1  - Drug Score                        : 0.0006
+HEADER 2  - Number of alpha spheres           :    16
+HEADER 3  - Mean alpha-sphere radius          : 4.2423
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6414
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 49.0000
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 4.4286
+HEADER 9  - Pocket volume (Monte Carlo)       : 212.7106
+HEADER 10 - Pocket volume (convex hull)       : 3.3420
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 7.0000
+HEADER 13 - Number of apolar alpha sphere     :     8
+HEADER 14 - Proportion of apolar alpha sphere : 0.5000
+ATOM   3911   CA TYR C 244      68.740  41.750  77.840  0.00  0.00           C 0
+ATOM   3961   CB ALA C 247      65.230  39.860  80.100  0.00  0.00           C 0
+ATOM   5217   CG PRO C 321      64.650  34.880  78.130  0.00  0.00           C 0
+ATOM   3926  CD2 TYR C 244      70.490  39.490  79.600  0.00  0.00           C 0
+ATOM   5220   CB PRO C 321      64.290  35.920  79.160  0.00  0.00           C 0
+ATOM   5161  CG1 ILE C 318      66.160  38.080  70.700  0.00  0.00           C 0
+ATOM   5157  CG2 ILE C 318      65.180  39.880  72.220  0.00  0.00           C 0
+ATOM   3855    O LEU C 240      70.280  42.270  74.210  0.00  0.00           O 0
+ATOM   3850  CD2 LEU C 240      70.020  39.450  70.170  0.00  0.00           C 0
+ATOM   5153   CA ILE C 318      64.510  37.410  72.540  0.00  0.00           C 0
+ATOM   5169    O ILE C 318      63.980  38.480  74.630  0.69  2.14           O 0
+ATOM   3909    N TYR C 244      68.190  42.220  76.580  0.71  2.19           N 0
+ATOM   3908    O GLN C 243      66.010  42.130  77.400  0.00  0.00           O 0
+ATOM   5150    O ILE C 317      63.900  34.900  73.730  0.55  7.50           O 0
+ATOM   5214   CD PRO C 321      63.570  35.210  77.080  0.00  0.00           C 0
+ATOM   3913   CB TYR C 244      70.160  41.210  77.710  0.00  0.00           C 0
+TER
+END

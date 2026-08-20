@@ -1,0 +1,35 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    47:
+HEADER 0  - Pocket Score                      : -0.3107
+HEADER 1  - Drug Score                        : 0.0001
+HEADER 2  - Number of alpha spheres           :    22
+HEADER 3  - Mean alpha-sphere radius          : 4.1984
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4023
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : -18.5000
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 4.5000
+HEADER 9  - Pocket volume (Monte Carlo)       : 187.3945
+HEADER 10 - Pocket volume (convex hull)       : 1.4657
+HEADER 11 - Charge Score                      :     2
+HEADER 12 - Local hydrophobic density Score   : 2.0000
+HEADER 13 - Number of apolar alpha sphere     :     3
+HEADER 14 - Proportion of apolar alpha sphere : 0.1364
+ATOM    515   CB ARG A  33      34.040  62.630  68.900  0.00  0.00           C 0
+ATOM   2268   NE ARG C 143      42.110  63.430  66.750  0.42  8.75           N 0
+ATOM    526   CZ ARG A  33      36.650  64.580  71.080  0.00  0.00           C 0
+ATOM    530  NH2 ARG A  33      37.590  63.880  71.690  0.00  8.75           N 0
+ATOM    527  NH1 ARG A  33      36.990  65.640  70.430  0.00  0.00           N 0
+ATOM    518   CG ARG A  33      34.370  64.170  69.000  0.00  0.00           C 0
+ATOM    548    O PRO A  34      33.790  60.510  65.780  0.30  5.36           O 0
+ATOM    568   CA GLY A  36      36.530  60.720  62.230  0.00  0.00           C 0
+ATOM   2271  NH1 ARG C 143      41.470  63.320  64.530  0.69  6.56           N 0
+ATOM   2265   CD ARG C 143      42.030  64.850  66.820  0.00  0.00           C 0
+ATOM   2274  NH2 ARG C 143      41.800  61.390  65.600  0.35  7.66           N 0
+ATOM    566    N GLY A  36      35.710  59.760  63.050  0.00  0.00           N 0
+ATOM   2270   CZ ARG C 143      41.820  62.720  65.650  0.00  0.00           C 0
+TER
+END

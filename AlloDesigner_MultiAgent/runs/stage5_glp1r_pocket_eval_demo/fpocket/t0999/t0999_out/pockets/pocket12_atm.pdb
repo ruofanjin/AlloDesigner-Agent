@@ -1,0 +1,44 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    12:
+HEADER 0  - Pocket Score                      : -0.0069
+HEADER 1  - Drug Score                        : 0.0006
+HEADER 2  - Number of alpha spheres           :    24
+HEADER 3  - Mean alpha-sphere radius          : 3.9305
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6169
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 8.6667
+HEADER 7  - Polarity Score                    :     5
+HEADER 8  - Amino Acid based volume Score     : 3.5556
+HEADER 9  - Pocket volume (Monte Carlo)       : 328.6420
+HEADER 10 - Pocket volume (convex hull)       : 19.0983
+HEADER 11 - Charge Score                      :    -3
+HEADER 12 - Local hydrophobic density Score   : 5.0000
+HEADER 13 - Number of apolar alpha sphere     :     6
+HEADER 14 - Proportion of apolar alpha sphere : 0.2500
+ATOM   1598  CE3 TRP B 100      45.410  63.890  54.410  0.00  0.00           C 0
+ATOM   1596  CZ3 TRP B 100      46.210  63.340  55.450  0.00  0.00           C 0
+ATOM   2158  OE2 GLU C 136      49.680  66.930  56.450  0.50  9.64           O 0
+ATOM   2175    O GLU C 137      47.450  70.220  57.250  0.56  9.64           O 0
+ATOM   1586   CG TRP B 100      45.470  65.240  52.130  0.00  0.00           C 0
+ATOM   1600  CD2 TRP B 100      45.980  64.520  53.290  0.00  0.00           C 0
+ATOM   2145    O CYS C 135      49.600  67.410  51.960  0.00  0.00           O 0
+ATOM   2144    C CYS C 135      50.460  68.240  51.730  0.00  0.00           C 0
+ATOM   2119    O NSERC 133      50.880  72.260  52.240  0.00  0.00           O 0
+ATOM   2161    N GLU C 137      49.680  70.030  55.370  0.42  4.37           N 0
+ATOM   2165   CB GLU C 137      48.900  72.310  55.400  0.00  0.00           C 0
+ATOM   2134    O GLU C 134      50.370  71.040  48.920  0.53  5.36           O 0
+ATOM   1591  CE2 TRP B 100      47.360  64.780  53.340  0.00  0.00           C 0
+ATOM   1589  NE1 TRP B 100      47.600  65.500  52.190  0.00  0.00           N 0
+ATOM   1634    O SER B 103      43.610  69.300  47.330  0.51  9.64           O 0
+ATOM   1645  CG2 VAL B 104      47.820  66.990  47.470  0.00  0.00           C 0
+ATOM   1652   CD PRO B 105      46.620  71.340  46.280  0.00  0.00           C 0
+ATOM   2137   CA CYS C 135      50.760  68.710  50.330  0.00  0.00           C 0
+ATOM   1637   CA VAL B 104      46.050  68.360  46.320  0.00  0.00           C 0
+ATOM   1587  CD1 TRP B 100      46.470  65.770  51.440  0.00  0.00           C 0
+ATOM   1583   CB TRP B 100      44.050  64.980  51.650  0.00  0.00           C 0
+ATOM   1628   CB SER B 103      41.630  67.500  48.430  0.00  0.00           C 0
+TER
+END

@@ -1,0 +1,43 @@
+               :-) GROMACS - gmx trjconv, 2024.3-plumed_2.9.3 (-:
+
+Executable:   /home/ubuntu/opt/gmx-stack/gromacs-2024.3-plumed-2.9.3/bin/gmx_mpi
+Data prefix:  /home/ubuntu/opt/gmx-stack/gromacs-2024.3-plumed-2.9.3
+Working dir:  /lambda/nfs/file2/jrf/AlloDesigner/Allo-MD/agent
+Command line:
+  gmx_mpi trjconv -s /home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001/stages/distance_metad_1ns/distance_metad_1ns.tpr -f /home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001/stages/distance_metad_1ns/distance_metad_1ns.xtc -o /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo/frames_from_stage4/t0750.pdb -dump 750.000 -tu ps
+
+Will write pdb: Protein data bank file
+Reading file /home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001/stages/distance_metad_1ns/distance_metad_1ns.tpr, VERSION 2024.3-plumed_2.9.3 (single precision)
+Reading file /home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001/stages/distance_metad_1ns/distance_metad_1ns.tpr, VERSION 2024.3-plumed_2.9.3 (single precision)
+Group     0 (         System) has 237383 elements
+Group     1 (        Protein) has  7952 elements
+Group     2 (      Protein-H) has  4005 elements
+Group     3 (        C-alpha) has   491 elements
+Group     4 (       Backbone) has  1473 elements
+Group     5 (      MainChain) has  1968 elements
+Group     6 (   MainChain+Cb) has  2436 elements
+Group     7 (    MainChain+H) has  2447 elements
+Group     8 (      SideChain) has  5505 elements
+Group     9 (    SideChain-H) has  2037 elements
+Group    10 (    Prot-Masses) has  7952 elements
+Group    11 (    non-Protein) has 229431 elements
+Group    12 (          Other) has 229431 elements
+Group    13 (             PA) has 17618 elements
+Group    14 (             PC) has 14554 elements
+Group    15 (             OL) has 19150 elements
+Group    16 (             K+) has   161 elements
+Group    17 (            Cl-) has   162 elements
+Group    18 (            TP3) has 177786 elements
+Select a group: Reading frame       0 time    0.000   
+Precision of /home/ubuntu/work/allo-md/runs/glp1r_distance_1ns_demo_001/stages/distance_metad_1ns/distance_metad_1ns.xtc is 0.001 (nm)
+Reading frame       1 time  100.000   Reading frame       2 time  200.000   Reading frame       3 time  300.000   Reading frame       4 time  400.000   Reading frame       5 time  500.000   Reading frame       6 time  600.000   Reading frame       7 time  700.000   Reading frame       8 time  800.000   Reading frame       9 time  900.000   
+Dumping frame at t= 800 ps
+ ->  frame      0 time  800.000      
+Last written: frame      0 time  800.000
+
+
+GROMACS reminds you: "Alas, You're Welcome" (Prof. Dumbledore in Potter Puppet Pals)
+
+Note that major changes are planned in future for trjconv, to improve usability and utility.
+Select group for output
+Selected 1: 'Protein'

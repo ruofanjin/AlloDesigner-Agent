@@ -1,0 +1,49 @@
+{
+  "status": "needs_external",
+  "paper_stage": "AI-prior metadynamics / biased MD",
+  "cv_candidates": [
+    "pocket_sasa",
+    "key_residue_pair_distance"
+  ],
+  "budget_ns": 50,
+  "benchmarks": [
+    "unbiased_md"
+  ],
+  "system_setup": "CHARMM-GUI POPC + AMBER for GPCR membrane system (paper/SI)",
+  "env_decision": {
+    "stage_id": "physics_sampling",
+    "profile_id": "allo_openmm_physics",
+    "specialized": true,
+    "action": "create",
+    "env_name": "allo-openmm",
+    "env_path": null,
+    "python_executable": null,
+    "matched_by": null,
+    "score": 0.0,
+    "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/alphflow-environment.yml",
+    "command_prefix": [],
+    "notes": [
+      "No sufficiently matching env; will create from /lambda/nfs/file2/jrf/AlloDesigner/alphflow-environment.yml",
+      "auto_create=false for this heavy/specialized profile; emitting create plan only"
+    ],
+    "probe_details": {}
+  },
+  "callback_contract": {
+    "upload": [
+      "openlike_frames/",
+      "cv_timeseries.csv",
+      "pocket_volume_trace.csv"
+    ],
+    "claims_allowed": [
+      "在给定 CV 与预算下采样到开放样构象候选"
+    ]
+  },
+  "blockers": [
+    "MD/metadynamics implementation not packaged in this repository",
+    "Requires membrane system build + CV definition from pocket residues",
+    "physics env not ready: action=create name=allo-openmm"
+  ],
+  "artifacts": {
+    "job_sheet": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T125943Z_glp1r_retrospective_blind_v1/artifacts/physics_sampling/job_sheet.json"
+  }
+}

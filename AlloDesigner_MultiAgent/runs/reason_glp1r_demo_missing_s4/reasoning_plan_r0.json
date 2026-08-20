@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.0.0",
+  "plan_id": "reason_glp1r_reason_demo_v1",
+  "task_id": "glp1r_reason_demo_v1",
+  "track": "retrospective_blind",
+  "scientific_hypothesis": "For target GLP1R on track retrospective_blind, pursue cryptic allosteric pocket discovery via the frozen six-stage decomposition; tool choices and replay/reuse adapt to available artifacts and budget (max_md_ns=1.0, prefer_recompute=False).",
+  "information_boundary": {
+    "allowed_priors": [
+      "case_protocol_template",
+      "literature_prior_approved_only"
+    ],
+    "forbidden_information": [
+      "holo_structure_as_runtime_feature",
+      "ligand_identity_as_runtime_feature",
+      "answer_store_injection"
+    ],
+    "leakage_scan": [
+      "answer_store_ref must not enter blind runtime tools",
+      "HOLO/ligand labels forbidden as planning features on retrospective_blind"
+    ]
+  },
+  "stages": [
+    {
+      "stage_id": "boundary",
+      "goal_locked": "冻结靶点、任务轨道、可用先验与禁止信息，形成可审批协议。",
+      "why_this_path": "Human-approved boundary must precede any scientific tool use.",
+      "tools": [
+        {
+          "tool_id": "case_protocol_template",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "Freeze information boundary from case protocol template."
+        }
+      ],
+      "iteration_policy": {
+        "loop": "propose→tool→score→critic→continue|stop|escalate",
+        "max_rounds": 1
+      },
+      "maturity_route": "local_invoke",
+      "handoff_out": [
+        "approved_boundary_sheet"
+      ],
+      "soft_skip": false,
+      "uncertainty": null
+    },
+    {
+      "stage_id": "residue_prior",
+      "goal_locked": "产出与隐匿变构位点相关的残基/区域概率与阈值化候选集合。",
+      "why_this_path": "Retrospective artifacts exist; replay residue prior to keep blind demo auditable without re-running PocketMiner.",
+      "tools": [
+        {
+          "tool_id": "allo_pocketminer",
+          "role": "reuse",
+          "decision": "deferred",
+          "rationale": "Executable in principle; deferred for demo budget."
+        },
+        {
+          "tool_id": "stage2.replay_residue_prior",
+          "role": "adapt",
+          "decision": "selected",
+          "rationale": "historical_replay of retrospective residue_prior artifacts."
+        }
+      ],
+      "iteration_policy": {
+        "loop": "propose→tool→score→critic→continue|stop|escalate",
+        "max_rounds": 1
+      },
+      "maturity_route": "historical_replay",
+      "handoff_out": [
+        "residue_probability_map",
+        "thresholded_candidate_set",
+        "tool_comparison_sheet"
+      ],
+      "soft_skip": false,
+      "uncertainty": null
+    },
+    {
+      "stage_id": "ensemble_enrichment",
+      "goal_locked": "在残基先验引导下富集口袋友好的初始构象与纯化 MSA。",
+      "why_this_path": "Reuse retrospective ensemble_enrichment; full AF-ClaSeq recompute out of demo budget.",
+      "tools": [
+        {
+          "tool_id": "allo_stepwise",
+          "role": "reuse",
+          "decision": "deferred",
+          "rationale": "Scripted/historical path preferred for this slice."
+        },
+        {
+          "tool_id": "stage3.replay_ensemble",
+          "role": "adapt",
+          "decision": "selected",
+          "rationale": "Replay ensemble artifacts from retrospective run."
+        }
+      ],
+      "iteration_policy": {
+        "loop": "propose→tool→score→critic→continue|stop|escalate",
+        "max_rounds": 1
+      },
+      "maturity_route": "historical_replay",
+      "handoff_out": [
+        "preferred_conformations",
+        "purified_msa",
+        "control_comparison"
+      ],
+      "soft_skip": false,
+      "uncertainty": "Stage3 not recomputed; uncertainty carried to pocket evaluation."
+    },
+    {
+      "stage_id": "physics_sampling",
+      "goal_locked": "以可解释 CV 引导增强采样，获取物理合理的开放样构象。",
+      "why_this_path": "Stage4 artifact unavailable under current assumptions; emit Allo-MD job_pack path instead of fabricating success.",
+      "tools": [
+        {
+          "tool_id": "ai_prior_metadynamics",
+          "role": "reuse",
+          "decision": "deferred",
+          "rationale": "Would require external/local Allo-MD job execution."
+        }
+      ],
+      "iteration_policy": {
+        "loop": "propose→tool→score→critic→continue|stop|escalate",
+        "max_rounds": 1
+      },
+      "maturity_route": "job_pack",
+      "handoff_out": [
+        "openlike_frames",
+        "sampling_metrics",
+        "ablation_record"
+      ],
+      "soft_skip": false,
+      "uncertainty": "physics_sampling requires job_pack; soft dependency for Stage5 noted."
+    },
+    {
+      "stage_id": "pocket_evaluation",
+      "goal_locked": "对候选口袋做几何聚类与变构/成药性共识评价。",
+      "why_this_path": "Combine historical_replay pocket_01 handoff with Stage4-frame fpocket consistency check when frames exist.",
+      "tools": [
+        {
+          "tool_id": "stage5.historical_replay",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "Frozen expert handoff is the Stage5 gate for GLP1 retrospective."
+        },
+        {
+          "tool_id": "stage5.fpocket_from_frames_status",
+          "role": "supplement",
+          "decision": "deferred",
+          "rationale": "No Stage4 frames; skip fpocket track."
+        },
+        {
+          "tool_id": "fpocket",
+          "role": "reuse",
+          "decision": "benchmark_only",
+          "rationale": "Already executed in Stage5 demo; status reuse only."
+        }
+      ],
+      "iteration_policy": {
+        "loop": "propose→tool→score→critic→continue|stop|escalate",
+        "max_rounds": 1
+      },
+      "maturity_route": "historical_replay",
+      "handoff_out": [
+        "pocket_cluster_ranking",
+        "consensus_residues",
+        "uncertainty_notes"
+      ],
+      "soft_skip": false,
+      "uncertainty": null
+    },
+    {
+      "stage_id": "candidate_ranking",
+      "goal_locked": "在获批对接协议下输出可复核候选排序包。",
+      "why_this_path": "Stage6 is external: emit Vina/Glide job pack and ingest returns; seeded returns remain partial/seeded.",
+      "tools": [
+        {
+          "tool_id": "vina",
+          "role": "alternative",
+          "decision": "selected",
+          "rationale": "Accepted external return engine."
+        },
+        {
+          "tool_id": "glide",
+          "role": "alternative",
+          "decision": "selected",
+          "rationale": "Accepted external return engine."
+        },
+        {
+          "tool_id": "glp1r_virtual_screening_protocol",
+          "role": "reuse",
+          "decision": "deferred",
+          "rationale": "Paper cascade reference only."
+        }
+      ],
+      "iteration_policy": {
+        "loop": "propose→tool→score→critic→continue|stop|escalate",
+        "max_rounds": 1
+      },
+      "maturity_route": "job_pack",
+      "handoff_out": [
+        "ranked_candidates",
+        "protocol_version",
+        "score_distribution"
+      ],
+      "soft_skip": false,
+      "uncertainty": null
+    }
+  ],
+  "execution_dag": [
+    {
+      "node_id": "boundary.packet",
+      "stage_id": "boundary",
+      "tool_id": "packet.write",
+      "action": "write",
+      "args": {
+        "stage_id": "boundary",
+        "mode": "boundary_freeze"
+      },
+      "depends_on": [],
+      "on_failure": "escalate",
+      "status": "pending",
+      "result_ref": null
+    },
+    {
+      "node_id": "residue_prior.replay",
+      "stage_id": "residue_prior",
+      "tool_id": "stage2.replay_residue_prior",
+      "action": "replay",
+      "args": {},
+      "depends_on": [
+        "boundary.packet"
+      ],
+      "on_failure": "escalate",
+      "status": "pending",
+      "result_ref": null
+    },
+    {
+      "node_id": "ensemble_enrichment.replay",
+      "stage_id": "ensemble_enrichment",
+      "tool_id": "stage3.replay_ensemble",
+      "action": "replay",
+      "args": {},
+      "depends_on": [
+        "residue_prior.replay"
+      ],
+      "on_failure": "continue_with_uncertainty",
+      "status": "pending",
+      "result_ref": null
+    },
+    {
+      "node_id": "physics_sampling.status",
+      "stage_id": "physics_sampling",
+      "tool_id": "stage4.reuse_or_status",
+      "action": "status",
+      "args": {
+        "force_missing_stage4": true
+      },
+      "depends_on": [
+        "ensemble_enrichment.replay"
+      ],
+      "on_failure": "continue_with_uncertainty",
+      "status": "pending",
+      "result_ref": null
+    },
+    {
+      "node_id": "pocket_evaluation.historical",
+      "stage_id": "pocket_evaluation",
+      "tool_id": "stage5.historical_replay",
+      "action": "replay",
+      "args": {},
+      "depends_on": [
+        "physics_sampling.status"
+      ],
+      "on_failure": "escalate",
+      "status": "pending",
+      "result_ref": null
+    },
+    {
+      "node_id": "candidate_ranking.emit",
+      "stage_id": "candidate_ranking",
+      "tool_id": "stage6.emit_job_pack",
+      "action": "emit",
+      "args": {},
+      "depends_on": [
+        "pocket_evaluation.historical"
+      ],
+      "on_failure": "escalate",
+      "status": "pending",
+      "result_ref": null
+    },
+    {
+      "node_id": "candidate_ranking.ingest",
+      "stage_id": "candidate_ranking",
+      "tool_id": "stage6.ingest_seeded_returns",
+      "action": "ingest_status",
+      "args": {},
+      "depends_on": [
+        "candidate_ranking.emit"
+      ],
+      "on_failure": "continue_with_uncertainty",
+      "status": "pending",
+      "result_ref": null
+    }
+  ],
+  "global_stop_policy": {
+    "on_hard_failure": "escalate",
+    "on_soft_failure": "continue_with_uncertainty",
+    "max_stage_iterations": 1
+  },
+  "claim_policy": {
+    "allowed": [
+      "Agent 在合同内自主生成了推理链与工具图",
+      "计算候选物已排序，待实验/专家复核"
+    ],
+    "forbidden": [
+      "Agent 发明了新的科学主路径并已证实",
+      "端到端论文级发现已完成",
+      "有效配体/抑制剂已被证实",
+      "真实口袋已确认"
+    ]
+  },
+  "uncertainty_notes": [
+    "Stage3 not recomputed; uncertainty carried to pocket evaluation.",
+    "physics_sampling requires job_pack; soft dependency for Stage5 noted."
+  ],
+  "planner_mode": "heuristic_autonomous"
+}

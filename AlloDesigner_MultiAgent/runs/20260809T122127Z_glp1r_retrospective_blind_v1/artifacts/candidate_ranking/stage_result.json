@@ -1,0 +1,42 @@
+{
+  "status": "needs_external",
+  "paper_stage": "structure-based virtual screening",
+  "protocol": [
+    "glp1r_virtual_screening_protocol"
+  ],
+  "alternatives": [
+    "vina",
+    "karmadock",
+    "glide"
+  ],
+  "inputs_from": [
+    "pocket_evaluation",
+    "physics_sampling"
+  ],
+  "claim_boundary": "计算候选物排序，不得宣称实验有效",
+  "expected_outputs": [
+    "ranked_candidates.csv",
+    "poses/",
+    "protocol_version.json"
+  ],
+  "artifacts": {
+    "job_sheet": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T122127Z_glp1r_retrospective_blind_v1/artifacts/candidate_ranking/job_sheet.json"
+  },
+  "env_decision": {
+    "stage_id": "candidate_ranking",
+    "profile_id": "agent_base",
+    "specialized": false,
+    "action": "use_current",
+    "env_name": "__current__",
+    "env_path": null,
+    "python_executable": "/home/ubuntu/miniconda3/bin/python",
+    "matched_by": "non_specialized_stage",
+    "score": 1.0,
+    "create_yml": null,
+    "command_prefix": [],
+    "notes": [
+      "No special env required; use current interpreter/tools"
+    ],
+    "probe_details": {}
+  }
+}

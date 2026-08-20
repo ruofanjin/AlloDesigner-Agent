@@ -1,0 +1,1424 @@
+{
+  "run_id": "20260810T165917Z_glp1r_retrospective_blind_v1",
+  "mode": "execute",
+  "task": {
+    "task_id": "glp1r_retrospective_blind_v1",
+    "target": {
+      "name": "GLP1R",
+      "sequence_ref": "../AlphaFlow/GLP1_chain_seqres.csv",
+      "uniprot": "P43220",
+      "organism": "Homo sapiens"
+    },
+    "track": "retrospective_blind",
+    "plan_id": "allodesigner_reference_path",
+    "stages_enabled": [
+      "boundary",
+      "residue_prior",
+      "ensemble_enrichment",
+      "physics_sampling",
+      "pocket_evaluation",
+      "candidate_ranking"
+    ],
+    "allowed_priors": [
+      "full_length_sequence",
+      "public_msa_databases",
+      "membrane_system_setup_protocol"
+    ],
+    "forbidden_information": [
+      "holo_structure_as_runtime_input",
+      "crystal_ligand_coordinates",
+      "manually_selected_answer_residues",
+      "answer_key_pocket_definition"
+    ],
+    "answer_store_ref": "evaluation_only://glp1r/5vex_nam_pocket",
+    "human_approvals": [
+      {
+        "item": "information_boundary_sheet",
+        "approver": "scientific_expert",
+        "status": "approved",
+        "timestamp": null,
+        "note": "Blind runtime may not read answer_store_ref"
+      },
+      {
+        "item": "default_allodesigner_reference_path",
+        "approver": "scientific_expert",
+        "status": "approved",
+        "timestamp": null,
+        "note": "Use paper path as default skeleton"
+      }
+    ],
+    "budget": {
+      "max_stage_iterations": 6,
+      "max_walltime_hours": 72
+    },
+    "notes": "GLP-1R retrospective blind demo. HOLO/ligand answers exist only in the evaluation store for recovery metrics, never in blind runtime context.\n"
+  },
+  "librarian": {
+    "agent": "librarian",
+    "leakage_risks": [],
+    "infos": [
+      "answer_store_ref is set for evaluation-only recovery metrics; runtime context must never load it"
+    ],
+    "pending_approvals": [],
+    "recommended_next": "Boundary ready for planner"
+  },
+  "plan": {
+    "plan_id": "allodesigner_reference_path",
+    "title": "AlloDesigner Reference Path",
+    "task_id": "glp1r_retrospective_blind_v1",
+    "track": "retrospective_blind",
+    "steps": [
+      {
+        "stage_id": "boundary",
+        "tools": [
+          "case_protocol_template"
+        ],
+        "benchmarks": [],
+        "alternatives": [],
+        "params": {},
+        "notes": "Freeze track and priors before any structure tool runs.",
+        "iteration": {}
+      },
+      {
+        "stage_id": "residue_prior",
+        "tools": [
+          "allo_pocketminer"
+        ],
+        "benchmarks": [
+          "pocketminer_baseline"
+        ],
+        "alternatives": [],
+        "params": {
+          "ensemble_aggregation": "mean",
+          "threshold_examples": {
+            "GLP1R": 0.7,
+            "CB1R": 0.8,
+            "PCSK9": 0.7
+          }
+        },
+        "notes": "GVP fine-tuned on LIGSITE dynamic labels.",
+        "iteration": {}
+      },
+      {
+        "stage_id": "ensemble_enrichment",
+        "tools": [
+          "allo_stepwise",
+          "alphaflow"
+        ],
+        "benchmarks": [
+          "colabfold_msa_subsample"
+        ],
+        "alternatives": [],
+        "params": {
+          "alphaflow_samples": 50,
+          "msa_coverage_threshold": 0.8,
+          "iterative_enrichment_rounds": 6,
+          "retain_top_fraction": 0.2,
+          "preference_metric": "cluster_center_to_fpocket_distance",
+          "enable_sequence_voting": true,
+          "preferred_entrypoint": "allo_stepwise"
+        },
+        "notes": "Prefer allo_stepwise commands; AlphaFlow remains optional MSA/ensemble path.",
+        "iteration": {
+          "type": "multi_round",
+          "stop_when": [
+            {
+              "metric": "top10_percent_mean_distance",
+              "op": "<=",
+              "value": 5.0
+            },
+            {
+              "metric": "round",
+              "op": ">=",
+              "value": 6
+            }
+          ]
+        }
+      },
+      {
+        "stage_id": "physics_sampling",
+        "tools": [
+          "ai_prior_metadynamics"
+        ],
+        "benchmarks": [
+          "unbiased_md"
+        ],
+        "alternatives": [],
+        "params": {
+          "cv_candidates": [
+            "pocket_sasa",
+            "key_residue_pair_distance"
+          ],
+          "suggested_budget_ns": 50
+        },
+        "notes": "External executor; orchestrator emits job sheet if not local.",
+        "iteration": {}
+      },
+      {
+        "stage_id": "pocket_evaluation",
+        "tools": [
+          "dbscan_residue_clustering",
+          "fpocket",
+          "deepallo",
+          "plb"
+        ],
+        "benchmarks": [],
+        "alternatives": [],
+        "params": {
+          "dbscan_eps_examples": {
+            "GLP1R": 6.0,
+            "PCSK9": 4.5
+          },
+          "dbscan_min_samples": 2,
+          "consensus_topk_clusters": 7
+        },
+        "notes": "Can run on enriched ensembles even before full MD completes.",
+        "iteration": {}
+      },
+      {
+        "stage_id": "candidate_ranking",
+        "tools": [
+          "glp1r_virtual_screening_protocol"
+        ],
+        "benchmarks": [],
+        "alternatives": [
+          "vina",
+          "karmadock",
+          "glide"
+        ],
+        "params": {
+          "output": "ranked_candidate_packet"
+        },
+        "notes": "Never claim experimental potency.",
+        "iteration": {}
+      }
+    ],
+    "policy_notes": [
+      "Stage semantics are frozen by expert contracts.",
+      "AlloDesigner reference path is the default skeleton, not an untested winner.",
+      "Task track=retrospective_blind; answer leakage into blind runtime is forbidden."
+    ]
+  },
+  "decision_packets": [
+    {
+      "packet_id": "glp1r_retrospective_blind_v1:boundary:r1",
+      "task_id": "glp1r_retrospective_blind_v1",
+      "stage_id": "boundary",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [
+        "full_length_sequence",
+        "public_msa_databases",
+        "membrane_system_setup_protocol"
+      ],
+      "priors_approved": [
+        "information_boundary_sheet",
+        "default_allodesigner_reference_path"
+      ],
+      "tools_considered": [
+        {
+          "tool_id": "case_protocol_template",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "From AlloDesigner reference path / stage defaults"
+        }
+      ],
+      "tool_selected": [
+        "case_protocol_template"
+      ],
+      "outputs": {
+        "iterations": [],
+        "pipeline": {
+          "status": "completed",
+          "maturity": "executable",
+          "artifacts": {
+            "boundary_sheet": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/boundary/boundary_sheet.json"
+          },
+          "next_input": "residue_prior uses sequence_ref + apo ensemble npy",
+          "env_decision": {
+            "stage_id": "boundary",
+            "profile_id": "agent_base",
+            "specialized": false,
+            "action": "use_current",
+            "env_name": "__current__",
+            "env_path": null,
+            "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python",
+            "matched_by": "non_specialized_stage",
+            "score": 1.0,
+            "create_yml": null,
+            "command_prefix": [],
+            "notes": [
+              "No special env required; use current interpreter/tools"
+            ],
+            "probe_details": {}
+          }
+        }
+      },
+      "metrics": {},
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "已形成待审批/已审批的信息边界协议"
+      ],
+      "iteration": {
+        "round": 1,
+        "stop_reason": "completed"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "已形成待审批/已审批的信息边界协议"
+        ],
+        "claims_forbidden": [
+          "已发现真实变构口袋",
+          "已证实配体有效"
+        ]
+      },
+      "status": "completed",
+      "maturity": "executable"
+    },
+    {
+      "packet_id": "glp1r_retrospective_blind_v1:residue_prior:r1",
+      "task_id": "glp1r_retrospective_blind_v1",
+      "stage_id": "residue_prior",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [
+        "full_length_sequence",
+        "public_msa_databases",
+        "membrane_system_setup_protocol"
+      ],
+      "priors_approved": [
+        "information_boundary_sheet",
+        "default_allodesigner_reference_path"
+      ],
+      "tools_considered": [
+        {
+          "tool_id": "allo_pocketminer",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "From AlloDesigner reference path / stage defaults"
+        },
+        {
+          "tool_id": "pocketminer_baseline",
+          "role": "benchmark",
+          "decision": "benchmark_only",
+          "rationale": "Benchmark control; reported separately"
+        }
+      ],
+      "tool_selected": [
+        "allo_pocketminer"
+      ],
+      "outputs": {
+        "iterations": [],
+        "pipeline": {
+          "status": "completed",
+          "out_csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv",
+          "threshold": 0.7,
+          "n_residues": 491,
+          "n_positive": 119,
+          "weights": "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/model_weight/1748397928_003",
+          "runner": "conda_or_python_subprocess",
+          "cmd": [
+            "conda",
+            "run",
+            "-n",
+            "allo-pocketminer",
+            "--no-capture-output",
+            "python",
+            "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/_agent_predict_glp1.py",
+            "--out",
+            "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv",
+            "--threshold",
+            "0.7",
+            "--batch-size",
+            "16",
+            "--weights",
+            "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/model_weight/1748397928_003"
+          ],
+          "artifacts": {
+            "residue_csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv"
+          },
+          "env_decision": {
+            "stage_id": "residue_prior",
+            "profile_id": "allo_pocketminer",
+            "specialized": true,
+            "action": "reuse",
+            "env_name": "allo-pocketminer",
+            "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer",
+            "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/python",
+            "matched_by": "name+markers",
+            "score": 15.5,
+            "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo-pocketminer-environment.yml",
+            "command_prefix": [
+              "conda",
+              "run",
+              "-n",
+              "allo-pocketminer",
+              "--no-capture-output"
+            ],
+            "notes": [
+              "Reuse env 'allo-pocketminer' for profile 'allo_pocketminer' (score=15.5)"
+            ],
+            "probe_details": {
+              "required": {
+                "tensorflow": true,
+                "keras": true,
+                "numpy": true,
+                "sklearn": true,
+                "Bio": true
+              },
+              "optional_import": {
+                "mdtraj": false,
+                "tqdm": true
+              },
+              "optional_commands": {},
+              "name_alias_hit": true
+            }
+          }
+        }
+      },
+      "metrics": {
+        "threshold": 0.7,
+        "n_positive": 119,
+        "n_residues": 491
+      },
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "候选残基/区域先验已生成，待后续构象与物理验证"
+      ],
+      "iteration": {
+        "round": 1,
+        "stop_reason": "completed"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "候选残基/区域先验已生成，待后续构象与物理验证"
+        ],
+        "claims_forbidden": [
+          "已确认功能变构位点"
+        ]
+      },
+      "status": "completed",
+      "maturity": "executable"
+    },
+    {
+      "packet_id": "glp1r_retrospective_blind_v1:ensemble_enrichment:r1",
+      "task_id": "glp1r_retrospective_blind_v1",
+      "stage_id": "ensemble_enrichment",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [
+        "full_length_sequence",
+        "public_msa_databases",
+        "membrane_system_setup_protocol"
+      ],
+      "priors_approved": [
+        "information_boundary_sheet",
+        "default_allodesigner_reference_path"
+      ],
+      "tools_considered": [
+        {
+          "tool_id": "allo_stepwise",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "From AlloDesigner reference path / stage defaults"
+        },
+        {
+          "tool_id": "alphaflow",
+          "role": "alternative",
+          "decision": "selected",
+          "rationale": "From AlloDesigner reference path / stage defaults"
+        },
+        {
+          "tool_id": "colabfold_msa_subsample",
+          "role": "benchmark",
+          "decision": "benchmark_only",
+          "rationale": "Benchmark control; reported separately"
+        }
+      ],
+      "tool_selected": [
+        "allo_stepwise",
+        "alphaflow"
+      ],
+      "outputs": {
+        "iterations": [],
+        "pipeline": {
+          "status": "partial_completed",
+          "paper_stage": "MSA purification + preference conformation (allo_stepwise)",
+          "depends_on": [
+            "residue_prior"
+          ],
+          "residue_prior_ref": {
+            "status": "completed",
+            "out_csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv",
+            "threshold": 0.7,
+            "n_residues": 491,
+            "n_positive": 119,
+            "weights": "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/model_weight/1748397928_003",
+            "runner": "conda_or_python_subprocess",
+            "cmd": [
+              "conda",
+              "run",
+              "-n",
+              "allo-pocketminer",
+              "--no-capture-output",
+              "python",
+              "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/_agent_predict_glp1.py",
+              "--out",
+              "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv",
+              "--threshold",
+              "0.7",
+              "--batch-size",
+              "16",
+              "--weights",
+              "/lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner/model_weight/1748397928_003"
+            ],
+            "artifacts": {
+              "residue_csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv"
+            },
+            "env_decision": {
+              "stage_id": "residue_prior",
+              "profile_id": "allo_pocketminer",
+              "specialized": true,
+              "action": "reuse",
+              "env_name": "allo-pocketminer",
+              "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer",
+              "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/python",
+              "matched_by": "name+markers",
+              "score": 15.5,
+              "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo-pocketminer-environment.yml",
+              "command_prefix": [
+                "conda",
+                "run",
+                "-n",
+                "allo-pocketminer",
+                "--no-capture-output"
+              ],
+              "notes": [
+                "Reuse env 'allo-pocketminer' for profile 'allo_pocketminer' (score=15.5)"
+              ],
+              "probe_details": {
+                "required": {
+                  "tensorflow": true,
+                  "keras": true,
+                  "numpy": true,
+                  "sklearn": true,
+                  "Bio": true
+                },
+                "optional_import": {
+                  "mdtraj": false,
+                  "tqdm": true
+                },
+                "optional_commands": {},
+                "name_alias_hit": true
+              }
+            }
+          },
+          "preferred_entrypoint": "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise",
+          "chain": [
+            {
+              "step": 1,
+              "tool": "allo_stepwise",
+              "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise && ./commands/00_check_environment.sh --allow-missing-external",
+              "maturity": "executable"
+            },
+            {
+              "step": 2,
+              "tool": "allo_stepwise",
+              "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise && ./commands/00_plan.sh",
+              "maturity": "executable"
+            },
+            {
+              "step": 3,
+              "tool": "allo_stepwise",
+              "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise && ./commands/02_prepare_iteration_input.sh",
+              "maturity": "scripted",
+              "note": "Requires glp1_allo_core + frozen handoff inputs"
+            },
+            {
+              "step": 4,
+              "tool": "allo_stepwise",
+              "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise && ./commands/03_generate_iteration_msas.sh",
+              "maturity": "scripted"
+            },
+            {
+              "step": 5,
+              "tool": "allo_stepwise",
+              "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise && ./commands/04_write_iteration_colabfold_commands.sh",
+              "maturity": "scripted",
+              "note": "Writes ColabFold commands; needs COLABFOLD_BIN for actual folding"
+            },
+            {
+              "step": 6,
+              "tool": "alphaflow",
+              "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow && python 1-mmseqs_search_helper.py --split ./GLP1_chain_seqres.csv --outdir ./alignment_dir/alignment_dir_GLP1",
+              "maturity": "scripted",
+              "role": "optional_msa_search_alternative"
+            }
+          ],
+          "stop_when": [
+            {
+              "metric": "top10_percent_mean_distance",
+              "op": "<=",
+              "value": 5.0
+            },
+            {
+              "metric": "round",
+              "op": ">=",
+              "value": 6
+            }
+          ],
+          "env_decision": {
+            "stage_id": "ensemble_enrichment",
+            "profile_id": "glp1_allo_core",
+            "specialized": true,
+            "action": "reuse",
+            "env_name": "glp1_allo_core",
+            "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core",
+            "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python",
+            "matched_by": "name+markers",
+            "score": 19.0,
+            "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/environment.yml",
+            "command_prefix": [
+              "conda",
+              "run",
+              "-n",
+              "glp1_allo_core",
+              "--no-capture-output"
+            ],
+            "notes": [
+              "Reuse env 'glp1_allo_core' for profile 'glp1_allo_core' (score=19.0)"
+            ],
+            "probe_details": {
+              "required": {
+                "numpy": true,
+                "pandas": true,
+                "Bio": true,
+                "yaml": true,
+                "sklearn": true,
+                "matplotlib": true,
+                "scipy": true
+              },
+              "optional_import": {},
+              "optional_commands": {
+                "fpocket": false,
+                "colabfold_batch": false
+              },
+              "name_alias_hit": true
+            }
+          },
+          "attempts": [
+            {
+              "step": "allo_stepwise_preflight",
+              "ok": true,
+              "attempts": [
+                {
+                  "step": "00_check_environment",
+                  "cmd": "bash /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/commands/00_check_environment.sh --allow-missing-external",
+                  "returncode": 0,
+                  "stdout": "Bundle root: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise\nOK   Python: /lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python\nPython 3.11.11\nOK   Python import: numpy\nOK   Python import: pandas\nOK   Python import: Bio\nOK   Python import: yaml\nOK   Python import: sklearn\nOK   Python import: matplotlib\nOK   Python import: scipy\nMISS ColabFold: colabfold_batch\nOK   fpocket: /lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/fpocket\nOK   SHA256 inputs/6x18_chianR_R.a3m\nOK   SHA256 inputs/6x18_MODEL_0.pdb\nOK   SHA256 inputs/glp1_historical_holo_cluster_mapped_residues.csv\nOK   SHA256 inputs/glp1-deepallo-score-residue_probabilities_top_7.csv\nOK   SHA256 inputs/glp1-plb-score-residue_probabilities_top_7.csv\nAllowed write roots:\n  - /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir\n  - /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/generated\nConfigured output path audit:\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/filtered_sequences.a3m\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/combined_filtered_all_iterations.a3m\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/02_m_fold_sampling/round_1\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/02_m_fold_sampling/round_1/02_sampling/pocketminer_predict_residues_cluster_eps6\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/03_voting/pocket_distance\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/04_recompile/pocket_min_distance\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/step3_select_pocket_cluster_residues\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/generated\nGLP1 Allo stepwise workflow\nRoot: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise\nWork dir: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run\nActive residue set: historical_holo_cluster -> /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/inputs/glp1_historical_holo_cluster_mapped_residues.csv\nMapped GLP1 evaluation residues: [354, 355, 357, 358, 365, 369, 410, 411, 412, 413, 414, 415, 416, 417]\nStep 3: documented_historical_handoff (Iteration 1; read-only historical handoff)\nStep 3 documentation: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/docs/STEP3_POCKET_SELECTION_HANDOFF.md\nMetric: pocket_min_distance from column min_distance\nNumbered command stages:\n  00  00_plan.sh: self-contained path audit and plan\n  01  01_audit_step3_handoff.sh: optional full historical-evidence audit\n  02  02_prepare_iteration_input.sh: one-time input preparation\n  03  03_generate_iteration_msas.sh N: iteration loop; serial RNG\n  04  04_write_iteration_colabfold_commands.sh N: 10 shuffle predictions may run in parallel\n  05  05_iteration_metric_stack.sh N: single wrapper after predictions\n  06  06_select_iteration_msa.sh N: barrier and next-iteration input\n  07  07_combine_iterations.sh: reads Iterations 1-5 only\n  08  08_prepare_mfold_msas.sh: serial deterministic split\n  09  09_write_mfold_colabfold_commands.sh: 38 prediction directories may run in parallel\n  10  10_sampling_metric_stack.sh: single merge wrapper\n  11  11_vote_and_recompile.sh: serial vote then recompile\n  12  12_write_final_colabfold_commands.sh: prediction and control may run in parallel\n  13  13_final_metric_stack.sh: final evaluation barrier\nParallel branch after Iteration 5:\n  - continue Iterations 6-7 through stages 03-06\n  - run M-fold and final stages 07-13\nFull dependency and parallelism notes: commands/README.md\nPreflight completed with 1 missing external/runtime requirements (allowed for audit only).\n",
+                  "stderr": "",
+                  "ok": true
+                },
+                {
+                  "step": "00_plan",
+                  "cmd": "bash /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/commands/00_plan.sh",
+                  "returncode": 0,
+                  "stdout": "Allowed write roots:\n  - /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir\n  - /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/generated\nConfigured output path audit:\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/filtered_sequences.a3m\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/combined_filtered_all_iterations.a3m\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/02_m_fold_sampling/round_1\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/02_m_fold_sampling/round_1/02_sampling/pocketminer_predict_residues_cluster_eps6\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/03_voting/pocket_distance\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/04_recompile/pocket_min_distance\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/step3_select_pocket_cluster_residues\n  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/generated\nGLP1 Allo stepwise workflow\nRoot: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise\nWork dir: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run\nActive residue set: historical_holo_cluster -> /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/inputs/glp1_historical_holo_cluster_mapped_residues.csv\nMapped GLP1 evaluation residues: [354, 355, 357, 358, 365, 369, 410, 411, 412, 413, 414, 415, 416, 417]\nStep 3: documented_historical_handoff (Iteration 1; read-only historical handoff)\nStep 3 documentation: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/docs/STEP3_POCKET_SELECTION_HANDOFF.md\nMetric: pocket_min_distance from column min_distance\nNumbered command stages:\n  00  00_plan.sh: self-contained path audit and plan\n  01  01_audit_step3_handoff.sh: optional full historical-evidence audit\n  02  02_prepare_iteration_input.sh: one-time input preparation\n  03  03_generate_iteration_msas.sh N: iteration loop; serial RNG\n  04  04_write_iteration_colabfold_commands.sh N: 10 shuffle predictions may run in parallel\n  05  05_iteration_metric_stack.sh N: single wrapper after predictions\n  06  06_select_iteration_msa.sh N: barrier and next-iteration input\n  07  07_combine_iterations.sh: reads Iterations 1-5 only\n  08  08_prepare_mfold_msas.sh: serial deterministic split\n  09  09_write_mfold_colabfold_commands.sh: 38 prediction directories may run in parallel\n  10  10_sampling_metric_stack.sh: single merge wrapper\n  11  11_vote_and_recompile.sh: serial vote then recompile\n  12  12_write_final_colabfold_commands.sh: prediction and control may run in parallel\n  13  13_final_metric_stack.sh: final evaluation barrier\nParallel branch after Iteration 5:\n  - continue Iterations 6-7 through stages 03-06\n  - run M-fold and final stages 07-13\nFull dependency and parallelism notes: commands/README.md\nStep 3 full evidence audit skipped; set RUN_STEP3_AUDIT=1 after populating evidence/step3_historical/.\n",
+                  "stderr": "",
+                  "ok": true
+                }
+              ],
+              "python_bin": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python",
+              "fpocket_bin": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/fpocket",
+              "colabfold_bin": "colabfold_batch",
+              "allow_missing_external": true,
+              "blockers": []
+            }
+          ],
+          "iterative_enrichment_rounds": 6,
+          "artifacts": {
+            "run_chain_sh": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment/run_chain.sh",
+            "stepwise_root": "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise"
+          },
+          "note": "allo_stepwise check+plan OK; ColabFold batch still external for full conformation generation"
+        }
+      },
+      "metrics": {},
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "已获得偏好初始构象/纯化 MSA（计算假设）"
+      ],
+      "iteration": {
+        "round": 1,
+        "stop_reason": "partial_completed"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "已获得偏好初始构象/纯化 MSA（计算假设）"
+        ],
+        "claims_forbidden": [
+          "已采样到实验证实的开放态"
+        ]
+      },
+      "status": "completed",
+      "maturity": "scripted"
+    },
+    {
+      "packet_id": "glp1r_retrospective_blind_v1:physics_sampling:r1",
+      "task_id": "glp1r_retrospective_blind_v1",
+      "stage_id": "physics_sampling",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [
+        "full_length_sequence",
+        "public_msa_databases",
+        "membrane_system_setup_protocol"
+      ],
+      "priors_approved": [
+        "information_boundary_sheet",
+        "default_allodesigner_reference_path"
+      ],
+      "tools_considered": [
+        {
+          "tool_id": "ai_prior_metadynamics",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "From AlloDesigner reference path / stage defaults"
+        },
+        {
+          "tool_id": "unbiased_md",
+          "role": "benchmark",
+          "decision": "benchmark_only",
+          "rationale": "Benchmark control; reported separately"
+        }
+      ],
+      "tool_selected": [
+        "ai_prior_metadynamics"
+      ],
+      "outputs": {
+        "iterations": [],
+        "pipeline": {
+          "status": "needs_external",
+          "paper_stage": "AI-prior metadynamics / biased MD",
+          "cv_candidates": [
+            "pocket_sasa",
+            "key_residue_pair_distance"
+          ],
+          "budget_ns": 50,
+          "benchmarks": [
+            "unbiased_md"
+          ],
+          "system_setup": "CHARMM-GUI POPC + AMBER for GPCR membrane system (paper/SI)",
+          "env_decision": {
+            "stage_id": "physics_sampling",
+            "profile_id": "allo_openmm_physics",
+            "specialized": true,
+            "action": "create",
+            "env_name": "allo-openmm",
+            "env_path": null,
+            "python_executable": null,
+            "matched_by": null,
+            "score": 0.0,
+            "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/alphflow-environment.yml",
+            "command_prefix": [],
+            "notes": [
+              "No sufficiently matching env; will create from /lambda/nfs/file2/jrf/AlloDesigner/alphflow-environment.yml",
+              "auto_create=false for this heavy/specialized profile; emitting create plan only"
+            ],
+            "probe_details": {}
+          },
+          "callback_contract": {
+            "upload": [
+              "openlike_frames/",
+              "cv_timeseries.csv",
+              "pocket_volume_trace.csv"
+            ],
+            "claims_allowed": [
+              "在给定 CV 与预算下采样到开放样构象候选"
+            ]
+          },
+          "blockers": [
+            "MD/metadynamics implementation not packaged in this repository",
+            "Requires membrane system build + CV definition from pocket residues",
+            "physics env not ready: action=create name=allo-openmm"
+          ],
+          "artifacts": {
+            "job_sheet": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/physics_sampling/job_sheet.json"
+          }
+        }
+      },
+      "metrics": {
+        "budget_ns": 50
+      },
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "在给定 CV 与预算下采样到开放样构象候选"
+      ],
+      "iteration": {
+        "round": 1,
+        "stop_reason": "needs_external"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "在给定 CV 与预算下采样到开放样构象候选"
+        ],
+        "claims_forbidden": [
+          "机制已证实"
+        ]
+      },
+      "status": "needs_human",
+      "maturity": "external"
+    },
+    {
+      "packet_id": "glp1r_retrospective_blind_v1:pocket_evaluation:r1",
+      "task_id": "glp1r_retrospective_blind_v1",
+      "stage_id": "pocket_evaluation",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [
+        "full_length_sequence",
+        "public_msa_databases",
+        "membrane_system_setup_protocol"
+      ],
+      "priors_approved": [
+        "information_boundary_sheet",
+        "default_allodesigner_reference_path"
+      ],
+      "tools_considered": [
+        {
+          "tool_id": "dbscan_residue_clustering",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "From AlloDesigner reference path / stage defaults"
+        },
+        {
+          "tool_id": "fpocket",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "From AlloDesigner reference path / stage defaults"
+        },
+        {
+          "tool_id": "deepallo",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "From AlloDesigner reference path / stage defaults"
+        },
+        {
+          "tool_id": "plb",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "From AlloDesigner reference path / stage defaults"
+        }
+      ],
+      "tool_selected": [
+        "dbscan_residue_clustering",
+        "fpocket",
+        "deepallo",
+        "plb"
+      ],
+      "outputs": {
+        "iterations": [],
+        "pipeline": {
+          "status": "partial_completed",
+          "clustering": {
+            "algorithm": "dbscan",
+            "eps": 6.0,
+            "min_samples": 2
+          },
+          "scorers": [
+            "fpocket",
+            "deepallo",
+            "plb"
+          ],
+          "mode": "historical_replay",
+          "commands": [
+            "# Preferred: allo_stepwise frozen handoff + historical_replay agent gate",
+            "cd /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise && ./commands/01_audit_step3_handoff.sh  # optional full evidence",
+            "# Legacy AF_ClaSeq scripts retained under allo_stepwise/source_snapshot/ (do not run as entry)",
+            "# eps~6.0 for DBSCAN when recomputing clusters from ensembles"
+          ],
+          "auto_from_residue_prior": {
+            "source": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv",
+            "n_positive": 119,
+            "residues": [
+              11,
+              15,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              38,
+              41,
+              83,
+              99,
+              100,
+              143,
+              146,
+              147,
+              150,
+              151,
+              153,
+              154,
+              157,
+              175,
+              181,
+              185,
+              186,
+              189,
+              192,
+              199,
+              203,
+              206,
+              207,
+              210,
+              211,
+              214,
+              239,
+              242,
+              243,
+              246,
+              247,
+              248,
+              249,
+              250,
+              251,
+              252,
+              253,
+              255,
+              256,
+              259,
+              260,
+              263,
+              278,
+              281,
+              283,
+              290,
+              293,
+              297,
+              306,
+              307,
+              308,
+              309,
+              312,
+              314,
+              315,
+              318,
+              319,
+              322,
+              326,
+              354,
+              355,
+              357,
+              358,
+              365,
+              369,
+              372,
+              373,
+              374,
+              376,
+              377,
+              380,
+              381,
+              382,
+              383,
+              384,
+              385,
+              389,
+              390,
+              392,
+              393,
+              396,
+              397,
+              400,
+              403,
+              410,
+              411,
+              412,
+              413,
+              414,
+              415,
+              416,
+              417,
+              423,
+              426,
+              445,
+              447,
+              452,
+              455,
+              456,
+              457,
+              462,
+              463,
+              464,
+              465,
+              467,
+              469,
+              476,
+              478,
+              480
+            ],
+            "note": "Geometry clustering/DeepAllo/PLB recompute still optional; historical_replay uses frozen allo_stepwise inputs"
+          },
+          "agent_decision": {
+            "json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/agent_decision.json",
+            "yaml": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/agent_decision.yaml",
+            "n_residues": 14
+          },
+          "artifacts": {
+            "run_chain_sh": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/run_chain.sh",
+            "glp1-deepallo-score-residue_probabilities_top_7.csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/glp1-deepallo-score-residue_probabilities_top_7.csv",
+            "glp1-plb-score-residue_probabilities_top_7.csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/glp1-plb-score-residue_probabilities_top_7.csv",
+            "glp1_historical_holo_cluster_mapped_residues.csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/glp1_historical_holo_cluster_mapped_residues.csv",
+            "agent_decision.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/agent_decision.json",
+            "agent_decision.yaml": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/agent_decision.yaml",
+            "auto_positive_residues.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/auto_positive_residues.json"
+          },
+          "note": "Pocket gate uses allo_stepwise frozen handoff (AUTONOMOUS_ALLOSTERIC_POCKET_AGENT_PROMPT historical_replay)",
+          "env_decision": {
+            "stage_id": "pocket_evaluation",
+            "profile_id": "glp1_allo_core",
+            "specialized": true,
+            "action": "reuse",
+            "env_name": "glp1_allo_core",
+            "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core",
+            "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python",
+            "matched_by": "name+markers",
+            "score": 19.0,
+            "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/environment.yml",
+            "command_prefix": [
+              "conda",
+              "run",
+              "-n",
+              "glp1_allo_core",
+              "--no-capture-output"
+            ],
+            "notes": [
+              "Reuse env 'glp1_allo_core' for profile 'glp1_allo_core' (score=19.0)"
+            ],
+            "probe_details": {
+              "required": {
+                "numpy": true,
+                "pandas": true,
+                "Bio": true,
+                "yaml": true,
+                "sklearn": true,
+                "matplotlib": true,
+                "scipy": true
+              },
+              "optional_import": {},
+              "optional_commands": {
+                "fpocket": false,
+                "colabfold_batch": false
+              },
+              "name_alias_hit": true
+            }
+          }
+        }
+      },
+      "metrics": {},
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "候选口袋已按合同排序，存在不确定性说明"
+      ],
+      "iteration": {
+        "round": 1,
+        "stop_reason": "partial_completed"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "候选口袋已按合同排序，存在不确定性说明"
+        ],
+        "claims_forbidden": [
+          "真实口袋已确认"
+        ]
+      },
+      "status": "completed",
+      "maturity": "external"
+    },
+    {
+      "packet_id": "glp1r_retrospective_blind_v1:candidate_ranking:r1",
+      "task_id": "glp1r_retrospective_blind_v1",
+      "stage_id": "candidate_ranking",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [
+        "full_length_sequence",
+        "public_msa_databases",
+        "membrane_system_setup_protocol"
+      ],
+      "priors_approved": [
+        "information_boundary_sheet",
+        "default_allodesigner_reference_path"
+      ],
+      "tools_considered": [
+        {
+          "tool_id": "glp1r_virtual_screening_protocol",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "From AlloDesigner reference path / stage defaults"
+        },
+        {
+          "tool_id": "vina",
+          "role": "alternative",
+          "decision": "deferred",
+          "rationale": "Available alternative; not selected in default plan"
+        },
+        {
+          "tool_id": "karmadock",
+          "role": "alternative",
+          "decision": "deferred",
+          "rationale": "Available alternative; not selected in default plan"
+        },
+        {
+          "tool_id": "glide",
+          "role": "alternative",
+          "decision": "deferred",
+          "rationale": "Available alternative; not selected in default plan"
+        }
+      ],
+      "tool_selected": [
+        "glp1r_virtual_screening_protocol"
+      ],
+      "outputs": {
+        "iterations": [],
+        "pipeline": {
+          "status": "needs_external",
+          "paper_stage": "structure-based virtual screening",
+          "protocol": [
+            "glp1r_virtual_screening_protocol"
+          ],
+          "alternatives": [
+            "vina",
+            "karmadock",
+            "glide"
+          ],
+          "inputs_from": [
+            "pocket_evaluation",
+            "physics_sampling"
+          ],
+          "claim_boundary": "计算候选物排序，不得宣称实验有效",
+          "expected_outputs": [
+            "ranked_candidates.csv",
+            "poses/",
+            "protocol_version.json"
+          ],
+          "artifacts": {
+            "job_sheet": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/candidate_ranking/job_sheet.json"
+          },
+          "env_decision": {
+            "stage_id": "candidate_ranking",
+            "profile_id": "agent_base",
+            "specialized": false,
+            "action": "use_current",
+            "env_name": "__current__",
+            "env_path": null,
+            "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python",
+            "matched_by": "non_specialized_stage",
+            "score": 1.0,
+            "create_yml": null,
+            "command_prefix": [],
+            "notes": [
+              "No special env required; use current interpreter/tools"
+            ],
+            "probe_details": {}
+          }
+        }
+      },
+      "metrics": {},
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "计算候选物已排序，待实验/专家复核"
+      ],
+      "iteration": {
+        "round": 1,
+        "stop_reason": "needs_external"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "计算候选物已排序，待实验/专家复核"
+        ],
+        "claims_forbidden": [
+          "有效配体/抑制剂已被证实"
+        ]
+      },
+      "status": "needs_human",
+      "maturity": "paper_only"
+    }
+  ],
+  "critic_reports": [
+    {
+      "stage_id": "boundary",
+      "passed": true,
+      "findings": [],
+      "claims_allowed": [
+        "已形成待审批/已审批的信息边界协议"
+      ],
+      "claims_forbidden": [
+        "已发现真实变构口袋",
+        "已证实配体有效"
+      ]
+    },
+    {
+      "stage_id": "residue_prior",
+      "passed": true,
+      "findings": [],
+      "claims_allowed": [
+        "候选残基/区域先验已生成，待后续构象与物理验证"
+      ],
+      "claims_forbidden": [
+        "已确认功能变构位点"
+      ]
+    },
+    {
+      "stage_id": "ensemble_enrichment",
+      "passed": true,
+      "findings": [],
+      "claims_allowed": [
+        "已获得偏好初始构象/纯化 MSA（计算假设）"
+      ],
+      "claims_forbidden": [
+        "已采样到实验证实的开放态"
+      ]
+    },
+    {
+      "stage_id": "physics_sampling",
+      "passed": true,
+      "findings": [],
+      "claims_allowed": [
+        "在给定 CV 与预算下采样到开放样构象候选"
+      ],
+      "claims_forbidden": [
+        "机制已证实"
+      ]
+    },
+    {
+      "stage_id": "pocket_evaluation",
+      "passed": true,
+      "findings": [],
+      "claims_allowed": [
+        "候选口袋已按合同排序，存在不确定性说明"
+      ],
+      "claims_forbidden": [
+        "真实口袋已确认"
+      ]
+    },
+    {
+      "stage_id": "candidate_ranking",
+      "passed": true,
+      "findings": [],
+      "claims_allowed": [
+        "计算候选物已排序，待实验/专家复核"
+      ],
+      "claims_forbidden": [
+        "有效配体/抑制剂已被证实"
+      ]
+    }
+  ],
+  "artifact_manifest": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/artifact_manifest.json",
+  "policy": {
+    "fixed": "stage contracts / scientific boundaries",
+    "open": "tool choice and iteration inside stages",
+    "default_skeleton": "allodesigner_reference_path",
+    "paper_path": "allodesigner_reference_path"
+  },
+  "stage_status": {
+    "boundary": "completed",
+    "residue_prior": "completed",
+    "ensemble_enrichment": "completed",
+    "physics_sampling": "needs_human",
+    "pocket_evaluation": "completed",
+    "candidate_ranking": "needs_human"
+  },
+  "env_decisions": {
+    "boundary": {
+      "stage_id": "boundary",
+      "profile_id": "agent_base",
+      "specialized": false,
+      "action": "use_current",
+      "env_name": "__current__",
+      "env_path": null,
+      "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python",
+      "matched_by": "non_specialized_stage",
+      "score": 1.0,
+      "create_yml": null,
+      "command_prefix": [],
+      "notes": [
+        "No special env required; use current interpreter/tools"
+      ],
+      "probe_details": {}
+    },
+    "residue_prior": {
+      "stage_id": "residue_prior",
+      "profile_id": "allo_pocketminer",
+      "specialized": true,
+      "action": "reuse",
+      "env_name": "allo-pocketminer",
+      "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer",
+      "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/python",
+      "matched_by": "name+markers",
+      "score": 15.5,
+      "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo-pocketminer-environment.yml",
+      "command_prefix": [
+        "conda",
+        "run",
+        "-n",
+        "allo-pocketminer",
+        "--no-capture-output"
+      ],
+      "notes": [
+        "Reuse env 'allo-pocketminer' for profile 'allo_pocketminer' (score=15.5)"
+      ],
+      "probe_details": {
+        "required": {
+          "tensorflow": true,
+          "keras": true,
+          "numpy": true,
+          "sklearn": true,
+          "Bio": true
+        },
+        "optional_import": {
+          "mdtraj": false,
+          "tqdm": true
+        },
+        "optional_commands": {},
+        "name_alias_hit": true
+      }
+    },
+    "ensemble_enrichment": {
+      "stage_id": "ensemble_enrichment",
+      "profile_id": "glp1_allo_core",
+      "specialized": true,
+      "action": "reuse",
+      "env_name": "glp1_allo_core",
+      "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core",
+      "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python",
+      "matched_by": "name+markers",
+      "score": 19.0,
+      "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/environment.yml",
+      "command_prefix": [
+        "conda",
+        "run",
+        "-n",
+        "glp1_allo_core",
+        "--no-capture-output"
+      ],
+      "notes": [
+        "Reuse env 'glp1_allo_core' for profile 'glp1_allo_core' (score=19.0)"
+      ],
+      "probe_details": {
+        "required": {
+          "numpy": true,
+          "pandas": true,
+          "Bio": true,
+          "yaml": true,
+          "sklearn": true,
+          "matplotlib": true,
+          "scipy": true
+        },
+        "optional_import": {},
+        "optional_commands": {
+          "fpocket": false,
+          "colabfold_batch": false
+        },
+        "name_alias_hit": true
+      }
+    },
+    "physics_sampling": {
+      "stage_id": "physics_sampling",
+      "profile_id": "allo_openmm_physics",
+      "specialized": true,
+      "action": "create",
+      "env_name": "allo-openmm",
+      "env_path": null,
+      "python_executable": null,
+      "matched_by": null,
+      "score": 0.0,
+      "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/alphflow-environment.yml",
+      "command_prefix": [],
+      "notes": [
+        "No sufficiently matching env; will create from /lambda/nfs/file2/jrf/AlloDesigner/alphflow-environment.yml",
+        "auto_create=false for this heavy/specialized profile; emitting create plan only"
+      ],
+      "probe_details": {}
+    },
+    "pocket_evaluation": {
+      "stage_id": "pocket_evaluation",
+      "profile_id": "glp1_allo_core",
+      "specialized": true,
+      "action": "reuse",
+      "env_name": "glp1_allo_core",
+      "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core",
+      "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python",
+      "matched_by": "name+markers",
+      "score": 19.0,
+      "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/environment.yml",
+      "command_prefix": [
+        "conda",
+        "run",
+        "-n",
+        "glp1_allo_core",
+        "--no-capture-output"
+      ],
+      "notes": [
+        "Reuse env 'glp1_allo_core' for profile 'glp1_allo_core' (score=19.0)"
+      ],
+      "probe_details": {
+        "required": {
+          "numpy": true,
+          "pandas": true,
+          "Bio": true,
+          "yaml": true,
+          "sklearn": true,
+          "matplotlib": true,
+          "scipy": true
+        },
+        "optional_import": {},
+        "optional_commands": {
+          "fpocket": false,
+          "colabfold_batch": false
+        },
+        "name_alias_hit": true
+      }
+    },
+    "candidate_ranking": {
+      "stage_id": "candidate_ranking",
+      "profile_id": "agent_base",
+      "specialized": false,
+      "action": "use_current",
+      "env_name": "__current__",
+      "env_path": null,
+      "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python",
+      "matched_by": "non_specialized_stage",
+      "score": 1.0,
+      "create_yml": null,
+      "command_prefix": [],
+      "notes": [
+        "No special env required; use current interpreter/tools"
+      ],
+      "probe_details": {}
+    }
+  },
+  "ensure_envs": true
+}

@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     5:
+HEADER 0  - Pocket Score                      : 0.0567
+HEADER 1  - Drug Score                        : 0.0041
+HEADER 2  - Number of alpha spheres           :    16
+HEADER 3  - Mean alpha-sphere radius          : 3.9658
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.7151
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 93.4000
+HEADER 7  - Polarity Score                    :     0
+HEADER 8  - Amino Acid based volume Score     : 5.2000
+HEADER 9  - Pocket volume (Monte Carlo)       : 250.8232
+HEADER 10 - Pocket volume (convex hull)       : 4.1876
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 11.0000
+HEADER 13 - Number of apolar alpha sphere     :    12
+HEADER 14 - Proportion of apolar alpha sphere : 0.7500
+ATOM   6670  CD1 ILE C 409      50.760  65.870  97.970  0.00  0.00           C 0
+ATOM   6614    N MET C 406      53.950  63.280  96.300  0.71  1.09           N 0
+ATOM   6616   CA MET C 406      53.210  62.160  97.000  0.00  0.00           C 0
+ATOM   6618   CB MET C 406      52.830  61.020  96.070  0.00  0.00           C 0
+ATOM   6555   CB PHE C 402      53.450  63.730  90.640  0.00  0.00           C 0
+ATOM   6608  CD2 LEU C 405      52.990  67.910  94.290  0.00  0.00           C 0
+ATOM   6570    O PHE C 402      54.760  63.140  93.370  0.64  2.14           O 0
+ATOM   6602   CG LEU C 405      53.640  67.120  95.480  0.00  0.00           C 0
+ATOM   6599   CB LEU C 405      54.650  66.130  94.960  0.00  0.00           C 0
+ATOM   6625   CE MET C 406      50.140  57.930  97.120  0.00  0.00           C 0
+ATOM   6685  CD1 LEU C 410      50.350  58.870 100.930  0.00  0.00           C 0
+ATOM   6683   CG LEU C 410      50.480  60.320 101.440  0.00  0.00           C 0
+ATOM   6689  CD2 LEU C 410      49.190  60.680 102.010  0.00  0.00           C 0
+ATOM   6621   CG MET C 406      52.020  59.990  96.840  0.00  0.00           C 0
+ATOM   6624   SD MET C 406      51.050  58.830  95.860  0.00  0.00           S 0
+ATOM   6663  CG2 ILE C 409      49.970  64.520 100.600  0.00  0.00           C 0
+TER
+END

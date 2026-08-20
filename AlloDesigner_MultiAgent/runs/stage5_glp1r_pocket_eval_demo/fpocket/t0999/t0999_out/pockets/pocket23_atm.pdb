@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    23:
+HEADER 0  - Pocket Score                      : -0.0544
+HEADER 1  - Drug Score                        : 0.0000
+HEADER 2  - Number of alpha spheres           :    24
+HEADER 3  - Mean alpha-sphere radius          : 4.1188
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5263
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 10.1250
+HEADER 7  - Polarity Score                    :     5
+HEADER 8  - Amino Acid based volume Score     : 4.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 281.2020
+HEADER 10 - Pocket volume (convex hull)       : 3.4172
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 0.0000
+HEADER 13 - Number of apolar alpha sphere     :     1
+HEADER 14 - Proportion of apolar alpha sphere : 0.0417
+ATOM   1664    O PRO B 105      47.870  70.540  42.700  0.00  0.00           O 0
+ATOM   2134    O GLU C 134      50.370  71.040  48.920  0.53  5.36           O 0
+ATOM   1677  NE2 GLN B 106      49.310  73.010  40.980  0.00  0.00           N 0
+ATOM   1658   CB PRO B 105      46.260  72.910  44.450  0.00  0.00           C 0
+ATOM   1737  CE2 TYR B 110      52.520  70.950  41.180  0.00  0.00           C 0
+ATOM   1641  CG1 VAL B 104      48.550  68.320  45.590  0.00  0.00           C 0
+ATOM   1705    O HID B 108      51.070  68.120  42.910  0.67  2.14           O 0
+ATOM   1652   CD PRO B 105      46.620  71.340  46.280  0.00  0.00           C 0
+ATOM   1655   CG PRO B 105      46.270  72.800  45.970  0.00  0.00           C 0
+ATOM   2132  OE2 GLU C 134      53.590  75.170  47.810  0.38  4.29           O 0
+ATOM   2124   CB GLU C 134      53.420  72.180  48.780  0.00  0.00           C 0
+ATOM   1676  OE1 GLN B 106      47.570  74.310  41.200  0.00  0.00           O 0
+ATOM   2082  OD1 ASH B 131      54.750  69.960  44.890  0.68  3.21           O 0
+ATOM   2142   SG CYS C 135      52.100  68.030  47.920  0.00  0.00           S 0
+ATOM   2083  OD2 ASH B 131      55.740  71.750  45.820  0.62  7.50           O 0
+ATOM   1739  CD2 TYR B 110      53.810  70.860  41.640  0.00  0.00           C 0
+TER
+END

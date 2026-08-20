@@ -1,0 +1,2 @@
+symlink_was: reason_glp1r_demo_v1
+points_to: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/reason_glp1r_demo_v1

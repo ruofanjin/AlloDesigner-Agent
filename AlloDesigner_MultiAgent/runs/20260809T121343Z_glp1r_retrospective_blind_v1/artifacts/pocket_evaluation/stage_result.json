@@ -1,0 +1,26 @@
+{
+  "status": "partial_seeded",
+  "clustering": {
+    "algorithm": "dbscan",
+    "eps": 6.0,
+    "min_samples": 2
+  },
+  "scorers": [
+    "fpocket",
+    "deepallo",
+    "plb"
+  ],
+  "commands": [
+    "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 4_postgrasp_clustering_pocketminer_apo_dir_step3.py  # eps~6.0",
+    "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 6_inference_case_pocketminer_cluster_to_deepallo_run.py",
+    "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 7_plb_calculation_pocketminer_apo_dir_step3.py",
+    "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 6.1_calculate_apo_pocketminer_cluster_deepallo_score.py",
+    "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 7.1_calculate_apo_pocketminer_cluster_plb_score.py"
+  ],
+  "artifacts": {
+    "run_chain_sh": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/run_chain.sh",
+    "glp1-deepallo-score-residue_probabilities_top_7.csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/glp1-deepallo-score-residue_probabilities_top_7.csv",
+    "glp1-plb-score-residue_probabilities_top_7.csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/glp1-plb-score-residue_probabilities_top_7.csv"
+  },
+  "note": "Full eval needs AF_ClaSeq case directory + fpocket + DeepAllo env"
+}

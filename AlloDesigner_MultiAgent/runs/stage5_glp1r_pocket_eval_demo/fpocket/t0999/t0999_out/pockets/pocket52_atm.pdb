@@ -1,0 +1,64 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    52:
+HEADER 0  - Pocket Score                      : -0.3398
+HEADER 1  - Drug Score                        : 0.1372
+HEADER 2  - Number of alpha spheres           :    52
+HEADER 3  - Mean alpha-sphere radius          : 3.8731
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5033
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 36.2667
+HEADER 7  - Polarity Score                    :     5
+HEADER 8  - Amino Acid based volume Score     : 3.9333
+HEADER 9  - Pocket volume (Monte Carlo)       : 750.5095
+HEADER 10 - Pocket volume (convex hull)       : 284.1835
+HEADER 11 - Charge Score                      :     2
+HEADER 12 - Local hydrophobic density Score   : 24.4000
+HEADER 13 - Number of apolar alpha sphere     :    35
+HEADER 14 - Proportion of apolar alpha sphere : 0.6731
+ATOM   5732    O LYS C 351      48.660  51.580 113.640  0.00  0.00           O 0
+ATOM   5711    N LYS C 351      46.180  50.120 113.340  0.70  1.09           N 0
+ATOM   5807   SG CYS C 356      51.450  51.170 112.040  0.00  0.00           S 0
+ATOM   5718   CG LYS C 351      47.550  49.550 115.980  0.00  0.00           C 0
+ATOM   5707   SG CYS C 350      45.880  49.780 110.080  0.00  0.00           S 0
+ATOM   5649    O ALA C 346      41.590  44.680 110.390  0.60  2.14           O 0
+ATOM   5584   CG LYS C 343      46.240  43.630 106.530  0.00  0.00           C 0
+ATOM   5690   CG MET C 349      43.190  44.000 113.280  0.00  0.00           C 0
+ATOM   5693   SD MET C 349      43.830  42.280 113.370  0.00  0.00           S 0
+ATOM   5644   CB ALA C 346      41.290  41.960 109.430  0.00  0.00           C 0
+ATOM   5704   CB CYS C 350      44.540  48.750 110.800  0.00  0.00           C 0
+ATOM   5581   CB LYS C 343      45.120  44.390 105.810  0.00  0.00           C 0
+ATOM   5598    O LYS C 343      42.020  45.280 106.790  0.70  3.21           O 0
+ATOM   5986   CG PRO C 367      51.860  48.490  97.980  0.00  0.00           C 0
+ATOM   5544  CG2 VAL C 340      47.730  44.960 100.090  0.00  0.00           C 0
+ATOM   4252  CD1 LEU C 264      52.230  43.680 102.290  0.00  0.00           C 0
+ATOM   5929    O LEU C 363      51.610  50.440 100.730  0.52  7.50           O 0
+ATOM   5475  CG1 VAL C 336      51.460  43.220  98.270  0.00  0.00           C 0
+ATOM   5920  CD1 LEU C 363      53.420  48.300 103.370  0.00  0.00           C 0
+ATOM   5918   CG LEU C 363      52.500  49.550 103.700  0.00  0.00           C 0
+ATOM   5699    O MET C 349      44.770  47.390 114.890  0.39  2.14           O 0
+ATOM   5702   CA CYS C 350      44.830  48.410 112.240  0.00  0.00           C 0
+ATOM   5700    N CYS C 350      43.810  47.450 112.750  0.00  0.00           N 0
+ATOM   5694   CE MET C 349      45.570  42.420 113.880  0.00  0.00           C 0
+ATOM   5924  CD2 LEU C 363      52.020  49.350 105.140  0.00  0.00           C 0
+ATOM   5936  CG2 THR C 364      48.960  53.750 101.630  0.00  0.00           C 0
+ATOM   5603   CB LEU C 344      40.720  45.920 102.800  0.00  0.00           C 0
+ATOM   5540  CG1 VAL C 340      45.460  45.750  99.810  0.00  0.00           C 0
+ATOM   5612  CD2 LEU C 344      39.950  47.120 100.850  0.00  0.00           C 0
+ATOM   5608  CD1 LEU C 344      39.820  48.390 102.860  0.00  0.00           C 0
+ATOM   5654   CB ASN C 347      39.810  47.800 108.170  0.00  0.00           C 0
+ATOM   5549    O VAL C 340      43.870  44.250 102.630  0.59  1.07           O 0
+ATOM   5599    N LEU C 344      42.080  44.980 104.570  0.70  1.09           N 0
+ATOM   5601   CA LEU C 344      40.870  45.810 104.350  0.00  0.00           C 0
+ATOM   5536   CA VAL C 340      45.990  43.890 101.480  0.00  0.00           C 0
+ATOM   5587   CD LYS C 343      47.660  44.170 106.080  0.00  0.00           C 0
+ATOM   5593   NZ LYS C 343      48.610  44.870 108.300  0.00  0.00           N 0
+ATOM   5590   CE LYS C 343      48.830  44.120 107.040  0.00  0.00           C 0
+ATOM   4256  CD2 LEU C 264      52.220  44.360 104.660  0.00  0.00           C 0
+ATOM   5579   CA LYS C 343      43.730  43.750 106.030  0.00  0.00           C 0
+ATOM   5577    N LYS C 343      43.510  42.510 105.280  0.73  1.09           N 0
+ATOM   5573   OG SER C 342      42.810  38.870 105.840  0.55  6.43           O 0
+TER
+END

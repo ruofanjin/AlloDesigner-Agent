@@ -1,0 +1,26 @@
+iterative_shuffling:
+  # The GLP1 reference directory contains completed Iteration_1 through Iteration_7.
+  iteration_indices: [1, 2, 3, 4, 5, 6, 7]
+  shuffle_indices: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  query_header: "6x18_chianR_R"
+  coverage_threshold: 0.8
+  expected_filtered_record_count: 986
+  random_seed: 42
+  seq_num_per_shuffle: 16
+  iteration_dir_template: "{work_dir}/01_iterative_shuffling/Iteration_{iteration}"
+  raw_input_a3m: "{root}/inputs/6x18_chianR_R.a3m"
+  filtered_input_a3m: "{work_dir}/01_iterative_shuffling/filtered_sequences.a3m"
+  combined_iteration_a3m_template: "{work_dir}/01_iterative_shuffling/Iteration_{iteration}/combined_filtered_iteration_{iteration}.a3m"
+  enrichment:
+    direction: "lower"
+    default_quantile: 0.1
+    quantile_by_iteration:
+      "1": 0.2
+      "2": 0.2
+  combine_for_mfold:
+    # This reproduces the historical 759-sequence M-fold source exactly.
+    iteration_indices: [1, 2, 3, 4, 5]
+    max_distance_exclusive: 5.0
+    expected_unique_sequence_count: 759
+    output_a3m: "{work_dir}/01_iterative_shuffling/combined_filtered_all_iterations.a3m"
+    selection_manifest_csv: "{work_dir}/01_iterative_shuffling/combined_filtered_all_iterations_selection.csv"

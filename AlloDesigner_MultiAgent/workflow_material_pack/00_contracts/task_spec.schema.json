@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://allodesigner.local/schemas/task_spec.schema.json",
+  "title": "AlloDesignerAgentTaskSpec",
+  "type": "object",
+  "required": ["task_id", "target", "track", "stages_enabled"],
+  "properties": {
+    "task_id": { "type": "string" },
+    "target": {
+      "type": "object",
+      "required": ["name", "sequence_ref"],
+      "properties": {
+        "name": { "type": "string" },
+        "uniprot": { "type": "string" },
+        "sequence_ref": { "type": "string" },
+        "organism": { "type": "string" }
+      }
+    },
+    "track": {
+      "type": "string",
+      "enum": ["retrospective_blind", "retrospective_informed", "exploratory"]
+    },
+    "plan_id": {
+      "type": "string",
+      "default": "allodesigner_reference_path"
+    },
+    "stages_enabled": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "boundary",
+          "residue_prior",
+          "ensemble_enrichment",
+          "physics_sampling",
+          "pocket_evaluation",
+          "candidate_ranking"
+        ]
+      },
+      "minItems": 1
+    },
+    "allowed_priors": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "forbidden_information": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "answer_store_ref": {
+      "type": "string",
+      "description": "Only for evaluation side; never injected into blind runtime."
+    },
+    "human_approvals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item", "approver", "status"],
+        "properties": {
+          "item": { "type": "string" },
+          "approver": { "type": "string" },
+          "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+          "timestamp": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "max_stage_iterations": { "type": "integer", "minimum": 1 },
+        "max_walltime_hours": { "type": "number" }
+      }
+    },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": true
+}

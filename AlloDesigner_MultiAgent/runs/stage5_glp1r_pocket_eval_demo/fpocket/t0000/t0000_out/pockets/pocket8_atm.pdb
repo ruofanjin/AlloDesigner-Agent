@@ -1,0 +1,43 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     8:
+HEADER 0  - Pocket Score                      : 0.0130
+HEADER 1  - Drug Score                        : 0.0005
+HEADER 2  - Number of alpha spheres           :    28
+HEADER 3  - Mean alpha-sphere radius          : 3.8510
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4673
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 14.5455
+HEADER 7  - Polarity Score                    :     5
+HEADER 8  - Amino Acid based volume Score     : 3.8182
+HEADER 9  - Pocket volume (Monte Carlo)       : 251.0538
+HEADER 10 - Pocket volume (convex hull)       : 16.7975
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 9.0000
+HEADER 13 - Number of apolar alpha sphere     :    10
+HEADER 14 - Proportion of apolar alpha sphere : 0.3571
+ATOM   1480   CB CYS B  94      49.180  62.450  42.360  0.00  0.00           C 0
+ATOM   1488   CD PRO B  95      51.320  61.660  44.730  0.00  0.00           C 0
+ATOM   1710   CB VAL B 109      53.200  64.190  42.250  0.00  0.00           C 0
+ATOM   1641  CG1 VAL B 104      47.410  65.520  42.950  0.00  0.00           C 0
+ATOM   2082  OD1 ASH B 131      54.080  67.960  42.890  0.68  6.43           O 0
+ATOM   1726   CB TYR B 110      55.090  68.560  38.740  0.00  0.00           C 0
+ATOM   1739  CD2 TYR B 110      52.540  68.210  38.260  0.00  0.00           C 0
+ATOM   2083  OD2 ASH B 131      54.980  69.840  43.610  0.00  0.00           O 0
+ATOM   1737  CE2 TYR B 110      51.500  68.010  37.290  0.00  0.00           C 0
+ATOM   1664    O PRO B 105      46.830  67.510  39.610  0.00  0.00           O 0
+ATOM   1676  OE1 GLN B 106      47.770  69.860  36.920  0.00  0.00           O 0
+ATOM   1658   CB PRO B 105      45.900  70.000  40.910  0.00  0.00           C 0
+ATOM   2134    O GLU C 134      50.730  71.860  46.010  0.00  0.00           O 0
+ATOM   2137   CA CYS C 135      49.970  69.400  47.140  0.00  0.00           C 0
+ATOM   1705    O HID B 108      50.090  65.690  40.670  0.73  5.36           O 0
+ATOM   2139   CB CYS C 135      50.410  67.940  47.240  0.00  0.00           C 0
+ATOM   1655   CG PRO B 105      45.710  70.310  42.400  0.00  0.00           C 0
+ATOM   1652   CD PRO B 105      45.670  68.980  43.070  0.00  0.00           C 0
+ATOM   2142   SG CYS C 135      49.180  66.730  46.940  0.00  0.00           S 0
+ATOM   2086    O ASH B 131      53.990  67.230  45.950  0.00  0.00           O 0
+ATOM   1716  CG2 VAL B 109      54.010  64.800  43.320  0.00  0.00           C 0
+TER
+END

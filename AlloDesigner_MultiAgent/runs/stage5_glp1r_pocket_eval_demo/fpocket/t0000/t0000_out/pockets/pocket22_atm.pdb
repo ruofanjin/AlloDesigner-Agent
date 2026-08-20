@@ -1,0 +1,48 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    22:
+HEADER 0  - Pocket Score                      : -0.0968
+HEADER 1  - Drug Score                        : 0.0005
+HEADER 2  - Number of alpha spheres           :    34
+HEADER 3  - Mean alpha-sphere radius          : 3.7817
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4732
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 7.8000
+HEADER 7  - Polarity Score                    :     7
+HEADER 8  - Amino Acid based volume Score     : 3.1000
+HEADER 9  - Pocket volume (Monte Carlo)       : 378.2592
+HEADER 10 - Pocket volume (convex hull)       : 32.7580
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 1.3333
+HEADER 13 - Number of apolar alpha sphere     :     3
+HEADER 14 - Proportion of apolar alpha sphere : 0.0882
+ATOM   1992    O SER B 126      69.690  66.620  51.860  0.55  8.57           O 0
+ATOM   1995   CA LEU B 127      67.150  66.610  52.890  0.00  0.00           C 0
+ATOM   2013   CD PRO B 128      65.950  64.570  51.090  0.00  0.00           C 0
+ATOM   3542  NE2 HID C 221      69.240  60.590  54.640  0.62  8.75           N 0
+ATOM   2006  CD2 LEU B 127      66.580  64.860  55.430  0.00  0.00           C 0
+ATOM   3559  NE2 GLN C 222      72.270  61.670  52.900  0.00  0.00           N 0
+ATOM   3496    N GLN C 219      70.360  63.530  59.890  0.63  2.19           N 0
+ATOM   3461    O SER C 215      70.390  67.560  65.190  0.00  0.00           O 0
+ATOM   3500   CB GLN C 219      72.760  63.840  59.990  0.00  0.00           C 0
+ATOM   3490   CB ALA C 218      67.450  65.090  60.020  0.00  0.00           C 0
+ATOM   3468  CG2 THR C 216      73.790  64.920  64.170  0.00  0.00           C 0
+ATOM   3464   CA THR C 216      71.290  64.900  64.500  0.00  0.00           C 0
+ATOM   1989   OG SER B 126      72.140  67.370  54.080  0.57  2.14           O 0
+ATOM   3540  CE1 HID C 221      69.200  61.180  55.860  0.00  0.00           C 0
+ATOM   3495    O ALA C 218      69.040  62.920  58.170  0.61  1.07           O 0
+ATOM   2000   CG LEU B 127      66.170  66.320  55.320  0.00  0.00           C 0
+ATOM   1993    N LEU B 127      68.240  67.510  53.350  0.00  0.00           N 0
+ATOM   1978   OG SER B 125      67.890  69.760  55.740  0.00  0.00           O 0
+ATOM   3498   CA GLN C 219      71.600  62.940  59.380  0.00  0.00           C 0
+ATOM   3507  OE1 GLN C 219      74.460  63.780  57.500  0.74  3.21           O 0
+ATOM   3494    C ALA C 218      69.120  63.350  59.350  0.00  0.00           C 0
+ATOM   1980    C SER B 125      70.160  70.860  54.050  0.00  0.00           C 0
+ATOM   1982    N SER B 126      70.040  69.540  53.980  0.56  2.19           N 0
+ATOM   1973   CA SER B 125      69.280  71.650  55.080  0.00  0.00           C 0
+ATOM   3558  OE1 GLN C 222      73.840  62.540  54.040  0.75  5.36           O 0
+ATOM   3557   CD GLN C 222      73.000  61.730  53.980  0.00  0.00           C 0
+TER
+END

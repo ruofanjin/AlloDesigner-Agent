@@ -1,0 +1,37 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    15:
+HEADER 0  - Pocket Score                      : -0.0278
+HEADER 1  - Drug Score                        : 0.0017
+HEADER 2  - Number of alpha spheres           :    16
+HEADER 3  - Mean alpha-sphere radius          : 4.0407
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.7398
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 15.0000
+HEADER 7  - Polarity Score                    :     3
+HEADER 8  - Amino Acid based volume Score     : 5.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 234.8939
+HEADER 10 - Pocket volume (convex hull)       : 3.7253
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 11.0000
+HEADER 13 - Number of apolar alpha sphere     :    12
+HEADER 14 - Proportion of apolar alpha sphere : 0.7500
+ATOM   7083    N GLU D 432      63.860  81.320 118.360  0.71  1.09           N 0
+ATOM   7077  CD2 LEU D 431      63.450  78.530 122.030  0.00  0.00           C 0
+ATOM   7085   CA GLU D 432      64.920  82.230 117.800  0.00  0.00           C 0
+ATOM   7071   CG LEU D 431      62.830  79.870 121.530  0.00  0.00           C 0
+ATOM   7087   CB GLU D 432      65.930  81.500 116.910  0.00  0.00           C 0
+ATOM   7141   CG HID D 435      64.840  85.150 122.020  0.00  0.00           C 0
+ATOM   7147  CD2 HID D 435      65.180  85.340 123.320  0.00  0.00           C 0
+ATOM   7146  NE2 HID D 435      64.220  84.780 124.210  0.67  3.28           N 0
+ATOM   7142  ND1 HID D 435      63.630  84.450 122.060  0.00  0.00           N 0
+ATOM   7015    O ARG D 428      63.750  78.390 117.350  0.58  1.07           O 0
+ATOM   7082    O LEU D 431      63.070  82.900 119.890  0.00  0.00           O 0
+ATOM   7073  CD1 LEU D 431      61.920  80.450 122.610  0.00  0.00           C 0
+ATOM   7144  CE1 HID D 435      63.310  84.260 123.400  0.00  0.00           C 0
+ATOM   6999   CG ARG D 428      64.820  75.300 118.400  0.00  0.00           C 0
+ATOM   7094  OE1 GLU D 432      67.850  80.340 115.220  0.59  3.21           O 0
+TER
+END

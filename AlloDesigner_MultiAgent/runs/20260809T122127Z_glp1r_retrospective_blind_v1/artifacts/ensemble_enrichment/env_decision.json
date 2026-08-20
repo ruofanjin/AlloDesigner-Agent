@@ -1,0 +1,33 @@
+{
+  "stage_id": "ensemble_enrichment",
+  "profile_id": "allo_alphaflow",
+  "specialized": true,
+  "action": "reuse",
+  "env_name": "esmfold",
+  "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/esmfold",
+  "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/esmfold/bin/python",
+  "matched_by": "name+markers",
+  "score": 9.0,
+  "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/alphflow-environment.yml",
+  "command_prefix": [
+    "conda",
+    "run",
+    "-n",
+    "esmfold",
+    "--no-capture-output"
+  ],
+  "notes": [
+    "Reuse env 'esmfold' for profile 'allo_alphaflow' (score=9.0)"
+  ],
+  "probe_details": {
+    "required": {
+      "torch": true,
+      "numpy": true
+    },
+    "optional_import": {},
+    "optional_commands": {
+      "mmseqs": false
+    },
+    "name_alias_hit": true
+  }
+}

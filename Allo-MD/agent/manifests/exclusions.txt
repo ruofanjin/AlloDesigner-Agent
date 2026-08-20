@@ -1,0 +1,24 @@
+# These paths from the historical project are intentionally not executable.
+GLP1/interation1_shuffle8_group37/gromacs/plumed_distance_atoms_wrong/**
+GLP1/interation1_shuffle8_group37/gromacs/plumed_sasa_atoms_wrong/**
+GLP1/interation1_shuffle8_group37/gromacs/plumed_sasa/ce/**
+# Source-ambiguous analysis trees: no matching PLUMED DAT/log provenance.
+GLP1/interation1_shuffle8_group37/deal_md/sasa_allosteric_site/50ns/**
+GLP1/interation1_shuffle8_group37/deal_md/sasa_holo_8A_pocket/50ns/**
+GLP1/interation1_shuffle8_group37/mdpocket/plumed_sasa/50ns/**
+GLP1/interation1_shuffle8_group37/mdpocket/plumed_sasa/8.0A_pocket/50ns/**
+**/#*#
+**/bck.*
+**/* copy.*
+**/mdout.mdp
+**/*.lock
+
+# Generated state/results are never immutable bundle inputs.
+**/*.tpr
+**/*.cpt
+**/*.xtc
+**/*.trr
+**/*.edr
+**/*.log
+**/HILLS*
+**/COLVAR*

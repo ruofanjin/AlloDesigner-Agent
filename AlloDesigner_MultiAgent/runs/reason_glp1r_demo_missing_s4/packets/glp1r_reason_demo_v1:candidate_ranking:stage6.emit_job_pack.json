@@ -1,0 +1,135 @@
+{
+  "packet_id": "glp1r_reason_demo_v1:candidate_ranking:stage6.emit_job_pack",
+  "task_id": "glp1r_reason_demo_v1",
+  "stage_id": "candidate_ranking",
+  "stage_contract_version": "1.0.0",
+  "task_track": "retrospective_blind",
+  "inputs_frozen": [],
+  "priors_approved": [],
+  "tools_considered": [
+    {
+      "tool_id": "vina",
+      "role": "alternative",
+      "decision": "selected",
+      "rationale": "Accepted external return engine."
+    },
+    {
+      "tool_id": "glide",
+      "role": "alternative",
+      "decision": "selected",
+      "rationale": "Accepted external return engine."
+    },
+    {
+      "tool_id": "glp1r_virtual_screening_protocol",
+      "role": "reuse",
+      "decision": "deferred",
+      "rationale": "Paper cascade reference only."
+    },
+    {
+      "tool_id": "stage6.emit_job_pack",
+      "role": "adapt",
+      "decision": "selected",
+      "rationale": "Executed via ToolRouter"
+    }
+  ],
+  "tool_selected": [
+    "vina",
+    "glide",
+    "stage6.emit_job_pack"
+  ],
+  "outputs": {
+    "job_pack_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded",
+    "job_sheet": {
+      "status": "needs_external",
+      "schema_version": "1.0.0",
+      "request_id": "stage6_glp1r_ranking_seeded_v1",
+      "stage_id": "candidate_ranking",
+      "paper_stage": "structure-based virtual screening",
+      "product_maturity": "partial/seeded",
+      "protocol": [
+        "vina",
+        "glide"
+      ],
+      "paper_protocol_reference": [
+        "glp1r_virtual_screening_protocol"
+      ],
+      "alternatives": [
+        "karmadock"
+      ],
+      "inputs_from": [
+        "pocket_evaluation",
+        "physics_sampling"
+      ],
+      "inputs": {
+        "pocket_id": "pocket_01",
+        "residues": [
+          354,
+          355,
+          357,
+          358,
+          365,
+          369,
+          410,
+          411,
+          412,
+          413,
+          414,
+          415,
+          416,
+          417
+        ],
+        "receptor_pdb": "inputs/receptor.pdb",
+        "library_file": "inputs/library_seed.smi",
+        "n_library_seed": 15,
+        "pocket_box": {
+          "center_x": 53.564,
+          "center_y": 58.499,
+          "center_z": 108.802,
+          "size_x": 22.0,
+          "size_y": 22.0,
+          "size_z": 22.0
+        }
+      },
+      "external_runners": {
+        "vina": "external/vina/README.md",
+        "glide": "external/glide/README.md"
+      },
+      "return_schema": "../../schemas/stage6_vs_return.schema.json",
+      "ingest_script": "scripts/ingest_return.py",
+      "claim_boundary": "计算候选物排序，不得宣称实验有效",
+      "expected_outputs": [
+        "return.json",
+        "ranked_candidates.csv",
+        "poses/",
+        "protocol_version.json",
+        "score_distribution.json"
+      ]
+    },
+    "vina_readme": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/external/vina/README.md",
+    "glide_readme": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/external/glide/README.md"
+  },
+  "metrics": {},
+  "qc_flags": [],
+  "human_interventions": [],
+  "claims_allowed": [
+    "Stage6 作业单 + Vina/Glide 回传接口已 seeded"
+  ],
+  "iteration": {
+    "stop_reason": "node_executed"
+  },
+  "critic": {
+    "passed": true,
+    "findings": [],
+    "claims_allowed": [
+      "计算候选物已排序，待实验/专家复核",
+      "Stage6 作业单 + Vina/Glide 回传接口已 seeded（partial/seeded）"
+    ],
+    "claims_forbidden": [
+      "有效配体/抑制剂已被证实",
+      "Glide/Vina 全库虚筛已完成",
+      "本机 seeded 示例分数来自真实对接"
+    ]
+  },
+  "status": "completed",
+  "maturity": "external"
+}

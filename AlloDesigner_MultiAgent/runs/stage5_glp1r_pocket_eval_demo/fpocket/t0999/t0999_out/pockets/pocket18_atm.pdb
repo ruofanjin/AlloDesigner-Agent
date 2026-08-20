@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    18:
+HEADER 0  - Pocket Score                      : -0.0415
+HEADER 1  - Drug Score                        : 0.0015
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 4.4702
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.8272
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 61.6000
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 4.6000
+HEADER 9  - Pocket volume (Monte Carlo)       : 250.5291
+HEADER 10 - Pocket volume (convex hull)       : 1.5246
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 13.0000
+HEADER 13 - Number of apolar alpha sphere     :    14
+HEADER 14 - Proportion of apolar alpha sphere : 0.9333
+ATOM   6453  CG2 THR C 395      49.000  56.450  84.790  0.00  0.00           C 0
+ATOM   6449   CA THR C 395      50.130  58.260  83.360  0.00  0.00           C 0
+ATOM   6457  OG1 THR C 395      47.890  57.470  83.020  0.87  4.29           O 0
+ATOM   6441  CE2 PHE C 394      47.840  63.190  82.850  0.00  0.00           C 0
+ATOM   6443  CD2 PHE C 394      48.420  62.080  82.180  0.00  0.00           C 0
+ATOM   6513   CG PHE C 399      51.970  57.230  89.490  0.00  0.00           C 0
+ATOM   6510   CB PHE C 399      52.450  57.790  88.140  0.00  0.00           C 0
+ATOM   6522  CD2 PHE C 399      51.780  57.980  90.630  0.00  0.00           C 0
+ATOM   6460    O THR C 395      51.810  58.200  84.920  0.00  0.00           O 0
+ATOM   6499   CB SER C 398      51.970  62.240  85.200  0.00  0.00           C 0
+ATOM   6504    C SER C 398      53.480  61.100  86.830  0.00  0.00           C 0
+ATOM   6505    O SER C 398      53.940  61.680  87.800  0.00  0.00           O 0
+ATOM   6559  CD1 PHE C 402      52.950  64.770  88.470  0.00  0.00           C 0
+ATOM   6506    N PHE C 399      53.150  59.860  86.940  0.71  1.09           N 0
+ATOM   6508   CA PHE C 399      53.190  59.140  88.210  0.00  0.00           C 0
+ATOM   6555   CB PHE C 402      53.450  63.730  90.640  0.00  0.00           C 0
+TER
+END

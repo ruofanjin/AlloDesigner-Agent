@@ -1,0 +1,35 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    11:
+HEADER 0  - Pocket Score                      : -0.0033
+HEADER 1  - Drug Score                        : 0.0006
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 3.5635
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4293
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 41.6000
+HEADER 7  - Polarity Score                    :     1
+HEADER 8  - Amino Acid based volume Score     : 2.8000
+HEADER 9  - Pocket volume (Monte Carlo)       : 113.8748
+HEADER 10 - Pocket volume (convex hull)       : 1.2004
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 9.0000
+HEADER 13 - Number of apolar alpha sphere     :    10
+HEADER 14 - Proportion of apolar alpha sphere : 0.6667
+ATOM    988  CG2 THR A  60      63.070  50.260  38.850  0.00  0.00           C 0
+ATOM    982    N THR A  60      60.900  51.590  37.530  0.00  0.00           N 0
+ATOM    980    C LEU A  59      60.270  52.760  37.410  0.00  0.00           C 0
+ATOM   1175   CD CARGA  73      63.280  55.840  36.820  0.00  0.00           C 0
+ATOM    910    O CYS A  55      61.310  52.390  42.240  0.68  8.57           O 0
+ATOM   1187    C CARGA  73      67.220  56.210  39.930  0.00  0.00           C 0
+ATOM   1189  OXT CARGA  73      66.730  56.330  41.100  0.64  6.43           O 0
+ATOM   1188    O CARGA  73      68.280  55.560  39.650  0.00  0.00           O 0
+ATOM    970   CG LEU A  59      59.910  55.440  39.030  0.00  0.00           C 0
+ATOM   1169   CB CARGA  73      65.300  56.010  38.260  0.00  0.00           C 0
+ATOM    976  CD2 LEU A  59      59.860  56.360  40.220  0.00  0.00           C 0
+ATOM    907   SG CYS A  55      61.100  55.430  43.660  0.00  0.00           S 0
+ATOM   1190    N NTHRB  74      64.400  58.310  41.870  0.00  0.00           N 0
+TER
+END

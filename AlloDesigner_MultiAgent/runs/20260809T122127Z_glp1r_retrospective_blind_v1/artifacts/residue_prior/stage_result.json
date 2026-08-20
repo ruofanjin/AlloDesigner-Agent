@@ -1,0 +1,27 @@
+{
+  "status": "blocked",
+  "reason": "env_create_deferred",
+  "commands": [
+    "# env_action=create profile=allo_pocketminer env=allo-pocketminer",
+    "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo-PocketMiner && python case_predict.py",
+    "# threshold=0.7, target=GLP1R"
+  ],
+  "env_decision": {
+    "stage_id": "residue_prior",
+    "profile_id": "allo_pocketminer",
+    "specialized": true,
+    "action": "create",
+    "env_name": "allo-pocketminer",
+    "env_path": null,
+    "python_executable": null,
+    "matched_by": null,
+    "score": 0.0,
+    "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/allo-pocketminer-environment.yml",
+    "command_prefix": [],
+    "notes": [
+      "No sufficiently matching env; will create from /lambda/nfs/file2/jrf/AlloDesigner/allo-pocketminer-environment.yml",
+      "create_if_missing deferred (--no-ensure-envs); emitting create plan only"
+    ],
+    "probe_details": {}
+  }
+}

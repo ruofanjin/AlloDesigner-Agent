@@ -1,0 +1,12 @@
+component	required_by	version_or_constraint	bundled	validation_status
+GROMACS	all simulation and GROMACS analysis	2024.3 mixed/external-MPI/OpenMP/PLUMED patch	source archive	validated by installer and doctor on target
+PLUMED	distance and SASA stages	2.9.3 shared; sasa module enabled	source archive	validated by installer, SASA regtests, and doctor on target
+OpenMPI	GROMACS and MPI-enabled PLUMED	5.0.1	source archive	must use one ABI across stack
+FFTW	mixed-precision GROMACS	3.3.10 float/libfftw3f	source archive	make check and link validation on target
+CMake	GROMACS build	>=3.18.4; bundled 3.31.5 is x86_64 only	x86_64 binary archive	use architecture-appropriate CMake elsewhere
+CUDA	equilibration and all production MD stages	>=11 for GROMACS 2024.3; driver/toolkit/host compiler compatible	no	required externally; agent enforces GMX_DEVICE_MODE=gpu and doctor validation; steep minimization uses automatic placement
+MDpocket/fpocket	distance and SASA standardized pocket analysis	historical version unrecoverable; deployment pin 4.2.3 commit 4bb0d8447f62fee77e2c3c29f54b5fcaf5e2c066 + patch sha256 6ed7a0e8280f10ae0d42c42d771b4a3083e7891d007898bc19f7148bb433481d; NetCDF C required	fetched from official GitHub then checksum-pinned local patch applied	installer records patch/binary SHA/BUILDINFO and validates build/CLI/XTC declaration plus official 10-PDB discovery/selected smoke; prepare freezes hashes; stages validate exact frame count, 42-column schema, finite volume and non-finite-column QC
+Python	agentctl and tools	>=3.8; standard library core	no	compile and self-test on target
+matplotlib	optional pocket-volume PNG	compatible with target Python	no	optional; CSV remains mandatory
+Slurm	scheduler template	site-provided	no	optional; render before submission
+Bash and GNU userland	agent stages and deployment scripts	Bash >=4.3; GNU coreutils/realpath/sha256sum on Linux	no	checked by self-test; use a compatible execution node

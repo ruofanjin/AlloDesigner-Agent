@@ -1,0 +1,158 @@
+{
+  "packet_id": "glp1r_retrospective_blind_v1:ensemble_enrichment:r4",
+  "task_id": "glp1r_retrospective_blind_v1",
+  "stage_id": "ensemble_enrichment",
+  "stage_contract_version": "1.0.0",
+  "task_track": "retrospective_blind",
+  "inputs_frozen": [
+    "full_length_sequence",
+    "public_msa_databases",
+    "membrane_system_setup_protocol"
+  ],
+  "priors_approved": [
+    "information_boundary_sheet",
+    "default_allodesigner_reference_path"
+  ],
+  "tools_considered": [
+    {
+      "tool_id": "alphaflow",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "From AlloDesigner reference path / stage defaults"
+    },
+    {
+      "tool_id": "af_claseq",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "From AlloDesigner reference path / stage defaults"
+    },
+    {
+      "tool_id": "colabfold_msa_subsample",
+      "role": "benchmark",
+      "decision": "benchmark_only",
+      "rationale": "Benchmark control; reported separately"
+    }
+  ],
+  "tool_selected": [
+    "alphaflow",
+    "af_claseq"
+  ],
+  "outputs": {
+    "iterations": [
+      {
+        "outputs": {
+          "mode": "dry_run_multi_round",
+          "tools": [
+            "alphaflow",
+            "af_claseq"
+          ],
+          "planned_scripts": [
+            "../AlphaFlow/1-mmseqs_search_helper.py",
+            "../Allo_af_claseq/11_sequence_voting.py",
+            "../Allo_af_claseq/12_recompile.py"
+          ],
+          "retain_top_fraction": 0.2
+        },
+        "metrics": {
+          "round": 1,
+          "top10_percent_mean_distance": 5.35,
+          "preference_metric": "cluster_center_to_fpocket_distance"
+        },
+        "stop": false,
+        "stop_reason": "max_rounds"
+      },
+      {
+        "outputs": {
+          "mode": "dry_run_multi_round",
+          "tools": [
+            "alphaflow",
+            "af_claseq"
+          ],
+          "planned_scripts": [
+            "../AlphaFlow/1-mmseqs_search_helper.py",
+            "../Allo_af_claseq/11_sequence_voting.py",
+            "../Allo_af_claseq/12_recompile.py"
+          ],
+          "retain_top_fraction": 0.2
+        },
+        "metrics": {
+          "round": 2,
+          "top10_percent_mean_distance": 5.2,
+          "preference_metric": "cluster_center_to_fpocket_distance"
+        },
+        "stop": false,
+        "stop_reason": "max_rounds"
+      },
+      {
+        "outputs": {
+          "mode": "dry_run_multi_round",
+          "tools": [
+            "alphaflow",
+            "af_claseq"
+          ],
+          "planned_scripts": [
+            "../AlphaFlow/1-mmseqs_search_helper.py",
+            "../Allo_af_claseq/11_sequence_voting.py",
+            "../Allo_af_claseq/12_recompile.py"
+          ],
+          "retain_top_fraction": 0.2
+        },
+        "metrics": {
+          "round": 3,
+          "top10_percent_mean_distance": 5.05,
+          "preference_metric": "cluster_center_to_fpocket_distance"
+        },
+        "stop": false,
+        "stop_reason": "max_rounds"
+      },
+      {
+        "outputs": {
+          "mode": "dry_run_multi_round",
+          "tools": [
+            "alphaflow",
+            "af_claseq"
+          ],
+          "planned_scripts": [
+            "../AlphaFlow/1-mmseqs_search_helper.py",
+            "../Allo_af_claseq/11_sequence_voting.py",
+            "../Allo_af_claseq/12_recompile.py"
+          ],
+          "retain_top_fraction": 0.2
+        },
+        "metrics": {
+          "round": 4,
+          "top10_percent_mean_distance": 4.9,
+          "preference_metric": "cluster_center_to_fpocket_distance"
+        },
+        "stop": true,
+        "stop_reason": "distance_saturated"
+      }
+    ]
+  },
+  "metrics": {
+    "round": 4,
+    "top10_percent_mean_distance": 4.9,
+    "preference_metric": "cluster_center_to_fpocket_distance"
+  },
+  "qc_flags": [],
+  "human_interventions": [],
+  "claims_allowed": [
+    "已获得偏好初始构象/纯化 MSA（计算假设）"
+  ],
+  "iteration": {
+    "round": 4,
+    "stop_reason": "distance_saturated"
+  },
+  "critic": {
+    "passed": true,
+    "findings": [],
+    "claims_allowed": [
+      "已获得偏好初始构象/纯化 MSA（计算假设）"
+    ],
+    "claims_forbidden": [
+      "已采样到实验证实的开放态"
+    ]
+  },
+  "status": "completed",
+  "maturity": "scripted"
+}

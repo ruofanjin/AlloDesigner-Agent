@@ -1,0 +1,2 @@
+symlink_was: job_pack
+points_to: /home/ubuntu/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded

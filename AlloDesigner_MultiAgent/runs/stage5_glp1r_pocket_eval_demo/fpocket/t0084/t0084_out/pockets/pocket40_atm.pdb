@@ -1,0 +1,51 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    40:
+HEADER 0  - Pocket Score                      : -0.2195
+HEADER 1  - Drug Score                        : 0.0006
+HEADER 2  - Number of alpha spheres           :    35
+HEADER 3  - Mean alpha-sphere radius          : 3.9925
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5401
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 5.7500
+HEADER 7  - Polarity Score                    :     7
+HEADER 8  - Amino Acid based volume Score     : 4.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 564.3551
+HEADER 10 - Pocket volume (convex hull)       : 101.3268
+HEADER 11 - Charge Score                      :    -2
+HEADER 12 - Local hydrophobic density Score   : 8.0000
+HEADER 13 - Number of apolar alpha sphere     :    10
+HEADER 14 - Proportion of apolar alpha sphere : 0.2857
+ATOM   1250  OE2 GLU B  77      62.630  58.310  52.540  0.00  0.00           O 0
+ATOM   3538  ND1 HID C 221      67.550  59.140  55.830  0.48  3.28           N 0
+ATOM   3540  CE1 HID C 221      67.560  60.040  54.800  0.00  0.00           C 0
+ATOM   1245   CG GLU B  77      61.270  60.220  52.560  0.00  0.00           C 0
+ATOM   1248   CD GLU B  77      61.510  58.740  52.680  0.00  0.00           C 0
+ATOM   3542  NE2 HID C 221      67.580  59.280  53.700  0.00  0.00           N 0
+ATOM   1225    O PHE B  75      63.050  58.910  47.840  0.42  6.43           O 0
+ATOM   3543  CD2 HID C 221      67.570  57.870  53.960  0.00  0.00           C 0
+ATOM   2013   CD PRO B 128      65.140  64.740  51.290  0.00  0.00           C 0
+ATOM   2016   CG PRO B 128      64.780  63.960  50.000  0.00  0.00           C 0
+ATOM   3534   CB HID C 221      67.740  56.600  56.290  0.00  0.00           C 0
+ATOM   4899  OD1 ASP C 302      65.090  53.880  58.320  0.00  0.00           O 0
+ATOM   4893   CA ASP C 302      64.670  54.650  61.040  0.00  0.00           C 0
+ATOM   3485    O ALA C 217      67.300  61.110  60.760  0.69  7.50           O 0
+ATOM   3530    N HID C 221      69.280  57.580  57.950  0.47  2.19           N 0
+ATOM   3495    O ALA C 218      67.340  62.190  57.360  0.78  1.07           O 0
+ATOM   2006  CD2 LEU B 127      65.340  65.590  55.260  0.00  0.00           C 0
+ATOM   3517   CB GLN C 220      69.720  58.690  60.850  0.00  0.00           C 0
+ATOM   4895   CB ASP C 302      66.060  54.380  60.470  0.00  0.00           C 0
+ATOM   3537   CG HID C 221      67.630  57.840  55.360  0.00  0.00           C 0
+ATOM   4913   CD GLU C 303      60.380  52.920  56.450  0.00  0.00           C 0
+ATOM   4910   CG GLU C 303      61.490  52.630  57.420  0.00  0.00           C 0
+ATOM   4903    N GLU C 303      62.780  53.270  60.080  0.50  4.37           N 0
+ATOM   4907   CB GLU C 303      60.980  52.080  58.760  0.00  0.00           C 0
+ATOM   4914  OE1 GLU C 303      60.660  53.730  55.580  0.00  0.00           O 0
+ATOM   1249  OE1 GLU B  77      60.520  57.980  52.860  0.60  4.29           O 0
+ATOM   4890    O GLU C 301      62.880  56.380  62.670  0.00  0.00           O 0
+ATOM   2069  NH2 ARG B 130      61.240  63.690  52.440  0.00  0.00           N 0
+ATOM   4891    N ASP C 302      64.850  55.310  62.370  0.68  3.28           N 0
+TER
+END

@@ -1,0 +1,36 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    37:
+HEADER 0  - Pocket Score                      : -0.1682
+HEADER 1  - Drug Score                        : 0.0025
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 3.9409
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6027
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 60.1667
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 3.8333
+HEADER 9  - Pocket volume (Monte Carlo)       : 242.1613
+HEADER 10 - Pocket volume (convex hull)       : 8.1000
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 13.0000
+HEADER 13 - Number of apolar alpha sphere     :    14
+HEADER 14 - Proportion of apolar alpha sphere : 0.9333
+ATOM   2683  CG1 VAL C 169      67.030  69.470  98.720  0.00  0.00           C 0
+ATOM     62  CG2 ILE A   4      65.620  73.060 104.100  0.00  0.00           C 0
+ATOM     69  CD1 ILE A   4      68.450  73.550 102.880  0.00  0.00           C 0
+ATOM     66  CG1 ILE A   4      67.320  74.540 103.020  0.00  0.00           C 0
+ATOM     58   CA ILE A   4      65.460  75.730 104.370  0.00  0.00           C 0
+ATOM   2706  CD1 ILE C 170      61.630  71.870 100.530  0.00  0.00           C 0
+ATOM     74    O ILE A   4      63.170  75.220 104.860  0.00  0.00           O 0
+ATOM    108   CB LEU A   7      61.670  77.990 102.450  0.00  0.00           C 0
+ATOM    113  CD1 LEU A   7      63.450  79.560 101.710  0.00  0.00           C 0
+ATOM   2647    O SER C 166      62.580  69.100  98.190  0.81  1.07           O 0
+ATOM   2703  CG1 ILE C 170      62.700  70.880 101.050  0.00  0.00           C 0
+ATOM   2641   CB SER C 166      61.570  70.920  95.530  0.00  0.00           C 0
+ATOM   2639   CA SER C 166      62.450  69.740  95.850  0.00  0.00           C 0
+ATOM    123    N SER A   8      60.550  75.260 103.890  0.00  0.00           N 0
+TER
+END

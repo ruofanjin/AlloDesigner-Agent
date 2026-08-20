@@ -1,0 +1,43 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    25:
+HEADER 0  - Pocket Score                      : -0.0822
+HEADER 1  - Drug Score                        : 0.0195
+HEADER 2  - Number of alpha spheres           :    22
+HEADER 3  - Mean alpha-sphere radius          : 3.9527
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.7005
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 50.8750
+HEADER 7  - Polarity Score                    :     1
+HEADER 8  - Amino Acid based volume Score     : 3.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 373.9869
+HEADER 10 - Pocket volume (convex hull)       : 16.0287
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 11.7500
+HEADER 13 - Number of apolar alpha sphere     :    16
+HEADER 14 - Proportion of apolar alpha sphere : 0.7273
+ATOM     69  CD1 ILE A   4      67.490  73.280 102.680  0.00  0.00           C 0
+ATOM   2692    O VAL C 169      65.780  68.550 101.060  0.46  3.21           O 0
+ATOM   2790  CD1 LEU C 176      70.830  66.100 104.800  0.00  0.00           C 0
+ATOM   2737   CB ALA C 173      66.330  69.610 104.490  0.00  0.00           C 0
+ATOM     13   SD NMETA   1      68.250  72.490 107.100  0.00  0.00           S 0
+ATOM   2733    N ALA C 173      66.390  67.300 103.930  0.00  0.00           N 0
+ATOM   2726   CB SER C 172      67.020  64.820 101.900  0.00  0.00           C 0
+ATOM   2742    O ALA C 173      67.080  68.080 107.280  0.00  0.00           O 0
+ATOM   2785   CB LEU C 176      70.220  65.890 107.140  0.00  0.00           C 0
+ATOM   2800    N GLY C 177      68.490  66.910 109.670  0.00  0.00           N 0
+ATOM     14   CE NMETA   1      67.270  71.690 108.440  0.00  0.00           C 0
+ATOM   2687  CG2 VAL C 169      66.910  68.970  96.770  0.00  0.00           C 0
+ATOM   3150  CD1 ILE C 197      67.030  64.700  96.370  0.00  0.00           C 0
+ATOM   2679   CA VAL C 169      65.540  68.170  98.730  0.00  0.00           C 0
+ATOM   2683  CG1 VAL C 169      66.580  70.540  98.660  0.00  0.00           C 0
+ATOM   2729   OG SER C 172      66.610  64.020 100.820  0.68  1.07           O 0
+ATOM   2735   CA ALA C 173      66.760  68.270 104.930  0.00  0.00           C 0
+ATOM   2802   CA GLY C 177      68.410  67.950 110.730  0.00  0.00           C 0
+ATOM     10   CG NMETA   1      69.120  73.690 108.100  0.00  0.00           C 0
+ATOM   2798    C LEU C 176      69.500  66.040 109.520  0.00  0.00           C 0
+ATOM   2799    O LEU C 176      70.370  65.880 110.350  0.59  6.43           O 0
+TER
+END

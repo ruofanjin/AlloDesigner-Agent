@@ -1,0 +1,44 @@
+{
+  "status": "needs_external",
+  "paper_stage": "AI-prior metadynamics / biased MD",
+  "cv_candidates": [
+    "pocket_sasa",
+    "key_residue_pair_distance"
+  ],
+  "budget_ns": 50,
+  "benchmarks": [
+    "unbiased_md"
+  ],
+  "system_setup": "CHARMM-GUI POPC + AMBER for GPCR membrane system (paper/SI)",
+  "callback_contract": {
+    "upload": [
+      "openlike_frames/",
+      "cv_timeseries.csv",
+      "pocket_volume_trace.csv"
+    ],
+    "claims_allowed": [
+      "在给定 CV 与预算下采样到开放样构象候选"
+    ]
+  },
+  "artifacts": {
+    "job_sheet": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T122127Z_glp1r_retrospective_blind_v1/artifacts/physics_sampling/job_sheet.json"
+  },
+  "env_decision": {
+    "stage_id": "physics_sampling",
+    "profile_id": "allo_openmm_physics",
+    "specialized": true,
+    "action": "create",
+    "env_name": "allo-openmm",
+    "env_path": null,
+    "python_executable": null,
+    "matched_by": null,
+    "score": 0.0,
+    "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/alphflow-environment.yml",
+    "command_prefix": [],
+    "notes": [
+      "No sufficiently matching env; will create from /lambda/nfs/file2/jrf/AlloDesigner/alphflow-environment.yml",
+      "create_if_missing deferred (--no-ensure-envs); emitting create plan only"
+    ],
+    "probe_details": {}
+  }
+}

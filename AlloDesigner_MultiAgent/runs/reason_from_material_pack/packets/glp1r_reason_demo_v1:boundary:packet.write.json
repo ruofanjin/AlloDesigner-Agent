@@ -1,0 +1,50 @@
+{
+  "packet_id": "glp1r_reason_demo_v1:boundary:packet.write",
+  "task_id": "glp1r_reason_demo_v1",
+  "stage_id": "boundary",
+  "stage_contract_version": "1.0.0",
+  "task_track": "retrospective_blind",
+  "inputs_frozen": [],
+  "priors_approved": [],
+  "tools_considered": [
+    {
+      "tool_id": "case_protocol_template",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "Freeze information boundary from case protocol template."
+    },
+    {
+      "tool_id": "packet.write",
+      "role": "adapt",
+      "decision": "selected",
+      "rationale": "Executed via ToolRouter"
+    }
+  ],
+  "tool_selected": [
+    "case_protocol_template",
+    "packet.write"
+  ],
+  "outputs": {
+    "path": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/_packets/packet.json"
+  },
+  "metrics": {},
+  "qc_flags": [],
+  "human_interventions": [],
+  "claims_allowed": [],
+  "iteration": {
+    "stop_reason": "node_executed"
+  },
+  "critic": {
+    "passed": true,
+    "findings": [],
+    "claims_allowed": [
+      "已形成待审批/已审批的信息边界协议"
+    ],
+    "claims_forbidden": [
+      "已发现真实变构口袋",
+      "已证实配体有效"
+    ]
+  },
+  "status": "completed",
+  "maturity": "scripted"
+}

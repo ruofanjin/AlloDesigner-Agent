@@ -1,0 +1,46 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     3:
+HEADER 0  - Pocket Score                      : 0.0644
+HEADER 1  - Drug Score                        : 0.0098
+HEADER 2  - Number of alpha spheres           :    18
+HEADER 3  - Mean alpha-sphere radius          : 3.9365
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6829
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 75.1667
+HEADER 7  - Polarity Score                    :     1
+HEADER 8  - Amino Acid based volume Score     : 5.5000
+HEADER 9  - Pocket volume (Monte Carlo)       : 374.1788
+HEADER 10 - Pocket volume (convex hull)       : 33.4146
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 8.9231
+HEADER 13 - Number of apolar alpha sphere     :    13
+HEADER 14 - Proportion of apolar alpha sphere : 0.7222
+ATOM   5203  CD1 LEU C 320      60.410  30.960  78.270  0.00  0.00           C 0
+ATOM   5122  CD1 LEU C 316      58.830  31.570  71.530  0.00  0.00           C 0
+ATOM   5198   CB LEU C 320      61.410  32.630  76.660  0.00  0.00           C 0
+ATOM   5207  CD2 LEU C 320      62.390  30.350  76.980  0.00  0.00           C 0
+ATOM   5196   CA LEU C 320      60.540  33.900  77.060  0.00  0.00           C 0
+ATOM   5194    N LEU C 320      60.550  34.880  75.950  0.00  0.00           N 0
+ATOM   5174   CB ARG C 319      58.830  36.730  74.010  0.00  0.00           C 0
+ATOM   5131    O LEU C 316      61.000  33.880  72.770  0.80  1.07           O 0
+ATOM   5193    O ARG C 319      59.290  36.390  77.010  0.00  0.00           O 0
+ATOM   5212    O LEU C 320      59.990  34.400  79.350  0.67  1.07           O 0
+ATOM   5250   CB LEU C 323      56.210  36.330  78.910  0.00  0.00           C 0
+ATOM   5265    N PHE C 324      57.950  34.980  81.340  0.80  2.19           N 0
+ATOM   5255  CD1 LEU C 323      54.420  38.170  78.810  0.00  0.00           C 0
+ATOM   6199   CE MET C 380      53.940  41.890  77.720  0.00  0.00           C 0
+ATOM   5259  CD2 LEU C 323      56.380  38.410  77.420  0.00  0.00           C 0
+ATOM   6198   SD MET C 380      54.410  42.470  76.120  0.00  0.00           S 0
+ATOM   5253   CG LEU C 323      55.450  37.370  78.010  0.00  0.00           C 0
+ATOM   5183   NE ARG C 319      56.440  38.380  71.930  0.65  1.09           N 0
+ATOM   5180   CD ARG C 319      57.470  37.340  72.070  0.00  0.00           C 0
+ATOM   5189  NH2 ARG C 319      54.620  39.470  71.300  0.55  5.47           N 0
+ATOM   5185   CZ ARG C 319      55.470  38.480  71.080  0.00  0.00           C 0
+ATOM   5267   CA PHE C 324      58.260  34.100  82.440  0.00  0.00           C 0
+ATOM   5269   CB PHE C 324      59.560  33.310  82.160  0.00  0.00           C 0
+ATOM   5281  CD2 PHE C 324      59.390  31.100  83.400  0.00  0.00           C 0
+TER
+END

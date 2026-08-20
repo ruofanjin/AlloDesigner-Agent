@@ -1,0 +1,20 @@
+voting:
+  # Pin the configured round; scanning the parent can silently mix old rounds.
+  sampling_dir: "{work_dir}/02_m_fold_sampling/round_1/02_sampling"
+  output_dir: "{work_dir}/03_voting/pocket_distance"
+  num_bins: 20
+  min_value: null
+  max_value: null
+  use_focused_bins: true
+  vote_threshold: 0.0
+
+recompile:
+  output_dir: "{work_dir}/04_recompile/pocket_min_distance"
+  # Historical GLP1 command records used bin_3_4 for final prediction.
+  target_bins: [3, 4]
+  combine_bins: true
+  source_msa: "{work_dir}/01_iterative_shuffling/combined_filtered_all_iterations.a3m"
+  fallback_source_msa: "{root}/inputs/6x18_chianR_R.a3m"
+  num_total_bins: 20
+  initial_color: "#b985ba"
+  random_seed: 42

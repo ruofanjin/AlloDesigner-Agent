@@ -1,0 +1,37 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    16:
+HEADER 0  - Pocket Score                      : -0.0389
+HEADER 1  - Drug Score                        : 0.0015
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 3.9211
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6639
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 39.2000
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 4.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 266.8549
+HEADER 10 - Pocket volume (convex hull)       : 4.5251
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 9.0000
+HEADER 13 - Number of apolar alpha sphere     :    10
+HEADER 14 - Proportion of apolar alpha sphere : 0.6667
+ATOM   5511   SG CYS C 338      45.370  37.670  97.920  0.00  0.00           S 0
+ATOM   5554   CB VAL C 341      42.960  43.480 100.460  0.00  0.00           C 0
+ATOM   5560  CG2 VAL C 341      43.050  44.080  99.070  0.00  0.00           C 0
+ATOM   5556  CG1 VAL C 341      41.540  43.480 100.940  0.00  0.00           C 0
+ATOM   5506   CA CYS C 338      46.020  39.710  99.680  0.00  0.00           C 0
+ATOM   5514    O CYS C 338      45.670  40.640 101.870  0.73  3.21           O 0
+ATOM   5634   NZ LYS C 345      38.340  41.640 102.490  0.00  0.00           N 0
+ATOM   5504    N CYS C 338      46.700  40.360  98.570  0.00  0.00           N 0
+ATOM   5491  CG2 ILE C 337      45.380  42.760  95.990  0.00  0.00           C 0
+ATOM   5566    N SER C 342      43.930  42.630 103.250  0.00  0.00           N 0
+ATOM   5570   CB SER C 342      44.430  40.800 104.780  0.00  0.00           C 0
+ATOM   5568   CA SER C 342      43.820  42.190 104.630  0.00  0.00           C 0
+ATOM   5628   CD LYS C 345      39.530  42.930 104.290  0.00  0.00           C 0
+ATOM   5573   OG SER C 342      44.380  40.190 106.010  0.40  8.57           O 0
+ATOM   5503    O ILE C 337      45.870  42.360  99.050  0.83  1.07           O 0
+TER
+END

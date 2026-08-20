@@ -1,0 +1,39 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    29:
+HEADER 0  - Pocket Score                      : -0.1170
+HEADER 1  - Drug Score                        : 0.0031
+HEADER 2  - Number of alpha spheres           :    23
+HEADER 3  - Mean alpha-sphere radius          : 3.8215
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5150
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 30.0000
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 5.4000
+HEADER 9  - Pocket volume (Monte Carlo)       : 210.7579
+HEADER 10 - Pocket volume (convex hull)       : 8.1911
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 13.0000
+HEADER 13 - Number of apolar alpha sphere     :    14
+HEADER 14 - Proportion of apolar alpha sphere : 0.6087
+ATOM   7026  NE1 TRP D 429      64.210  80.410 109.790  0.79  2.19           N 0
+ATOM   7024  CD1 TRP D 429      64.350  79.390 110.720  0.00  0.00           C 0
+ATOM     30   CD LYS A   2      69.310  79.060 111.280  0.00  0.00           C 0
+ATOM   7094  OE1 GLU D 432      68.020  80.380 114.610  0.57  1.07           O 0
+ATOM   7039    O TRP D 429      62.880  81.440 114.590  0.00  0.00           O 0
+ATOM   7028  CE2 TRP D 429      63.220  81.310 110.050  0.00  0.00           C 0
+ATOM   7164  CD1 ILE D 436      66.800  86.720 113.500  0.00  0.00           C 0
+ATOM   7029  CZ2 TRP D 429      62.730  82.500 109.510  0.00  0.00           C 0
+ATOM   7090   CG GLU D 432      67.480  82.500 115.590  0.00  0.00           C 0
+ATOM   7106  ND1 HID D 433      61.360  87.030 112.860  0.64  5.47           N 0
+ATOM   7102   CB HID D 433      61.900  84.960 114.310  0.00  0.00           C 0
+ATOM   7031  CH2 TRP D 429      61.500  83.070 109.930  0.00  0.00           C 0
+ATOM   7093   CD GLU D 432      68.470  81.470 115.090  0.00  0.00           C 0
+ATOM   7095  OE2 GLU D 432      69.700  81.770 115.040  0.73  3.21           O 0
+ATOM     24   CB LYS A   2      67.970  78.890 109.150  0.00  0.00           C 0
+ATOM   7087   CB GLU D 432      66.110  81.930 115.870  0.00  0.00           C 0
+ATOM   7098    N HID D 433      63.930  84.210 115.460  0.89  1.09           N 0
+TER
+END

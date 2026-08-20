@@ -1,0 +1,35 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    10:
+HEADER 0  - Pocket Score                      : -0.0061
+HEADER 1  - Drug Score                        : 0.0013
+HEADER 2  - Number of alpha spheres           :    16
+HEADER 3  - Mean alpha-sphere radius          : 3.7744
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5014
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 29.0000
+HEADER 7  - Polarity Score                    :     3
+HEADER 8  - Amino Acid based volume Score     : 5.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 202.6752
+HEADER 10 - Pocket volume (convex hull)       : 7.7721
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 11.0000
+HEADER 13 - Number of apolar alpha sphere     :    12
+HEADER 14 - Proportion of apolar alpha sphere : 0.7500
+ATOM   6855  CD2 LEU D 420      53.580  65.840 116.580  0.00  0.00           C 0
+ATOM   6835   CD GLN D 419      52.420  66.530 110.260  0.00  0.00           C 0
+ATOM   6789  ND2 ASN D 416      50.360  61.990 113.070  0.26  9.84           N 0
+ATOM   6836  OE1 GLN D 419      51.660  67.490 110.000  0.45  9.64           O 0
+ATOM   6837  NE2 GLN D 419      51.960  65.340 110.040  0.82  2.19           N 0
+ATOM   6787   CG ASN D 416      51.410  62.020 112.360  0.00  0.00           C 0
+ATOM   6903   CG ARG D 423      54.360  71.840 114.700  0.00  0.00           C 0
+ATOM   6906   CD ARG D 423      53.830  72.800 113.640  0.00  0.00           C 0
+ATOM   6900   CB ARG D 423      55.360  70.780 114.160  0.00  0.00           C 0
+ATOM   6832   CG GLN D 419      53.750  66.790 110.890  0.00  0.00           C 0
+ATOM   6841    O GLN D 419      56.230  67.900 112.630  0.00  0.00           O 0
+ATOM   6886  CE1 PHE D 422      55.720  70.630 108.900  0.00  0.00           C 0
+ATOM   6849   CG LEU D 420      54.580  64.850 116.040  0.00  0.00           C 0
+TER
+END

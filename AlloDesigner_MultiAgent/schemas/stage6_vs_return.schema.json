@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Stage6 virtual screening return packet",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "stage_id",
+    "status",
+    "product_maturity",
+    "engine",
+    "protocol_version",
+    "inputs_consumed",
+    "ranked_candidates_csv",
+    "metrics",
+    "claims_allowed",
+    "claims_forbidden"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "stage_id": {"const": "candidate_ranking"},
+    "status": {
+      "type": "string",
+      "enum": ["demo_completed", "external_completed", "partial_completed", "failed", "needs_external"]
+    },
+    "product_maturity": {"type": "string"},
+    "engine": {
+      "type": "string",
+      "enum": ["vina", "glide", "karmadock", "dry_run_placeholder"]
+    },
+    "protocol_version": {"type": "string"},
+    "inputs_consumed": {
+      "type": "object",
+      "required": ["pocket_id", "receptor", "n_library"],
+      "properties": {
+        "pocket_id": {"type": "string"},
+        "receptor": {"type": "string"},
+        "n_library": {"type": "integer"},
+        "request_id": {"type": "string"}
+      }
+    },
+    "ranked_candidates_csv": {"type": "string"},
+    "poses_dir": {"type": "string"},
+    "score_distribution": {"type": "object"},
+    "metrics": {
+      "type": "object",
+      "required": ["n_scored", "top_n"],
+      "properties": {
+        "n_scored": {"type": "integer"},
+        "top_n": {"type": "integer"},
+        "score_min": {"type": "number"},
+        "score_median": {"type": "number"},
+        "score_max": {"type": "number"},
+        "score_units": {"type": "string"}
+      }
+    },
+    "operator_notes": {"type": "string"},
+    "claims_allowed": {"type": "array", "items": {"type": "string"}},
+    "claims_forbidden": {"type": "array", "items": {"type": "string"}}
+  }
+}

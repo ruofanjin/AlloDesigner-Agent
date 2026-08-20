@@ -1,0 +1,56 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     7:
+HEADER 0  - Pocket Score                      : 0.0139
+HEADER 1  - Drug Score                        : 0.0101
+HEADER 2  - Number of alpha spheres           :    45
+HEADER 3  - Mean alpha-sphere radius          : 3.8714
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5435
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 14.1818
+HEADER 7  - Polarity Score                    :     8
+HEADER 8  - Amino Acid based volume Score     : 4.7273
+HEADER 9  - Pocket volume (Monte Carlo)       : 489.5692
+HEADER 10 - Pocket volume (convex hull)       : 64.4373
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 14.9524
+HEADER 13 - Number of apolar alpha sphere     :    21
+HEADER 14 - Proportion of apolar alpha sphere : 0.4667
+ATOM   2050    N ARG B 130      60.600  68.360  48.090  0.63  3.28           N 0
+ATOM   1936   CE LYS B 122      62.310  72.800  53.520  0.00  0.00           C 0
+ATOM   1933   CD LYS B 122      63.490  72.410  52.560  0.00  0.00           C 0
+ATOM   1939   NZ LYS B 122      61.430  73.800  52.990  0.00  0.00           N 0
+ATOM   2073    O ARG B 130      57.930  69.470  47.850  0.56  3.21           O 0
+ATOM   2028   CA TRP B 129      63.000  68.970  47.980  0.00  0.00           C 0
+ATOM   2025    O PRO B 128      63.760  67.930  50.450  0.63  2.14           O 0
+ATOM   2034  CD1 TRP B 129      62.140  72.100  47.070  0.00  0.00           C 0
+ATOM   2060   CD ARG B 130      60.770  66.330  50.680  0.00  0.00           C 0
+ATOM   2066  NH1 ARG B 130      61.750  65.950  53.390  0.83  7.66           N 0
+ATOM   1930   CG LYS B 122      64.590  71.470  53.180  0.00  0.00           C 0
+ATOM   2036  NE1 TRP B 129      60.970  72.680  46.470  0.35  7.66           N 0
+ATOM   2054   CB ARG B 130      58.730  66.890  49.110  0.00  0.00           C 0
+ATOM   2116   OG NSERC 133      55.270  72.760  50.590  0.54  5.36           O 0
+ATOM   2105    O CLEUB 132      52.260  69.260  49.960  0.73  2.14           O 0
+ATOM   2160    O GLU C 136      50.050  71.480  51.670  0.00  0.00           O 0
+ATOM   2180   CB SER C 138      50.440  71.140  55.800  0.00  0.00           C 0
+ATOM   2107    N NSERC 133      52.820  71.720  51.770  0.30  7.66           N 0
+ATOM   2100  CD2 CLEUB 132      54.350  65.150  51.700  0.00  0.00           C 0
+ATOM   1263  CE1 TYR B  78      57.920  63.490  53.840  0.00  0.00           C 0
+ATOM   1265   CZ TYR B  78      56.930  63.000  54.690  0.00  0.00           C 0
+ATOM   1266   OH TYR B  78      57.070  63.150  56.010  0.78  7.50           O 0
+ATOM   2057   CG ARG B 130      59.680  65.850  49.690  0.00  0.00           C 0
+ATOM   2131  OE1 GLU C 134      56.440  73.450  48.410  0.52  4.29           O 0
+ATOM   1594  CH2 TRP B 100      48.650  65.490  52.280  0.00  0.00           C 0
+ATOM   1596  CZ3 TRP B 100      47.520  64.980  52.990  0.00  0.00           C 0
+ATOM   2153   CG GLU C 136      46.740  69.760  52.350  0.00  0.00           C 0
+ATOM   2150   CB GLU C 136      47.610  69.520  51.070  0.00  0.00           C 0
+ATOM   2106  OXT CLEUB 132      54.260  69.840  50.400  0.53  5.36           O 0
+ATOM   2091   CB CLEUB 132      54.650  66.760  49.730  0.00  0.00           C 0
+ATOM   1261  CD1 TYR B  78      57.790  63.240  52.460  0.00  0.00           C 0
+ATOM   2094   CG CLEUB 132      53.690  66.280  50.860  0.00  0.00           C 0
+ATOM   2183   OG SER C 138      51.690  71.690  56.300  0.00  0.00           O 0
+ATOM   2096  CD1 CLEUB 132      52.340  65.840  50.290  0.00  0.00           C 0
+TER
+END

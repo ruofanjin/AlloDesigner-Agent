@@ -1,0 +1,16 @@
+rank,ligand_id,smiles,score,score_type,engine,pocket_id,receptor_frame,pose_path,notes
+1,SEED_001,CCO,-7.8,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_001.pdbqt,interface demo only; replace with real docking return
+2,SEED_002,CC(=O)O,-7.4,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_002.pdbqt,interface demo only; replace with real docking return
+3,SEED_003,c1ccccc1,-6.9,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_003.pdbqt,interface demo only; replace with real docking return
+4,SEED_004,CC(C)O,-6.6,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_004.pdbqt,interface demo only; replace with real docking return
+5,SEED_005,C1CCCCC1,-6.3,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_005.pdbqt,interface demo only; replace with real docking return
+6,SEED_006,CCN,-6.0,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_006.pdbqt,interface demo only; replace with real docking return
+7,SEED_007,CC(=O)N,-5.8,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_007.pdbqt,interface demo only; replace with real docking return
+8,SEED_008,c1ccncc1,-5.5,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_008.pdbqt,interface demo only; replace with real docking return
+9,SEED_009,CC(C)N,-5.2,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_009.pdbqt,interface demo only; replace with real docking return
+10,SEED_010,COC,-5.0,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_010.pdbqt,interface demo only; replace with real docking return
+11,SEED_011,CCC(=O)O,-4.8,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_011.pdbqt,interface demo only; replace with real docking return
+12,SEED_012,c1ccc(O)cc1,-4.5,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_012.pdbqt,interface demo only; replace with real docking return
+13,SEED_013,CC(C)CO,-4.2,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_013.pdbqt,interface demo only; replace with real docking return
+14,SEED_014,CSCC,-3.9,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_014.pdbqt,interface demo only; replace with real docking return
+15,SEED_015,CC(=O)OC,-3.6,seeded_example_not_docking,vina,pocket_01,t0250,poses/SEED_015.pdbqt,interface demo only; replace with real docking return

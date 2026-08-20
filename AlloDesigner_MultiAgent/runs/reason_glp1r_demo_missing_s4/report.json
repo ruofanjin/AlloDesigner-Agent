@@ -1,0 +1,1254 @@
+{
+  "task_id": "glp1r_reason_demo_v1",
+  "status": "completed",
+  "run_dir": "runs/reason_glp1r_demo_missing_s4",
+  "planner_mode": "heuristic_autonomous",
+  "reasoning_narrative": [
+    "For target GLP1R on track retrospective_blind, pursue cryptic allosteric pocket discovery via the frozen six-stage decomposition; tool choices and replay/reuse adapt to available artifacts and budget (max_md_ns=1.0, prefer_recompute=False).",
+    "[boundary] Human-approved boundary must precede any scientific tool use.",
+    "[residue_prior] Retrospective artifacts exist; replay residue prior to keep blind demo auditable without re-running PocketMiner.",
+    "[ensemble_enrichment] Reuse retrospective ensemble_enrichment; full AF-ClaSeq recompute out of demo budget.",
+    "  uncertainty: Stage3 not recomputed; uncertainty carried to pocket evaluation.",
+    "[physics_sampling] Stage4 artifact unavailable under current assumptions; emit Allo-MD job_pack path instead of fabricating success.",
+    "  uncertainty: physics_sampling requires job_pack; soft dependency for Stage5 noted.",
+    "[pocket_evaluation] Combine historical_replay pocket_01 handoff with Stage4-frame fpocket consistency check when frames exist.",
+    "[candidate_ranking] Stage6 is external: emit Vina/Glide job pack and ingest returns; seeded returns remain partial/seeded."
+  ],
+  "reasoning_plan": {
+    "schema_version": "1.0.0",
+    "plan_id": "reason_glp1r_reason_demo_v1",
+    "task_id": "glp1r_reason_demo_v1",
+    "track": "retrospective_blind",
+    "scientific_hypothesis": "For target GLP1R on track retrospective_blind, pursue cryptic allosteric pocket discovery via the frozen six-stage decomposition; tool choices and replay/reuse adapt to available artifacts and budget (max_md_ns=1.0, prefer_recompute=False).",
+    "information_boundary": {
+      "allowed_priors": [
+        "case_protocol_template",
+        "literature_prior_approved_only"
+      ],
+      "forbidden_information": [
+        "holo_structure_as_runtime_feature",
+        "ligand_identity_as_runtime_feature",
+        "answer_store_injection"
+      ],
+      "leakage_scan": [
+        "answer_store_ref must not enter blind runtime tools",
+        "HOLO/ligand labels forbidden as planning features on retrospective_blind"
+      ]
+    },
+    "stages": [
+      {
+        "stage_id": "boundary",
+        "goal_locked": "冻结靶点、任务轨道、可用先验与禁止信息，形成可审批协议。",
+        "why_this_path": "Human-approved boundary must precede any scientific tool use.",
+        "tools": [
+          {
+            "tool_id": "case_protocol_template",
+            "role": "reuse",
+            "decision": "selected",
+            "rationale": "Freeze information boundary from case protocol template."
+          }
+        ],
+        "iteration_policy": {
+          "loop": "propose→tool→score→critic→continue|stop|escalate",
+          "max_rounds": 1
+        },
+        "maturity_route": "local_invoke",
+        "handoff_out": [
+          "approved_boundary_sheet"
+        ],
+        "soft_skip": false,
+        "uncertainty": null
+      },
+      {
+        "stage_id": "residue_prior",
+        "goal_locked": "产出与隐匿变构位点相关的残基/区域概率与阈值化候选集合。",
+        "why_this_path": "Retrospective artifacts exist; replay residue prior to keep blind demo auditable without re-running PocketMiner.",
+        "tools": [
+          {
+            "tool_id": "allo_pocketminer",
+            "role": "reuse",
+            "decision": "deferred",
+            "rationale": "Executable in principle; deferred for demo budget."
+          },
+          {
+            "tool_id": "stage2.replay_residue_prior",
+            "role": "adapt",
+            "decision": "selected",
+            "rationale": "historical_replay of retrospective residue_prior artifacts."
+          }
+        ],
+        "iteration_policy": {
+          "loop": "propose→tool→score→critic→continue|stop|escalate",
+          "max_rounds": 1
+        },
+        "maturity_route": "historical_replay",
+        "handoff_out": [
+          "residue_probability_map",
+          "thresholded_candidate_set",
+          "tool_comparison_sheet"
+        ],
+        "soft_skip": false,
+        "uncertainty": null
+      },
+      {
+        "stage_id": "ensemble_enrichment",
+        "goal_locked": "在残基先验引导下富集口袋友好的初始构象与纯化 MSA。",
+        "why_this_path": "Reuse retrospective ensemble_enrichment; full AF-ClaSeq recompute out of demo budget.",
+        "tools": [
+          {
+            "tool_id": "allo_stepwise",
+            "role": "reuse",
+            "decision": "deferred",
+            "rationale": "Scripted/historical path preferred for this slice."
+          },
+          {
+            "tool_id": "stage3.replay_ensemble",
+            "role": "adapt",
+            "decision": "selected",
+            "rationale": "Replay ensemble artifacts from retrospective run."
+          }
+        ],
+        "iteration_policy": {
+          "loop": "propose→tool→score→critic→continue|stop|escalate",
+          "max_rounds": 1
+        },
+        "maturity_route": "historical_replay",
+        "handoff_out": [
+          "preferred_conformations",
+          "purified_msa",
+          "control_comparison"
+        ],
+        "soft_skip": false,
+        "uncertainty": "Stage3 not recomputed; uncertainty carried to pocket evaluation."
+      },
+      {
+        "stage_id": "physics_sampling",
+        "goal_locked": "以可解释 CV 引导增强采样，获取物理合理的开放样构象。",
+        "why_this_path": "Stage4 artifact unavailable under current assumptions; emit Allo-MD job_pack path instead of fabricating success.",
+        "tools": [
+          {
+            "tool_id": "ai_prior_metadynamics",
+            "role": "reuse",
+            "decision": "deferred",
+            "rationale": "Would require external/local Allo-MD job execution."
+          }
+        ],
+        "iteration_policy": {
+          "loop": "propose→tool→score→critic→continue|stop|escalate",
+          "max_rounds": 1
+        },
+        "maturity_route": "job_pack",
+        "handoff_out": [
+          "openlike_frames",
+          "sampling_metrics",
+          "ablation_record"
+        ],
+        "soft_skip": false,
+        "uncertainty": "physics_sampling requires job_pack; soft dependency for Stage5 noted."
+      },
+      {
+        "stage_id": "pocket_evaluation",
+        "goal_locked": "对候选口袋做几何聚类与变构/成药性共识评价。",
+        "why_this_path": "Combine historical_replay pocket_01 handoff with Stage4-frame fpocket consistency check when frames exist.",
+        "tools": [
+          {
+            "tool_id": "stage5.historical_replay",
+            "role": "reuse",
+            "decision": "selected",
+            "rationale": "Frozen expert handoff is the Stage5 gate for GLP1 retrospective."
+          },
+          {
+            "tool_id": "stage5.fpocket_from_frames_status",
+            "role": "supplement",
+            "decision": "deferred",
+            "rationale": "No Stage4 frames; skip fpocket track."
+          },
+          {
+            "tool_id": "fpocket",
+            "role": "reuse",
+            "decision": "benchmark_only",
+            "rationale": "Already executed in Stage5 demo; status reuse only."
+          }
+        ],
+        "iteration_policy": {
+          "loop": "propose→tool→score→critic→continue|stop|escalate",
+          "max_rounds": 1
+        },
+        "maturity_route": "historical_replay",
+        "handoff_out": [
+          "pocket_cluster_ranking",
+          "consensus_residues",
+          "uncertainty_notes"
+        ],
+        "soft_skip": false,
+        "uncertainty": null
+      },
+      {
+        "stage_id": "candidate_ranking",
+        "goal_locked": "在获批对接协议下输出可复核候选排序包。",
+        "why_this_path": "Stage6 is external: emit Vina/Glide job pack and ingest returns; seeded returns remain partial/seeded.",
+        "tools": [
+          {
+            "tool_id": "vina",
+            "role": "alternative",
+            "decision": "selected",
+            "rationale": "Accepted external return engine."
+          },
+          {
+            "tool_id": "glide",
+            "role": "alternative",
+            "decision": "selected",
+            "rationale": "Accepted external return engine."
+          },
+          {
+            "tool_id": "glp1r_virtual_screening_protocol",
+            "role": "reuse",
+            "decision": "deferred",
+            "rationale": "Paper cascade reference only."
+          }
+        ],
+        "iteration_policy": {
+          "loop": "propose→tool→score→critic→continue|stop|escalate",
+          "max_rounds": 1
+        },
+        "maturity_route": "job_pack",
+        "handoff_out": [
+          "ranked_candidates",
+          "protocol_version",
+          "score_distribution"
+        ],
+        "soft_skip": false,
+        "uncertainty": null
+      }
+    ],
+    "execution_dag": [
+      {
+        "node_id": "boundary.packet",
+        "stage_id": "boundary",
+        "tool_id": "packet.write",
+        "action": "write",
+        "args": {
+          "stage_id": "boundary",
+          "mode": "boundary_freeze"
+        },
+        "depends_on": [],
+        "on_failure": "escalate",
+        "status": "completed",
+        "result_ref": "{\"path\": \"/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/_packets/packet.json\"}"
+      },
+      {
+        "node_id": "residue_prior.replay",
+        "stage_id": "residue_prior",
+        "tool_id": "stage2.replay_residue_prior",
+        "action": "replay",
+        "args": {},
+        "depends_on": [
+          "boundary.packet"
+        ],
+        "on_failure": "escalate",
+        "status": "completed",
+        "result_ref": "{\"mode\": \"historical_replay\", \"artifact_dir\": \"/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior\", \"residue_csv\": \"/"
+      },
+      {
+        "node_id": "ensemble_enrichment.replay",
+        "stage_id": "ensemble_enrichment",
+        "tool_id": "stage3.replay_ensemble",
+        "action": "replay",
+        "args": {},
+        "depends_on": [
+          "residue_prior.replay"
+        ],
+        "on_failure": "continue_with_uncertainty",
+        "status": "completed",
+        "result_ref": "{\"mode\": \"historical_replay\", \"artifact_dir\": \"/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment\"}"
+      },
+      {
+        "node_id": "physics_sampling.status",
+        "stage_id": "physics_sampling",
+        "tool_id": "stage4.reuse_or_status",
+        "action": "status",
+        "args": {
+          "force_missing_stage4": true
+        },
+        "depends_on": [
+          "ensemble_enrichment.replay"
+        ],
+        "on_failure": "continue_with_uncertainty",
+        "status": "failed",
+        "result_ref": "{\"would_emit_job_pack\": true, \"profile\": \"distance-simulation-1ns-demo\"}"
+      },
+      {
+        "node_id": "pocket_evaluation.historical",
+        "stage_id": "pocket_evaluation",
+        "tool_id": "stage5.historical_replay",
+        "action": "replay",
+        "args": {},
+        "depends_on": [
+          "physics_sampling.status"
+        ],
+        "on_failure": "escalate",
+        "status": "completed",
+        "result_ref": "{\"run_dir\": \"/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo\", \"pocket_id\": \"pocket_01\", \"consistency_audit\": {\"historical_14\": [354, 355, 357, 358, 365, "
+      },
+      {
+        "node_id": "candidate_ranking.emit",
+        "stage_id": "candidate_ranking",
+        "tool_id": "stage6.emit_job_pack",
+        "action": "emit",
+        "args": {},
+        "depends_on": [
+          "pocket_evaluation.historical"
+        ],
+        "on_failure": "escalate",
+        "status": "completed",
+        "result_ref": "{\"job_pack_dir\": \"/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded\", \"job_sheet\": {\"status\": \"needs_external\", \"schema_version\": \"1.0.0\", \"req"
+      },
+      {
+        "node_id": "candidate_ranking.ingest",
+        "stage_id": "candidate_ranking",
+        "tool_id": "stage6.ingest_seeded_returns",
+        "action": "ingest_status",
+        "args": {},
+        "depends_on": [
+          "candidate_ranking.emit"
+        ],
+        "on_failure": "continue_with_uncertainty",
+        "status": "completed",
+        "result_ref": "{\"stage_result\": {\"stage_id\": \"candidate_ranking\", \"status\": \"demo_completed\", \"product_maturity\": \"partial/seeded\", \"engine\": \"glide\", \"protocol_version\": \"vina_or_glide_external_v0\", \"return_dir\": \""
+      }
+    ],
+    "global_stop_policy": {
+      "on_hard_failure": "escalate",
+      "on_soft_failure": "continue_with_uncertainty",
+      "max_stage_iterations": 1
+    },
+    "claim_policy": {
+      "allowed": [
+        "Agent 在合同内自主生成了推理链与工具图",
+        "计算候选物已排序，待实验/专家复核"
+      ],
+      "forbidden": [
+        "Agent 发明了新的科学主路径并已证实",
+        "端到端论文级发现已完成",
+        "有效配体/抑制剂已被证实",
+        "真实口袋已确认"
+      ]
+    },
+    "uncertainty_notes": [
+      "Stage3 not recomputed; uncertainty carried to pocket evaluation.",
+      "physics_sampling requires job_pack; soft dependency for Stage5 noted."
+    ],
+    "planner_mode": "heuristic_autonomous"
+  },
+  "packets": [
+    {
+      "packet_id": "glp1r_reason_demo_v1:boundary:packet.write",
+      "task_id": "glp1r_reason_demo_v1",
+      "stage_id": "boundary",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [],
+      "priors_approved": [],
+      "tools_considered": [
+        {
+          "tool_id": "case_protocol_template",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "Freeze information boundary from case protocol template."
+        },
+        {
+          "tool_id": "packet.write",
+          "role": "adapt",
+          "decision": "selected",
+          "rationale": "Executed via ToolRouter"
+        }
+      ],
+      "tool_selected": [
+        "case_protocol_template",
+        "packet.write"
+      ],
+      "outputs": {
+        "path": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/_packets/packet.json"
+      },
+      "metrics": {},
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [],
+      "iteration": {
+        "stop_reason": "node_executed"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "已形成待审批/已审批的信息边界协议"
+        ],
+        "claims_forbidden": [
+          "已发现真实变构口袋",
+          "已证实配体有效"
+        ]
+      },
+      "status": "completed",
+      "maturity": "scripted"
+    },
+    {
+      "packet_id": "glp1r_reason_demo_v1:residue_prior:stage2.replay_residue_prior",
+      "task_id": "glp1r_reason_demo_v1",
+      "stage_id": "residue_prior",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [],
+      "priors_approved": [],
+      "tools_considered": [
+        {
+          "tool_id": "allo_pocketminer",
+          "role": "reuse",
+          "decision": "deferred",
+          "rationale": "Executable in principle; deferred for demo budget."
+        },
+        {
+          "tool_id": "stage2.replay_residue_prior",
+          "role": "adapt",
+          "decision": "selected",
+          "rationale": "historical_replay of retrospective residue_prior artifacts."
+        }
+      ],
+      "tool_selected": [
+        "stage2.replay_residue_prior"
+      ],
+      "outputs": {
+        "mode": "historical_replay",
+        "artifact_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior",
+        "residue_csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv"
+      },
+      "metrics": {},
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "残基先验已从回溯产物复用，非本轮重算"
+      ],
+      "iteration": {
+        "stop_reason": "node_executed"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "候选残基/区域先验已生成，待后续构象与物理验证"
+        ],
+        "claims_forbidden": [
+          "已确认功能变构位点"
+        ]
+      },
+      "status": "completed",
+      "maturity": "scripted"
+    },
+    {
+      "packet_id": "glp1r_reason_demo_v1:ensemble_enrichment:stage3.replay_ensemble",
+      "task_id": "glp1r_reason_demo_v1",
+      "stage_id": "ensemble_enrichment",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [],
+      "priors_approved": [],
+      "tools_considered": [
+        {
+          "tool_id": "allo_stepwise",
+          "role": "reuse",
+          "decision": "deferred",
+          "rationale": "Scripted/historical path preferred for this slice."
+        },
+        {
+          "tool_id": "stage3.replay_ensemble",
+          "role": "adapt",
+          "decision": "selected",
+          "rationale": "Replay ensemble artifacts from retrospective run."
+        }
+      ],
+      "tool_selected": [
+        "stage3.replay_ensemble"
+      ],
+      "outputs": {
+        "mode": "historical_replay",
+        "artifact_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment"
+      },
+      "metrics": {},
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "构象富集产物已从回溯跑例复用"
+      ],
+      "iteration": {
+        "stop_reason": "node_executed"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "已获得偏好初始构象/纯化 MSA（计算假设）"
+        ],
+        "claims_forbidden": [
+          "已采样到实验证实的开放态"
+        ]
+      },
+      "status": "completed",
+      "maturity": "scripted"
+    },
+    {
+      "packet_id": "glp1r_reason_demo_v1:physics_sampling:stage4.reuse_or_status",
+      "task_id": "glp1r_reason_demo_v1",
+      "stage_id": "physics_sampling",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [],
+      "priors_approved": [],
+      "tools_considered": [
+        {
+          "tool_id": "ai_prior_metadynamics",
+          "role": "reuse",
+          "decision": "deferred",
+          "rationale": "Would require external/local Allo-MD job execution."
+        },
+        {
+          "tool_id": "stage4.reuse_or_status",
+          "role": "adapt",
+          "decision": "selected",
+          "rationale": "Executed via ToolRouter"
+        }
+      ],
+      "tool_selected": [
+        "stage4.reuse_or_status"
+      ],
+      "outputs": {
+        "would_emit_job_pack": true,
+        "profile": "distance-simulation-1ns-demo"
+      },
+      "metrics": {},
+      "qc_flags": [
+        "Stage4 artifact forced missing; would emit Allo-MD job_pack"
+      ],
+      "human_interventions": [],
+      "claims_allowed": [],
+      "iteration": {
+        "stop_reason": "node_executed"
+      },
+      "critic": {},
+      "status": "needs_human",
+      "maturity": "scripted"
+    },
+    {
+      "packet_id": "glp1r_reason_demo_v1:pocket_evaluation:stage5.historical_replay",
+      "task_id": "glp1r_reason_demo_v1",
+      "stage_id": "pocket_evaluation",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [],
+      "priors_approved": [],
+      "tools_considered": [
+        {
+          "tool_id": "stage5.historical_replay",
+          "role": "reuse",
+          "decision": "selected",
+          "rationale": "Frozen expert handoff is the Stage5 gate for GLP1 retrospective."
+        },
+        {
+          "tool_id": "stage5.fpocket_from_frames_status",
+          "role": "supplement",
+          "decision": "deferred",
+          "rationale": "No Stage4 frames; skip fpocket track."
+        },
+        {
+          "tool_id": "fpocket",
+          "role": "reuse",
+          "decision": "benchmark_only",
+          "rationale": "Already executed in Stage5 demo; status reuse only."
+        }
+      ],
+      "tool_selected": [
+        "stage5.historical_replay"
+      ],
+      "outputs": {
+        "run_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo",
+        "pocket_id": "pocket_01",
+        "consistency_audit": {
+          "historical_14": [
+            354,
+            355,
+            357,
+            358,
+            365,
+            369,
+            410,
+            411,
+            412,
+            413,
+            414,
+            415,
+            416,
+            417
+          ],
+          "n_historical": 14,
+          "all_in_deepallo_top7_freq": true,
+          "missing_from_deepallo": [],
+          "all_in_plb_top7_freq": true,
+          "missing_from_plb": [],
+          "note": "14 residues are expert handoff (pocket_01), not automatic DeepAllo∩PLB fusion"
+        },
+        "agent_decision": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo/historical_replay/agent_decision.yaml"
+      },
+      "metrics": {},
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "historical_replay 冻结 handoff 与 DeepAllo/PLB 频率表一致"
+      ],
+      "iteration": {
+        "stop_reason": "node_executed"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "候选口袋已按合同排序，存在不确定性说明",
+          "Stage5 demo：historical_replay + Stage4 帧 fpocket 与 pocket_01 对照已完成（partial/demo）"
+        ],
+        "claims_forbidden": [
+          "真实口袋已确认",
+          "fpocket 自动发现等同专家 pocket_01"
+        ]
+      },
+      "status": "completed",
+      "maturity": "scripted"
+    },
+    {
+      "packet_id": "glp1r_reason_demo_v1:candidate_ranking:stage6.emit_job_pack",
+      "task_id": "glp1r_reason_demo_v1",
+      "stage_id": "candidate_ranking",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [],
+      "priors_approved": [],
+      "tools_considered": [
+        {
+          "tool_id": "vina",
+          "role": "alternative",
+          "decision": "selected",
+          "rationale": "Accepted external return engine."
+        },
+        {
+          "tool_id": "glide",
+          "role": "alternative",
+          "decision": "selected",
+          "rationale": "Accepted external return engine."
+        },
+        {
+          "tool_id": "glp1r_virtual_screening_protocol",
+          "role": "reuse",
+          "decision": "deferred",
+          "rationale": "Paper cascade reference only."
+        },
+        {
+          "tool_id": "stage6.emit_job_pack",
+          "role": "adapt",
+          "decision": "selected",
+          "rationale": "Executed via ToolRouter"
+        }
+      ],
+      "tool_selected": [
+        "vina",
+        "glide",
+        "stage6.emit_job_pack"
+      ],
+      "outputs": {
+        "job_pack_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded",
+        "job_sheet": {
+          "status": "needs_external",
+          "schema_version": "1.0.0",
+          "request_id": "stage6_glp1r_ranking_seeded_v1",
+          "stage_id": "candidate_ranking",
+          "paper_stage": "structure-based virtual screening",
+          "product_maturity": "partial/seeded",
+          "protocol": [
+            "vina",
+            "glide"
+          ],
+          "paper_protocol_reference": [
+            "glp1r_virtual_screening_protocol"
+          ],
+          "alternatives": [
+            "karmadock"
+          ],
+          "inputs_from": [
+            "pocket_evaluation",
+            "physics_sampling"
+          ],
+          "inputs": {
+            "pocket_id": "pocket_01",
+            "residues": [
+              354,
+              355,
+              357,
+              358,
+              365,
+              369,
+              410,
+              411,
+              412,
+              413,
+              414,
+              415,
+              416,
+              417
+            ],
+            "receptor_pdb": "inputs/receptor.pdb",
+            "library_file": "inputs/library_seed.smi",
+            "n_library_seed": 15,
+            "pocket_box": {
+              "center_x": 53.564,
+              "center_y": 58.499,
+              "center_z": 108.802,
+              "size_x": 22.0,
+              "size_y": 22.0,
+              "size_z": 22.0
+            }
+          },
+          "external_runners": {
+            "vina": "external/vina/README.md",
+            "glide": "external/glide/README.md"
+          },
+          "return_schema": "../../schemas/stage6_vs_return.schema.json",
+          "ingest_script": "scripts/ingest_return.py",
+          "claim_boundary": "计算候选物排序，不得宣称实验有效",
+          "expected_outputs": [
+            "return.json",
+            "ranked_candidates.csv",
+            "poses/",
+            "protocol_version.json",
+            "score_distribution.json"
+          ]
+        },
+        "vina_readme": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/external/vina/README.md",
+        "glide_readme": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/external/glide/README.md"
+      },
+      "metrics": {},
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "Stage6 作业单 + Vina/Glide 回传接口已 seeded"
+      ],
+      "iteration": {
+        "stop_reason": "node_executed"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "计算候选物已排序，待实验/专家复核",
+          "Stage6 作业单 + Vina/Glide 回传接口已 seeded（partial/seeded）"
+        ],
+        "claims_forbidden": [
+          "有效配体/抑制剂已被证实",
+          "Glide/Vina 全库虚筛已完成",
+          "本机 seeded 示例分数来自真实对接"
+        ]
+      },
+      "status": "completed",
+      "maturity": "external"
+    },
+    {
+      "packet_id": "glp1r_reason_demo_v1:candidate_ranking:stage6.ingest_seeded_returns",
+      "task_id": "glp1r_reason_demo_v1",
+      "stage_id": "candidate_ranking",
+      "stage_contract_version": "1.0.0",
+      "task_track": "retrospective_blind",
+      "inputs_frozen": [],
+      "priors_approved": [],
+      "tools_considered": [
+        {
+          "tool_id": "vina",
+          "role": "alternative",
+          "decision": "selected",
+          "rationale": "Accepted external return engine."
+        },
+        {
+          "tool_id": "glide",
+          "role": "alternative",
+          "decision": "selected",
+          "rationale": "Accepted external return engine."
+        },
+        {
+          "tool_id": "glp1r_virtual_screening_protocol",
+          "role": "reuse",
+          "decision": "deferred",
+          "rationale": "Paper cascade reference only."
+        },
+        {
+          "tool_id": "stage6.ingest_seeded_returns",
+          "role": "adapt",
+          "decision": "selected",
+          "rationale": "Executed via ToolRouter"
+        }
+      ],
+      "tool_selected": [
+        "vina",
+        "glide",
+        "stage6.ingest_seeded_returns"
+      ],
+      "outputs": {
+        "stage_result": {
+          "stage_id": "candidate_ranking",
+          "status": "demo_completed",
+          "product_maturity": "partial/seeded",
+          "engine": "glide",
+          "protocol_version": "vina_or_glide_external_v0",
+          "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/glide_seeded_example",
+          "validation_errors": [],
+          "metrics": {
+            "n_scored": 15,
+            "top_n": 10,
+            "score_min": -7.95,
+            "score_median": -5.65,
+            "score_max": -3.75,
+            "score_units": "kcal/mol_like_placeholder"
+          },
+          "inputs_consumed": {
+            "request_id": "stage6_glp1r_ranking_seeded_v1",
+            "pocket_id": "pocket_01",
+            "receptor": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/inputs/receptor.pdb",
+            "n_library": 15
+          },
+          "claims_allowed": [
+            "计算候选物已排序，待实验/专家复核",
+            "Stage6 作业单 + 回传接口已 seeded"
+          ],
+          "claims_forbidden": [
+            "有效配体/抑制剂已被证实",
+            "Glide/Vina 全库虚筛已完成",
+            "本示例分数来自真实对接"
+          ],
+          "doc": "docs/stage6_seeded_job_pack.md",
+          "engines_returned": {
+            "vina": {
+              "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/vina_seeded_example",
+              "status": "demo_completed",
+              "metrics": {
+                "n_scored": 15,
+                "top_n": 10,
+                "score_min": -7.8,
+                "score_median": -5.5,
+                "score_max": -3.6,
+                "score_units": "kcal/mol_like_placeholder"
+              }
+            },
+            "glide": {
+              "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/glide_seeded_example",
+              "status": "demo_completed",
+              "metrics": {
+                "n_scored": 15,
+                "top_n": 10,
+                "score_min": -7.95,
+                "score_median": -5.65,
+                "score_max": -3.75,
+                "score_units": "kcal/mol_like_placeholder"
+              }
+            }
+          }
+        },
+        "engines_returned": [
+          "vina",
+          "glide"
+        ],
+        "seeded_example_scores": true
+      },
+      "metrics": {},
+      "qc_flags": [],
+      "human_interventions": [],
+      "claims_allowed": [
+        "计算候选物已排序，待实验/专家复核"
+      ],
+      "iteration": {
+        "stop_reason": "node_executed"
+      },
+      "critic": {
+        "passed": true,
+        "findings": [],
+        "claims_allowed": [
+          "计算候选物已排序，待实验/专家复核",
+          "Stage6 作业单 + Vina/Glide 回传接口已 seeded（partial/seeded）"
+        ],
+        "claims_forbidden": [
+          "有效配体/抑制剂已被证实",
+          "Glide/Vina 全库虚筛已完成",
+          "本机 seeded 示例分数来自真实对接"
+        ]
+      },
+      "status": "completed",
+      "maturity": "external"
+    }
+  ],
+  "node_results": {
+    "boundary.packet": {
+      "ok": true,
+      "tool_id": "packet.write",
+      "action": "write",
+      "maturity_route": "local_invoke",
+      "outputs": {
+        "path": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/_packets/packet.json"
+      },
+      "metrics": {},
+      "claims_allowed": [],
+      "claims_forbidden": [],
+      "error": null,
+      "product_maturity": null
+    },
+    "residue_prior.replay": {
+      "ok": true,
+      "tool_id": "stage2.replay_residue_prior",
+      "action": "replay",
+      "maturity_route": "historical_replay",
+      "outputs": {
+        "mode": "historical_replay",
+        "artifact_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior",
+        "residue_csv": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/GLP1R_residue_probs.csv"
+      },
+      "metrics": {},
+      "claims_allowed": [
+        "残基先验已从回溯产物复用，非本轮重算"
+      ],
+      "claims_forbidden": [
+        "本轮重新训练/预测 PocketMiner 完成"
+      ],
+      "error": null,
+      "product_maturity": "partial/demo"
+    },
+    "ensemble_enrichment.replay": {
+      "ok": true,
+      "tool_id": "stage3.replay_ensemble",
+      "action": "replay",
+      "maturity_route": "historical_replay",
+      "outputs": {
+        "mode": "historical_replay",
+        "artifact_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment"
+      },
+      "metrics": {},
+      "claims_allowed": [
+        "构象富集产物已从回溯跑例复用"
+      ],
+      "claims_forbidden": [
+        "本轮 AF-ClaSeq/AlphaFlow 全量重算完成"
+      ],
+      "error": null,
+      "product_maturity": "partial/demo"
+    },
+    "physics_sampling.status": {
+      "ok": false,
+      "tool_id": "stage4.reuse_or_status",
+      "action": "status",
+      "maturity_route": "job_pack",
+      "outputs": {
+        "would_emit_job_pack": true,
+        "profile": "distance-simulation-1ns-demo"
+      },
+      "metrics": {},
+      "claims_allowed": [],
+      "claims_forbidden": [
+        "Stage4 1ns demo 已完成"
+      ],
+      "error": "Stage4 artifact forced missing; would emit Allo-MD job_pack",
+      "product_maturity": "needs_external"
+    },
+    "pocket_evaluation.historical": {
+      "ok": true,
+      "tool_id": "stage5.historical_replay",
+      "action": "replay",
+      "maturity_route": "historical_replay",
+      "outputs": {
+        "run_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo",
+        "pocket_id": "pocket_01",
+        "consistency_audit": {
+          "historical_14": [
+            354,
+            355,
+            357,
+            358,
+            365,
+            369,
+            410,
+            411,
+            412,
+            413,
+            414,
+            415,
+            416,
+            417
+          ],
+          "n_historical": 14,
+          "all_in_deepallo_top7_freq": true,
+          "missing_from_deepallo": [],
+          "all_in_plb_top7_freq": true,
+          "missing_from_plb": [],
+          "note": "14 residues are expert handoff (pocket_01), not automatic DeepAllo∩PLB fusion"
+        },
+        "agent_decision": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage5_glp1r_pocket_eval_demo/historical_replay/agent_decision.yaml"
+      },
+      "metrics": {},
+      "claims_allowed": [
+        "historical_replay 冻结 handoff 与 DeepAllo/PLB 频率表一致"
+      ],
+      "claims_forbidden": [
+        "真实口袋已确认",
+        "14 残基由公式自动选出"
+      ],
+      "error": null,
+      "product_maturity": "partial/demo"
+    },
+    "candidate_ranking.emit": {
+      "ok": true,
+      "tool_id": "stage6.emit_job_pack",
+      "action": "emit",
+      "maturity_route": "job_pack",
+      "outputs": {
+        "job_pack_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded",
+        "job_sheet": {
+          "status": "needs_external",
+          "schema_version": "1.0.0",
+          "request_id": "stage6_glp1r_ranking_seeded_v1",
+          "stage_id": "candidate_ranking",
+          "paper_stage": "structure-based virtual screening",
+          "product_maturity": "partial/seeded",
+          "protocol": [
+            "vina",
+            "glide"
+          ],
+          "paper_protocol_reference": [
+            "glp1r_virtual_screening_protocol"
+          ],
+          "alternatives": [
+            "karmadock"
+          ],
+          "inputs_from": [
+            "pocket_evaluation",
+            "physics_sampling"
+          ],
+          "inputs": {
+            "pocket_id": "pocket_01",
+            "residues": [
+              354,
+              355,
+              357,
+              358,
+              365,
+              369,
+              410,
+              411,
+              412,
+              413,
+              414,
+              415,
+              416,
+              417
+            ],
+            "receptor_pdb": "inputs/receptor.pdb",
+            "library_file": "inputs/library_seed.smi",
+            "n_library_seed": 15,
+            "pocket_box": {
+              "center_x": 53.564,
+              "center_y": 58.499,
+              "center_z": 108.802,
+              "size_x": 22.0,
+              "size_y": 22.0,
+              "size_z": 22.0
+            }
+          },
+          "external_runners": {
+            "vina": "external/vina/README.md",
+            "glide": "external/glide/README.md"
+          },
+          "return_schema": "../../schemas/stage6_vs_return.schema.json",
+          "ingest_script": "scripts/ingest_return.py",
+          "claim_boundary": "计算候选物排序，不得宣称实验有效",
+          "expected_outputs": [
+            "return.json",
+            "ranked_candidates.csv",
+            "poses/",
+            "protocol_version.json",
+            "score_distribution.json"
+          ]
+        },
+        "vina_readme": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/external/vina/README.md",
+        "glide_readme": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/external/glide/README.md"
+      },
+      "metrics": {},
+      "claims_allowed": [
+        "Stage6 作业单 + Vina/Glide 回传接口已 seeded"
+      ],
+      "claims_forbidden": [
+        "Glide/Vina 全库虚筛已完成",
+        "有效配体/抑制剂已被证实"
+      ],
+      "error": null,
+      "product_maturity": "partial/seeded"
+    },
+    "candidate_ranking.ingest": {
+      "ok": true,
+      "tool_id": "stage6.ingest_seeded_returns",
+      "action": "ingest_status",
+      "maturity_route": "job_pack",
+      "outputs": {
+        "stage_result": {
+          "stage_id": "candidate_ranking",
+          "status": "demo_completed",
+          "product_maturity": "partial/seeded",
+          "engine": "glide",
+          "protocol_version": "vina_or_glide_external_v0",
+          "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/glide_seeded_example",
+          "validation_errors": [],
+          "metrics": {
+            "n_scored": 15,
+            "top_n": 10,
+            "score_min": -7.95,
+            "score_median": -5.65,
+            "score_max": -3.75,
+            "score_units": "kcal/mol_like_placeholder"
+          },
+          "inputs_consumed": {
+            "request_id": "stage6_glp1r_ranking_seeded_v1",
+            "pocket_id": "pocket_01",
+            "receptor": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/job_packs/stage6_candidate_ranking_glp1r_seeded/inputs/receptor.pdb",
+            "n_library": 15
+          },
+          "claims_allowed": [
+            "计算候选物已排序，待实验/专家复核",
+            "Stage6 作业单 + 回传接口已 seeded"
+          ],
+          "claims_forbidden": [
+            "有效配体/抑制剂已被证实",
+            "Glide/Vina 全库虚筛已完成",
+            "本示例分数来自真实对接"
+          ],
+          "doc": "docs/stage6_seeded_job_pack.md",
+          "engines_returned": {
+            "vina": {
+              "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/vina_seeded_example",
+              "status": "demo_completed",
+              "metrics": {
+                "n_scored": 15,
+                "top_n": 10,
+                "score_min": -7.8,
+                "score_median": -5.5,
+                "score_max": -3.6,
+                "score_units": "kcal/mol_like_placeholder"
+              }
+            },
+            "glide": {
+              "return_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/stage6_glp1r_ranking_seeded_demo/returns/glide_seeded_example",
+              "status": "demo_completed",
+              "metrics": {
+                "n_scored": 15,
+                "top_n": 10,
+                "score_min": -7.95,
+                "score_median": -5.65,
+                "score_max": -3.75,
+                "score_units": "kcal/mol_like_placeholder"
+              }
+            }
+          }
+        },
+        "engines_returned": [
+          "vina",
+          "glide"
+        ],
+        "seeded_example_scores": true
+      },
+      "metrics": {},
+      "claims_allowed": [
+        "计算候选物已排序，待实验/专家复核"
+      ],
+      "claims_forbidden": [
+        "本机 seeded 示例分数来自真实对接",
+        "Glide/Vina 全库虚筛已完成"
+      ],
+      "error": null,
+      "product_maturity": "partial/seeded"
+    }
+  },
+  "history": [
+    {
+      "replan": 0,
+      "critic_plan": {
+        "passed": true,
+        "findings": [],
+        "action": "approve"
+      }
+    },
+    {
+      "node_id": "boundary.packet",
+      "tool_id": "packet.write",
+      "ok": true,
+      "maturity_route": "local_invoke",
+      "error": null,
+      "product_maturity": null
+    },
+    {
+      "node_id": "residue_prior.replay",
+      "tool_id": "stage2.replay_residue_prior",
+      "ok": true,
+      "maturity_route": "historical_replay",
+      "error": null,
+      "product_maturity": "partial/demo"
+    },
+    {
+      "node_id": "ensemble_enrichment.replay",
+      "tool_id": "stage3.replay_ensemble",
+      "ok": true,
+      "maturity_route": "historical_replay",
+      "error": null,
+      "product_maturity": "partial/demo"
+    },
+    {
+      "node_id": "physics_sampling.status",
+      "tool_id": "stage4.reuse_or_status",
+      "ok": false,
+      "maturity_route": "job_pack",
+      "error": "Stage4 artifact forced missing; would emit Allo-MD job_pack",
+      "product_maturity": "needs_external"
+    },
+    {
+      "node_id": "pocket_evaluation.historical",
+      "tool_id": "stage5.historical_replay",
+      "ok": true,
+      "maturity_route": "historical_replay",
+      "error": null,
+      "product_maturity": "partial/demo"
+    },
+    {
+      "node_id": "candidate_ranking.emit",
+      "tool_id": "stage6.emit_job_pack",
+      "ok": true,
+      "maturity_route": "job_pack",
+      "error": null,
+      "product_maturity": "partial/seeded"
+    },
+    {
+      "node_id": "candidate_ranking.ingest",
+      "tool_id": "stage6.ingest_seeded_returns",
+      "ok": true,
+      "maturity_route": "job_pack",
+      "error": null,
+      "product_maturity": "partial/seeded"
+    }
+  ],
+  "claim_boundary": {
+    "allowed": [
+      "Agent 在合同内自主生成了推理链与工具图",
+      "计算候选物已排序，待实验/专家复核"
+    ],
+    "forbidden": [
+      "Agent 发明了新的科学主路径并已证实",
+      "端到端论文级发现已完成",
+      "有效配体/抑制剂已被证实",
+      "真实口袋已确认"
+    ]
+  },
+  "product_note": "合同内自主推理 demo：推理链由 AutonomousReasoningPlanner 生成；非论文级端到端科学重算。"
+}

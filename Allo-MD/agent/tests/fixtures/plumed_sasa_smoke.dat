@@ -1,0 +1,5 @@
+# Integration fixture only: evaluate the frozen 254-atom HASEL selection once.
+# It deliberately has no METAD or BIASVALUE and is not a production protocol.
+MOLINFO MOLTYPE=protein STRUCTURE=step5_input3.pdb
+sasa: SASA_HASEL TYPE=TOTAL ATOMS=6676-6715,6717-6808,5759-5799,5811-5853,5944-5962,6015-6033 NL_STRIDE=10
+PRINT ARG=sasa STRIDE=1 FILE=COLVAR_smoke

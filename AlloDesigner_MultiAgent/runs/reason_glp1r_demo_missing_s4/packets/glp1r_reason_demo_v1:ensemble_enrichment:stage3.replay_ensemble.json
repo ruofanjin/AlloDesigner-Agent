@@ -1,0 +1,51 @@
+{
+  "packet_id": "glp1r_reason_demo_v1:ensemble_enrichment:stage3.replay_ensemble",
+  "task_id": "glp1r_reason_demo_v1",
+  "stage_id": "ensemble_enrichment",
+  "stage_contract_version": "1.0.0",
+  "task_track": "retrospective_blind",
+  "inputs_frozen": [],
+  "priors_approved": [],
+  "tools_considered": [
+    {
+      "tool_id": "allo_stepwise",
+      "role": "reuse",
+      "decision": "deferred",
+      "rationale": "Scripted/historical path preferred for this slice."
+    },
+    {
+      "tool_id": "stage3.replay_ensemble",
+      "role": "adapt",
+      "decision": "selected",
+      "rationale": "Replay ensemble artifacts from retrospective run."
+    }
+  ],
+  "tool_selected": [
+    "stage3.replay_ensemble"
+  ],
+  "outputs": {
+    "mode": "historical_replay",
+    "artifact_dir": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260810T165917Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment"
+  },
+  "metrics": {},
+  "qc_flags": [],
+  "human_interventions": [],
+  "claims_allowed": [
+    "构象富集产物已从回溯跑例复用"
+  ],
+  "iteration": {
+    "stop_reason": "node_executed"
+  },
+  "critic": {
+    "passed": true,
+    "findings": [],
+    "claims_allowed": [
+      "已获得偏好初始构象/纯化 MSA（计算假设）"
+    ],
+    "claims_forbidden": [
+      "已采样到实验证实的开放态"
+    ]
+  },
+  "status": "completed",
+  "maturity": "scripted"
+}

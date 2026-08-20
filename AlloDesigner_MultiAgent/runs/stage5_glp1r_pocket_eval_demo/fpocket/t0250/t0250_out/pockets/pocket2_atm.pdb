@@ -1,0 +1,36 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     2:
+HEADER 0  - Pocket Score                      : 0.0830
+HEADER 1  - Drug Score                        : 0.0062
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 3.8882
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6831
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 93.4000
+HEADER 7  - Polarity Score                    :     0
+HEADER 8  - Amino Acid based volume Score     : 5.2000
+HEADER 9  - Pocket volume (Monte Carlo)       : 218.3370
+HEADER 10 - Pocket volume (convex hull)       : 5.5485
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 13.0000
+HEADER 13 - Number of apolar alpha sphere     :    14
+HEADER 14 - Proportion of apolar alpha sphere : 0.9333
+ATOM   6570    O PHE C 402      54.830  62.640  93.710  0.00  0.00           O 0
+ATOM   6555   CB PHE C 402      53.160  63.270  90.980  0.00  0.00           C 0
+ATOM   6608  CD2 LEU C 405      53.500  67.210  95.360  0.00  0.00           C 0
+ATOM   6567  CD2 PHE C 402      52.560  65.690  90.820  0.00  0.00           C 0
+ATOM   6618   CB MET C 406      52.350  61.440  96.450  0.00  0.00           C 0
+ATOM   6621   CG MET C 406      51.550  60.280  97.050  0.00  0.00           C 0
+ATOM   6683   CG LEU C 410      50.350  60.660 101.730  0.00  0.00           C 0
+ATOM   6663  CG2 ILE C 409      51.670  65.470 102.080  0.00  0.00           C 0
+ATOM   6614    N MET C 406      54.210  62.980  96.810  0.00  0.00           N 0
+ATOM   6616   CA MET C 406      53.220  62.210  97.490  0.00  0.00           C 0
+ATOM   6670  CD1 ILE C 409      52.960  66.990  99.730  0.00  0.00           C 0
+ATOM   6661   CB ILE C 409      52.980  65.010 101.470  0.00  0.00           C 0
+ATOM   6630    O MET C 406      53.230  61.460  99.750  0.00  0.00           O 0
+ATOM   6685  CD1 LEU C 410      49.990  59.730 100.590  0.00  0.00           C 0
+TER
+END

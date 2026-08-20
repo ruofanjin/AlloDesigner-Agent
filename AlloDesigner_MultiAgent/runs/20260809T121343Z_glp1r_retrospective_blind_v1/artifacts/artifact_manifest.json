@@ -1,0 +1,28 @@
+{
+  "stages": {
+    "boundary": {
+      "boundary_sheet.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/boundary/boundary_sheet.json",
+      "stage_result.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/boundary/stage_result.json"
+    },
+    "residue_prior": {
+      "commands.sh": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/commands.sh",
+      "stage_result.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/residue_prior/stage_result.json"
+    },
+    "ensemble_enrichment": {
+      "run_chain.sh": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment/run_chain.sh",
+      "stage_result.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment/stage_result.json"
+    },
+    "physics_sampling": {
+      "job_sheet.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/physics_sampling/job_sheet.json",
+      "stage_result.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/physics_sampling/stage_result.json"
+    },
+    "pocket_evaluation": {
+      "run_chain.sh": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/run_chain.sh",
+      "stage_result.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/pocket_evaluation/stage_result.json"
+    },
+    "candidate_ranking": {
+      "job_sheet.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/candidate_ranking/job_sheet.json",
+      "stage_result.json": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T121343Z_glp1r_retrospective_blind_v1/artifacts/candidate_ranking/stage_result.json"
+    }
+  }
+}

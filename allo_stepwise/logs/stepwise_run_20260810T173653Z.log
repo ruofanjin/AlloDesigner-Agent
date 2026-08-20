@@ -1,0 +1,90 @@
+==== START 2026-08-10T17:36:53+00:00 ====
+COLABFOLD_BIN=/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/localcolabfold/.pixi/envs/default/bin/colabfold_batch
+PYTHON_BIN=/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python
+Bundle root: /home/ubuntu/file2/jrf/AlloDesigner/allo_stepwise
+OK   Python: /lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/glp1_allo_core/bin/python
+Python 3.11.11
+OK   Python import: numpy
+OK   Python import: pandas
+OK   Python import: Bio
+OK   Python import: yaml
+OK   Python import: sklearn
+OK   Python import: matplotlib
+OK   Python import: scipy
+OK   ColabFold: /lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/localcolabfold/.pixi/envs/default/bin/colabfold_batch
+OK   fpocket: /lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/allo-pocketminer/bin/fpocket
+OK   SHA256 inputs/6x18_chianR_R.a3m
+OK   SHA256 inputs/6x18_MODEL_0.pdb
+OK   SHA256 inputs/glp1_historical_holo_cluster_mapped_residues.csv
+OK   SHA256 inputs/glp1-deepallo-score-residue_probabilities_top_7.csv
+OK   SHA256 inputs/glp1-plb-score-residue_probabilities_top_7.csv
+Allowed write roots:
+  - /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir
+  - /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/generated
+Configured output path audit:
+  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run
+  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/filtered_sequences.a3m
+  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/combined_filtered_all_iterations.a3m
+  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/02_m_fold_sampling/round_1
+  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/02_m_fold_sampling/round_1/02_sampling/pocketminer_predict_residues_cluster_eps6
+  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/03_voting/pocket_distance
+  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/04_recompile/pocket_min_distance
+  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/step3_select_pocket_cluster_residues
+  OK /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/generated
+GLP1 Allo stepwise workflow
+Root: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise
+Work dir: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run
+Active residue set: historical_holo_cluster -> /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/inputs/glp1_historical_holo_cluster_mapped_residues.csv
+Mapped GLP1 evaluation residues: [354, 355, 357, 358, 365, 369, 410, 411, 412, 413, 414, 415, 416, 417]
+Step 3: documented_historical_handoff (Iteration 1; read-only historical handoff)
+Step 3 documentation: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/docs/STEP3_POCKET_SELECTION_HANDOFF.md
+Metric: pocket_min_distance from column min_distance
+Numbered command stages:
+  00  00_plan.sh: self-contained path audit and plan
+  01  01_audit_step3_handoff.sh: optional full historical-evidence audit
+  02  02_prepare_iteration_input.sh: one-time input preparation
+  03  03_generate_iteration_msas.sh N: iteration loop; serial RNG
+  04  04_write_iteration_colabfold_commands.sh N: 10 shuffle predictions may run in parallel
+  05  05_iteration_metric_stack.sh N: single wrapper after predictions
+  06  06_select_iteration_msa.sh N: barrier and next-iteration input
+  07  07_combine_iterations.sh: reads Iterations 1-5 only
+  08  08_prepare_mfold_msas.sh: serial deterministic split
+  09  09_write_mfold_colabfold_commands.sh: 38 prediction directories may run in parallel
+  10  10_sampling_metric_stack.sh: single merge wrapper
+  11  11_vote_and_recompile.sh: serial vote then recompile
+  12  12_write_final_colabfold_commands.sh: prediction and control may run in parallel
+  13  13_final_metric_stack.sh: final evaluation barrier
+Parallel branch after Iteration 5:
+  - continue Iterations 6-7 through stages 03-06
+  - run M-fold and final stages 07-13
+Full dependency and parallelism notes: commands/README.md
+Preflight OK.
+==== 02_prepare_iteration_input ====
+Wrote coverage-filtered iteration input: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/filtered_sequences.a3m
+==== 03_generate_iteration_msas 1 ====
+Wrote iteration 1 MSA batches under /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1
+==== 04_write_iteration_colabfold_commands 1 ====
+Wrote ColabFold command list: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/generated/iteration_1_colabfold_commands.sh
+Generated commands:
+63 generated/iteration_1_colabfold_commands.sh
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ -d "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_1" ]] && compgen -G "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_1/*.a3m" >/dev/null; then
+  /lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/localcolabfold/.pixi/envs/default/bin/colabfold_batch --num-recycle 3 --num-models 1 --num-seeds 1 --random-seed 42 /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_1 /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_1
+else
+  echo "SKIP missing directory or A3M: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_1"
+fi
+
+if [[ -d "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_2" ]] && compgen -G "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_2/*.a3m" >/dev/null; then
+  /lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/localcolabfold/.pixi/envs/default/bin/colabfold_batch --num-recycle 3 --num-models 1 --num-seeds 1 --random-seed 42 /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_2 /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_2
+else
+  echo "SKIP missing directory or A3M: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_2"
+fi
+
+if [[ -d "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_3" ]] && compgen -G "/lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_3/*.a3m" >/dev/null; then
+  /lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/localcolabfold/.pixi/envs/default/bin/colabfold_batch --num-recycle 3 --num-models 1 --num-seeds 1 --random-seed 42 /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_3 /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_3
+else
+  echo "SKIP missing directory or A3M: /lambda/nfs/file2/jrf/AlloDesigner/allo_stepwise/workdir/run/01_iterative_shuffling/Iteration_1/shuffle_3"
+fi
+==== PREP_DONE 2026-08-10T17:37:07+00:00 ====

@@ -1,0 +1,153 @@
+{
+  "packet_id": "glp1r_retrospective_blind_v1:ensemble_enrichment:r1",
+  "task_id": "glp1r_retrospective_blind_v1",
+  "stage_id": "ensemble_enrichment",
+  "stage_contract_version": "1.0.0",
+  "task_track": "retrospective_blind",
+  "inputs_frozen": [
+    "full_length_sequence",
+    "public_msa_databases",
+    "membrane_system_setup_protocol"
+  ],
+  "priors_approved": [
+    "information_boundary_sheet",
+    "default_allodesigner_reference_path"
+  ],
+  "tools_considered": [
+    {
+      "tool_id": "alphaflow",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "From AlloDesigner reference path / stage defaults"
+    },
+    {
+      "tool_id": "af_claseq",
+      "role": "reuse",
+      "decision": "selected",
+      "rationale": "From AlloDesigner reference path / stage defaults"
+    },
+    {
+      "tool_id": "colabfold_msa_subsample",
+      "role": "benchmark",
+      "decision": "benchmark_only",
+      "rationale": "Benchmark control; reported separately"
+    }
+  ],
+  "tool_selected": [
+    "alphaflow",
+    "af_claseq"
+  ],
+  "outputs": {
+    "iterations": [],
+    "pipeline": {
+      "status": "needs_external",
+      "paper_stage": "MSA purification + preference conformation",
+      "depends_on": [
+        "residue_prior"
+      ],
+      "residue_prior_ref": null,
+      "chain": [
+        {
+          "step": 1,
+          "tool": "alphaflow",
+          "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow && python 1-mmseqs_search_helper.py --split ./GLP1_chain_seqres.csv --outdir ./alignment_dir/alignment_dir_GLP1",
+          "maturity": "scripted"
+        },
+        {
+          "step": 2,
+          "tool": "alphaflow",
+          "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/AlphaFlow && bash 2-predict_test.sh",
+          "maturity": "scripted",
+          "note": "Requires upstream AlphaFlow predict.py + weights"
+        },
+        {
+          "step": 3,
+          "tool": "af_claseq",
+          "cmd": "cd /lambda/nfs/file2/jrf/AlloDesigner/Allo_af_claseq && python 1_exact_pdb_from_dir_remove_new_dir_all_shuffle.py && python 2_fpocket_msa_pdb.py && python 3_calucate_fpocket_center_dir.py",
+          "maturity": "scripted",
+          "note": "Hardcoded case paths inside scripts; needs AF_ClaSeq case dir"
+        },
+        {
+          "step": 4,
+          "tool": "af_claseq_iterative",
+          "rounds": 6,
+          "cmds": [
+            "python 11_sequence_voting.py",
+            "python 12_recompile.py"
+          ],
+          "maturity": "scripted"
+        }
+      ],
+      "stop_when": [
+        {
+          "metric": "top10_percent_mean_distance",
+          "op": "<=",
+          "value": 5.0
+        },
+        {
+          "metric": "round",
+          "op": ">=",
+          "value": 6
+        }
+      ],
+      "artifacts": {
+        "run_chain_sh": "/lambda/nfs/file2/jrf/AlloDesigner/AlloDesigner_MultiAgent/runs/20260809T122127Z_glp1r_retrospective_blind_v1/artifacts/ensemble_enrichment/run_chain.sh"
+      },
+      "env_decision": {
+        "stage_id": "ensemble_enrichment",
+        "profile_id": "allo_alphaflow",
+        "specialized": true,
+        "action": "reuse",
+        "env_name": "esmfold",
+        "env_path": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/esmfold",
+        "python_executable": "/lambda/nfs/file2/cqr_files/BioClaw_gpu_envs/esmfold/bin/python",
+        "matched_by": "name+markers",
+        "score": 9.0,
+        "create_yml": "/lambda/nfs/file2/jrf/AlloDesigner/alphflow-environment.yml",
+        "command_prefix": [
+          "conda",
+          "run",
+          "-n",
+          "esmfold",
+          "--no-capture-output"
+        ],
+        "notes": [
+          "Reuse env 'esmfold' for profile 'allo_alphaflow' (score=9.0)"
+        ],
+        "probe_details": {
+          "required": {
+            "torch": true,
+            "numpy": true
+          },
+          "optional_import": {},
+          "optional_commands": {
+            "mmseqs": false
+          },
+          "name_alias_hit": true
+        }
+      }
+    }
+  },
+  "metrics": {},
+  "qc_flags": [],
+  "human_interventions": [],
+  "claims_allowed": [
+    "已获得偏好初始构象/纯化 MSA（计算假设）"
+  ],
+  "iteration": {
+    "round": 1,
+    "stop_reason": "needs_external"
+  },
+  "critic": {
+    "passed": true,
+    "findings": [],
+    "claims_allowed": [
+      "已获得偏好初始构象/纯化 MSA（计算假设）"
+    ],
+    "claims_forbidden": [
+      "已采样到实验证实的开放态"
+    ]
+  },
+  "status": "needs_human",
+  "maturity": "scripted"
+}

@@ -1,0 +1,36 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    30:
+HEADER 0  - Pocket Score                      : -0.1332
+HEADER 1  - Drug Score                        : 0.0005
+HEADER 2  - Number of alpha spheres           :    21
+HEADER 3  - Mean alpha-sphere radius          : 3.9975
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5262
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 20.5000
+HEADER 7  - Polarity Score                    :     5
+HEADER 8  - Amino Acid based volume Score     : 5.3333
+HEADER 9  - Pocket volume (Monte Carlo)       : 130.6496
+HEADER 10 - Pocket volume (convex hull)       : 1.0841
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 9.0000
+HEADER 13 - Number of apolar alpha sphere     :    10
+HEADER 14 - Proportion of apolar alpha sphere : 0.4762
+ATOM   7008  NH1 ARG D 428      66.170  73.370 116.840  0.07  6.56           N 0
+ATOM   6952    O SER D 425      63.060  75.770 113.530  0.55  2.14           O 0
+ATOM     33   CE LYS A   2      70.390  78.570 111.530  0.00  0.00           C 0
+ATOM   6949   OG SER D 425      64.320  73.030 112.410  0.00  0.00           O 0
+ATOM   7020   CB TRP D 429      63.310  78.800 111.640  0.00  0.00           C 0
+ATOM   7018   CA TRP D 429      63.780  79.470 112.930  0.00  0.00           C 0
+ATOM     27   CG LYS A   2      69.000  78.320 109.480  0.00  0.00           C 0
+ATOM   7024  CD1 TRP D 429      64.710  79.470 109.690  0.00  0.00           C 0
+ATOM   7095  OE2 GLU D 432      68.880  80.410 113.970  0.54  8.57           O 0
+ATOM   7002   CD ARG D 428      66.400  75.980 117.840  0.00  0.00           C 0
+ATOM   6996   CB ARG D 428      64.150  76.650 116.730  0.00  0.00           C 0
+ATOM   7016    N TRP D 429      63.550  78.520 114.030  0.63  1.09           N 0
+ATOM     88  CD1 ILE A   5      65.850  74.350 109.250  0.00  0.00           C 0
+ATOM   6999   CG ARG D 428      65.430  77.150 117.390  0.00  0.00           C 0
+TER
+END

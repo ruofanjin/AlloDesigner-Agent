@@ -1,0 +1,22 @@
+{
+  "status": "needs_external",
+  "paper_stage": "structure-based virtual screening",
+  "protocol": [
+    "glp1r_virtual_screening_protocol"
+  ],
+  "alternatives": [
+    "vina",
+    "karmadock",
+    "glide"
+  ],
+  "inputs_from": [
+    "pocket_evaluation",
+    "physics_sampling"
+  ],
+  "claim_boundary": "计算候选物排序，不得宣称实验有效",
+  "expected_outputs": [
+    "ranked_candidates.csv",
+    "poses/",
+    "protocol_version.json"
+  ]
+}

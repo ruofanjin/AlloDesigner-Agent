@@ -1,0 +1,840 @@
+#!/usr/bin/env python3
+"""Safe orchestrator for the packaged GLP1 iteration1 workflow."""
+
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import fcntl
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import shlex
+import shutil
+import socket
+import subprocess
+import sys
+from typing import Any
+
+
+BUNDLE_ROOT = Path(__file__).resolve().parent
+DAG_FILE = BUNDLE_ROOT / "manifests" / "stages.json"
+RUN_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
+SITE_ENV_KEYS = (
+    "GMX_ENV_SCRIPT",
+    "GMX_BIN",
+    "PLUMED_BIN",
+    "MDPOCKET_BIN",
+    "MDPOCKET_PROVENANCE",
+    "PYTHON_BIN",
+    "GMX_LAUNCHER",
+    "MPIEXEC_BIN",
+    "MPI_RANKS",
+    "OMP_THREADS",
+    "GMX_DEVICE_MODE",
+    "GMX_MDRUN_EXTRA_ARGS",
+    "GMX_MDRUN_MAXH",
+    "RESTRAINT_REFERENCE_MODE",
+    "ACK_SASA_BIASVALUE",
+)
+
+
+class AgentError(RuntimeError):
+    pass
+
+
+def now_iso() -> str:
+    return dt.datetime.now(dt.timezone.utc).astimezone().isoformat(timespec="seconds")
+
+
+def workflow_fingerprint() -> str:
+    """Hash executable workflow logic so a prepared run cannot switch code silently."""
+    candidates = [BUNDLE_ROOT / "agentctl", DAG_FILE]
+    candidates.extend(sorted((BUNDLE_ROOT / "stages").rglob("*.sh")))
+    candidates.extend(sorted((BUNDLE_ROOT / "tools").glob("*.py")))
+    digest = hashlib.sha256()
+    for path in candidates:
+        relative = path.relative_to(BUNDLE_ROOT).as_posix().encode("utf-8")
+        content = path.read_bytes()
+        digest.update(len(relative).to_bytes(4, "big"))
+        digest.update(relative)
+        digest.update(len(content).to_bytes(8, "big"))
+        digest.update(content)
+    return digest.hexdigest()
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def load_dag() -> tuple[dict[str, dict[str, Any]], dict[str, list[str]], list[str]]:
+    data = json.loads(DAG_FILE.read_text(encoding="utf-8"))
+    if data.get("schema_version") != 1:
+        raise AgentError(f"Unsupported DAG schema: {data.get('schema_version')!r}")
+    ordered: list[str] = []
+    stages: dict[str, dict[str, Any]] = {}
+    for item in data["stages"]:
+        stage_id = item["id"]
+        if stage_id in stages:
+            raise AgentError(f"Duplicate stage id: {stage_id}")
+        stages[stage_id] = item
+        ordered.append(stage_id)
+    for stage_id, item in stages.items():
+        for dep in item.get("deps", []):
+            if dep not in stages:
+                raise AgentError(f"Unknown dependency {dep!r} in {stage_id!r}")
+    profiles = data["profiles"]
+    for profile, selected in profiles.items():
+        missing = [stage_id for stage_id in selected if stage_id not in stages]
+        if missing:
+            raise AgentError(f"Profile {profile!r} has unknown stages: {missing}")
+    # Detect dependency cycles once, independently of profile ordering.
+    visiting: set[str] = set()
+    visited: set[str] = set()
+
+    def visit(stage_id: str) -> None:
+        if stage_id in visiting:
+            raise AgentError(f"Dependency cycle reaches {stage_id!r}")
+        if stage_id in visited:
+            return
+        visiting.add(stage_id)
+        for dep in stages[stage_id].get("deps", []):
+            visit(dep)
+        visiting.remove(stage_id)
+        visited.add(stage_id)
+
+    for stage_id in ordered:
+        visit(stage_id)
+    return stages, profiles, ordered
+
+
+def expand_profile(
+    profile: str,
+    stages: dict[str, dict[str, Any]],
+    profiles: dict[str, list[str]],
+    ordered: list[str],
+) -> list[str]:
+    if profile not in profiles:
+        raise AgentError(f"Unknown profile {profile!r}; use `agentctl list`")
+    selected: set[str] = set()
+
+    def add(stage_id: str) -> None:
+        for dep in stages[stage_id].get("deps", []):
+            add(dep)
+        selected.add(stage_id)
+
+    for stage_id in profiles[profile]:
+        add(stage_id)
+    return [stage_id for stage_id in ordered if stage_id in selected]
+
+
+def resolve_work_root(raw: str | None, site_config: Path | None = None) -> Path:
+    value = raw or os.environ.get("AGENT_WORK_ROOT") or read_site_value(site_config, "AGENT_WORK_ROOT")
+    if not value:
+        raise AgentError(
+            "A work root is required for run data; pass --work-root or set AGENT_WORK_ROOT"
+        )
+    resolved = Path(value).expanduser().resolve()
+    if resolved == Path("/"):
+        raise AgentError("Work root must not be the filesystem root")
+    if resolved == BUNDLE_ROOT or BUNDLE_ROOT in resolved.parents:
+        raise AgentError(f"Work root must be outside the read-only bundle: {resolved}")
+    return resolved
+
+
+def validate_run_id(run_id: str) -> None:
+    if not RUN_ID_RE.fullmatch(run_id):
+        raise AgentError(
+            "run-id must start with an alphanumeric character and contain only "
+            "letters, digits, dot, underscore, or hyphen (max 128 characters)"
+        )
+
+
+def run_dir_for(work_root: Path, run_id: str) -> Path:
+    validate_run_id(run_id)
+    candidate = (work_root / run_id).resolve()
+    if candidate.parent != work_root:
+        raise AgentError(f"Unsafe run path: {candidate}")
+    return candidate
+
+
+def write_json_atomic(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    os.replace(tmp, path)
+
+
+def render_site_environment(environment: dict[str, str]) -> str | None:
+    """Render allowlisted values into a deterministic, sourceable snapshot."""
+    lines = ["# Effective site environment captured by agentctl prepare."]
+    for key in SITE_ENV_KEYS:
+        value = environment.get(key)
+        if value is None or value == "":
+            continue
+        if "\n" in value or "\r" in value:
+            raise AgentError(f"Environment value {key} contains a newline and cannot be snapshotted")
+        lines.append(f"export {key}={shlex.quote(value)}")
+    return "\n".join(lines) + "\n" if len(lines) > 1 else None
+
+
+def effective_site_environment_text() -> str | None:
+    """Capture allowlisted values inherited by scheduler-launched runs."""
+    return render_site_environment(dict(os.environ))
+
+
+def canonical_site_file_text(site_config: Path) -> str | None:
+    """Source a trusted site file once, then freeze only its effective values."""
+    if not site_config.is_file():
+        raise AgentError(f"Site config not found: {site_config}")
+    command = [
+        "bash",
+        "--noprofile",
+        "--norc",
+        "-c",
+        'set -a; source "$1"; env -0',
+        "_",
+        str(site_config),
+    ]
+    result = subprocess.run(command, env=os.environ.copy(), capture_output=True, check=False)
+    if result.returncode != 0:
+        detail = result.stderr.decode("utf-8", errors="replace").strip()
+        raise AgentError(f"Cannot evaluate trusted site config {site_config}: {detail}")
+    environment: dict[str, str] = {}
+    for record in result.stdout.split(b"\0"):
+        if not record:
+            continue
+        name, separator, value = record.partition(b"=")
+        if not separator:
+            continue
+        environment[name.decode("utf-8", errors="strict")] = value.decode(
+            "utf-8", errors="strict"
+        )
+    return render_site_environment(environment)
+
+
+def snapshot_site_environment(path: Path, text: str | None = None) -> bool:
+    text = effective_site_environment_text() if text is None else text
+    if text is None:
+        return False
+    path.write_text(text, encoding="utf-8")
+    return True
+
+
+def read_site_value(path: Path | None, key: str) -> str | None:
+    if path is None or not path.is_file():
+        return None
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        name, value = line.split("=", 1)
+        normalized_name = name.strip()
+        if normalized_name.startswith("export "):
+            normalized_name = normalized_name[len("export ") :].strip()
+        if normalized_name != key:
+            continue
+        tokens = shlex.split(value, comments=True, posix=True)
+        return tokens[0] if len(tokens) == 1 else value.strip()
+    return None
+
+
+def saved_site_config(run_dir: Path) -> Path | None:
+    candidate = run_dir / ".agent" / "site.env"
+    return candidate if candidate.is_file() else None
+
+
+def print_plan(
+    profile: str,
+    selected: list[str],
+    stages: dict[str, dict[str, Any]],
+    site_config: Path | None = None,
+) -> None:
+    print(f"Profile: {profile}")
+    restraint_mode = read_site_value(site_config, "RESTRAINT_REFERENCE_MODE")
+    if restraint_mode is None:
+        restraint_mode = "charmm_gui_initial (built-in recommended default)"
+    print(f"Restraint reference mode: {restraint_mode}")
+    if not selected:
+        print("  (validation only; no simulation stages)")
+        return
+    for number, stage_id in enumerate(selected, start=1):
+        item = stages[stage_id]
+        flags: list[str] = []
+        if item.get("long"):
+            flags.append("long")
+        if item.get("scientific_gate"):
+            flags.append(f"gate={item['scientific_gate']}")
+        if item.get("requires_device"):
+            flags.append(f"device={item['requires_device']}")
+        if item.get("optional_tool"):
+            flags.append(f"tool={item['optional_tool']}")
+        if item.get("protocol_class"):
+            flags.append(f"class={item['protocol_class']}")
+        suffix = f" [{' '.join(flags)}]" if flags else ""
+        deps = ",".join(item.get("deps", [])) or "-"
+        print(f"  {number:02d}. {stage_id}: {item['title']}{suffix}; deps={deps}")
+
+
+def prepare_run(run_dir: Path, site_config: Path | None) -> None:
+    metadata = run_dir / ".agent" / "run.json"
+    requested_site_text = (
+        canonical_site_file_text(site_config)
+        if site_config is not None
+        else effective_site_environment_text()
+    )
+    if run_dir.exists():
+        if metadata.is_file():
+            saved = saved_site_config(run_dir)
+            if requested_site_text is not None and (
+                saved is None or requested_site_text != saved.read_text(encoding="utf-8")
+            ):
+                raise AgentError(
+                    "Prepared run has different effective environment settings; "
+                    "resume with the original settings or use a new run-id"
+                )
+            print(f"Run already prepared; no files changed: {run_dir}")
+            return
+        raise AgentError(f"Refusing existing non-Agent directory: {run_dir}")
+    run_dir.parent.mkdir(parents=True, exist_ok=True)
+    partial = run_dir.parent / f".{run_dir.name}.preparing.{os.getpid()}"
+    if partial.exists():
+        raise AgentError(f"Temporary preparation path already exists: {partial}")
+    (partial / ".agent" / "state").mkdir(parents=True)
+    (partial / "stages").mkdir()
+    (partial / "logs").mkdir()
+    (partial / "commands").mkdir()
+    shutil.copytree(BUNDLE_ROOT / "inputs", partial / "inputs", copy_function=shutil.copy2)
+    snapshot_site_environment(partial / ".agent" / "site.env", requested_site_text)
+    site_snapshot = partial / ".agent" / "site.env"
+    env_script_value = read_site_value(site_snapshot, "GMX_ENV_SCRIPT")
+    env_script_path = (
+        Path(env_script_value).expanduser().resolve() if env_script_value else None
+    )
+    mdpocket_value = read_site_value(site_snapshot, "MDPOCKET_BIN")
+    mdpocket_path = None
+    mdpocket_buildinfo_path = None
+    if mdpocket_value:
+        candidate = Path(mdpocket_value).expanduser()
+        if candidate.is_absolute():
+            mdpocket_path = candidate.resolve()
+            mdpocket_buildinfo_path = (
+                mdpocket_path.parent.parent / "share" / "fpocket" / "BUILDINFO.tsv"
+            )
+    payload = {
+        "schema_version": 1,
+        "run_id": run_dir.name,
+        "created_at": now_iso(),
+        "bundle_root_at_creation": str(BUNDLE_ROOT),
+        "bundle_version": (BUNDLE_ROOT / "VERSION").read_text(encoding="utf-8").strip(),
+        "workflow_fingerprint": workflow_fingerprint(),
+        "site_config_sha256": file_sha256(site_snapshot) if site_snapshot.is_file() else None,
+        "site_config_source": str(site_config) if site_config is not None else "inherited environment",
+        "site_config_source_sha256": file_sha256(site_config) if site_config is not None else None,
+        "gmx_env_script": str(env_script_path) if env_script_path is not None else None,
+        "gmx_env_script_sha256": (
+            file_sha256(env_script_path)
+            if env_script_path is not None and env_script_path.is_file()
+            else None
+        ),
+        "mdpocket_binary": str(mdpocket_path) if mdpocket_path is not None else None,
+        "mdpocket_binary_sha256": (
+            file_sha256(mdpocket_path)
+            if mdpocket_path is not None and mdpocket_path.is_file()
+            else None
+        ),
+        "mdpocket_buildinfo": (
+            str(mdpocket_buildinfo_path) if mdpocket_buildinfo_path is not None else None
+        ),
+        "mdpocket_buildinfo_sha256": (
+            file_sha256(mdpocket_buildinfo_path)
+            if mdpocket_buildinfo_path is not None and mdpocket_buildinfo_path.is_file()
+            else None
+        ),
+        "host": socket.gethostname(),
+        "inputs_are_snapshot": True,
+    }
+    write_json_atomic(partial / ".agent" / "run.json", payload)
+    os.replace(partial, run_dir)
+    print(f"Prepared immutable input snapshot: {run_dir}")
+
+
+def tail_contains(path: Path, needle: bytes, limit: int = 512 * 1024) -> bool:
+    with path.open("rb") as handle:
+        handle.seek(0, os.SEEK_END)
+        size = handle.tell()
+        handle.seek(max(0, size - limit))
+        return needle in handle.read()
+
+
+def validate_stage_outputs(stage: dict[str, Any], run_dir: Path) -> tuple[bool, list[str]]:
+    problems: list[str] = []
+    for rel in stage.get("expected", []):
+        path = run_dir / rel
+        if not path.is_file():
+            problems.append(f"missing: {rel}")
+        elif path.stat().st_size == 0:
+            problems.append(f"empty: {rel}")
+    for rel in stage.get("completion_logs", []):
+        path = run_dir / rel
+        if path.is_file() and not tail_contains(path, b"Finished mdrun"):
+            problems.append(f"no completion marker: {rel}")
+    for specification in stage.get("indexed_files", []):
+        relative_directory = Path(specification["directory"])
+        prefix = specification["prefix"]
+        suffix = specification["suffix"]
+        count = specification["count"]
+        directory = run_dir / relative_directory
+        if not directory.is_dir():
+            problems.append(f"missing indexed-file directory: {relative_directory.as_posix()}")
+            continue
+        expression = re.compile(rf"^{re.escape(prefix)}([0-9]+){re.escape(suffix)}$")
+        found: dict[int, Path] = {}
+        for path in directory.iterdir():
+            match = expression.fullmatch(path.name)
+            if match:
+                found[int(match.group(1))] = path
+        expected_indices = set(range(count))
+        actual_indices = set(found)
+        if actual_indices != expected_indices:
+            missing = sorted(expected_indices - actual_indices)
+            extra = sorted(actual_indices - expected_indices)
+            problems.append(
+                f"indexed files {relative_directory.as_posix()}: expected 0..{count - 1}, "
+                f"missing={missing[:10]}, extra={extra[:10]}"
+            )
+        elif any(not path.is_file() or path.stat().st_size == 0 for path in found.values()):
+            problems.append(f"empty indexed file under: {relative_directory.as_posix()}")
+    return not problems, problems
+
+
+def state_path(run_dir: Path, stage_id: str) -> Path:
+    return run_dir / ".agent" / "state" / f"{stage_id}.json"
+
+
+def completed_and_valid(stage: dict[str, Any], run_dir: Path) -> bool:
+    path = state_path(run_dir, stage["id"])
+    if not path.is_file():
+        return False
+    try:
+        state = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return False
+    valid, _ = validate_stage_outputs(stage, run_dir)
+    if state.get("status") != "complete" or not valid:
+        return False
+    recorded = {
+        item.get("path"): (item.get("size"), item.get("mtime_ns"))
+        for item in state.get("outputs", [])
+        if isinstance(item, dict)
+    }
+    current = {
+        item["path"]: (item["size"], item["mtime_ns"])
+        for item in stage_output_metadata(stage, run_dir)
+    }
+    if recorded.keys() != current.keys():
+        return False
+    for rel, metadata in current.items():
+        if recorded.get(rel) != metadata:
+            return False
+    return True
+
+
+def stage_output_metadata(stage: dict[str, Any], run_dir: Path) -> list[dict[str, Any]]:
+    result: list[dict[str, Any]] = []
+    paths = list(stage.get("expected", []))
+    for specification in stage.get("indexed_files", []):
+        directory = Path(specification["directory"])
+        paths.extend(
+            (directory / f"{specification['prefix']}{index}{specification['suffix']}").as_posix()
+            for index in range(specification["count"])
+        )
+    for rel in dict.fromkeys(paths):
+        path = run_dir / rel
+        stat = path.stat()
+        result.append({"path": rel, "size": stat.st_size, "mtime_ns": stat.st_mtime_ns})
+    return result
+
+
+def invoke_doctor(
+    site_config: Path | None,
+    strict: bool,
+    require_mdpocket: bool = False,
+    log_path: Path | None = None,
+    isolated: bool = False,
+    require_gpu_runtime: bool | None = None,
+) -> int:
+    env = os.environ.copy()
+    env.pop("AGENT_SITE_CONFIG", None)
+    if isolated:
+        # A prepared run is governed only by its frozen allowlisted snapshot;
+        # later ambient shell changes must not alter binaries or resources.
+        for key in SITE_ENV_KEYS:
+            env.pop(key, None)
+    env.update(
+        {
+            "AGENT_BUNDLE_ROOT": str(BUNDLE_ROOT),
+            "AGENT_STRICT": "1" if strict else "0",
+            "AGENT_REQUIRE_MDPOCKET": "1" if require_mdpocket else "0",
+        }
+    )
+    if require_gpu_runtime is not None:
+        env["AGENT_REQUIRE_GPU_RUNTIME"] = "1" if require_gpu_runtime else "0"
+    if site_config:
+        env["AGENT_SITE_CONFIG"] = str(site_config)
+    command = [str(BUNDLE_ROOT / "stages" / "00_doctor.sh")]
+    if log_path is None:
+        return subprocess.run(command, env=env, check=False).returncode
+    result = subprocess.run(
+        command,
+        env=env,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    print(result.stdout, end="")
+    log_path.write_text(result.stdout, encoding="utf-8")
+    return result.returncode
+
+
+def execute_profile(
+    profile: str,
+    selected: list[str],
+    stages: dict[str, dict[str, Any]],
+    run_dir: Path,
+    allow_long: bool,
+    ack_sasa: bool,
+    site_config_arg: Path | None,
+) -> None:
+    metadata = run_dir / ".agent" / "run.json"
+    if not metadata.is_file():
+        raise AgentError(f"Run is not prepared: {run_dir}; use `agentctl prepare` first")
+    try:
+        run_metadata = json.loads(metadata.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise AgentError(f"Run metadata is unreadable: {metadata}: {exc}") from exc
+    expected_fingerprint = run_metadata.get("workflow_fingerprint")
+    actual_fingerprint = workflow_fingerprint()
+    if expected_fingerprint != actual_fingerprint:
+        raise AgentError(
+            "Workflow code differs from the version used at prepare time; "
+            "use a new run-id instead of mixing executable definitions"
+        )
+    site_snapshot = saved_site_config(run_dir)
+    expected_site_hash = run_metadata.get("site_config_sha256")
+    actual_site_hash = file_sha256(site_snapshot) if site_snapshot else None
+    if expected_site_hash != actual_site_hash:
+        raise AgentError(
+            "The frozen site configuration changed after prepare; use a new run-id "
+            "for resource or protocol changes"
+        )
+    expected_env_script = run_metadata.get("gmx_env_script")
+    expected_env_script_hash = run_metadata.get("gmx_env_script_sha256")
+    if expected_env_script:
+        current_env_script = Path(expected_env_script)
+        if not current_env_script.is_file() or file_sha256(current_env_script) != expected_env_script_hash:
+            raise AgentError(
+                "The installation environment script changed or disappeared after prepare; "
+                "restore the audited file or use a new run-id"
+            )
+    if site_config_arg is not None:
+        requested_site_text = canonical_site_file_text(site_config_arg)
+        saved_site_text = site_snapshot.read_text(encoding="utf-8") if site_snapshot else None
+        if requested_site_text != saved_site_text:
+            raise AgentError(
+                "The requested site configuration differs from the frozen prepare snapshot; "
+                "omit --site-config to use the snapshot or create a new run-id"
+            )
+    pending = [stage_id for stage_id in selected if not completed_and_valid(stages[stage_id], run_dir)]
+    if not pending:
+        print(f"All stages are already complete and valid: {profile}")
+        return
+    if any(stages[stage_id].get("long") for stage_id in pending) and not allow_long:
+        raise AgentError("Long stages require both --execute and --allow-long-md")
+
+    site_config = site_snapshot
+    needs_gpu = any(stages[stage_id].get("requires_device") == "gpu" for stage_id in pending)
+    configured_device = (read_site_value(site_config, "GMX_DEVICE_MODE") or "").lower()
+    if needs_gpu and configured_device != "gpu":
+        raise AgentError(
+            "Pending production MD stages require CUDA acceleration. Set "
+            "GMX_DEVICE_MODE=gpu in the site configuration prepared for a new run-id; "
+            "the bundle does not install the CUDA driver or toolkit."
+        )
+
+    needs_sasa_gate = any(stages[stage_id].get("scientific_gate") == "sasa_biasvalue" for stage_id in pending)
+    configured_ack = (read_site_value(site_config, "ACK_SASA_BIASVALUE") or "no").lower() == "yes"
+    if needs_sasa_gate and not (ack_sasa or configured_ack):
+        raise AgentError(
+            "SASA stages preserve METAD plus BIASVALUE ARG=sasa. Review the protocol, then pass "
+            "--ack-sasa-biasvalue or set ACK_SASA_BIASVALUE=yes."
+        )
+
+    require_mdpocket = any(stages[stage_id].get("optional_tool") == "mdpocket" for stage_id in pending)
+    if require_mdpocket:
+        configured_mdpocket = read_site_value(site_config, "MDPOCKET_BIN")
+        if not configured_mdpocket or not Path(configured_mdpocket).expanduser().is_absolute():
+            raise AgentError(
+                "Full MDpocket execution requires an absolute MDPOCKET_BIN from "
+                "install/install_fpocket.sh before prepare."
+            )
+        current_mdpocket = Path(configured_mdpocket).expanduser().resolve()
+        expected_mdpocket = run_metadata.get("mdpocket_binary")
+        expected_mdpocket_hash = run_metadata.get("mdpocket_binary_sha256")
+        if (
+            expected_mdpocket != str(current_mdpocket)
+            or not expected_mdpocket_hash
+            or not current_mdpocket.is_file()
+            or file_sha256(current_mdpocket) != expected_mdpocket_hash
+        ):
+            raise AgentError(
+                "The prepared run did not freeze this exact MDpocket binary, or the binary "
+                "changed; install it before prepare and use a new run-id."
+            )
+        expected_buildinfo = run_metadata.get("mdpocket_buildinfo")
+        expected_buildinfo_hash = run_metadata.get("mdpocket_buildinfo_sha256")
+        if (
+            not expected_buildinfo
+            or not expected_buildinfo_hash
+            or not Path(expected_buildinfo).is_file()
+            or file_sha256(Path(expected_buildinfo)) != expected_buildinfo_hash
+        ):
+            raise AgentError(
+                "The fpocket BUILDINFO was not frozen at prepare or has changed; use a new run-id."
+            )
+    if invoke_doctor(
+        site_config,
+        strict=True,
+        require_mdpocket=require_mdpocket,
+        log_path=run_dir / ".agent" / "doctor.log",
+        isolated=True,
+        require_gpu_runtime=needs_gpu,
+    ) != 0:
+        raise AgentError("Strict environment doctor failed; no stage was started")
+
+    for stage_id in selected:
+        item = stages[stage_id]
+        if completed_and_valid(item, run_dir):
+            print(f"SKIP complete: {stage_id}")
+            continue
+        for dep in item.get("deps", []):
+            if not completed_and_valid(stages[dep], run_dir):
+                raise AgentError(f"Dependency {dep!r} is not complete before {stage_id!r}")
+        script = (BUNDLE_ROOT / item["script"]).resolve()
+        if BUNDLE_ROOT not in script.parents or not script.is_file():
+            raise AgentError(f"Unsafe or missing stage script: {script}")
+        command = [str(script), *item.get("args", [])]
+        env = os.environ.copy()
+        env.pop("AGENT_SITE_CONFIG", None)
+        for key in SITE_ENV_KEYS:
+            env.pop(key, None)
+        env.update(
+            {
+                "AGENT_BUNDLE_ROOT": str(BUNDLE_ROOT),
+                "AGENT_RUN_DIR": str(run_dir),
+                "AGENT_STAGE_ID": stage_id,
+                "AGENT_ORCHESTRATED": "1",
+                "AGENT_EXECUTE": "1",
+                "AGENT_ALLOW_LONG_MD": "1",
+                "AGENT_REQUIRED_DEVICE": str(item.get("requires_device", "")),
+                # Use an orchestrator-owned variable so sourcing the frozen
+                # site.env cannot accidentally undo an explicit CLI ACK.
+                "AGENT_ACK_SASA_BIASVALUE": "yes" if (ack_sasa or configured_ack) else "no",
+            }
+        )
+        if site_config:
+            env["AGENT_SITE_CONFIG"] = str(site_config)
+        running = {
+            "schema_version": 1,
+            "profile": profile,
+            "stage": stage_id,
+            "protocol_class": item.get("protocol_class", "unspecified"),
+            "status": "running",
+            "started_at": now_iso(),
+            "command": command,
+            "host": socket.gethostname(),
+        }
+        write_json_atomic(state_path(run_dir, stage_id), running)
+        print(f"RUN {stage_id}: {item['title']}", flush=True)
+        result = subprocess.run(command, env=env, check=False)
+        valid, problems = validate_stage_outputs(item, run_dir)
+        if result.returncode != 0 or not valid:
+            failed = dict(running)
+            failed.update(
+                {
+                    "status": "failed",
+                    "finished_at": now_iso(),
+                    "returncode": result.returncode,
+                    "validation_problems": problems,
+                }
+            )
+            write_json_atomic(state_path(run_dir, stage_id), failed)
+            detail = "; ".join(problems) if problems else f"exit={result.returncode}"
+            raise AgentError(f"Stage {stage_id!r} failed: {detail}")
+        complete = dict(running)
+        complete.update(
+            {
+                "status": "complete",
+                "finished_at": now_iso(),
+                "returncode": 0,
+                "outputs": stage_output_metadata(item, run_dir),
+            }
+        )
+        write_json_atomic(state_path(run_dir, stage_id), complete)
+        print(f"DONE {stage_id}", flush=True)
+
+
+def execute_profile_locked(
+    profile: str,
+    selected: list[str],
+    stages: dict[str, dict[str, Any]],
+    run_dir: Path,
+    allow_long: bool,
+    ack_sasa: bool,
+    site_config_arg: Path | None,
+) -> None:
+    lock_path = run_dir / ".agent" / "run.lock"
+    try:
+        with lock_path.open("a+", encoding="utf-8") as lock_handle:
+            try:
+                fcntl.flock(lock_handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError as exc:
+                raise AgentError(
+                    f"Another agent process is already executing this run: {run_dir}"
+                ) from exc
+            execute_profile(
+                profile,
+                selected,
+                stages,
+                run_dir,
+                allow_long,
+                ack_sasa,
+                site_config_arg,
+            )
+    except FileNotFoundError as exc:
+        raise AgentError(f"Run is not prepared: {run_dir}; use `agentctl prepare` first") from exc
+
+
+def show_status(selected: list[str], stages: dict[str, dict[str, Any]], run_dir: Path) -> None:
+    if not run_dir.exists():
+        raise AgentError(f"Run directory does not exist: {run_dir}")
+    for stage_id in selected:
+        item = stages[stage_id]
+        path = state_path(run_dir, stage_id)
+        state_status = "not-started"
+        if path.is_file():
+            try:
+                state_status = json.loads(path.read_text(encoding="utf-8")).get("status", "unknown")
+            except (OSError, json.JSONDecodeError):
+                state_status = "invalid-state"
+        valid, problems = validate_stage_outputs(item, run_dir)
+        if state_status == "complete" and valid and not completed_and_valid(item, run_dir):
+            valid = False
+            problems.append("recorded output size metadata differs")
+        verified = "valid" if valid else f"invalid ({len(problems)})"
+        print(f"{stage_id:36s} {state_status:12s} {verified}")
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--site-config", type=Path, help="shell environment file for this site")
+    parser.add_argument("--work-root", help="directory containing run-id subdirectories")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    sub.add_parser("list", help="list profiles and stages")
+    plan = sub.add_parser("plan", help="print the dependency-expanded ordered plan")
+    plan.add_argument("--profile", default="historical-distance-main")
+
+    doctor = sub.add_parser("doctor", help="inspect the software/hardware environment")
+    doctor.add_argument("--strict", action="store_true")
+    doctor.add_argument("--require-mdpocket", action="store_true")
+
+    prepare = sub.add_parser("prepare", help="create an isolated run and snapshot inputs")
+    prepare.add_argument("--run-id", required=True)
+
+    run = sub.add_parser("run", help="dry-run by default; execute an ordered profile when gated")
+    run.add_argument("--profile", default="historical-distance-main")
+    run.add_argument("--run-id", required=True)
+    run.add_argument("--execute", action="store_true")
+    run.add_argument("--allow-long-md", action="store_true")
+    run.add_argument("--ack-sasa-biasvalue", action="store_true")
+
+    resume = sub.add_parser("resume", help="same as run; skips revalidated complete stages")
+    resume.add_argument("--profile", default="historical-distance-main")
+    resume.add_argument("--run-id", required=True)
+    resume.add_argument("--execute", action="store_true")
+    resume.add_argument("--allow-long-md", action="store_true")
+    resume.add_argument("--ack-sasa-biasvalue", action="store_true")
+
+    status = sub.add_parser("status", help="show recorded and revalidated stage status")
+    status.add_argument("--profile", default="historical-distance-main")
+    status.add_argument("--run-id", required=True)
+
+    sub.add_parser("verify-bundle", help="run static bundle integrity tests")
+    return parser
+
+
+def main() -> int:
+    parser = build_parser()
+    args = parser.parse_args()
+    stages, profiles, ordered = load_dag()
+    site_config = args.site_config.resolve() if args.site_config else None
+
+    if args.command == "list":
+        print("Profiles:")
+        for name in profiles:
+            print(f"  {name}")
+        print("Stages:")
+        for stage_id in ordered:
+            print(f"  {stage_id}: {stages[stage_id]['title']}")
+        return 0
+    if args.command == "doctor":
+        return invoke_doctor(site_config, args.strict, args.require_mdpocket)
+    if args.command == "verify-bundle":
+        return subprocess.run([str(BUNDLE_ROOT / "tests" / "selftest.sh")], check=False).returncode
+    if args.command == "prepare":
+        work_root = resolve_work_root(args.work_root, site_config)
+        prepare_run(run_dir_for(work_root, args.run_id), site_config)
+        return 0
+
+    selected = expand_profile(args.profile, stages, profiles, ordered)
+    if args.command == "plan":
+        print_plan(args.profile, selected, stages, site_config)
+        return 0
+    work_root = resolve_work_root(args.work_root, site_config)
+    run_dir = run_dir_for(work_root, args.run_id)
+    if args.command == "status":
+        show_status(selected, stages, run_dir)
+        return 0
+    if args.command in {"run", "resume"}:
+        if not args.execute:
+            print("DRY RUN: no files or external commands were changed/executed.\n")
+            print_plan(args.profile, selected, stages, site_config)
+            print("\nTo execute, prepare a run and add both --execute and --allow-long-md.")
+            return 0
+        execute_profile_locked(
+            args.profile,
+            selected,
+            stages,
+            run_dir,
+            args.allow_long_md,
+            args.ack_sasa_biasvalue,
+            site_config,
+        )
+        return 0
+    raise AgentError(f"Unhandled command: {args.command}")
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except AgentError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        raise SystemExit(2)

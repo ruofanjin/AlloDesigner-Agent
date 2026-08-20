@@ -1,0 +1,42 @@
+bundle_path	original_path_relative_to_GPCRs_MD	role	status
+inputs/system/step5_input.gro	GLP1/interation1_shuffle8_group37/gromacs/step5_input.gro	initial coordinates	frozen current-reproduction snapshot
+inputs/system/step5_input3.pdb	GLP1/interation1_shuffle8_group37/gromacs/step5_input3.pdb	PLUMED MOLINFO protein structure	frozen
+inputs/system/index.ndx	GLP1/interation1_shuffle8_group37/gromacs/index.ndx	system groups	frozen
+inputs/system/topol.top	GLP1/interation1_shuffle8_group37/gromacs/topol.top	topology entry	frozen
+inputs/system/toppar/	GLP1/interation1_shuffle8_group37/gromacs/toppar/	project topology includes (9 files)	frozen
+inputs/mdp/equilibration/	GLP1/interation1_shuffle8_group37/gromacs/equilibration/step6.*.mdp	minimization and eq1-eq6	frozen+renamed only by directory
+inputs/mdp/normal/step7.1_production.mdp	GLP1/interation1_shuffle8_group37/gromacs/md_normal/step7.1_production.mdp	independent normal 10 ns	frozen
+inputs/mdp/normal/step7.2_production.mdp	GLP1/interation1_shuffle8_group37/gromacs/md_normal/step7.2_production.mdp	independent normal 50 ns	frozen
+inputs/mdp/normal/step7.3_production.mdp	GLP1/interation1_shuffle8_group37/gromacs/md_normal/step7.3_production.mdp	independent normal 100 ns/main seed	frozen
+inputs/mdp/normal/step7.4_production.mdp	GLP1/interation1_shuffle8_group37/gromacs/md_normal/step7.4_production.mdp	200 ns from 100 ns endpoint	frozen
+inputs/mdp/distance/distance_monitor_50ns.mdp	GLP1/interation1_shuffle8_group37/gromacs/plumed_distance/50ns_unbiased_md/plumed_sasa_metad_biased.mdp	distance monitoring 50 ns	frozen+descriptive rename
+inputs/plumed/distance_monitor/distance_monitor.dat	GLP1/interation1_shuffle8_group37/gromacs/plumed_distance/50ns_unbiased_md/plumed_sasa_metad_allosteric_site.dat	48 DISTANCE+PRINT, no bias/SASA	frozen+descriptive rename
+inputs/mdp/distance/distance_metad_50ns.mdp	GLP1/interation1_shuffle8_group37/gromacs/plumed_distance/50ns_unbiased_md/biased_md/50ns/plumed_biased.mdp	distance metadynamics 50 ns	frozen+descriptive rename
+inputs/mdp/distance/distance_metad_100ns_new_bias.mdp	GLP1/interation1_shuffle8_group37/gromacs/plumed_distance/50ns_unbiased_md/biased_md/100ns/plumed_biased.mdp	new-bias 100 ns branch	frozen+descriptive rename
+inputs/plumed/distance_metad/distance_metad.dat	GLP1/interation1_shuffle8_group37/gromacs/plumed_distance/50ns_unbiased_md/biased_md/plumed_biased.dat	48 distances + frozen SPIB weights + METAD	frozen critical input
+inputs/mdp/sasa/sasa_site_1ns.mdp	GLP1/interation1_shuffle8_group37/gromacs/plumed_sasa/1ns/plumed_sasa_metad_biased.mdp	SASA site 1 ns test	frozen optional
+inputs/mdp/sasa/sasa_site_10ns.mdp	GLP1/interation1_shuffle8_group37/gromacs/plumed_sasa/10ns/plumed_sasa_metad_biased.mdp	SASA site 10 ns formal parallel branch	frozen gated
+inputs/plumed/sasa_site/sasa_site.dat	GLP1/interation1_shuffle8_group37/gromacs/plumed_sasa/10ns/plumed_sasa_metad_allosteric_site.dat	254-atom SASA site	frozen gated
+inputs/mdp/sasa/sasa_pocket_1ns.mdp	GLP1/interation1_shuffle8_group37/gromacs/plumed_sasa/8.0A_pocket/1ns/plumed_sasa_metad_biased.mdp	SASA pocket 1 ns test	frozen optional
+inputs/mdp/sasa/sasa_pocket_10ns.mdp	GLP1/interation1_shuffle8_group37/gromacs/plumed_sasa/8.0A_pocket/10ns/plumed_sasa_metad_biased.mdp	SASA pocket 10 ns	frozen optional
+inputs/mdp/sasa/sasa_pocket_100ns.mdp	GLP1/interation1_shuffle8_group37/gromacs/plumed_sasa/8.0A_pocket/100ns/plumed_sasa_metad_biased.mdp	SASA pocket 100 ns formal parallel branch	frozen gated
+inputs/plumed/sasa_pocket_8A/sasa_pocket_8A.dat	GLP1/interation1_shuffle8_group37/gromacs/plumed_sasa/8.0A_pocket/10ns/plumed_sasa_metad_8.0A_pocket.dat	648-atom SASA pocket; historical 10/100 ns DAT copies are byte-identical	frozen gated
+inputs/mdp/chi/chi_monitor_10ns.mdp	GLP1/interation1_shuffle8_group37/gromacs/plumed/step7_plumed_test_production_10ns.mdp	chi monitoring retained input	frozen optional
+inputs/plumed/chi/chi_monitor.dat	GLP1/interation1_shuffle8_group37/gromacs/plumed/plumed_chi_defined.dat	chi definitions	frozen optional
+inputs/mdp/chi/chi_metad_10ns.mdp	GLP1/interation1_shuffle8_group37/gromacs/plumed/biased_md/step7_plumed_test_production_biased_10ns.mdp	chi metadynamics retained input	frozen optional
+inputs/plumed/chi/chi_metad.dat	GLP1/interation1_shuffle8_group37/gromacs/plumed/biased_md/plumed_biased.dat	chi metadynamics	frozen optional
+inputs/analysis/protein_backbone.ndx	GLP1/interation1_shuffle8_group37/deal_md/distance/50ns_unbiased_md/protein_backbone.ndx	full protein backbone selection; reused by standardized SASA analysis	frozen
+inputs/analysis/tm6_ecl3_tm7_backbone.ndx	GLP1/interation1_shuffle8_group37/deal_md/distance/50ns_unbiased_md/biased_md/50ns/rmsd/protein_backbone_TM6-ECL3-TM7.ndx	TM6-ECL3-TM7 backbone; hash-equivalent selection appears in traced SASA 10 ns analysis	frozen
+inputs/analysis/tm6_tm7_backbone.ndx	GLP1/interation1_shuffle8_group37/deal_md/distance/50ns_unbiased_md/biased_md/50ns/protein_backbone_TM6-TM7.ndx	TM6-TM7 backbone; hash-equivalent selection appears in traced SASA 10 ns analysis	frozen
+inputs/analysis/allosteric_all_atoms_2A.ndx	GLP1/interation1_shuffle8_group37/deal_md/distance/50ns_unbiased_md/biased_md/50ns/protein_all_atoms_allosteric_site_2A.ndx	allosteric-site all atoms; hash-equivalent selection appears in traced SASA 10 ns analysis	frozen
+inputs/analysis/allosteric_backbone_2A.ndx	GLP1/interation1_shuffle8_group37/deal_md/distance/50ns_unbiased_md/biased_md/50ns/protein_backbone_allosteric_site_2A.ndx	allosteric-site backbone	frozen
+inputs/analysis/5vex_holo_convert_apo_id_allosteric_site_2A.pdb	GLP1/interation1_shuffle8_group37/deal_md/distance/50ns_unbiased_md/biased_md/50ns/cluster_protein_backbone_allosteric_site_2A_cutoff0.1/5vex_holo_convert_apo_id_allosteric_site_2A.pdb	holo-site reference	frozen
+reference/original_scripts/GLP1_gmx_comand.sh	GLP1/gmx_comand.sh	historical command notebook	reference-only; do not execute
+reference/original_scripts/CHARMM_GUI_README.csh	GLP1/interation1_shuffle8_group37/gromacs/README	historical CHARMM-GUI commands	reference-only; do not execute
+reference/original_scripts/mdpocket/	GLP1/interation1_shuffle8_group37/mdpocket/	historical MDpocket notes/scripts	reference-only subset; do not execute
+reference/original_scripts/deal_md/	GLP1/interation1_shuffle8_group37/deal_md/	historical analysis notes/scripts	reference-only subset; do not execute
+reference/original_scripts/project_root/Plumed_file_biased_simulations.py	Plumed_file_biased_simulations.py	PLUMED generator helper	reference-only; active paths no longer describe this experiment
+reference/original_scripts/project_root/SPIB_on_unbiased_simulations.py	SPIB_on_unbiased_simulations.py	SPIB training helper	reference-only; active paths no longer describe this experiment
+reference/original_scripts/project_root/calculate_colvars.py	calculate_colvars.py	COLVAR helper	reference-only; active paths no longer describe this experiment
+reference/original_scripts/project_root/range_atoms_number.py	range_atoms_number.py	atom-range helper	reference-only; do not execute
+reference/original_scripts/project_root/write_cv_chi.py	write_cv_chi.py	chi-CV helper	reference-only; do not execute

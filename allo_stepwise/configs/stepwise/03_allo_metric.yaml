@@ -1,0 +1,32 @@
+residue_selection:
+  # Frozen output of the historical Step 3 expert handoff. See
+  # 03_step3_pocket_selection.yaml; this is not an automated score-only choice.
+  active_set: "historical_holo_cluster"
+  sets:
+    historical_holo_cluster:
+      csv: "{root}/inputs/glp1_historical_holo_cluster_mapped_residues.csv"
+      residue_column: "apo_residues_id"
+      min_probability: null
+    deepallo_top7:
+      csv: "{root}/inputs/glp1-deepallo-score-residue_probabilities_top_7.csv"
+      residue_column: "residue_number"
+      probability_column: "probability"
+      min_probability: null
+    plb_top7:
+      csv: "{root}/inputs/glp1-plb-score-residue_probabilities_top_7.csv"
+      residue_column: "residue_number"
+      probability_column: "probability"
+      min_probability: null
+
+fpocket:
+  # Override on a target server with FPOCKET_BIN=/absolute/path/to/fpocket.
+  executable: "fpocket"
+  pdb_suffix: ".pdb"
+
+pocket_cluster:
+  eps: 6
+  min_samples: 2
+
+metric:
+  name: "pocket_min_distance"
+  source_column: "min_distance"

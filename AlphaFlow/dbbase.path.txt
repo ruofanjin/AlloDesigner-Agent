@@ -1,0 +1,2 @@
+symlink_was: dbbase
+points_to: /lambda/nfs/file2/cqr_files/BioClaw_gpu_data/colabfold

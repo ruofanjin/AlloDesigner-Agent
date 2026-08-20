@@ -1,0 +1,49 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    45:
+HEADER 0  - Pocket Score                      : -0.1709
+HEADER 1  - Drug Score                        : 0.0019
+HEADER 2  - Number of alpha spheres           :    42
+HEADER 3  - Mean alpha-sphere radius          : 3.7923
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4218
+HEADER 5  - Mean B-factor of pocket residues  : 0.0000
+HEADER 6  - Hydrophobicity Score              : 30.8889
+HEADER 7  - Polarity Score                    :     5
+HEADER 8  - Amino Acid based volume Score     : 4.4444
+HEADER 9  - Pocket volume (Monte Carlo)       : 388.2017
+HEADER 10 - Pocket volume (convex hull)       : 43.9064
+HEADER 11 - Charge Score                      :     2
+HEADER 12 - Local hydrophobic density Score   : 7.7778
+HEADER 13 - Number of apolar alpha sphere     :     9
+HEADER 14 - Proportion of apolar alpha sphere : 0.2143
+ATOM   7283    O LYS D 443      59.840  99.230 127.100  0.55  6.43           O 0
+ATOM   7370  CG2 THR D 449      58.570  93.470 130.370  0.00  0.00           C 0
+ATOM   7349    O CYS D 447      60.180  96.370 133.220  0.75  4.29           O 0
+ATOM   7302   CB LEU D 445      57.220  98.090 130.480  0.00  0.00           C 0
+ATOM   7272   CD LYS D 443      56.780  95.180 124.950  0.00  0.00           C 0
+ATOM   7206  NH2 ARG D 438      59.080  89.170 125.770  0.05  6.56           N 0
+ATOM   7200   NE ARG D 438      60.870  90.350 124.960  0.70  3.28           N 0
+ATOM   7275   CE LYS D 443      56.610  93.940 124.060  0.00  0.00           C 0
+ATOM   7269   CG LYS D 443      57.980  96.030 124.550  0.00  0.00           C 0
+ATOM   7266   CB LYS D 443      58.220  97.040 125.630  0.00  0.00           C 0
+ATOM   7307  CD1 LEU D 445      56.600  96.050 129.090  0.00  0.00           C 0
+ATOM   7262    N LYS D 443      60.330  97.990 124.750  0.62  4.37           N 0
+ATOM   7210    O ARG D 438      65.380  95.230 123.110  0.00  0.00           O 0
+ATOM   7191   CB ARG D 438      63.840  92.270 123.270  0.00  0.00           C 0
+ATOM   7189   CA ARG D 438      63.960  93.450 122.320  0.00  0.00           C 0
+ATOM   7247   CA MET D 442      62.680  98.520 124.100  0.00  0.00           C 0
+ATOM   7194   CG ARG D 438      62.390  91.620 123.270  0.00  0.00           C 0
+ATOM   7374  OG1 THR D 449      60.700  92.630 130.150  0.24  7.50           O 0
+ATOM   7197   CD ARG D 438      62.280  90.640 124.450  0.00  0.00           C 0
+ATOM   7244    O SER D 441      62.010  97.370 121.670  0.70  3.21           O 0
+ATOM   7182  NE2 GLN D 437      58.780  93.430 118.780  0.39  6.56           N 0
+ATOM   7249   CB MET D 442      63.390  99.390 125.140  0.00  0.00           C 0
+ATOM   7316    O LEU D 445      59.000  99.760 132.270  0.32  9.64           O 0
+ATOM   7124  CD1 LEU D 434      59.200  89.560 120.250  0.00  0.00           C 0
+ATOM   7278   NZ LYS D 443      56.410  94.190 122.600  0.64  6.56           N 0
+ATOM   7256   CE MET D 442      62.680 101.840 127.400  0.00  0.00           C 0
+ATOM   7177   CG GLN D 437      61.240  93.480 118.630  0.00  0.00           C 0
+TER
+END

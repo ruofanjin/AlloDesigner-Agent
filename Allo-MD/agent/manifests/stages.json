@@ -1,0 +1,1030 @@
+{
+  "schema_version": 1,
+  "stages": [
+    {
+      "id": "minimization",
+      "title": "能量最小化",
+      "script": "stages/10_minimization.sh",
+      "deps": [],
+      "long": true,
+      "expected": [
+        "stages/minimization/em.tpr",
+        "stages/minimization/em.gro",
+        "stages/minimization/em.edr",
+        "stages/minimization/em.log"
+      ],
+      "completion_logs": [
+        "stages/minimization/em.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "equilibration",
+      "title": "eq1-eq6 六段平衡（共 1.875 ns）",
+      "script": "stages/20_equilibration.sh",
+      "deps": [
+        "minimization"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/equilibration/eq1.tpr",
+        "stages/equilibration/eq1.gro",
+        "stages/equilibration/eq1.cpt",
+        "stages/equilibration/eq1.xtc",
+        "stages/equilibration/eq1.edr",
+        "stages/equilibration/eq1.log",
+        "stages/equilibration/eq2.tpr",
+        "stages/equilibration/eq2.gro",
+        "stages/equilibration/eq2.cpt",
+        "stages/equilibration/eq2.xtc",
+        "stages/equilibration/eq2.edr",
+        "stages/equilibration/eq2.log",
+        "stages/equilibration/eq3.tpr",
+        "stages/equilibration/eq3.gro",
+        "stages/equilibration/eq3.cpt",
+        "stages/equilibration/eq3.xtc",
+        "stages/equilibration/eq3.edr",
+        "stages/equilibration/eq3.log",
+        "stages/equilibration/eq4.tpr",
+        "stages/equilibration/eq4.gro",
+        "stages/equilibration/eq4.cpt",
+        "stages/equilibration/eq4.xtc",
+        "stages/equilibration/eq4.edr",
+        "stages/equilibration/eq4.log",
+        "stages/equilibration/eq5.tpr",
+        "stages/equilibration/eq5.gro",
+        "stages/equilibration/eq5.cpt",
+        "stages/equilibration/eq5.xtc",
+        "stages/equilibration/eq5.edr",
+        "stages/equilibration/eq5.log",
+        "stages/equilibration/eq6.tpr",
+        "stages/equilibration/eq6.gro",
+        "stages/equilibration/eq6.cpt",
+        "stages/equilibration/eq6.xtc",
+        "stages/equilibration/eq6.edr",
+        "stages/equilibration/eq6.log"
+      ],
+      "completion_logs": [
+        "stages/equilibration/eq1.log",
+        "stages/equilibration/eq2.log",
+        "stages/equilibration/eq3.log",
+        "stages/equilibration/eq4.log",
+        "stages/equilibration/eq5.log",
+        "stages/equilibration/eq6.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "normal_10ns",
+      "title": "eq6 起点的独立 10 ns 常规 MD 对照",
+      "script": "stages/30_normal_branch.sh",
+      "args": [
+        "10ns",
+        "step7.1_production.mdp"
+      ],
+      "deps": [
+        "equilibration"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/normal_10ns/normal_10ns.tpr",
+        "stages/normal_10ns/normal_10ns.gro",
+        "stages/normal_10ns/normal_10ns.cpt",
+        "stages/normal_10ns/normal_10ns.xtc",
+        "stages/normal_10ns/normal_10ns.edr",
+        "stages/normal_10ns/normal_10ns.log"
+      ],
+      "completion_logs": [
+        "stages/normal_10ns/normal_10ns.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "normal_50ns",
+      "title": "eq6 起点的独立 50 ns 常规 MD 对照",
+      "script": "stages/30_normal_branch.sh",
+      "args": [
+        "50ns",
+        "step7.2_production.mdp"
+      ],
+      "deps": [
+        "equilibration"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/normal_50ns/normal_50ns.tpr",
+        "stages/normal_50ns/normal_50ns.gro",
+        "stages/normal_50ns/normal_50ns.cpt",
+        "stages/normal_50ns/normal_50ns.xtc",
+        "stages/normal_50ns/normal_50ns.edr",
+        "stages/normal_50ns/normal_50ns.log"
+      ],
+      "completion_logs": [
+        "stages/normal_50ns/normal_50ns.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "normal_100ns",
+      "title": "eq6 起点的 100 ns 常规 MD（主线种子）",
+      "script": "stages/30_normal_branch.sh",
+      "args": [
+        "100ns",
+        "step7.3_production.mdp"
+      ],
+      "deps": [
+        "equilibration"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/normal_100ns/normal_100ns.tpr",
+        "stages/normal_100ns/normal_100ns.gro",
+        "stages/normal_100ns/normal_100ns.cpt",
+        "stages/normal_100ns/normal_100ns.xtc",
+        "stages/normal_100ns/normal_100ns.edr",
+        "stages/normal_100ns/normal_100ns.log"
+      ],
+      "completion_logs": [
+        "stages/normal_100ns/normal_100ns.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "normal_1ns",
+      "title": "eq6 起点的 1 ns 常规 MD（本地演示，非冻结历史协议）",
+      "script": "stages/30_normal_branch.sh",
+      "args": [
+        "1ns",
+        "step7_1ns_demo.mdp"
+      ],
+      "deps": [
+        "equilibration"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/normal_1ns/normal_1ns.tpr",
+        "stages/normal_1ns/normal_1ns.gro",
+        "stages/normal_1ns/normal_1ns.cpt",
+        "stages/normal_1ns/normal_1ns.xtc",
+        "stages/normal_1ns/normal_1ns.edr",
+        "stages/normal_1ns/normal_1ns.log"
+      ],
+      "completion_logs": [
+        "stages/normal_1ns/normal_1ns.log"
+      ],
+      "protocol_class": "local-demo-shortened"
+    },
+    {
+      "id": "distance_monitor_1ns",
+      "title": "1 ns 距离监测（本地演示）",
+      "script": "stages/41_distance_monitor_1ns.sh",
+      "deps": [
+        "normal_1ns"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/distance_monitor_1ns/distance_monitor_1ns.tpr",
+        "stages/distance_monitor_1ns/distance_monitor_1ns.gro",
+        "stages/distance_monitor_1ns/distance_monitor_1ns.cpt",
+        "stages/distance_monitor_1ns/distance_monitor_1ns.xtc",
+        "stages/distance_monitor_1ns/distance_monitor_1ns.edr",
+        "stages/distance_monitor_1ns/distance_monitor_1ns.log",
+        "stages/distance_monitor_1ns/colvar_distance"
+      ],
+      "completion_logs": [
+        "stages/distance_monitor_1ns/distance_monitor_1ns.log"
+      ],
+      "protocol_class": "local-demo-shortened"
+    },
+    {
+      "id": "distance_metad_1ns",
+      "title": "1 ns 二维距离 metadynamics（本地演示）",
+      "script": "stages/51_distance_metad_1ns.sh",
+      "deps": [
+        "distance_monitor_1ns"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/distance_metad_1ns/distance_metad_1ns.tpr",
+        "stages/distance_metad_1ns/distance_metad_1ns.gro",
+        "stages/distance_metad_1ns/distance_metad_1ns.cpt",
+        "stages/distance_metad_1ns/distance_metad_1ns.xtc",
+        "stages/distance_metad_1ns/distance_metad_1ns.edr",
+        "stages/distance_metad_1ns/distance_metad_1ns.log",
+        "stages/distance_metad_1ns/HILLS",
+        "stages/distance_metad_1ns/COLVAR_biased.dat"
+      ],
+      "completion_logs": [
+        "stages/distance_metad_1ns/distance_metad_1ns.log"
+      ],
+      "protocol_class": "local-demo-shortened"
+    },
+    {
+      "id": "normal_200ns_from_100ns",
+      "title": "从 100 ns 末态再运行 200 ns（历史时间轴重置）",
+      "script": "stages/31_normal_200ns_from_100ns.sh",
+      "deps": [
+        "normal_100ns"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/normal_200ns_from_100ns/normal_200ns_from_100ns.tpr",
+        "stages/normal_200ns_from_100ns/normal_200ns_from_100ns.gro",
+        "stages/normal_200ns_from_100ns/normal_200ns_from_100ns.cpt",
+        "stages/normal_200ns_from_100ns/normal_200ns_from_100ns.xtc",
+        "stages/normal_200ns_from_100ns/normal_200ns_from_100ns.edr",
+        "stages/normal_200ns_from_100ns/normal_200ns_from_100ns.log"
+      ],
+      "completion_logs": [
+        "stages/normal_200ns_from_100ns/normal_200ns_from_100ns.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "distance_monitor_50ns",
+      "title": "从常规 100 ns 末态运行 50 ns、记录 48 个距离（无偏置）",
+      "script": "stages/40_distance_monitor_50ns.sh",
+      "deps": [
+        "normal_100ns"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/distance_monitor_50ns/distance_monitor_50ns.tpr",
+        "stages/distance_monitor_50ns/distance_monitor_50ns.gro",
+        "stages/distance_monitor_50ns/distance_monitor_50ns.cpt",
+        "stages/distance_monitor_50ns/distance_monitor_50ns.xtc",
+        "stages/distance_monitor_50ns/distance_monitor_50ns.edr",
+        "stages/distance_monitor_50ns/distance_monitor_50ns.log",
+        "stages/distance_monitor_50ns/colvar_distance"
+      ],
+      "completion_logs": [
+        "stages/distance_monitor_50ns/distance_monitor_50ns.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "distance_metad_50ns",
+      "title": "从距离监测末态运行 50 ns 二维 SPIB 距离 metadynamics",
+      "script": "stages/50_distance_metad_50ns.sh",
+      "deps": [
+        "distance_monitor_50ns"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/distance_metad_50ns/distance_metad_50ns.tpr",
+        "stages/distance_metad_50ns/distance_metad_50ns.gro",
+        "stages/distance_metad_50ns/distance_metad_50ns.cpt",
+        "stages/distance_metad_50ns/distance_metad_50ns.xtc",
+        "stages/distance_metad_50ns/distance_metad_50ns.edr",
+        "stages/distance_metad_50ns/distance_metad_50ns.log",
+        "stages/distance_metad_50ns/HILLS",
+        "stages/distance_metad_50ns/COLVAR_biased.dat"
+      ],
+      "completion_logs": [
+        "stages/distance_metad_50ns/distance_metad_50ns.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "distance_metad_100ns_new_bias",
+      "title": "从偏置 50 ns 末态运行新的 100 ns 偏置分支（不继承 HILLS）",
+      "script": "stages/51_distance_metad_100ns_new_bias.sh",
+      "deps": [
+        "distance_metad_50ns"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "expected": [
+        "stages/distance_metad_100ns_new_bias/distance_metad_100ns_new_bias.tpr",
+        "stages/distance_metad_100ns_new_bias/distance_metad_100ns_new_bias.gro",
+        "stages/distance_metad_100ns_new_bias/distance_metad_100ns_new_bias.cpt",
+        "stages/distance_metad_100ns_new_bias/distance_metad_100ns_new_bias.xtc",
+        "stages/distance_metad_100ns_new_bias/distance_metad_100ns_new_bias.edr",
+        "stages/distance_metad_100ns_new_bias/distance_metad_100ns_new_bias.log",
+        "stages/distance_metad_100ns_new_bias/HILLS",
+        "stages/distance_metad_100ns_new_bias/COLVAR_biased.dat"
+      ],
+      "completion_logs": [
+        "stages/distance_metad_100ns_new_bias/distance_metad_100ns_new_bias.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "sasa_site_10ns",
+      "title": "历史原样：变构位点 10 ns SASA 偏置",
+      "script": "stages/60_sasa_branch.sh",
+      "args": [
+        "site_10ns",
+        "sasa_site_10ns.mdp",
+        "sasa_site/sasa_site.dat"
+      ],
+      "deps": [
+        "normal_100ns"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "scientific_gate": "sasa_biasvalue",
+      "expected": [
+        "stages/sasa_site_10ns/sasa_site_10ns.tpr",
+        "stages/sasa_site_10ns/sasa_site_10ns.gro",
+        "stages/sasa_site_10ns/sasa_site_10ns.cpt",
+        "stages/sasa_site_10ns/sasa_site_10ns.xtc",
+        "stages/sasa_site_10ns/sasa_site_10ns.edr",
+        "stages/sasa_site_10ns/sasa_site_10ns.log",
+        "stages/sasa_site_10ns/HILLS",
+        "stages/sasa_site_10ns/COLVAR"
+      ],
+      "completion_logs": [
+        "stages/sasa_site_10ns/sasa_site_10ns.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "sasa_pocket_10ns",
+      "title": "历史原样：8 Å 口袋 10 ns SASA 偏置",
+      "script": "stages/60_sasa_branch.sh",
+      "args": [
+        "pocket_10ns",
+        "sasa_pocket_10ns.mdp",
+        "sasa_pocket_8A/sasa_pocket_8A.dat"
+      ],
+      "deps": [
+        "normal_100ns"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "scientific_gate": "sasa_biasvalue",
+      "expected": [
+        "stages/sasa_pocket_10ns/sasa_pocket_10ns.tpr",
+        "stages/sasa_pocket_10ns/sasa_pocket_10ns.gro",
+        "stages/sasa_pocket_10ns/sasa_pocket_10ns.cpt",
+        "stages/sasa_pocket_10ns/sasa_pocket_10ns.xtc",
+        "stages/sasa_pocket_10ns/sasa_pocket_10ns.edr",
+        "stages/sasa_pocket_10ns/sasa_pocket_10ns.log",
+        "stages/sasa_pocket_10ns/HILLS",
+        "stages/sasa_pocket_10ns/COLVAR"
+      ],
+      "completion_logs": [
+        "stages/sasa_pocket_10ns/sasa_pocket_10ns.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "sasa_pocket_100ns",
+      "title": "历史原样：8 Å 口袋 100 ns SASA 偏置（正式长分支）",
+      "script": "stages/60_sasa_branch.sh",
+      "args": [
+        "pocket_100ns",
+        "sasa_pocket_100ns.mdp",
+        "sasa_pocket_8A/sasa_pocket_8A.dat"
+      ],
+      "deps": [
+        "normal_100ns"
+      ],
+      "long": true,
+      "requires_device": "gpu",
+      "scientific_gate": "sasa_biasvalue",
+      "expected": [
+        "stages/sasa_pocket_100ns/sasa_pocket_100ns.tpr",
+        "stages/sasa_pocket_100ns/sasa_pocket_100ns.gro",
+        "stages/sasa_pocket_100ns/sasa_pocket_100ns.cpt",
+        "stages/sasa_pocket_100ns/sasa_pocket_100ns.xtc",
+        "stages/sasa_pocket_100ns/sasa_pocket_100ns.edr",
+        "stages/sasa_pocket_100ns/sasa_pocket_100ns.log",
+        "stages/sasa_pocket_100ns/HILLS",
+        "stages/sasa_pocket_100ns/COLVAR"
+      ],
+      "completion_logs": [
+        "stages/sasa_pocket_100ns/sasa_pocket_100ns.log"
+      ],
+      "protocol_class": "frozen-simulation"
+    },
+    {
+      "id": "postprocess_distance_50ns",
+      "title": "偏置 50 ns：PBC、对齐、RMSD 与 Gromos 聚类",
+      "script": "stages/80_postprocess_distance_50ns.sh",
+      "deps": [
+        "distance_metad_50ns"
+      ],
+      "long": true,
+      "expected": [
+        "stages/postprocess_distance_50ns/pbc_fixed.xtc",
+        "stages/postprocess_distance_50ns/aligned.xtc",
+        "stages/postprocess_distance_50ns/aligned_reference.pdb",
+        "stages/postprocess_distance_50ns/rmsd_backbone.xvg",
+        "stages/postprocess_distance_50ns/rmsd_tm6_ecl3_tm7_backbone.xvg",
+        "stages/postprocess_distance_50ns/rmsd_tm6_tm7_backbone.xvg",
+        "stages/postprocess_distance_50ns/rmsd_allosteric_all_atoms.xvg",
+        "stages/postprocess_distance_50ns/rmsd_allosteric_backbone.xvg",
+        "stages/postprocess_distance_50ns/cluster_matrix_backbone_0.2nm.xpm",
+        "stages/postprocess_distance_50ns/clusters_backbone_0.2nm.pdb",
+        "stages/postprocess_distance_50ns/cluster_sizes_backbone_0.2nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_id_backbone_0.2nm.xvg",
+        "stages/postprocess_distance_50ns/rmsd_distribution_backbone_0.2nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_backbone_0.2nm.log",
+        "stages/postprocess_distance_50ns/.cluster_backbone_0.2nm.complete",
+        "stages/postprocess_distance_50ns/cluster_matrix_tm6_tm7_backbone_0.1nm.xpm",
+        "stages/postprocess_distance_50ns/clusters_tm6_tm7_backbone_0.1nm.pdb",
+        "stages/postprocess_distance_50ns/cluster_sizes_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_id_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_distance_50ns/rmsd_distribution_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_tm6_tm7_backbone_0.1nm.log",
+        "stages/postprocess_distance_50ns/.cluster_tm6_tm7_backbone_0.1nm.complete",
+        "stages/postprocess_distance_50ns/cluster_matrix_tm6_tm7_backbone_0.2nm.xpm",
+        "stages/postprocess_distance_50ns/clusters_tm6_tm7_backbone_0.2nm.pdb",
+        "stages/postprocess_distance_50ns/cluster_sizes_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_id_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_distance_50ns/rmsd_distribution_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_tm6_tm7_backbone_0.2nm.log",
+        "stages/postprocess_distance_50ns/.cluster_tm6_tm7_backbone_0.2nm.complete",
+        "stages/postprocess_distance_50ns/cluster_matrix_allosteric_all_atoms_0.1nm.xpm",
+        "stages/postprocess_distance_50ns/clusters_allosteric_all_atoms_0.1nm.pdb",
+        "stages/postprocess_distance_50ns/cluster_sizes_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_id_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_distance_50ns/rmsd_distribution_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_allosteric_all_atoms_0.1nm.log",
+        "stages/postprocess_distance_50ns/.cluster_allosteric_all_atoms_0.1nm.complete",
+        "stages/postprocess_distance_50ns/cluster_matrix_allosteric_backbone_0.1nm.xpm",
+        "stages/postprocess_distance_50ns/clusters_allosteric_backbone_0.1nm.pdb",
+        "stages/postprocess_distance_50ns/cluster_sizes_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_id_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_distance_50ns/rmsd_distribution_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_allosteric_backbone_0.1nm.log",
+        "stages/postprocess_distance_50ns/.cluster_allosteric_backbone_0.1nm.complete",
+        "stages/postprocess_distance_50ns/cluster_matrix_allosteric_backbone_0.2nm.xpm",
+        "stages/postprocess_distance_50ns/clusters_allosteric_backbone_0.2nm.pdb",
+        "stages/postprocess_distance_50ns/cluster_sizes_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_id_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_distance_50ns/rmsd_distribution_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_allosteric_backbone_0.2nm.log",
+        "stages/postprocess_distance_50ns/.cluster_allosteric_backbone_0.2nm.complete",
+        "stages/postprocess_distance_50ns/cluster_matrix_allosteric_backbone_0.3nm.xpm",
+        "stages/postprocess_distance_50ns/clusters_allosteric_backbone_0.3nm.pdb",
+        "stages/postprocess_distance_50ns/cluster_sizes_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_id_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_distance_50ns/rmsd_distribution_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_distance_50ns/cluster_allosteric_backbone_0.3nm.log",
+        "stages/postprocess_distance_50ns/.cluster_allosteric_backbone_0.3nm.complete",
+        "stages/postprocess_distance_50ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_distance_50ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.1nm.xvg.complete",
+        "stages/postprocess_distance_50ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_distance_50ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.2nm.xvg.complete",
+        "stages/postprocess_distance_50ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_distance_50ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.3nm.xvg.complete"
+      ],
+      "completion_logs": [],
+      "protocol_class": "standardized-analysis"
+    },
+    {
+      "id": "mdpocket_distance_50ns",
+      "title": "偏置 50 ns：拆帧、MDpocket 密度和 1 Å 目标口袋描述符",
+      "script": "stages/81_mdpocket_distance_50ns.sh",
+      "deps": [
+        "postprocess_distance_50ns"
+      ],
+      "long": true,
+      "optional_tool": "mdpocket",
+      "expected": [
+        "stages/mdpocket_distance_50ns/frames/frame0.pdb",
+        "stages/mdpocket_distance_50ns/frames/frame500.pdb",
+        "stages/mdpocket_distance_50ns/frames/.frames.complete",
+        "stages/mdpocket_distance_50ns/snapshot_list.txt",
+        "stages/mdpocket_distance_50ns/global/snapshot_list.txt",
+        "stages/mdpocket_distance_50ns/selected/snapshot_list.txt",
+        "stages/mdpocket_distance_50ns/global/mdpout_dens_grid.dx",
+        "stages/mdpocket_distance_50ns/global/.mdpocket_discovery.complete",
+        "stages/mdpocket_distance_50ns/global/mdpout_dens_iso_0.5.pdb",
+        "stages/mdpocket_distance_50ns/selected_grid_iso_0.5_1A_pocket.pdb",
+        "stages/mdpocket_distance_50ns/selected/mdpout_descriptors.txt",
+        "stages/mdpocket_distance_50ns/selected/.mdpocket_selected.complete",
+        "stages/mdpocket_distance_50ns/pocket_volume.csv",
+        "stages/mdpocket_distance_50ns/pocket_volume_qc.json"
+      ],
+      "indexed_files": [
+        {
+          "directory": "stages/mdpocket_distance_50ns/frames",
+          "prefix": "frame",
+          "suffix": ".pdb",
+          "count": 501
+        }
+      ],
+      "completion_logs": [],
+      "protocol_class": "standardized-analysis"
+    },
+    {
+      "id": "postprocess_sasa_site_10ns",
+      "title": "SASA site 10 ns：标准化 PBC、RMSD、Gromos 聚类与完整非溶剂 surface SASA",
+      "script": "stages/82_postprocess_sasa.sh",
+      "args": [
+        "sasa_site_10ns",
+        "10000"
+      ],
+      "deps": [
+        "sasa_site_10ns"
+      ],
+      "long": true,
+      "protocol_class": "standardized-analysis",
+      "expected": [
+        "stages/postprocess_sasa_site_10ns/pbc_fixed.xtc",
+        "stages/postprocess_sasa_site_10ns/aligned.xtc",
+        "stages/postprocess_sasa_site_10ns/aligned_reference.pdb",
+        "stages/postprocess_sasa_site_10ns/rmsd_backbone.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_tm6_ecl3_tm7_backbone.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_tm6_tm7_backbone.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_allosteric_all_atoms.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_allosteric_backbone.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_matrix_backbone_0.2nm.xpm",
+        "stages/postprocess_sasa_site_10ns/clusters_backbone_0.2nm.pdb",
+        "stages/postprocess_sasa_site_10ns/cluster_sizes_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_id_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_distribution_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_backbone_0.2nm.log",
+        "stages/postprocess_sasa_site_10ns/.cluster_backbone_0.2nm.complete",
+        "stages/postprocess_sasa_site_10ns/cluster_matrix_tm6_tm7_backbone_0.1nm.xpm",
+        "stages/postprocess_sasa_site_10ns/clusters_tm6_tm7_backbone_0.1nm.pdb",
+        "stages/postprocess_sasa_site_10ns/cluster_sizes_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_id_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_distribution_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_tm6_tm7_backbone_0.1nm.log",
+        "stages/postprocess_sasa_site_10ns/.cluster_tm6_tm7_backbone_0.1nm.complete",
+        "stages/postprocess_sasa_site_10ns/cluster_matrix_tm6_tm7_backbone_0.2nm.xpm",
+        "stages/postprocess_sasa_site_10ns/clusters_tm6_tm7_backbone_0.2nm.pdb",
+        "stages/postprocess_sasa_site_10ns/cluster_sizes_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_id_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_distribution_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_tm6_tm7_backbone_0.2nm.log",
+        "stages/postprocess_sasa_site_10ns/.cluster_tm6_tm7_backbone_0.2nm.complete",
+        "stages/postprocess_sasa_site_10ns/cluster_matrix_allosteric_all_atoms_0.1nm.xpm",
+        "stages/postprocess_sasa_site_10ns/clusters_allosteric_all_atoms_0.1nm.pdb",
+        "stages/postprocess_sasa_site_10ns/cluster_sizes_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_id_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_distribution_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_allosteric_all_atoms_0.1nm.log",
+        "stages/postprocess_sasa_site_10ns/.cluster_allosteric_all_atoms_0.1nm.complete",
+        "stages/postprocess_sasa_site_10ns/cluster_matrix_allosteric_backbone_0.1nm.xpm",
+        "stages/postprocess_sasa_site_10ns/clusters_allosteric_backbone_0.1nm.pdb",
+        "stages/postprocess_sasa_site_10ns/cluster_sizes_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_id_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_distribution_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_allosteric_backbone_0.1nm.log",
+        "stages/postprocess_sasa_site_10ns/.cluster_allosteric_backbone_0.1nm.complete",
+        "stages/postprocess_sasa_site_10ns/cluster_matrix_allosteric_backbone_0.2nm.xpm",
+        "stages/postprocess_sasa_site_10ns/clusters_allosteric_backbone_0.2nm.pdb",
+        "stages/postprocess_sasa_site_10ns/cluster_sizes_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_id_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_distribution_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_allosteric_backbone_0.2nm.log",
+        "stages/postprocess_sasa_site_10ns/.cluster_allosteric_backbone_0.2nm.complete",
+        "stages/postprocess_sasa_site_10ns/cluster_matrix_allosteric_backbone_0.3nm.xpm",
+        "stages/postprocess_sasa_site_10ns/clusters_allosteric_backbone_0.3nm.pdb",
+        "stages/postprocess_sasa_site_10ns/cluster_sizes_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_id_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_site_10ns/rmsd_distribution_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_site_10ns/cluster_allosteric_backbone_0.3nm.log",
+        "stages/postprocess_sasa_site_10ns/.cluster_allosteric_backbone_0.3nm.complete",
+        "stages/postprocess_sasa_site_10ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_site_10ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.1nm.xvg.complete",
+        "stages/postprocess_sasa_site_10ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_site_10ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.2nm.xvg.complete",
+        "stages/postprocess_sasa_site_10ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_site_10ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.3nm.xvg.complete",
+        "stages/postprocess_sasa_site_10ns/sasa_analysis.ndx",
+        "stages/postprocess_sasa_site_10ns/sasa_allosteric_site_non_solvent_surface.xvg",
+        "stages/postprocess_sasa_site_10ns/analysis_protocol.tsv",
+        "stages/postprocess_sasa_site_10ns/analysis_qc.tsv",
+        "stages/postprocess_sasa_site_10ns/cluster_qc.tsv"
+      ],
+      "completion_logs": []
+    },
+    {
+      "id": "mdpocket_sasa_site_10ns",
+      "title": "SASA site 10 ns：标准化 100 ps 拆帧、MDpocket 密度与 1 Å 目标口袋描述符",
+      "script": "stages/83_mdpocket_sasa.sh",
+      "args": [
+        "postprocess_sasa_site_10ns",
+        "sasa_site_10ns",
+        "101"
+      ],
+      "deps": [
+        "postprocess_sasa_site_10ns"
+      ],
+      "long": true,
+      "optional_tool": "mdpocket",
+      "protocol_class": "standardized-analysis",
+      "expected": [
+        "stages/mdpocket_sasa_site_10ns/frames/frame0.pdb",
+        "stages/mdpocket_sasa_site_10ns/frames/frame100.pdb",
+        "stages/mdpocket_sasa_site_10ns/frames/.frames.complete",
+        "stages/mdpocket_sasa_site_10ns/snapshot_list.txt",
+        "stages/mdpocket_sasa_site_10ns/global/snapshot_list.txt",
+        "stages/mdpocket_sasa_site_10ns/selected/snapshot_list.txt",
+        "stages/mdpocket_sasa_site_10ns/global/mdpout_dens_grid.dx",
+        "stages/mdpocket_sasa_site_10ns/global/.mdpocket_discovery.complete",
+        "stages/mdpocket_sasa_site_10ns/global/mdpout_dens_iso_0.5.pdb",
+        "stages/mdpocket_sasa_site_10ns/selected_grid_iso_0.5_1A_pocket.pdb",
+        "stages/mdpocket_sasa_site_10ns/selected/mdpout_descriptors.txt",
+        "stages/mdpocket_sasa_site_10ns/selected/.mdpocket_selected.complete",
+        "stages/mdpocket_sasa_site_10ns/pocket_volume.csv",
+        "stages/mdpocket_sasa_site_10ns/pocket_volume_qc.json",
+        "stages/mdpocket_sasa_site_10ns/mdpocket_analysis_protocol.tsv"
+      ],
+      "indexed_files": [
+        {
+          "directory": "stages/mdpocket_sasa_site_10ns/frames",
+          "prefix": "frame",
+          "suffix": ".pdb",
+          "count": 101
+        }
+      ],
+      "completion_logs": []
+    },
+    {
+      "id": "postprocess_sasa_pocket_10ns",
+      "title": "SASA 8 Å pocket 10 ns：标准化 PBC、RMSD、Gromos 聚类与完整非溶剂 surface SASA",
+      "script": "stages/82_postprocess_sasa.sh",
+      "args": [
+        "sasa_pocket_10ns",
+        "10000"
+      ],
+      "deps": [
+        "sasa_pocket_10ns"
+      ],
+      "long": true,
+      "protocol_class": "standardized-analysis",
+      "expected": [
+        "stages/postprocess_sasa_pocket_10ns/pbc_fixed.xtc",
+        "stages/postprocess_sasa_pocket_10ns/aligned.xtc",
+        "stages/postprocess_sasa_pocket_10ns/aligned_reference.pdb",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_backbone.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_tm6_ecl3_tm7_backbone.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_tm6_tm7_backbone.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_allosteric_all_atoms.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_allosteric_backbone.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_matrix_backbone_0.2nm.xpm",
+        "stages/postprocess_sasa_pocket_10ns/clusters_backbone_0.2nm.pdb",
+        "stages/postprocess_sasa_pocket_10ns/cluster_sizes_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_id_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_distribution_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_backbone_0.2nm.log",
+        "stages/postprocess_sasa_pocket_10ns/.cluster_backbone_0.2nm.complete",
+        "stages/postprocess_sasa_pocket_10ns/cluster_matrix_tm6_tm7_backbone_0.1nm.xpm",
+        "stages/postprocess_sasa_pocket_10ns/clusters_tm6_tm7_backbone_0.1nm.pdb",
+        "stages/postprocess_sasa_pocket_10ns/cluster_sizes_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_id_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_distribution_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_tm6_tm7_backbone_0.1nm.log",
+        "stages/postprocess_sasa_pocket_10ns/.cluster_tm6_tm7_backbone_0.1nm.complete",
+        "stages/postprocess_sasa_pocket_10ns/cluster_matrix_tm6_tm7_backbone_0.2nm.xpm",
+        "stages/postprocess_sasa_pocket_10ns/clusters_tm6_tm7_backbone_0.2nm.pdb",
+        "stages/postprocess_sasa_pocket_10ns/cluster_sizes_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_id_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_distribution_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_tm6_tm7_backbone_0.2nm.log",
+        "stages/postprocess_sasa_pocket_10ns/.cluster_tm6_tm7_backbone_0.2nm.complete",
+        "stages/postprocess_sasa_pocket_10ns/cluster_matrix_allosteric_all_atoms_0.1nm.xpm",
+        "stages/postprocess_sasa_pocket_10ns/clusters_allosteric_all_atoms_0.1nm.pdb",
+        "stages/postprocess_sasa_pocket_10ns/cluster_sizes_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_id_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_distribution_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_allosteric_all_atoms_0.1nm.log",
+        "stages/postprocess_sasa_pocket_10ns/.cluster_allosteric_all_atoms_0.1nm.complete",
+        "stages/postprocess_sasa_pocket_10ns/cluster_matrix_allosteric_backbone_0.1nm.xpm",
+        "stages/postprocess_sasa_pocket_10ns/clusters_allosteric_backbone_0.1nm.pdb",
+        "stages/postprocess_sasa_pocket_10ns/cluster_sizes_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_id_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_distribution_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_allosteric_backbone_0.1nm.log",
+        "stages/postprocess_sasa_pocket_10ns/.cluster_allosteric_backbone_0.1nm.complete",
+        "stages/postprocess_sasa_pocket_10ns/cluster_matrix_allosteric_backbone_0.2nm.xpm",
+        "stages/postprocess_sasa_pocket_10ns/clusters_allosteric_backbone_0.2nm.pdb",
+        "stages/postprocess_sasa_pocket_10ns/cluster_sizes_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_id_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_distribution_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_allosteric_backbone_0.2nm.log",
+        "stages/postprocess_sasa_pocket_10ns/.cluster_allosteric_backbone_0.2nm.complete",
+        "stages/postprocess_sasa_pocket_10ns/cluster_matrix_allosteric_backbone_0.3nm.xpm",
+        "stages/postprocess_sasa_pocket_10ns/clusters_allosteric_backbone_0.3nm.pdb",
+        "stages/postprocess_sasa_pocket_10ns/cluster_sizes_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_id_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_distribution_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/cluster_allosteric_backbone_0.3nm.log",
+        "stages/postprocess_sasa_pocket_10ns/.cluster_allosteric_backbone_0.3nm.complete",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.1nm.xvg.complete",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.2nm.xvg.complete",
+        "stages/postprocess_sasa_pocket_10ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_pocket_10ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.3nm.xvg.complete",
+        "stages/postprocess_sasa_pocket_10ns/sasa_analysis.ndx",
+        "stages/postprocess_sasa_pocket_10ns/sasa_allosteric_site_non_solvent_surface.xvg",
+        "stages/postprocess_sasa_pocket_10ns/analysis_protocol.tsv",
+        "stages/postprocess_sasa_pocket_10ns/analysis_qc.tsv",
+        "stages/postprocess_sasa_pocket_10ns/cluster_qc.tsv"
+      ],
+      "completion_logs": []
+    },
+    {
+      "id": "mdpocket_sasa_pocket_10ns",
+      "title": "SASA 8 Å pocket 10 ns：标准化 100 ps 拆帧、MDpocket 密度与 1 Å 目标口袋描述符",
+      "script": "stages/83_mdpocket_sasa.sh",
+      "args": [
+        "postprocess_sasa_pocket_10ns",
+        "sasa_pocket_10ns",
+        "101"
+      ],
+      "deps": [
+        "postprocess_sasa_pocket_10ns"
+      ],
+      "long": true,
+      "optional_tool": "mdpocket",
+      "protocol_class": "standardized-analysis",
+      "expected": [
+        "stages/mdpocket_sasa_pocket_10ns/frames/frame0.pdb",
+        "stages/mdpocket_sasa_pocket_10ns/frames/frame100.pdb",
+        "stages/mdpocket_sasa_pocket_10ns/frames/.frames.complete",
+        "stages/mdpocket_sasa_pocket_10ns/snapshot_list.txt",
+        "stages/mdpocket_sasa_pocket_10ns/global/snapshot_list.txt",
+        "stages/mdpocket_sasa_pocket_10ns/selected/snapshot_list.txt",
+        "stages/mdpocket_sasa_pocket_10ns/global/mdpout_dens_grid.dx",
+        "stages/mdpocket_sasa_pocket_10ns/global/.mdpocket_discovery.complete",
+        "stages/mdpocket_sasa_pocket_10ns/global/mdpout_dens_iso_0.5.pdb",
+        "stages/mdpocket_sasa_pocket_10ns/selected_grid_iso_0.5_1A_pocket.pdb",
+        "stages/mdpocket_sasa_pocket_10ns/selected/mdpout_descriptors.txt",
+        "stages/mdpocket_sasa_pocket_10ns/selected/.mdpocket_selected.complete",
+        "stages/mdpocket_sasa_pocket_10ns/pocket_volume.csv",
+        "stages/mdpocket_sasa_pocket_10ns/pocket_volume_qc.json",
+        "stages/mdpocket_sasa_pocket_10ns/mdpocket_analysis_protocol.tsv"
+      ],
+      "indexed_files": [
+        {
+          "directory": "stages/mdpocket_sasa_pocket_10ns/frames",
+          "prefix": "frame",
+          "suffix": ".pdb",
+          "count": 101
+        }
+      ],
+      "completion_logs": []
+    },
+    {
+      "id": "postprocess_sasa_pocket_100ns",
+      "title": "SASA 8 Å pocket 100 ns：标准化 PBC、RMSD、Gromos 聚类与完整非溶剂 surface SASA",
+      "script": "stages/82_postprocess_sasa.sh",
+      "args": [
+        "sasa_pocket_100ns",
+        "100000"
+      ],
+      "deps": [
+        "sasa_pocket_100ns"
+      ],
+      "long": true,
+      "protocol_class": "standardized-analysis",
+      "expected": [
+        "stages/postprocess_sasa_pocket_100ns/pbc_fixed.xtc",
+        "stages/postprocess_sasa_pocket_100ns/aligned.xtc",
+        "stages/postprocess_sasa_pocket_100ns/aligned_reference.pdb",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_backbone.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_tm6_ecl3_tm7_backbone.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_tm6_tm7_backbone.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_allosteric_all_atoms.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_allosteric_backbone.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_matrix_backbone_0.2nm.xpm",
+        "stages/postprocess_sasa_pocket_100ns/clusters_backbone_0.2nm.pdb",
+        "stages/postprocess_sasa_pocket_100ns/cluster_sizes_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_id_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_distribution_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_backbone_0.2nm.log",
+        "stages/postprocess_sasa_pocket_100ns/.cluster_backbone_0.2nm.complete",
+        "stages/postprocess_sasa_pocket_100ns/cluster_matrix_tm6_tm7_backbone_0.1nm.xpm",
+        "stages/postprocess_sasa_pocket_100ns/clusters_tm6_tm7_backbone_0.1nm.pdb",
+        "stages/postprocess_sasa_pocket_100ns/cluster_sizes_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_id_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_distribution_tm6_tm7_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_tm6_tm7_backbone_0.1nm.log",
+        "stages/postprocess_sasa_pocket_100ns/.cluster_tm6_tm7_backbone_0.1nm.complete",
+        "stages/postprocess_sasa_pocket_100ns/cluster_matrix_tm6_tm7_backbone_0.2nm.xpm",
+        "stages/postprocess_sasa_pocket_100ns/clusters_tm6_tm7_backbone_0.2nm.pdb",
+        "stages/postprocess_sasa_pocket_100ns/cluster_sizes_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_id_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_distribution_tm6_tm7_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_tm6_tm7_backbone_0.2nm.log",
+        "stages/postprocess_sasa_pocket_100ns/.cluster_tm6_tm7_backbone_0.2nm.complete",
+        "stages/postprocess_sasa_pocket_100ns/cluster_matrix_allosteric_all_atoms_0.1nm.xpm",
+        "stages/postprocess_sasa_pocket_100ns/clusters_allosteric_all_atoms_0.1nm.pdb",
+        "stages/postprocess_sasa_pocket_100ns/cluster_sizes_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_id_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_distribution_allosteric_all_atoms_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_allosteric_all_atoms_0.1nm.log",
+        "stages/postprocess_sasa_pocket_100ns/.cluster_allosteric_all_atoms_0.1nm.complete",
+        "stages/postprocess_sasa_pocket_100ns/cluster_matrix_allosteric_backbone_0.1nm.xpm",
+        "stages/postprocess_sasa_pocket_100ns/clusters_allosteric_backbone_0.1nm.pdb",
+        "stages/postprocess_sasa_pocket_100ns/cluster_sizes_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_id_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_distribution_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_allosteric_backbone_0.1nm.log",
+        "stages/postprocess_sasa_pocket_100ns/.cluster_allosteric_backbone_0.1nm.complete",
+        "stages/postprocess_sasa_pocket_100ns/cluster_matrix_allosteric_backbone_0.2nm.xpm",
+        "stages/postprocess_sasa_pocket_100ns/clusters_allosteric_backbone_0.2nm.pdb",
+        "stages/postprocess_sasa_pocket_100ns/cluster_sizes_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_id_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_distribution_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_allosteric_backbone_0.2nm.log",
+        "stages/postprocess_sasa_pocket_100ns/.cluster_allosteric_backbone_0.2nm.complete",
+        "stages/postprocess_sasa_pocket_100ns/cluster_matrix_allosteric_backbone_0.3nm.xpm",
+        "stages/postprocess_sasa_pocket_100ns/clusters_allosteric_backbone_0.3nm.pdb",
+        "stages/postprocess_sasa_pocket_100ns/cluster_sizes_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_id_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_distribution_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/cluster_allosteric_backbone_0.3nm.log",
+        "stages/postprocess_sasa_pocket_100ns/.cluster_allosteric_backbone_0.3nm.complete",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.1nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.1nm.xvg.complete",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.2nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.2nm.xvg.complete",
+        "stages/postprocess_sasa_pocket_100ns/rmsd_5vex_vs_clusters_allosteric_backbone_0.3nm.xvg",
+        "stages/postprocess_sasa_pocket_100ns/.rmsd_5vex_vs_clusters_allosteric_backbone_0.3nm.xvg.complete",
+        "stages/postprocess_sasa_pocket_100ns/sasa_analysis.ndx",
+        "stages/postprocess_sasa_pocket_100ns/sasa_allosteric_site_non_solvent_surface.xvg",
+        "stages/postprocess_sasa_pocket_100ns/analysis_protocol.tsv",
+        "stages/postprocess_sasa_pocket_100ns/analysis_qc.tsv",
+        "stages/postprocess_sasa_pocket_100ns/cluster_qc.tsv"
+      ],
+      "completion_logs": []
+    },
+    {
+      "id": "mdpocket_sasa_pocket_100ns",
+      "title": "SASA 8 Å pocket 100 ns：标准化 100 ps 拆帧、MDpocket 密度与 1 Å 目标口袋描述符",
+      "script": "stages/83_mdpocket_sasa.sh",
+      "args": [
+        "postprocess_sasa_pocket_100ns",
+        "sasa_pocket_100ns",
+        "1001"
+      ],
+      "deps": [
+        "postprocess_sasa_pocket_100ns"
+      ],
+      "long": true,
+      "optional_tool": "mdpocket",
+      "protocol_class": "standardized-analysis",
+      "expected": [
+        "stages/mdpocket_sasa_pocket_100ns/frames/frame0.pdb",
+        "stages/mdpocket_sasa_pocket_100ns/frames/frame1000.pdb",
+        "stages/mdpocket_sasa_pocket_100ns/frames/.frames.complete",
+        "stages/mdpocket_sasa_pocket_100ns/snapshot_list.txt",
+        "stages/mdpocket_sasa_pocket_100ns/global/snapshot_list.txt",
+        "stages/mdpocket_sasa_pocket_100ns/selected/snapshot_list.txt",
+        "stages/mdpocket_sasa_pocket_100ns/global/mdpout_dens_grid.dx",
+        "stages/mdpocket_sasa_pocket_100ns/global/.mdpocket_discovery.complete",
+        "stages/mdpocket_sasa_pocket_100ns/global/mdpout_dens_iso_0.5.pdb",
+        "stages/mdpocket_sasa_pocket_100ns/selected_grid_iso_0.5_1A_pocket.pdb",
+        "stages/mdpocket_sasa_pocket_100ns/selected/mdpout_descriptors.txt",
+        "stages/mdpocket_sasa_pocket_100ns/selected/.mdpocket_selected.complete",
+        "stages/mdpocket_sasa_pocket_100ns/pocket_volume.csv",
+        "stages/mdpocket_sasa_pocket_100ns/pocket_volume_qc.json",
+        "stages/mdpocket_sasa_pocket_100ns/mdpocket_analysis_protocol.tsv"
+      ],
+      "indexed_files": [
+        {
+          "directory": "stages/mdpocket_sasa_pocket_100ns/frames",
+          "prefix": "frame",
+          "suffix": ".pdb",
+          "count": 1001
+        }
+      ],
+      "completion_logs": []
+    }
+  ],
+  "profiles": {
+    "validate-only": [],
+    "historical-distance-main": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "distance_monitor_50ns",
+      "distance_metad_50ns",
+      "postprocess_distance_50ns",
+      "mdpocket_distance_50ns"
+    ],
+    "distance-simulation-only": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "distance_monitor_50ns",
+      "distance_metad_50ns"
+    ],
+    "distance-new-bias-100ns": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "distance_monitor_50ns",
+      "distance_metad_50ns",
+      "distance_metad_100ns_new_bias"
+    ],
+    "historical-normal-controls": [
+      "minimization",
+      "equilibration",
+      "normal_10ns",
+      "normal_50ns",
+      "normal_100ns",
+      "normal_200ns_from_100ns"
+    ],
+    "historical-sasa-site": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "sasa_site_10ns"
+    ],
+    "historical-sasa-pocket": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "sasa_pocket_10ns"
+    ],
+    "historical-sasa-pocket-100ns": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "sasa_pocket_100ns"
+    ],
+    "historical-sasa-biased-main": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "sasa_site_10ns",
+      "sasa_pocket_100ns"
+    ],
+    "all-traceable": [
+      "minimization",
+      "equilibration",
+      "normal_10ns",
+      "normal_50ns",
+      "normal_100ns",
+      "normal_200ns_from_100ns",
+      "distance_monitor_50ns",
+      "distance_metad_50ns",
+      "distance_metad_100ns_new_bias",
+      "sasa_site_10ns",
+      "sasa_pocket_10ns",
+      "sasa_pocket_100ns",
+      "postprocess_distance_50ns",
+      "mdpocket_distance_50ns",
+      "postprocess_sasa_site_10ns",
+      "mdpocket_sasa_site_10ns",
+      "postprocess_sasa_pocket_10ns",
+      "mdpocket_sasa_pocket_10ns",
+      "postprocess_sasa_pocket_100ns",
+      "mdpocket_sasa_pocket_100ns"
+    ],
+    "standardized-sasa-site-10ns-full": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "sasa_site_10ns",
+      "postprocess_sasa_site_10ns",
+      "mdpocket_sasa_site_10ns"
+    ],
+    "standardized-sasa-pocket-10ns-full": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "sasa_pocket_10ns",
+      "postprocess_sasa_pocket_10ns",
+      "mdpocket_sasa_pocket_10ns"
+    ],
+    "standardized-sasa-pocket-100ns-full": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "sasa_pocket_100ns",
+      "postprocess_sasa_pocket_100ns",
+      "mdpocket_sasa_pocket_100ns"
+    ],
+    "standardized-sasa-biased-main": [
+      "minimization",
+      "equilibration",
+      "normal_100ns",
+      "sasa_site_10ns",
+      "sasa_pocket_100ns",
+      "postprocess_sasa_site_10ns",
+      "mdpocket_sasa_site_10ns",
+      "postprocess_sasa_pocket_100ns",
+      "mdpocket_sasa_pocket_100ns"
+    ],
+    "distance-simulation-1ns-demo": [
+      "minimization",
+      "equilibration",
+      "normal_1ns",
+      "distance_monitor_1ns",
+      "distance_metad_1ns"
+    ]
+  }
+}
