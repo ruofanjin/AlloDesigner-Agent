@@ -1,6 +1,6 @@
-# AlloDesigner
+# AlloDesigner-Agent
 
-AlloDesigner 是面向隐匿变构口袋（cryptic allosteric pocket）发现的多阶段工作流与多智能体编排原型，覆盖残基先验、构象富集、物理采样、口袋评价到虚筛作业单回传。本仓库以 GLP-1R 回溯 demo 为主路径，展示合同约束下的自主推理链（ReasoningPlan / ToolRouter），并可衔接 Allo-MD、PocketMiner、allo_stepwise 与外部 Vina/Glide。当前交付为 **partial/demo–seeded** 成熟度：可审计串联，不等于论文级全量重算或实验效力确认。
+AlloDesigner-Agent 收录作者参与的 **Agent 编排侧**工作：面向隐匿变构口袋发现的多阶段多智能体编排原型，覆盖残基先验、构象富集、物理采样、口袋评价到虚筛作业单回传。本仓库以 GLP-1R 回溯 demo 为主路径，展示合同约束下的自主推理链（ReasoningPlan / ToolRouter），并可衔接 Allo-MD、PocketMiner、allo_stepwise 与外部 Vina/Glide。当前交付为 **partial/demo–seeded** 成熟度：可审计串联，不等于论文级全量重算或实验效力确认。
 
 ## 主要目录
 
