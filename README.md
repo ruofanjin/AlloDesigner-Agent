@@ -1,12 +1,12 @@
 # AlloDesigner-Agent
 
-**AlloDesigner-Agent** 是我在 AlloDesigner 隐匿变构口袋（cryptic allosteric pocket）发现链路中完成的 **Agent 编排与工程化交付**：把六阶段科学合同变成可执行的推理链（ReasoningPlan）、工具路由（ToolRouter）、决策包与 demo 产物，并以 GLP-1R 回溯案例跑通端到端演示。
+**AlloDesigner-Agent** 是 AlloDesigner 隐匿变构口袋（cryptic allosteric pocket）发现链路中的 **Agent 编排与工程化交付**：把六阶段科学合同变成可执行的推理链（ReasoningPlan）、工具路由（ToolRouter）、决策包与 demo 产物，并以 GLP-1R 回溯案例跑通端到端演示。
 
 项目定位不是替换论文科学主路径本身，而是在冻结阶段语义下，让 Agent **自主选择** replay / reuse / job_pack 等执行策略，输出可审计的计划、DAG 与宣称边界。当前成熟度：**partial/demo–seeded**（1 ns MD demo、口袋对照 demo、虚筛作业单 seeded；非论文级 ~200 ns / 全库对接复现）。
 
 ---
 
-## 我在本仓库中的主要贡献
+## 本仓库核心内容
 
 1. **合同内自主推理编排**：`ReasoningOrchestrator`（plan → critic → execute → observe → replan）  
 2. **MultiAgent 合同与工具注册**：`stages.yaml` / `tool_registry.yaml` / schemas  
